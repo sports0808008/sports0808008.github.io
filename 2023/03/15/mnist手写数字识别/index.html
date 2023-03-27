@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475import tensorflow as tf # 使用models.Sequential()来搭建神经网络model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mnist手写数字识别">
+<meta property="og:url" content="http://example.com/2023/03/15/mnist%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475import tensorflow as tf # 使用models.Sequential()来搭建神经网络model">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160610.webp">
+<meta property="article:published_time" content="2023-03-15T07:57:20.000Z">
+<meta property="article:modified_time" content="2023-03-15T08:06:45.205Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="手写数字识别">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160610.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>mnist手写数字识别 - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mnist手写数字识别"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-15 15:57" pubdate>
+          2023年3月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mnist手写数字识别</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf <br><span class="hljs-comment"># 使用models.Sequential()来搭建神经网络</span><br>model=tf.keras.Sequential()<br>model.add(tf.keras.layers.Flatten(input_shape=(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>)))<span class="hljs-comment">#输入层</span><br>model.add(tf.keras.layers.Dense(units=<span class="hljs-number">135</span>,activation=<span class="hljs-string">&#x27;relu&#x27;</span>))<span class="hljs-comment">#隐含层</span><br>model.add(tf.keras.layers.Dense(units=<span class="hljs-number">100</span>,activation=<span class="hljs-string">&#x27;softmax&#x27;</span>))<span class="hljs-comment">#输出层</span><br>model.summary()<br><br><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf <span class="hljs-comment">#导入模块</span><br><br><span class="hljs-comment"># 使用models.Sequential()来搭建神经网络</span><br>model=tf.keras.models.Sequential([<br>    tf.keras.layers.Flatten(input_shape=(<span class="hljs-number">28</span>,<span class="hljs-number">28</span>)),<br>    tf.keras.layers.Dense(units=<span class="hljs-number">64</span>,activation=<span class="hljs-string">&#x27;relu&#x27;</span>),<br>    tf.keras.layers.Dense(units=<span class="hljs-number">32</span>,activation=<span class="hljs-string">&#x27;relu&#x27;</span>),<br>     tf.keras.layers.Dense(units=<span class="hljs-number">10</span>,activation=<span class="hljs-string">&#x27;softmax&#x27;</span>)])<br><br><br><span class="hljs-comment">#打印神经网络结构，统计参数数目</span><br>model.summary()<br><br><br><span class="hljs-comment">#keras 函数式API模型</span><br><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br>input_dim=tf.keras.Input(shape=[<span class="hljs-number">28</span>,<span class="hljs-number">28</span>])<br>h1=tf.keras.layers.Flatten()(input_dim)<br>h2=tf.keras.layers.Dense(units=<span class="hljs-number">120</span>,activation=<span class="hljs-string">&#x27;relu&#x27;</span>)(h1)<br>output_dim=tf.keras.layers.Dense(units=<span class="hljs-number">120</span>,activation=<span class="hljs-string">&#x27;softmax&#x27;</span>)(h2)<br>model=tf.keras.Model(input_dim,output_dim)<br>model.summary()<br><br><span class="hljs-comment">#第一步，import</span><br><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf <span class="hljs-comment">#导入模块</span><br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets <span class="hljs-comment">#从sklearn中导入数据集</span><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <span class="hljs-comment">#导入科学计算模块</span><br><span class="hljs-keyword">import</span> keras<br> <br><span class="hljs-comment">#第二步，train, test</span><br>x_train = datasets.load_iris().data <span class="hljs-comment">#导入iris数据集的输入</span><br> <br>y_train = datasets.load_iris().target <span class="hljs-comment">#导入iris数据集的标签</span><br> <br>np.random.seed(<span class="hljs-number">120</span>) <span class="hljs-comment">#设置随机种子，让每次结果都一样，方便对照</span><br> <br>np.random.shuffle(x_train) <span class="hljs-comment">#使用shuffle()方法，让输入x_train乱序</span><br> <br>np.random.seed(<span class="hljs-number">120</span>) <span class="hljs-comment">#设置随机种子，让每次结果都一样，方便对照</span><br> <br>np.random.shuffle(y_train) <span class="hljs-comment">#使用shuffle()方法，让输入y_train乱序</span><br> <br>tf.random.set_seed(<span class="hljs-number">120</span>) <span class="hljs-comment">#让tensorflow中的种子数设置为120</span><br> <br><span class="hljs-comment">#第三步，models.Sequential()</span><br>model = tf.keras.models.Sequential([ <span class="hljs-comment">#使用models.Sequential()来搭建神经网络</span><br>    tf.keras.layers.Dense(<span class="hljs-number">3</span>, activation = <span class="hljs-string">&quot;softmax&quot;</span>, kernel_regularizer = tf.keras.regularizers.l2()) <span class="hljs-comment">#全连接层，三个神经元，激活函数为softmax,使用l2正则化</span><br>])<br> <br><span class="hljs-comment">#第四步，model.compile()</span><br>model.<span class="hljs-built_in">compile</span>(  <span class="hljs-comment">#使用model.compile()方法来配置训练方法</span><br>    optimizer = tf.keras.optimizers.SGD(lr = <span class="hljs-number">0.1</span>), <span class="hljs-comment">#使用SGD优化器，学习率为0.1</span><br>    loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits = <span class="hljs-literal">False</span>), <span class="hljs-comment">#配置损失函数</span><br>    metrics = [<span class="hljs-string">&#x27;sparse_categorical_accuracy&#x27;</span>] <span class="hljs-comment">#标注网络评价指标</span><br>)<br> <br><span class="hljs-comment">#第五步，model.fit()</span><br>model.fit(  <span class="hljs-comment">#使用model.fit()方法来执行训练过程，</span><br>    x_train, y_train, <span class="hljs-comment">#告知训练集的输入以及标签，</span><br>    batch_size = <span class="hljs-number">32</span>, <span class="hljs-comment">#每一批batch的大小为32，</span><br>    epochs = <span class="hljs-number">500</span>, <span class="hljs-comment">#迭代次数epochs为500</span><br>    validation_split = <span class="hljs-number">0.2</span>, <span class="hljs-comment">#从测试集中划分80%给训练集</span><br>    validation_freq = <span class="hljs-number">20</span> <span class="hljs-comment">#测试的间隔次数为20</span><br>)<br> <br><span class="hljs-comment">#第六步，model.summary()</span><br>model.summary() <span class="hljs-comment">#打印神经网络结构，统计参数数目</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#获取数据</span><br><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf <span class="hljs-comment">#导入tensorflow,简写为tf</span><br>mnist=tf.keras.datasets.mnist<br>(train_images, train_labels),(test_images, test_labels) = mnist.load_data() <br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;train_images:&quot;</span>,train_images.shape) <br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;test_images:&quot;</span>,test_images.shape)<br><br><span class="hljs-comment"># 划分验证集</span><br>total_num =<span class="hljs-built_in">len</span>(train_images)<br>valid_split=<span class="hljs-number">0.2</span> <span class="hljs-comment">#验证集的比例占20%</span><br>train_num = <span class="hljs-built_in">int</span>(total_num*(<span class="hljs-number">1</span>-valid_split))	<span class="hljs-comment">#训练集的数目	</span><br><br>train_x=train_images[:train_num]	<span class="hljs-comment"># 前部分训练集	</span><br>train_y=train_labels[:train_num]<br><br>valid_x=train_images[train_num:] <span class="hljs-comment">#后20%给验证集</span><br>valid_y=train_labels[train_num:]<br><br>test_x=test_images <br>test_y=test_labels<br><br><br><span class="hljs-comment">#数据塑形</span><br><span class="hljs-comment">#把（28 28）结构拉直为一行</span><br>train_x=train_x.reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">784</span>)<br>valid_x=valid_x.reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">784</span>)<br>test_x=test_x.reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">784</span>)<br><span class="hljs-comment"># print(train_x.shape)</span><br><span class="hljs-built_in">print</span>(train_x.dtype)<br><br><span class="hljs-comment">#数据归一化后将数据类型转化为float 32</span><br>train_x=tf.cast(train_x/<span class="hljs-number">255.</span>,dtype=tf.float32)<br>valid_x=tf.cast(valid_x/<span class="hljs-number">255.</span>,dtype=tf.float32)<br>test_x=tf.cast(train_x/<span class="hljs-number">255.</span>,dtype=tf.float32)<br><br><span class="hljs-built_in">print</span>(train_x.shape)<span class="hljs-comment">#</span><br><span class="hljs-built_in">print</span>(train_x.dtype)<br><span class="hljs-built_in">print</span>(train_y.dtype)<br><br><br><span class="hljs-comment">#对标签数据进行独热编码</span><br>train_y=tf.one_hot(train_y,depth=<span class="hljs-number">10</span>)<br>valid_y=tf.one_hot(valid_y,depth=<span class="hljs-number">10</span>)<br>test_y=tf.one_hot(test_y,depth=<span class="hljs-number">10</span>)<br><br><span class="hljs-comment">#定义第一层到隐含层权重和偏执项变量</span><br>Input_Dim=<span class="hljs-number">784</span><br>Output_Dim=<span class="hljs-number">10</span><br>H1_NN=<span class="hljs-number">64</span><br>w1=tf.Variable(tf.random.normal([Input_Dim,H1_NN],mean=<span class="hljs-number">0.0</span>,stddev=<span class="hljs-number">1.0</span>,dtype=tf.float32))<br>b1=tf.Variable(tf.zeros([H1_NN]),dtype=tf.float32)<br><span class="hljs-comment">#定义隐含层到输出层的权重和偏置变量</span><br>w2=tf.Variable(tf.random.normal([H1_NN,Output_Dim],mean=<span class="hljs-number">0.0</span>,stddev=<span class="hljs-number">1.0</span>,dtype=tf.float32))<br>b2=tf.Variable(tf.zeros([Output_Dim]),dtype=tf.float32)<br><br><span class="hljs-comment">#方便后期参数的传送，将其放到列表中</span><br>w=[w1,w2]<br>b=[b1,b2]<br><br><span class="hljs-comment">#定义前向传播(函数)模型</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">model</span>(<span class="hljs-params">x,w,b</span>):<br>    x=tf.matmul(x,w[<span class="hljs-number">0</span>]+b[<span class="hljs-number">0</span>])<span class="hljs-comment">#通过tf.matmul实现点乘计算，然后加上偏置</span><br>    x=tf.nn.relu(x) <span class="hljs-comment">#将输入数据经过激活函数relu进行隐含层输出</span><br>    x=tf.matmul(x,w[<span class="hljs-number">1</span>]+b[<span class="hljs-number">1</span>])<br>    pred=tf.nn.softmax(x)<span class="hljs-comment">#最终输出更具数据类别数指定激活函数，若为二分类，建议用sigmoid函数，若为多分类，</span><br>    <span class="hljs-keyword">return</span> pred<br><br><span class="hljs-comment">#定义交叉熵损失函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">loss</span>(<span class="hljs-params">x,y,w,b</span>):<br>    pred=model(x,w,b)<br>    loss_=tf.keras.losses.categorical_crossentropy(y_true=y,y_pred=pred)<span class="hljs-comment">#y真实值，pred预测值，调用keras中的交叉熵损失函数</span><br>    <span class="hljs-keyword">return</span> tf.reduce_mean(loss_)<span class="hljs-comment">#计算损失函数均值</span><br><br>training_epochs=<span class="hljs-number">50</span><span class="hljs-comment">#训练的次数</span><br>batch_size=<span class="hljs-number">50</span><span class="hljs-comment">#单次训练的样本数</span><br>learning_rate=<span class="hljs-number">0.01</span><span class="hljs-comment">#学习率，建议设置在0——0.1范围以内</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">grad</span>(<span class="hljs-params">x,y,w,b</span>):<br>    <span class="hljs-keyword">with</span> tf.GradientTape() <span class="hljs-keyword">as</span> tape:  <span class="hljs-comment">#通过tf.GradientTape()函数实现自动求导</span><br>        loss_=loss(x,y,w,b)<br>        <span class="hljs-keyword">return</span> tape.gradient(loss_,[w[<span class="hljs-number">0</span>],b[<span class="hljs-number">0</span>],w[<span class="hljs-number">1</span>],b[<span class="hljs-number">1</span>]])<span class="hljs-comment">#梯度向量</span><br>    <br> <span class="hljs-comment">#d定义优化器</span><br>optimzer=tf.keras.optimizers.Adam(learning_rate=learning_rate)<br><br><span class="hljs-comment">#定义准确率</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">accuracy</span>(<span class="hljs-params">x,y,w,b</span>):<br>    pred=model(x,w,b)<span class="hljs-comment">#得到预测值</span><br>    correct_prediction=tf.equal(tf.argmax(pred,<span class="hljs-number">1</span>),tf.argmax(y,<span class="hljs-number">1</span>))<span class="hljs-comment">#tf.argmax获取数据中1轴对应的最大索引值</span><br>    <span class="hljs-keyword">return</span> tf.reduce_mean(tf.cast(correct_prediction,tf.float32))<br><br><span class="hljs-comment">#训练模型</span><br>steps=<span class="hljs-built_in">int</span>(train_num/batch_size)<span class="hljs-comment">#获取数据的批次或者多少捆并将其转换为整数</span><br><span class="hljs-comment">#定义训练数据和验证数据损失值和准确率的列表</span><br>loss_list_train=[]<br>loss_list_valid=[]<br>acc_list_train=[]<br>acc_list_valid=[]<br><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(training_epochs):<span class="hljs-comment">#训练的次数</span><br>    <span class="hljs-keyword">for</span> step <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(steps):<span class="hljs-comment">#获取全部数据并用于训练</span><br>        xs=train_x[step*batch_size:(step+<span class="hljs-number">1</span>)*batch_size]<span class="hljs-comment">#训练模型时，数据的起始和终止</span><br>        ys=train_y[step*batch_size:(step+<span class="hljs-number">1</span>)*batch_size]<br><br>        grads=grad(xs,ys,w,b)<span class="hljs-comment">#计算梯度向量</span><br>        optimzer.apply_gradients(<span class="hljs-built_in">zip</span>(grads,[w[<span class="hljs-number">0</span>],b[<span class="hljs-number">0</span>],w[<span class="hljs-number">1</span>],b[<span class="hljs-number">1</span>]]))<span class="hljs-comment">#表示对梯度向量中的w,b进行更新</span><br><br>    loss_train=loss(train_x,train_y,w,b).numpy()<span class="hljs-comment">#获取训练数据损失值</span><br>    loss_valid=loss(train_x,train_y,w,b).numpy()<br><br>    acc_train=loss(train_x,train_y,w,b).numpy()<br>    acc_valid=loss(train_x,train_y,w,b).numpy()<span class="hljs-comment">#获取验证数据准确率</span><br><br>    loss_list_train.append(loss_train)<br>    loss_list_valid.append(loss_valid)<br><br>    acc_list_train.append(acc_train)<br>    acc_list_valid.append(acc_valid)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;epoch=&#123;:3d&#125;,train_loss=&#123;:.4f&#125;,val_loss=&#123;:.4f&#125;,val_acc=&#123;:.44&#125;&quot;</span>.<span class="hljs-built_in">format</span>(epoch+<span class="hljs-number">1</span>,loss_train,acc_train,loss_valid,acc_valid))<br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">深度学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB/">#手写数字识别</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mnist手写数字识别</div>
+      <div>http://example.com/2023/03/15/mnist手写数字识别/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/16/git/" title="git">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">git</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/15/Sklearn%E5%AD%A6%E4%B9%A0/" title="Sklearn学习">
+                        <span class="hidden-mobile">Sklearn学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
