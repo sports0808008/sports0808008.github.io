@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>MD文档范例</title>
+    <link href="/2023/04/14/MD%E6%96%87%E6%A1%A3%E8%8C%83%E4%BE%8B/"/>
+    <url>/2023/04/14/MD%E6%96%87%E6%A1%A3%E8%8C%83%E4%BE%8B/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MD文档范例"><a href="#MD文档范例" class="headerlink" title="MD文档范例"></a>MD文档范例</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote><p>内容….</p></blockquote><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote><p>。。。。</p></blockquote><h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Hello</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <br>        System.out.println(<span class="hljs-string">&quot;HelloWorld...1&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;HelloWorld...2&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;HelloWorld...3&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><blockquote><table><thead><tr><th>内容</th><th>描述</th></tr></thead><tbody><tr><td>aaa</td><td>AAA</td></tr><tr><td>bbb</td><td>BBB</td></tr><tr><td>ccc</td><td>CCC</td></tr></tbody></table></blockquote><p><a href="https://blog.csdn.net/a1036645146/article/details/105194776">https://blog.csdn.net/a1036645146/article/details/105194776</a></p><p><a href="https://blog.csdn.net/m0_47268176/article/details/109730309">https://blog.csdn.net/m0_47268176/article/details/109730309</a></p><p> <a href="https://blog.csdn.net/lishuoboy/article/details/104421044">https://blog.csdn.net/lishuoboy/article/details/104421044</a> </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>workspace</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>md</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>决策树</title>
     <link href="/2023/04/13/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
     <url>/2023/04/13/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
