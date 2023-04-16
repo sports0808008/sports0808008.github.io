@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Day07java</title>
+    <link href="/2023/04/16/Day07java/"/>
+    <url>/2023/04/16/Day07java/</url>
+    
+    <content type="html"><![CDATA[<h3 id="一．方法"><a href="#一．方法" class="headerlink" title="一．方法"></a>一．方法</h3><h3 id="二．普通的方法"><a href="#二．普通的方法" class="headerlink" title="二．普通的方法"></a>二．普通的方法</h3><p>语法结构：</p><p>案例：声明一个方法，打印5行三角形</p><h3 id="三．带有参数的方法"><a href="#三．带有参数的方法" class="headerlink" title="三．带有参数的方法"></a>三．带有参数的方法</h3><p>语法结构：</p><p>案例1：声明一个方法，打印指定行的三角形</p><p>案例2：声明一个方法，打印指定行和符号的三角形</p><h3 id="四．带有返回值的方法"><a href="#四．带有返回值的方法" class="headerlink" title="四．带有返回值的方法"></a>四．带有返回值的方法</h3><p>语法结构：</p><p>案例1：声明一个方法，传入两个int类型的数字，返回之和</p><p>案例2：声明一个方法，传入三个int类型的数字，返回最大值</p><p>案例3：声明一个方法，传入三个int类型的数字，返回最小值</p><h3 id="五．方法的重载"><a href="#五．方法的重载" class="headerlink" title="五．方法的重载"></a>五．方法的重载</h3><p>应用场景：</p><p>条件：</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Work03</title>
     <link href="/2023/04/16/Work03/"/>
     <url>/2023/04/16/Work03/</url>
@@ -211,31 +236,6 @@
       
     </categories>
     
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Day07java方法</title>
-    <link href="/2023/03/18/%E6%96%B9%E6%B3%95/"/>
-    <url>/2023/03/18/%E6%96%B9%E6%B3%95/</url>
-    
-    <content type="html"><![CDATA[<h3 id="一．方法"><a href="#一．方法" class="headerlink" title="一．方法"></a>一．方法</h3><h3 id="二．普通的方法"><a href="#二．普通的方法" class="headerlink" title="二．普通的方法"></a>二．普通的方法</h3><p>语法结构：</p><p>案例：声明一个方法，打印5行三角形</p><h3 id="三．带有参数的方法"><a href="#三．带有参数的方法" class="headerlink" title="三．带有参数的方法"></a>三．带有参数的方法</h3><p>语法结构：</p><p>案例1：声明一个方法，打印指定行的三角形</p><p>案例2：声明一个方法，打印指定行和符号的三角形</p><h3 id="四．带有返回值的方法"><a href="#四．带有返回值的方法" class="headerlink" title="四．带有返回值的方法"></a>四．带有返回值的方法</h3><p>语法结构：</p><p>案例1：声明一个方法，传入两个int类型的数字，返回之和</p><p>案例2：声明一个方法，传入三个int类型的数字，返回最大值</p><p>案例3：声明一个方法，传入三个int类型的数字，返回最小值</p><h3 id="五．方法的重载"><a href="#五．方法的重载" class="headerlink" title="五．方法的重载"></a>五．方法的重载</h3><p>应用场景：</p><p>条件：</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>方法</tag>
-      
-    </tags>
     
   </entry>
   
