@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.调用sklearn 实现K进邻 1234567891011121314151617181920212223242526272829303132333435363738import numpy as npfrom sklearn.datasets import load_irisfrom sklearn.neighbors import KNeighborsClassifierfrom skle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K进邻">
+<meta property="og:url" content="http://example.com/2023/04/20/K%E8%BF%9B%E9%82%BB/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="1.调用sklearn 实现K进邻 1234567891011121314151617181920212223242526272829303132333435363738import numpy as npfrom sklearn.datasets import load_irisfrom sklearn.neighbors import KNeighborsClassifierfrom skle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160546.webp">
+<meta property="article:published_time" content="2023-04-20T09:17:58.000Z">
+<meta property="article:modified_time" content="2023-04-20T09:27:20.405Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="K进邻">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160546.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>K进邻 - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="K进邻"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-20 17:17" pubdate>
+          2023年4月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          89 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">K进邻</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>1.调用sklearn 实现K进邻</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris<br><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics <br><br><br>iris_dataset = load_iris()<br><br>X_train, X_test, y_train, y_test = train_test_split(iris_dataset[<span class="hljs-string">&#x27;data&#x27;</span>], iris_dataset[<span class="hljs-string">&#x27;target&#x27;</span>], random_state=<span class="hljs-number">1</span>, test_size=<span class="hljs-number">0.4</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;X_train shape: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(X_train.shape))        <span class="hljs-comment"># X_train shape: (112, 4)</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;y_train shape: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(y_train.shape))        <span class="hljs-comment"># y_train shape: (112,)</span><br><br><br><span class="hljs-comment"># K-Nearest Neighbours</span><br>knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">1</span>, algorithm=<span class="hljs-string">&#x27;kd_tree&#x27;</span>,  p=<span class="hljs-number">2</span>, n_jobs=<span class="hljs-number">1</span>)<br>knn.fit(X_train, y_train)<br>y_pred = knn.predict(X_test)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;The accuracy of the knn is: &#123;:.2f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(metrics.accuracy_score(y_pred, y_test)))   <span class="hljs-comment"># Test set score: 0.97</span><br><br>model=KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>, algorithm=<span class="hljs-string">&#x27;kd_tree&#x27;</span>,  p=<span class="hljs-number">2</span>, n_jobs=<span class="hljs-number">1</span>)<br>model.fit(X_train, y_train)<br>prediction = model.predict(X_test)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;The accuracy of the KNN is: &#123;:.3f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(metrics.accuracy_score(prediction, y_test)))    <br><br>model=KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>, algorithm=<span class="hljs-string">&#x27;kd_tree&#x27;</span>,  p=<span class="hljs-number">2</span>, n_jobs=<span class="hljs-number">1</span>)<br>model.fit(X_train, y_train)<br>prediction = model.predict(X_test)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;The accuracy of the KNN is: &#123;:.3f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(metrics.accuracy_score(prediction, y_test)))<br><br>model=KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>, algorithm=<span class="hljs-string">&#x27;kd_tree&#x27;</span>,  p=<span class="hljs-number">1</span>, n_jobs=<span class="hljs-number">1</span>)<br>model.fit(X_train, y_train)<br>prediction = model.predict(X_test)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;The accuracy of the KNN is: &#123;:.3f&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(metrics.accuracy_score(prediction, y_test)))<br><br></code></pre></td></tr></table></figure>
+
+<p>2.调用自己写的K进邻模块，对数据集做分类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># encoding: utf-8</span><br><br><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> matplotlib.colors <span class="hljs-keyword">import</span> ListedColormap<br><br>data = np.array([[<span class="hljs-number">5</span>, <span class="hljs-number">12</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">6</span>, <span class="hljs-number">21</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">14</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">16</span>, <span class="hljs-number">10</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">13</span>, <span class="hljs-number">19</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">13</span>, <span class="hljs-number">32</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">17</span>, <span class="hljs-number">27</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">18</span>, <span class="hljs-number">24</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">23</span>, <span class="hljs-number">14</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">23</span>, <span class="hljs-number">25</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">23</span>, <span class="hljs-number">31</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">26</span>, <span class="hljs-number">8</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">30</span>, <span class="hljs-number">17</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">30</span>, <span class="hljs-number">26</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">34</span>, <span class="hljs-number">8</span>, <span class="hljs-number">0</span>],<br>                 [<span class="hljs-number">34</span>, <span class="hljs-number">19</span>, <span class="hljs-number">1</span>],<br>                 [<span class="hljs-number">37</span>, <span class="hljs-number">28</span>, <span class="hljs-number">1</span>]])<br><span class="hljs-comment"># 得到特征向量</span><br>X_train = data[:, <span class="hljs-number">0</span>:<span class="hljs-number">2</span>]<br><span class="hljs-comment"># 得到类别向量</span><br>y_train = data[:, <span class="hljs-number">2</span>]<br><br><span class="hljs-comment"># 分别构造k=1和k=2的k近邻模型</span><br>models = (KNeighborsClassifier(n_neighbors=<span class="hljs-number">1</span>, n_jobs=-<span class="hljs-number">1</span>),<br>          KNeighborsClassifier(n_neighbors=<span class="hljs-number">2</span>, n_jobs=-<span class="hljs-number">1</span>))<br><span class="hljs-comment"># 模型训练</span><br>models = (clf.fit(X_train, y_train) <span class="hljs-keyword">for</span> clf <span class="hljs-keyword">in</span> models)<br><br><span class="hljs-comment"># 设置图形标题</span><br>titles = (<span class="hljs-string">&#x27;K Neighbors with k=1&#x27;</span>,<br>          <span class="hljs-string">&#x27;K Neighbors with k=2&#x27;</span>)<br><br><span class="hljs-comment"># 设置图形的大小和图间距</span><br>fig = plt.figure(figsize=(<span class="hljs-number">15</span>, <span class="hljs-number">5</span>))<br>plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.4</span>)<br><br><span class="hljs-comment"># 分别获取第1个和第2个特征向量</span><br>X0, X1 = X_train[:, <span class="hljs-number">0</span>], X_train[:, <span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># 得到坐标轴的最小值和最大值</span><br>x_min, x_max = X0.<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>, X0.<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span><br>y_min, y_max = X1.<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>, X1.<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span><br><br><span class="hljs-comment"># 构造网格点坐标矩阵（https://blog.csdn.net/lllxxq141592654/article/details/81532855）</span><br><span class="hljs-comment"># 设置0.2的目的是生成更多的网格点，数值越小，划分空间之间的分隔线越清晰</span><br>xx, yy = np.meshgrid(np.arange(x_min, x_max, <span class="hljs-number">0.2</span>),<br>                     np.arange(y_min, y_max, <span class="hljs-number">0.2</span>))<br><br><span class="hljs-keyword">for</span> clf, title, ax <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(models, titles, fig.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).flatten()):<br>    <span class="hljs-comment"># 对所有网格点进行预测</span><br>    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])<br>    Z = Z.reshape(xx.shape)<br>    <span class="hljs-comment"># 设置颜色列表</span><br>    colors = (<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>, <span class="hljs-string">&#x27;lightgreen&#x27;</span>, <span class="hljs-string">&#x27;gray&#x27;</span>, <span class="hljs-string">&#x27;cyan&#x27;</span>)<br>    <span class="hljs-comment"># 根据类别数生成颜色</span><br>    cmap = ListedColormap(colors[:<span class="hljs-built_in">len</span>(np.unique(Z))])<br>    <span class="hljs-comment"># 绘制分隔线，contourf函数用于绘制等高线，alpha表示颜色的透明度，一般设置成0.5</span><br>    ax.contourf(xx, yy, Z, cmap=cmap, alpha=<span class="hljs-number">0.5</span>)<br><br>    <span class="hljs-comment"># 绘制样本点</span><br>    ax.scatter(X0, X1, c=y_train, s=<span class="hljs-number">50</span>, edgecolors=<span class="hljs-string">&#x27;k&#x27;</span>, cmap=cmap, alpha=<span class="hljs-number">0.5</span>)<br><br>    <span class="hljs-comment"># 计算预测准确率</span><br>    acc = clf.score(X_train, y_train)<br>    <span class="hljs-comment"># 设置标题</span><br>    ax.set_title(title + <span class="hljs-string">&#x27; (Accuracy: %d%%)&#x27;</span> % (acc * <span class="hljs-number">100</span>))<br><br>plt.show()<br><br></code></pre></td></tr></table></figure>
+
+<p>3.构造kd树求点x&#x3D;(3,4,5)T的最近邻点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># encoding: utf-8</span><br><br><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KDTree<br><br><span class="hljs-comment"># 构造例题3.2的数据集</span><br>train_data = np.array([[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>                       [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>],<br>                       [<span class="hljs-number">9</span>, <span class="hljs-number">6</span>],<br>                       [<span class="hljs-number">4</span>, <span class="hljs-number">7</span>],<br>                       [<span class="hljs-number">8</span>, <span class="hljs-number">1</span>],<br>                       [<span class="hljs-number">7</span>, <span class="hljs-number">2</span>]])<br><span class="hljs-comment"># （1）使用sklearn的KDTree类，构建平衡kd树</span><br><span class="hljs-comment"># 设置leaf_size为2，表示平衡树</span><br>tree = KDTree(train_data, leaf_size=<span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># （2）使用tree.query方法，设置k=1，查找(3, 4.5)的最近邻点</span><br><span class="hljs-comment"># dist表示与最近邻点的距离，ind表示最近邻点在train_data的位置</span><br>dist, ind = tree.query(np.array([[<span class="hljs-number">3</span>, <span class="hljs-number">4.5</span>]]), k=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(ind)<br><span class="hljs-built_in">print</span>(dist)<br><br>node_index = ind[<span class="hljs-number">0</span>]<br><span class="hljs-comment"># 得到最近邻点</span><br>x1 = train_data[node_index][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br>x2 = train_data[node_index][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;x点的最近邻点是(&#123;0&#125;, &#123;1&#125;)&quot;</span>.<span class="hljs-built_in">format</span>(x1, x2))<br><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>构造我的平衡KD树 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># encoding: utf-8</span><br><br><span class="hljs-keyword">import</span> json<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;节点类&quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, value, index, left_child, right_child</span>):<br>        self.value = value.tolist()<br>        self.index = index<br>        self.left_child = left_child<br>        self.right_child = right_child<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> json.dumps(self, indent=<span class="hljs-number">3</span>, default=<span class="hljs-keyword">lambda</span> obj: obj.__dict__, ensure_ascii=<span class="hljs-literal">False</span>)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">KDTree</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;kd tree类&quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, data</span>):<br>        <span class="hljs-comment"># 数据集</span><br>        self.data = np.asarray(data)<br>        <span class="hljs-comment"># kd树</span><br>        self.kd_tree = <span class="hljs-literal">None</span><br>        <span class="hljs-comment"># 创建平衡kd树</span><br>        self._create_kd_tree(data)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_split_sub_tree</span>(<span class="hljs-params">self, data, depth=<span class="hljs-number">0</span></span>):<br>        <span class="hljs-comment"># 算法3.2第3步：直到子区域没有实例存在时停止</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(data) == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>        <span class="hljs-comment"># 算法3.2第2步：选择切分坐标轴, 从0开始（书中是从1开始）</span><br>        l = depth % data.shape[<span class="hljs-number">1</span>]<br>        <span class="hljs-comment"># 对数据进行排序</span><br>        data = data[data[:, l].argsort()]<br>        <span class="hljs-comment"># 算法3.2第1步：将所有实例坐标的中位数作为切分点</span><br>        median_index = data.shape[<span class="hljs-number">0</span>] // <span class="hljs-number">2</span><br>        <span class="hljs-comment"># 获取结点在数据集中的位置</span><br>        node_index = [i <span class="hljs-keyword">for</span> i, v <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.data) <span class="hljs-keyword">if</span> <span class="hljs-built_in">list</span>(v) == <span class="hljs-built_in">list</span>(data[median_index])]<br>        <span class="hljs-keyword">return</span> Node(<br>            <span class="hljs-comment"># 本结点</span><br>            value=data[median_index],<br>            <span class="hljs-comment"># 本结点在数据集中的位置</span><br>            index=node_index[<span class="hljs-number">0</span>],<br>            <span class="hljs-comment"># 左子结点</span><br>            left_child=self._split_sub_tree(data[:median_index], depth + <span class="hljs-number">1</span>),<br>            <span class="hljs-comment"># 右子结点</span><br>            right_child=self._split_sub_tree(data[median_index + <span class="hljs-number">1</span>:], depth + <span class="hljs-number">1</span>)<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_create_kd_tree</span>(<span class="hljs-params">self, X</span>):<br>        self.kd_tree = self._split_sub_tree(X)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">query</span>(<span class="hljs-params">self, data, k=<span class="hljs-number">1</span></span>):<br>        data = np.asarray(data)<br>        hits = self._search(data, self.kd_tree, k=k, k_neighbor_sets=<span class="hljs-built_in">list</span>())<br>        dd = np.array([hit[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> hits])<br>        ii = np.array([hit[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> hits])<br>        <span class="hljs-keyword">return</span> dd, ii<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">str</span>(self.kd_tree)<br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_cal_node_distance</span>(<span class="hljs-params">node1, node2</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;计算两个结点之间的距离&quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> np.sqrt(np.<span class="hljs-built_in">sum</span>(np.square(node1 - node2)))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_search</span>(<span class="hljs-params">self, point, tree=<span class="hljs-literal">None</span>, k=<span class="hljs-number">1</span>, k_neighbor_sets=<span class="hljs-literal">None</span>, depth=<span class="hljs-number">0</span></span>):<br>        n = point.shape[<span class="hljs-number">1</span>]<br>        <span class="hljs-keyword">if</span> k_neighbor_sets <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            k_neighbor_sets = []<br>        <span class="hljs-keyword">if</span> tree <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">return</span> k_neighbor_sets<br><br>        <span class="hljs-comment"># (1)找到包含目标点x的叶结点</span><br>        <span class="hljs-keyword">if</span> tree.left_child <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">and</span> tree.right_child <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-comment"># 更新当前k近邻点集</span><br>            <span class="hljs-keyword">return</span> self._update_k_neighbor_sets(k_neighbor_sets, k, tree, point)<br><br>        <span class="hljs-comment"># 递归地向下访问kd树</span><br>        <span class="hljs-keyword">if</span> point[<span class="hljs-number">0</span>][depth % n] &lt; tree.value[depth % n]:<br>            direct = <span class="hljs-string">&#x27;left&#x27;</span><br>            next_branch = tree.left_child<br>        <span class="hljs-keyword">else</span>:<br>            direct = <span class="hljs-string">&#x27;right&#x27;</span><br>            next_branch = tree.right_child<br>        <span class="hljs-keyword">if</span> next_branch <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-comment"># (3)(b)检查另一子结点对应的区域是否相交</span><br>            k_neighbor_sets = self._search(point, tree=next_branch, k=k, depth=depth + <span class="hljs-number">1</span>,<br>                                           k_neighbor_sets=k_neighbor_sets)<br><br>            <span class="hljs-comment"># 计算目标点与切分点形成的分割超平面的距离</span><br>            temp_dist = <span class="hljs-built_in">abs</span>(tree.value[depth % n] - point[<span class="hljs-number">0</span>][depth % n])<br><br>            <span class="hljs-keyword">if</span> direct == <span class="hljs-string">&#x27;left&#x27;</span>:<br>                <span class="hljs-comment"># 判断超球体是否与超平面相交</span><br>                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (k_neighbor_sets[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] &lt; temp_dist <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(k_neighbor_sets) == k):<br>                    <span class="hljs-comment"># 如果相交，递归地进行近邻搜索</span><br>                    <span class="hljs-comment"># (3)(a) 判断当前结点，并更新当前k近邻点集</span><br>                    k_neighbor_sets = self._update_k_neighbor_sets(k_neighbor_sets, k, tree, point)<br>                    <span class="hljs-keyword">return</span> self._search(point, tree=tree.right_child, k=k, depth=depth + <span class="hljs-number">1</span>,<br>                                        k_neighbor_sets=k_neighbor_sets)<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-comment"># 判断超球体是否与超平面相交</span><br>                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (k_neighbor_sets[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] &lt; temp_dist <span class="hljs-keyword">and</span> <span class="hljs-built_in">len</span>(k_neighbor_sets) == k):<br>                    <span class="hljs-comment"># 如果相交，递归地进行近邻搜索</span><br>                    <span class="hljs-comment"># (3)(a) 判断当前结点，并更新当前k近邻点集</span><br>                    k_neighbor_sets = self._update_k_neighbor_sets(k_neighbor_sets, k, tree, point)<br>                    <span class="hljs-keyword">return</span> self._search(point, tree=tree.left_child, k=k, depth=depth + <span class="hljs-number">1</span>,<br>                                        k_neighbor_sets=k_neighbor_sets)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> self._update_k_neighbor_sets(k_neighbor_sets, k, tree, point)<br><br>        <span class="hljs-keyword">return</span> k_neighbor_sets<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_update_k_neighbor_sets</span>(<span class="hljs-params">self, best, k, tree, point</span>):<br>        <span class="hljs-comment"># 计算目标点与当前结点的距离</span><br>        node_distance = self._cal_node_distance(point, tree.value)<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(best) == <span class="hljs-number">0</span>:<br>            best.append((node_distance, tree.index, tree.value))<br>        <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(best) &lt; k:<br>            <span class="hljs-comment"># 如果“当前k近邻点集”元素数量小于k</span><br>            self._insert_k_neighbor_sets(best, tree, node_distance)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-comment"># 叶节点距离小于“当前 𝑘 近邻点集”中最远点距离</span><br>            <span class="hljs-keyword">if</span> best[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] &gt; node_distance:<br>                best = best[<span class="hljs-number">1</span>:]<br>                self._insert_k_neighbor_sets(best, tree, node_distance)<br>        <span class="hljs-keyword">return</span> best<br><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_insert_k_neighbor_sets</span>(<span class="hljs-params">best, tree, node_distance</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;将距离最远的结点排在前面&quot;&quot;&quot;</span><br>        n = <span class="hljs-built_in">len</span>(best)<br>        <span class="hljs-keyword">for</span> i, item <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(best):<br>            <span class="hljs-keyword">if</span> item[<span class="hljs-number">0</span>] &lt; node_distance:<br>                <span class="hljs-comment"># 将距离最远的结点插入到前面</span><br>                best.insert(i, (node_distance, tree.index, tree.value))<br>                <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(best) == n:<br>            best.append((node_distance, tree.index, tree.value))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_k_neighbor_sets</span>(<span class="hljs-params">k, ii, dd</span>):<br>    <span class="hljs-keyword">if</span> k == <span class="hljs-number">1</span>:<br>        text = <span class="hljs-string">&quot;x点的最近邻点是&quot;</span><br>    <span class="hljs-keyword">else</span>:<br>        text = <span class="hljs-string">&quot;x点的%d个近邻点是&quot;</span> % k<br><br>    <span class="hljs-keyword">for</span> i, index <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(ii):<br>        res = X_train[index]<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>:<br>            text += <span class="hljs-built_in">str</span>(<span class="hljs-built_in">tuple</span>(res))<br>        <span class="hljs-keyword">else</span>:<br>            text += <span class="hljs-string">&quot;, &quot;</span> + <span class="hljs-built_in">str</span>(<span class="hljs-built_in">tuple</span>(res))<br><br>    <span class="hljs-keyword">if</span> k == <span class="hljs-number">1</span>:<br>        text += <span class="hljs-string">&quot;，距离是&quot;</span><br>    <span class="hljs-keyword">else</span>:<br>        text += <span class="hljs-string">&quot;，距离分别是&quot;</span><br>    <span class="hljs-keyword">for</span> i, dist <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dd):<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>:<br>            text += <span class="hljs-string">&quot;%.4f&quot;</span> % dist<br>        <span class="hljs-keyword">else</span>:<br>            text += <span class="hljs-string">&quot;, %.4f&quot;</span> % dist<br><br>    <span class="hljs-built_in">print</span>(text)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>    X_train = np.array([[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>],<br>                        [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>],<br>                        [<span class="hljs-number">9</span>, <span class="hljs-number">6</span>],<br>                        [<span class="hljs-number">4</span>, <span class="hljs-number">7</span>],<br>                        [<span class="hljs-number">8</span>, <span class="hljs-number">1</span>],<br>                        [<span class="hljs-number">7</span>, <span class="hljs-number">2</span>]])<br>    kd_tree = KDTree(X_train)<br>    k = <span class="hljs-number">3</span><br>    dists, indices = kd_tree.query(np.array([[<span class="hljs-number">3</span>, <span class="hljs-number">4.5</span>]]), k=k)<br>    print_k_neighbor_sets(k, indices, dists)<br>    <span class="hljs-built_in">print</span>(kd_tree)<br></code></pre></td></tr></table></figure>
+
+<p>5.扩展1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding:utf8 -*-</span><br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets<br><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-comment">#设置随机种子，不设置的话默认是按系统时间作为参数，</span><br><span class="hljs-comment">#因此每次调用随机模块时产生的随机数都不一样设置后每次产生的一样</span><br>np.random.seed(<span class="hljs-number">0</span>)<br><br><span class="hljs-comment">#1.导入鸢尾花的数据集</span><br>iris = datasets.load_iris()<br><span class="hljs-comment">#样本数据150*4二维数据，代表150个样本，</span><br><span class="hljs-comment">#每个样本4个属性分别为花瓣和花萼的长、宽</span><br>iris_x = iris.data<br><span class="hljs-comment">#长150的一维数组，样本数据的标签</span><br>iris_y = iris.target<br><span class="hljs-comment">#permutation接收一个数作为参数(150),产生一个0-149一维数组，</span><br><span class="hljs-comment">#只不过是随机打乱的，</span><br><span class="hljs-comment">#当然也可以接收一个一维数组作为参数，结果是直接对这个数组打乱</span><br>indices = np.random.permutation(<span class="hljs-built_in">len</span>(iris_x))<br><br><span class="hljs-comment">#选取140个数据作为训练集</span><br>iris_x_train = iris_x[indices[:-<span class="hljs-number">10</span>]]<br>iris_y_train = iris_y[indices[:-<span class="hljs-number">10</span>]]<br><span class="hljs-comment">#选择10个数据作为测试集</span><br>iris_x_test = iris_x[indices[-<span class="hljs-number">10</span>:]]<br>iris_y_test = iris_y[indices[-<span class="hljs-number">10</span>:]]<br><br><span class="hljs-comment">#定义一个KNN分类器对象</span><br>knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>)<br><span class="hljs-comment">#调用该对象的训练方法，主要接收两个参数：训练数据集及其样本标签</span><br>knn.fit(iris_x_train,iris_y_train)<br><span class="hljs-comment">#调用该对象的测试方法，主要接收一个参数：测试数据集</span><br>iris_y_predict = knn.predict(iris_x_test)<br><span class="hljs-comment">#调用该对象的打分方法，计算出准确率</span><br>score=knn.score(iris_x_test,iris_y_test,sample_weight=<span class="hljs-literal">None</span>)<br><span class="hljs-comment">#输出测试的结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;iris_y_predict = &#x27;</span>)  <br><span class="hljs-built_in">print</span>(iris_y_predict)  <br><span class="hljs-comment">#输出原始测试数据集的正确标签，以方便对比</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;iris_y_test = &#x27;</span>)<br><span class="hljs-built_in">print</span>(iris_y_test)<br><span class="hljs-comment">#输出准确率计算结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Accuracy:&#x27;</span>,score) <br><br></code></pre></td></tr></table></figure>
+
+<p>2.扩展2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter<br><span class="hljs-comment"># data</span><br>iris = load_iris()<br>df = pd.DataFrame(iris.data, columns=iris.feature_names)<br>df[<span class="hljs-string">&#x27;label&#x27;</span>] = iris.target<br>df.columns = [<span class="hljs-string">&#x27;sepal length&#x27;</span>, <span class="hljs-string">&#x27;sepal width&#x27;</span>, <span class="hljs-string">&#x27;petal length&#x27;</span>, <span class="hljs-string">&#x27;petal width&#x27;</span>, <span class="hljs-string">&#x27;label&#x27;</span>]<br><span class="hljs-comment"># data = np.array(df.iloc[:100, [0, 1, -1]])</span><br>plt.figure()<br>plt.scatter(df[:<span class="hljs-number">50</span>][<span class="hljs-string">&#x27;sepal length&#x27;</span>], df[:<span class="hljs-number">50</span>][<span class="hljs-string">&#x27;sepal width&#x27;</span>], label=<span class="hljs-string">&#x27;0&#x27;</span>)<br>plt.scatter(df[<span class="hljs-number">50</span>:<span class="hljs-number">100</span>][<span class="hljs-string">&#x27;sepal length&#x27;</span>], df[<span class="hljs-number">50</span>:<span class="hljs-number">100</span>][<span class="hljs-string">&#x27;sepal width&#x27;</span>], label=<span class="hljs-string">&#x27;1&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;sepal length&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;sepal width&#x27;</span>)<br>plt.legend()<br>plt.show()<br></code></pre></td></tr></table></figure></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/K%E8%BF%9B%E9%82%BB/">#K进邻</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>K进邻</div>
+      <div>http://example.com/2023/04/20/K进邻/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/20/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/" title="朴素贝叶斯">
+                        <span class="hidden-mobile">朴素贝叶斯</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -16,26 +16,26 @@
   <meta name="author" content="Xin Xuan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一维数组1. 概念  代码理解：  123456789101112131415161718192021222324252627282930313233343536373839404142434445public class Test05&amp;#123;		&#x2F;**		知识点：一维数组		含义：一组数据的集合				理解：			变量是存储单个数据的容器 ps：int num &#x3D; 100;			数组是存储多">
+    <meta name="description" content="1.调用sklaern  123456789101112from sklearn import datasets, model_selection,naive_bayesdic1 &#x3D; datasets.load_wine()xtrain, xtest, ytrain, ytest &#x3D; model_selection.train_test_split(dic1.data, dic1.target,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Day08java">
-<meta property="og:url" content="http://example.com/2023/04/16/Day08java/index.html">
+<meta property="og:title" content="朴素贝叶斯">
+<meta property="og:url" content="http://example.com/2023/04/20/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/index.html">
 <meta property="og:site_name" content="SkyXinxuan">
-<meta property="og:description" content="一维数组1. 概念  代码理解：  123456789101112131415161718192021222324252627282930313233343536373839404142434445public class Test05&amp;#123;		&#x2F;**		知识点：一维数组		含义：一组数据的集合				理解：			变量是存储单个数据的容器 ps：int num &#x3D; 100;			数组是存储多">
+<meta property="og:description" content="1.调用sklaern  123456789101112from sklearn import datasets, model_selection,naive_bayesdic1 &#x3D; datasets.load_wine()xtrain, xtest, ytrain, ytest &#x3D; model_selection.train_test_split(dic1.data, dic1.target,">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/index/6.jpg">
-<meta property="article:published_time" content="2023-04-16T12:10:21.000Z">
-<meta property="article:modified_time" content="2023-04-19T13:02:33.018Z">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160546.webp">
+<meta property="article:published_time" content="2023-04-20T09:11:28.000Z">
+<meta property="article:modified_time" content="2023-04-20T09:17:01.886Z">
 <meta property="article:author" content="Xin Xuan">
-<meta property="article:tag" content="一维数组">
+<meta property="article:tag" content="朴素贝叶斯">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/index/6.jpg">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230315160546.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Day08java - SkyXinxuan</title>
+  <title>朴素贝叶斯 - SkyXinxuan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Day08java"></span>
+            <span id="subtitle" data-typed-text="朴素贝叶斯"></span>
           
         </div>
 
@@ -238,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-16 20:10" pubdate>
-          2023年4月16日 晚上
+        <time datetime="2023-04-20 17:11" pubdate>
+          2023年4月20日 下午
         </time>
       </span>
     
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          812 字
+          2.4k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          7 分钟
+          20 分钟
         
       </span>
     
@@ -307,23 +307,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Day08java</h1>
+            <h1 style="display: none">朴素贝叶斯</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><blockquote>
-<p> 代码理解：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test05</span>&#123;<br>	<br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">		知识点：一维数组</span><br><span class="hljs-comment">		含义：一组数据的集合</span><br><span class="hljs-comment">		</span><br><span class="hljs-comment">		理解：</span><br><span class="hljs-comment">			变量是存储单个数据的容器 ps：int num = 100;</span><br><span class="hljs-comment">			数组是存储多个数据的容器</span><br><span class="hljs-comment">			</span><br><span class="hljs-comment">		注意：</span><br><span class="hljs-comment">			1.数组属于引用数据类型</span><br><span class="hljs-comment">			2.数组中的数据，称为元素</span><br><span class="hljs-comment">			3.元素都有编号，称为索引/下标</span><br><span class="hljs-comment">			4.下标从0开始</span><br><span class="hljs-comment">			5.数组一旦初始化成功，在内存里的长度是固定的（数组没有扩容和删除的功能）</span><br><span class="hljs-comment">			6.数组初始化后，开辟的空间是连续的</span><br><span class="hljs-comment">			</span><br><span class="hljs-comment">		一维数组数组的优点：</span><br><span class="hljs-comment">			因为数组初始化后，开辟的空间是连续的，所以数组的查询效率很快</span><br><span class="hljs-comment">		</span><br><span class="hljs-comment">		数组的声明：</span><br><span class="hljs-comment">			数据类型[] 数组名/变量名;</span><br><span class="hljs-comment">			</span><br><span class="hljs-comment">		初始化：</span><br><span class="hljs-comment">			静态初始化：数据由程序员指定，长度由系统自动分配</span><br><span class="hljs-comment">			动态初始化：</span><br><span class="hljs-comment">	*/</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>		<br>		<span class="hljs-comment">//静态初始化1</span><br>        <span class="hljs-comment">//引用数据类型，引用对象在堆内存中的数据，通过下标设置元素，通过下标获取元素</span><br>		String[] names = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;麻生希&quot;</span>,<span class="hljs-string">&quot;水菜丽&quot;</span>,<span class="hljs-string">&quot;椎名空&quot;</span>,<span class="hljs-string">&quot;爱田奈奈&quot;</span>,<span class="hljs-string">&quot;水野朝阳&quot;</span>&#125;;<br>		<br>		<span class="hljs-comment">//通过下标设置元素</span><br>		names[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;张华庆&quot;</span>;<br>		<br>		<span class="hljs-comment">//通过下标获取元素</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> names[<span class="hljs-number">1</span>];<br>		System.out.println(n);<br>		<br>		<br>	&#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+                <p>1.调用sklaern </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets, model_selection,naive_bayes<br>dic1 = datasets.load_wine()<br>xtrain, xtest, ytrain, ytest = model_selection.train_test_split(dic1.data, dic1.target, test_size=<span class="hljs-number">0.3</span>,random_state=<span class="hljs-number">1</span>)<br>m1 = naive_bayes.GaussianNB().fit(xtrain,ytrain)          <span class="hljs-comment">#高斯分布（正态分布）</span><br><span class="hljs-comment">#m2 = naive_bayes.MultinomialNB().fit(xtrain,ytrain)     #多项式分布</span><br><span class="hljs-comment">#m3 = naive_bayes.BernoulliNB().fit(xtrain,ytrain)       #伯努利分布</span><br>s1 = m1.score(xtest,ytest)            <span class="hljs-comment">#准确率</span><br>pre=m1.predict(xtest)                 <span class="hljs-comment">#预测的分类</span><br>pre_pro=m1.predict_proba(xtest)       <span class="hljs-comment">#在各分类上的预测概率</span><br><span class="hljs-built_in">print</span>(s1)<br><span class="hljs-built_in">print</span>(pre)<br><span class="hljs-built_in">print</span>(pre_pro)<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p> 栈、堆、方法区、常量池的理解</p>
-</blockquote>
-<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230419185936.webp" srcset="/img/loading.gif" lazyload></p>
-<p>代码理解：</p>
-<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/20230419190551.webp" srcset="/img/loading.gif" lazyload></p>
-<h2 id="2-作用"><a href="#2-作用" class="headerlink" title="2. 作用"></a>2. 作用</h2><h2 id="3-数组的说明"><a href="#3-数组的说明" class="headerlink" title="3. 数组的说明"></a>3. 数组的说明</h2><h2 id="4-数组的初始化"><a href="#4-数组的初始化" class="headerlink" title="4. 数组的初始化"></a>4. 数组的初始化</h2><h2 id="5-数组的使用"><a href="#5-数组的使用" class="headerlink" title="5. 数组的使用"></a>5. 数组的使用</h2><h2 id="6-数组的排序"><a href="#6-数组的排序" class="headerlink" title="6. 数组的排序"></a>6. 数组的排序</h2><h2 id="7-数组的查找"><a href="#7-数组的查找" class="headerlink" title="7. 数组的查找"></a>7. 数组的查找</h2><h2 id="8-扩展-数组的复制"><a href="#8-扩展-数组的复制" class="headerlink" title="8. 扩展-数组的复制"></a>8. 扩展-数组的复制</h2><h2 id="9-扩展-数组的扩容"><a href="#9-扩展-数组的扩容" class="headerlink" title="9. 扩展-数组的扩容"></a>9. 扩展-数组的扩容</h2><h2 id="10-扩展-数组的删除"><a href="#10-扩展-数组的删除" class="headerlink" title="10.扩展-数组的删除"></a>10.扩展-数组的删除</h2><h2 id="11-扩展-数组作为返回值和参数"><a href="#11-扩展-数组作为返回值和参数" class="headerlink" title="11. 扩展-数组作为返回值和参数"></a>11. 扩展-数组作为返回值和参数</h2><h2 id="12-扩展-可变参数"><a href="#12-扩展-可变参数" class="headerlink" title="12.扩展-可变参数"></a>12.扩展-可变参数</h2><h2 id="13-Arrays工具类"><a href="#13-Arrays工具类" class="headerlink" title="13.Arrays工具类"></a>13.Arrays工具类</h2>
+<p>2.调用sklaern 中 naive bayes模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> MultinomialNB<br><span class="hljs-keyword">from</span> bayesmy <span class="hljs-keyword">import</span> BayesMy<br>data_df = pd.read_excel(<span class="hljs-string">r&quot;./bayes_data.xlsx&quot;</span>)<br>data_fiiled_df = data_df.fillna(<span class="hljs-number">0</span>)<span class="hljs-comment">#没有写的填为0</span><br><span class="hljs-built_in">print</span>(data_fiiled_df)<br><br>X=data_fiiled_df[data_fiiled_df.columns[<span class="hljs-number">1</span>:-<span class="hljs-number">1</span>]].to_numpy()<br>y=data_fiiled_df[data_fiiled_df.columns[-<span class="hljs-number">1</span>]].to_numpy()<br><br><span class="hljs-comment"># Support Vector Machine</span><br>model = MultinomialNB(alpha=<span class="hljs-number">0</span>)<br>model.fit(X, y)<br>x = [[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]]<br>prediction = model.predict(x)<br><span class="hljs-built_in">print</span>(prediction)<br><br><span class="hljs-built_in">print</span>(model.class_count_)<br><span class="hljs-built_in">print</span>(model.class_log_prior_)<br><span class="hljs-built_in">print</span>(model.feature_count_)<span class="hljs-comment">#123 sml -1和1</span><br><span class="hljs-built_in">print</span>(model.feature_log_prob_)<br><br><br>x = np.array([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(x.shape)<br>model = BayesMy(alpha=<span class="hljs-number">0</span>)<br>model.fit(X, y)<br><span class="hljs-built_in">print</span>(model.classes)<br><br>prediction = model.predict(x)<br><span class="hljs-built_in">print</span>(prediction)<br><br><br></code></pre></td></tr></table></figure>
+
+<p>3.自己完成bayes类的编写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BayesMy</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, alpha=<span class="hljs-number">1</span></span>):<br>        <span class="hljs-comment">#初始化</span><br>        self.alpha = alpha  <span class="hljs-comment"># 平滑系数</span><br>        self.classes = <span class="hljs-literal">None</span>  <span class="hljs-comment"># 类别集合</span><br>        self.class_prob = <span class="hljs-literal">None</span>  <span class="hljs-comment"># 类别概率</span><br>        self.feature_prob = <span class="hljs-literal">None</span>  <span class="hljs-comment"># 特征概率</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">fit</span>(<span class="hljs-params">self, X, y</span>):<br>        <span class="hljs-comment"># 获取类别集合</span><br>        self.classes = np.unique(y)<br><br>        <span class="hljs-comment"># 计算类别概率</span><br>        self.class_prob = np.zeros(<span class="hljs-built_in">len</span>(self.classes))<br>        <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.classes):<br>            self.class_prob[i] = np.<span class="hljs-built_in">sum</span>(y == c) / <span class="hljs-built_in">float</span>(<span class="hljs-built_in">len</span>(y))<br><br>        <span class="hljs-comment"># 计算特征概率</span><br>        self.feature_prob = np.zeros((<span class="hljs-built_in">len</span>(self.classes), X.shape[<span class="hljs-number">1</span>]))<br>        <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.classes):<br>            X_c = X[y == c, :]<br>            self.feature_prob[i, :] = (np.<span class="hljs-built_in">sum</span>(X_c, axis=<span class="hljs-number">0</span>) + self.alpha) / (np.<span class="hljs-built_in">sum</span>(X_c) / <span class="hljs-number">2</span> + self.alpha*X.shape[<span class="hljs-number">1</span>])<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">predict</span>(<span class="hljs-params">self, X</span>):<br>        y_pred = np.zeros(<span class="hljs-built_in">len</span>(self.classes))<br>        post_prob = np.zeros(<span class="hljs-built_in">len</span>(self.classes))<br>        <span class="hljs-keyword">for</span> j, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.classes):<br>            post_prob[j] = self.class_prob[j]<br><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X.shape[<span class="hljs-number">0</span>]):<br>            <span class="hljs-comment"># 计算后验概率</span><br><br>            <span class="hljs-keyword">if</span>(X[i]&gt;<span class="hljs-number">0</span>):<br>                <span class="hljs-keyword">for</span> j, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.classes):<br><br>                    <span class="hljs-built_in">print</span>(j)<br>                    <span class="hljs-built_in">print</span>(i)<br>                    <span class="hljs-built_in">print</span>(self.feature_prob[j, i])<br>                    post_prob[j] *= np.<span class="hljs-built_in">sum</span>(self.feature_prob[j, i])  <span class="hljs-comment"># 防止出现概率为0的情况</span><br><br>            <span class="hljs-comment"># 取后验概率最大的类别作为预测结果  1的预测  1/45 -1 的预测1/15</span><br>            <span class="hljs-comment">#y_pred[i] = self.classes[np.argmax(post_prob)]</span><br>        <span class="hljs-keyword">return</span> post_prob<br><br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -341,7 +339,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
   
 
@@ -356,7 +354,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84/">#一维数组</a>
+        <a href="/tags/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF/">#朴素贝叶斯</a>
       
     </div>
   
@@ -368,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Day08java</div>
-      <div>http://example.com/2023/04/16/Day08java/</div>
+      <div>朴素贝叶斯</div>
+      <div>http://example.com/2023/04/20/朴素贝叶斯/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +379,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月16日</div>
+          <div>2023年4月20日</div>
         </div>
       
       
@@ -413,9 +411,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/17/Work04/" title="Work04">
+                      <a href="/2023/04/20/K%E8%BF%9B%E9%82%BB/" title="K进邻">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Work04</span>
+                        <span class="hidden-mobile">K进邻</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -423,8 +421,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/16/Day07java/" title="Day07java">
-                        <span class="hidden-mobile">Day07java</span>
+                      <a href="/2023/04/19/Day09java/" title="Day09java">
+                        <span class="hidden-mobile">Day09java</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
