@@ -16,72 +16,26 @@
   <meta name="author" content="Xin Xuan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="title: day001javadate: 2023-07-18 17:53:41index_img: &#x2F;img&#x2F;index&#x2F;4.jpgcomment: truecategories:  Javatags: Java概述与环境搭建  [TOC] 一.内容摘要 二.引言2.1.何为编程？编程就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的">
+    <meta name="description" content="一.目录[TOC] 一.内容摘要 二.引言2.1.何为编程？编程就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程。为了使计算机能够理解人的意图，人类就必须要将需解决的问题的思路、方法、和手段通过计算机能够理解的形式告诉计算机，使得计算机能够根据人的指令一步一步去工作，完成某种特定的任务。这种人和计算机之间交流的过程就是编程。  写代码的人就是软件工程师，简程程序员">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SkyXinxuan">
+<meta property="og:title" content="day001java">
 <meta property="og:url" content="http://example.com/2023/07/18/day001java/index.html">
 <meta property="og:site_name" content="SkyXinxuan">
-<meta property="og:description" content="title: day001javadate: 2023-07-18 17:53:41index_img: &#x2F;img&#x2F;index&#x2F;4.jpgcomment: truecategories:  Javatags: Java概述与环境搭建  [TOC] 一.内容摘要 二.引言2.1.何为编程？编程就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的">
+<meta property="og:description" content="一.目录[TOC] 一.内容摘要 二.引言2.1.何为编程？编程就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程。为了使计算机能够理解人的意图，人类就必须要将需解决的问题的思路、方法、和手段通过计算机能够理解的形式告诉计算机，使得计算机能够根据人的指令一步一步去工作，完成某种特定的任务。这种人和计算机之间交流的过程就是编程。  写代码的人就是软件工程师，简程程序员">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181840725.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181841337.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181842598.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181843268.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181844796.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181844052.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181844231.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181845951.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181845695.webp">
-<meta property="og:image" content="http://example.com/ipic%5Cimage-20230718184620222.png">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181846998.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181847689.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181847071.webp">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/041ce64e594640128155ea091337fcdb.png">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181848105.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181848929.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181849646.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181849979.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181849741.webp">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/a4232384ae6747f3a7d099fb37cd607f.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/ec9a4ee0b2004ddeb34acdffd3955917.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/0d2699a55ee040129acece4f7466ec84.png">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181850609.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181850545.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181850253.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181851642.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181851898.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181851274.webp">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/1d3a4ba99e984dc0b1a198d068350bc5.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/0a469fd655694cc69b655e21faf0d3e9.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/bd95fd20e8d74b8ba26f410303a7ec0a.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/69609bbd447a4c318f0fbaf31d531304.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/c496119fa4df4a0984cf99f40567f7af.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/0ce80a4cd3584be5a055238073c3c829.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/b46f037c3c1746d1ac369b6e731bfee2.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/be3a535d54fa4147b6a344e21d1f3345.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/659207ddc2884beea0ac07ce046d7061.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/a630b636af244463ab12cf620727b74e.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/c281344c55a14d8e97c0c0c9f4878a52.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/da23a19fda23403c978648364ae2adc3.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/ca96b6407a68474fa87a2698a22456bf.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/e94d7c06f4ac49479a0ea21f84108bee.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/bfd612939cf44f2eb9f9b34d363ca6e8.png#pic_center">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181852207.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181853630.webp">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/9871bf68bef04341bdb9fc076da0603a.png#pic_center">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181853341.webp">
-<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181854570.webp">
-<meta property="article:published_time" content="2023-07-18T09:53:41.806Z">
-<meta property="article:modified_time" content="2023-07-18T11:07:52.884Z">
+<meta property="og:image" content="http://example.com/img/index/4.jpg">
+<meta property="article:published_time" content="2023-07-18T09:53:41.000Z">
+<meta property="article:modified_time" content="2023-07-19T03:00:15.675Z">
 <meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="Java环境和基本语法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181840725.webp">
+<meta name="twitter:image" content="http://example.com/img/index/4.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SkyXinxuan</title>
+  <title>day001java - SkyXinxuan</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -273,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="day001java"></span>
           
         </div>
 
@@ -296,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k 字
+          4.9k 字
         
       </span>
     
@@ -307,7 +261,7 @@
         
         
         
-          42 分钟
+          41 分钟
         
       </span>
     
@@ -353,16 +307,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">day001java</h1>
             
             
               <div class="markdown-body">
                 
-                <p>title: day001java<br>date: 2023-07-18 17:53:41<br>index_img: &#x2F;img&#x2F;index&#x2F;4.jpg<br>comment: true<br>categories:</p>
-<ul>
-<li>Java<br>tags: Java概述与环境搭建</li>
-</ul>
-<p>[TOC]</p>
+                <h1 id="一-目录"><a href="#一-目录" class="headerlink" title="一.目录"></a>一.目录</h1><p>[TOC]</p>
 <h1 id="一-内容摘要"><a href="#一-内容摘要" class="headerlink" title="一.内容摘要"></a>一.内容摘要</h1><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307181840725.webp" srcset="/img/loading.gif" lazyload></p>
 <h1 id="二-引言"><a href="#二-引言" class="headerlink" title="二.引言"></a>二.引言</h1><h2 id="2-1-何为编程？"><a href="#2-1-何为编程？" class="headerlink" title="2.1.何为编程？"></a>2.1.何为编程？</h2><p>编程就是让计算机为解决某个问题而使用某种程序设计语言编写程序代码，并最终得到结果的过程。为了使计算机能够理解人的意图，人类就必须要将需解决的问题的思路、方法、和手段通过计算机能够理解的形式告诉计算机，使得计算机能够根据人的指令一步一步去工作，完成某种特定的任务。这种人和计算机之间交流的过程就是编程。</p>
 <ul>
@@ -567,6 +517,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java%E7%8E%AF%E5%A2%83%E5%92%8C%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">#Java环境和基本语法</a>
+      
+    </div>
   
 </div>
 
@@ -576,7 +554,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>day001java</div>
       <div>http://example.com/2023/07/18/day001java/</div>
     </div>
     <div class="license-meta">
