@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307290854979.webp">
 <meta property="article:published_time" content="2023-07-29T00:47:09.000Z">
-<meta property="article:modified_time" content="2023-07-29T00:59:17.542Z">
+<meta property="article:modified_time" content="2023-07-29T07:50:08.653Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="错题回顾">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          547 字
+          1.3k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          5 分钟
+          11 分钟
         
       </span>
     
@@ -317,6 +317,16 @@
 <h2 id="2-数组删除移动数组"><a href="#2-数组删除移动数组" class="headerlink" title="2.数组删除移动数组"></a>2.数组删除移动数组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//移动数组</span><br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> deleteIndex; i &lt; names.length - <span class="hljs-number">1</span>; i++) &#123;<br>                        names[i] = names[i + <span class="hljs-number">1</span>];<br>                    &#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="3-数组移动-升序"><a href="#3-数组移动-升序" class="headerlink" title="3.数组移动(升序)"></a>3.数组移动(升序)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//需要移动数组</span><br>          <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> numbers.length - <span class="hljs-number">1</span>; i &gt; index; i--) &#123;<br>              numbers[i] = numbers[i - <span class="hljs-number">1</span>];<br>          &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-数组中的0项去掉，将不为0的值存入一个新的数组"><a href="#4-数组中的0项去掉，将不为0的值存入一个新的数组" class="headerlink" title="4.数组中的0项去掉，将不为0的值存入一个新的数组"></a>4.数组中的0项去掉，将不为0的值存入一个新的数组</h2><ul>
+<li><p>现在有如下一个数组：int oldArr[]&#x3D;{1,3,4,5,0,0,6,6,0,5,4,7,6,7,0,5};</p>
+</li>
+<li><p>要求将以上数组中的0项去掉，将不为0的值存入一个新的数组，生成新的数组为:</p>
+</li>
+<li><p>int newArr[]&#x3D;{1,3,4,5,6,6,5,4,7,6,7,5};</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.it.workspace3;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">int</span> oldArr[] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>&#125;;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 统计不为0的元素个数</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; oldArr.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (oldArr[i] != <span class="hljs-number">0</span>) &#123;<br>                count++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 创建新数组并将不为0的值存入</span><br>        <span class="hljs-type">int</span> newArr[] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[count];<br>        <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; oldArr.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (oldArr[i] != <span class="hljs-number">0</span>) &#123;<br>                newArr[index] = oldArr[i];<br>                index++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 输出新数组</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; newArr.length; i++) &#123;<br>            System.out.print(newArr[i] + <span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
                 

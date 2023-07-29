@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/index/10.jpg">
 <meta property="article:published_time" content="2023-07-26T00:47:16.000Z">
-<meta property="article:modified_time" content="2023-07-27T04:04:52.912Z">
+<meta property="article:modified_time" content="2023-07-29T07:16:06.921Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="方法(重载,构造)">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          13k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          102 分钟
+          113 分钟
         
       </span>
     
@@ -501,7 +501,9 @@
 
 <h3 id="2-用户密码管理"><a href="#2-用户密码管理" class="headerlink" title="2.用户密码管理"></a>2.用户密码管理</h3><p>需求说明：正确模拟实现用户密码管理：输入旧的用户名和密码，如果正确，方有权限更新；从键盘获取新的密码，进行更新；不正确则给出提示，该程序的输出效果如下面两个图所示。</p>
 <p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307271204512.webp" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">d<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.it.workspace3;<br><br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 需求说明：正确模拟实现用户密码管理：输入旧的用户名和密码，</span><br><span class="hljs-comment"> * 如果正确，方有权限更新；从键盘获取新的密码，进行更新；</span><br><span class="hljs-comment"> * 不正确则给出提示，该程序的输出效果如下面两个图所示。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PasswordManager</span> &#123;<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-keyword">private</span> String password;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">PasswordManager</span><span class="hljs-params">(String username, String password)</span> &#123;<br>        <span class="hljs-built_in">this</span>.username = username;<br>        <span class="hljs-built_in">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">verifyPassword</span><span class="hljs-params">(String username, String password)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.username.equals(username) &amp;&amp; <span class="hljs-built_in">this</span>.password.equals(password);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">updatePassword</span><span class="hljs-params">(String newPassword)</span> &#123;<br>        <span class="hljs-built_in">this</span>.password = newPassword;<br>        System.out.println(<span class="hljs-string">&quot;密码已更新成功！&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 创建用户密码管理对象</span><br>        <span class="hljs-type">PasswordManager</span> <span class="hljs-variable">passwordManager</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PasswordManager</span>(<span class="hljs-string">&quot;admin&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>);<br>        <span class="hljs-comment">// 从键盘获取输入</span><br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-comment">// 输入旧的用户名和密码</span><br>        System.out.print(<span class="hljs-string">&quot;请输入旧的用户名：&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">oldUsername</span> <span class="hljs-operator">=</span> scanner.nextLine();<br>        System.out.print(<span class="hljs-string">&quot;请输入旧的密码：&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">oldPassword</span> <span class="hljs-operator">=</span> scanner.nextLine();<br>        <span class="hljs-comment">// 验证用户名和密码</span><br>        <span class="hljs-keyword">if</span> (passwordManager.verifyPassword(oldUsername, oldPassword)) &#123;<br>            <span class="hljs-comment">// 输入新的密码</span><br>            System.out.print(<span class="hljs-string">&quot;请输入新的密码：&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">newPassword</span> <span class="hljs-operator">=</span> scanner.nextLine();<br>            <span class="hljs-comment">// 更新密码</span><br>            passwordManager.updatePassword(newPassword);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;用户名或密码不正确！&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
 
 
                 
