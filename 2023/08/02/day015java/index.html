@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307311903320.webp">
 <meta property="article:published_time" content="2023-08-02T06:24:00.000Z">
-<meta property="article:modified_time" content="2023-08-02T14:03:58.217Z">
+<meta property="article:modified_time" content="2023-08-03T09:41:49.744Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="常用工具类">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          17k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          135 分钟
+          140 分钟
         
       </span>
     
@@ -499,7 +499,7 @@
 <li>输出获取的结果即可。</li>
 </ul>
 </blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xy.demo1;<br><br><span class="hljs-keyword">import</span> java.util.Calendar;<br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo3</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        System.out.print(<span class="hljs-string">&quot;请输入一个年份：&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">year</span> <span class="hljs-operator">=</span> scanner.nextInt();<br>        <span class="hljs-comment">// 设置日历的年月日</span><br>        <span class="hljs-type">Calendar</span> <span class="hljs-variable">calendar</span> <span class="hljs-operator">=</span> Calendar.getInstance();<br>        calendar.set(year, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 月份从0开始，所以设置为2表示3月，日设置为1</span><br>        <span class="hljs-comment">// 3月1日往前推一天，就是2月的最后一天</span><br>        calendar.add(Calendar.DAY_OF_MONTH, -<span class="hljs-number">1</span>);<br>        <span class="hljs-comment">// 获取二月的天数</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">daysInFebruary</span> <span class="hljs-operator">=</span> calendar.get(Calendar.DAY_OF_MONTH);<br>        System.out.println(year + <span class="hljs-string">&quot;年二月的天数为：&quot;</span> + daysInFebruary + <span class="hljs-string">&quot;天&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p><em>&#x2F;</em>*<br>* *** *宠物小屋里有<strong>8</strong>个笼子，每个笼子可以放不同的动物，包括猫，鸭子和蛇，<br>* *** *但同一时刻一个笼子只能放<strong>0</strong>只或<strong>1</strong>只宠物，<br>* *** *本题要求完成：<br>* *** *（<strong>1</strong>）定义抽象父类<strong>Animal(<strong>属性</strong>name , sex)<strong>，包含抽象方法</strong>ShowMe</strong>；<br>* *** *（<strong>2</strong>）定义子类类<strong>Cat(<strong>特有属性* *color)<strong>，鸭子</strong>Duck(<strong>特有属性 品种</strong>)<strong>，</strong>Snake(<strong>特有属性 长度</strong>)<em>*，<br>* *** *实现上述抽象方法**ShowMe</em>*，显示该宠物自己的信息。<br>* *** *定义一些动物把宠物小屋里有</strong>8</strong>个笼子装满，然后统计各类动物的个数、<br>* *** *统计所有的宠物加起来腿的条数，以及调用每个动物的<strong>ShowMe</strong>方法输出每个宠物的信息<br>* **&#x2F;*</p>
@@ -603,6 +603,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/03/day016java/" title="day016java">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day016java</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
