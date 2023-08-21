@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308210851308.webp">
 <meta property="article:published_time" content="2023-08-21T00:49:54.000Z">
-<meta property="article:modified_time" content="2023-08-21T12:53:01.909Z">
+<meta property="article:modified_time" content="2023-08-21T12:58:08.803Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="反射">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          22k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          166 分钟
+          185 分钟
         
       </span>
     
@@ -500,6 +500,37 @@ public Field[] getDeclaredFields() 获取所有的 变量 (包含私有)
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xy.demo11;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestPrinter</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><span class="hljs-comment">//        A4 a4 = new A4();</span><br><span class="hljs-comment">//        B4 b4 = new B4();</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//        ColorBox colorBox = new ColorBox();//彩色的</span><br><span class="hljs-comment">//        BlackBox blackBox = new BlackBox();////黑白的</span><br><span class="hljs-comment">//        Printer p = new Printer(&quot;惠普&quot;, 2000.8, a4, colorBox);</span><br><span class="hljs-comment">//        p.print();</span><br><br>        <span class="hljs-comment">//反射版</span><br>        <span class="hljs-type">Printer</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Printer</span>(<span class="hljs-string">&quot;惠普&quot;</span>, <span class="hljs-number">2000.8</span>, Factorys.o1, Factorys.o2);<br>        p.print();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">#属性文件 key=value 文件名config<span class="hljs-selector-class">.properties</span><br>ipaper=com<span class="hljs-selector-class">.xy</span><span class="hljs-selector-class">.demo11</span><span class="hljs-selector-class">.B4</span><br>ibox=com<span class="hljs-selector-class">.xy</span><span class="hljs-selector-class">.demo11</span>.ColorBox<br></code></pre></td></tr></table></figure>
+
+<h1 id="属性文件"><a href="#属性文件" class="headerlink" title="属性文件"></a>属性文件</h1><blockquote>
+<ol>
+<li><code>Properties</code>类提供了一些常用的方法来操作属性：</li>
+<li><code>setProperty(String key, String value)</code>: 设置属性的键值对。</li>
+<li><code>getProperty(String key)</code>: 根据键获取属性值。</li>
+<li><code>getProperty(String key, String defaultValue)</code>: 根据键获取属性值，如果键不存在则返回默认值。</li>
+<li><code>remove(Object key)</code>: 根据键移除属性。</li>
+<li><code>containsKey(Object key)</code>: 检查是否包含指定的键。</li>
+<li><code>keySet()</code>: 获取所有属性键的集合。</li>
+<li><code>values()</code>: 获取所有属性值的集合。</li>
+<li><code>load(InputStream inputStream)</code>: 从输入流加载属性。</li>
+<li><code>store(OutputStream outputStream, String comments)</code>: 将属性保存到输出流中，可添加注释。</li>
+</ol>
+<p>这些方法可以帮助你创建、获取、修改、删除属性，以及获取属性键值对的集合。</p>
+</blockquote>
+<blockquote>
+<p><code>Properties</code>类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Properties</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br><br>        <span class="hljs-comment">// 设置属性的键值对</span><br>        props.setProperty(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);<br>        props.setProperty(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);<br><br>        <span class="hljs-comment">// 获取属性值</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">value1</span> <span class="hljs-operator">=</span> props.getProperty(<span class="hljs-string">&quot;key1&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;Value of key1: &quot;</span> + value1);<br><br>        <span class="hljs-comment">// 删除属性</span><br>        props.remove(<span class="hljs-string">&quot;key2&quot;</span>);<br><br>        <span class="hljs-comment">// 检查键是否存在</span><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">containsKey</span> <span class="hljs-operator">=</span> props.containsKey(<span class="hljs-string">&quot;key2&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;Contains key2: &quot;</span> + containsKey);<br><br>        <span class="hljs-comment">// 获取所有属性键的集合</span><br>        Set&lt;String&gt; keys = props.keySet();<br>        System.out.println(<span class="hljs-string">&quot;Keys: &quot;</span> + keys);<br><br>        <span class="hljs-comment">// 获取所有属性值的集合</span><br>        Collection&lt;Object&gt; values = props.values();<br>        System.out.println(<span class="hljs-string">&quot;Values: &quot;</span> + values);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对于操作<code>config.properties</code>文件，你可以使用<code>Properties</code>类的以下方法：</p>
+<ol>
+<li><code>load(InputStream inputStream)</code>: 从输入流加载属性。</li>
+<li><code>getProperty(String key)</code>: 根据键获取属性值。</li>
+<li><code>setProperty(String key, String value)</code>: 设置属性的键值对。</li>
+<li><code>store(OutputStream outputStream, String comments)</code>: 将属性保存到输出流中，可添加注释。</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Properties</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br><br>        <span class="hljs-comment">// 读取config.properties文件</span><br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;config.properties&quot;</span>)) &#123;<br>            props.load(inputStream);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>        <span class="hljs-comment">// 获取属性值</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> props.getProperty(<span class="hljs-string">&quot;key&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;Value of key: &quot;</span> + value);<br><br>        <span class="hljs-comment">// 设置属性值</span><br>        props.setProperty(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;new value&quot;</span>);<br><br>        <span class="hljs-comment">// 保存属性到config.properties文件</span><br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;config.properties&quot;</span>)) &#123;<br>            props.store(outputStream, <span class="hljs-string">&quot;Updated value&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
