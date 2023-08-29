@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308282343771.webp">
 <meta property="article:published_time" content="2023-08-28T15:14:50.000Z">
-<meta property="article:modified_time" content="2023-08-28T16:00:42.209Z">
+<meta property="article:modified_time" content="2023-08-29T01:03:13.666Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="mysql语句">
 <meta name="twitter:card" content="summary_large_image">
@@ -867,13 +867,7 @@
 </tr>
 </tbody></table>
 <h2 id="查询出雇员的编号、姓名、职位、部门名称、部门位置、薪资等级"><a href="#查询出雇员的编号、姓名、职位、部门名称、部门位置、薪资等级" class="headerlink" title="查询出雇员的编号、姓名、职位、部门名称、部门位置、薪资等级"></a>查询出雇员的编号、姓名、职位、部门名称、部门位置、薪资等级</h2><p>使用新的方式实现三张数据表的内连接查询。</p>
-<table>
-<thead>
-<tr>
-<th>SELECT empno,ename,job,sal,dname,loc,grade FROM emp e <strong>INNER JOIN</strong> dept d <strong>ON</strong>  e.deptno&#x3D;d.deptno   <strong>INNER JOIN</strong>  salgrade s <strong>ON</strong> e.sal  <strong>BETWEEN</strong> s.losal  <strong>AND</strong> s.hisal;</th>
-</tr>
-</thead>
-</table>
+<p>|  SELECT empno,ename,job,sal,dname,loc,grade FROM emp e <strong>INNER JOIN</strong> dept d <strong>ON</strong>  e.deptno&#x3D;d.deptno   <strong>INNER JOIN</strong>  salgrade s <strong>ON</strong> e.sal  <strong>BETWEEN</strong> s.losal  <strong>AND</strong> s.hisal; |</p>
 <p>第一种内连接查询：在FROM子句中查询多个数据来源，在WHERE子句中去掉笛卡尔积</p>
 <p>第二种内连接查询：使用 INNER JOIN 连接数据来源，在ON关键字之后去掉笛卡尔</p>
 <h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><ol>
@@ -1196,133 +1190,143 @@
 </tbody></table>
 <h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><p>1.查询所有的部门编号</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno from dept;<br></code></pre></td></tr></table></figure>
-
 <p>2.查询所有人的部门编号 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename,deptno from emp;<br></code></pre></td></tr></table></figure>
-
 <p>3.查询所有岗位名称 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select job from emp;<br></code></pre></td></tr></table></figure>
-
 <p>4.查询所有薪水超过两千的员工信息 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select sal from emp where sal&gt;2000;<br></code></pre></td></tr></table></figure>
-
 <p>5.查询所有20部门的员工姓名，编号及薪水 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select ename,empno,sal,deptno from emp where deptno=20;<br></code></pre></td></tr></table></figure>
-
 <p>6.查询所有没有奖金的员工信息 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp where comm is null or comm=0;<br></code></pre></td></tr></table></figure>
-
-<p>\7. 查询所有有奖金的员工信息 </p>
+<ol start="7">
+<li>查询所有有奖金的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp where comm &gt;0;<br></code></pre></td></tr></table></figure>
-
-<p>\8. 查询最高领导的员工信息</p>
+<ol start="8">
+<li>查询最高领导的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  * FROM  emp  WHERE  mgr   IS  NULL;<br></code></pre></td></tr></table></figure>
-
-<p>\9. 查询所有81年之后入职的员工信息 </p>
+<ol start="9">
+<li>查询所有81年之后入职的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp WHERE hiredate &gt;= &#x27;1981-01-01&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>\10. 查询所有薪水在2000-4000范围内的员工信息 </p>
+<ol start="10">
+<li>查询所有薪水在2000-4000范围内的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select sal from emp where sal between 2000 and 4000;<br></code></pre></td></tr></table></figure>
-
-<p>\11. 查询所有部门编号是10或30的员工信息 </p>
+<ol start="11">
+<li>查询所有部门编号是10或30的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where deptno =10 or deptno=<br>30;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">select</span> * <span class="hljs-function"><span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno <span class="hljs-title">in</span>(<span class="hljs-params"><span class="hljs-number">10</span>,<span class="hljs-number">30</span></span>)</span> ;<br></code></pre></td></tr></table></figure>
-
-<p>\12. 查询所有20部门并且薪水超过2000的员工信息： </p>
+<ol start="12">
+<li>查询所有20部门并且薪水超过2000的员工信息：</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where deptno=20 and sal&gt;2000;<br></code></pre></td></tr></table></figure>
-
-<p>\13. 查询所有薪水不在2000-4000范围内的员工信息 </p>
+<ol start="13">
+<li>查询所有薪水不在2000-4000范围内的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where sal not between 2000 and 4000;<br></code></pre></td></tr></table></figure>
 
-<p>\14. 查询所有部门编号不是10，30的员工信息 </p>
+<ol start="14">
+<li>查询所有部门编号不是10，30的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where deptno !=10 and deptno!=30<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">select</span> * <span class="hljs-function"><span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> deptno <span class="hljs-keyword">not</span> <span class="hljs-title">in</span>(<span class="hljs-params"><span class="hljs-number">10</span>,<span class="hljs-number">30</span></span>)</span>;<br></code></pre></td></tr></table></figure>
-
-<p>\15. 查询用户名为scott的员工信息：注意区分大小写 </p>
+<ol start="15">
+<li>查询用户名为scott的员工信息：注意区分大小写</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where ename=&#x27;SCOTT&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>\16. 查询姓名里面包含ALL的员工的信息</p>
+<ol start="16">
+<li>查询姓名里面包含ALL的员工的信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where  ename like&#x27;%ALL%&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>\17. 查询所姓名以”S”开头的同学 </p>
+<ol start="17">
+<li>查询所姓名以”S”开头的同学</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where  ename like&#x27;%ALL%&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>\18. 查询第二个字母为A的员工姓名 </p>
+<ol start="18">
+<li>查询第二个字母为A的员工姓名</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where  ename  like&#x27;_A%&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>\19. 查询所有员工的编号、姓名、部门编号、职位、薪水，按照薪水降序排列 </p>
+<ol start="19">
+<li>查询所有员工的编号、姓名、部门编号、职位、薪水，按照薪水降序排列</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select empno,ename,deptno,job,sal from emp order by sal desc;<br></code></pre></td></tr></table></figure>
-
-<p>\20. 查询所有员工信息，按照部门降序排列，部门内按照薪水升序排列 </p>
+<ol start="20">
+<li>查询所有员工信息，按照部门降序排列，部门内按照薪水升序排列</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp order by deptno desc,sal asc ;<br></code></pre></td></tr></table></figure>
-
-<p>\21. 查询姓名中包含‘A’员工的姓名，编号，薪水，按照薪水降序排列 </p>
+<ol start="21">
+<li>查询姓名中包含‘A’员工的姓名，编号，薪水，按照薪水降序排列</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select ename,empno,sal from emp where ename like &#x27;%A%&#x27; order by sal desc;<br></code></pre></td></tr></table></figure>
-
-<p>\22. 查询年收入超过10000的员工的姓名，编号，薪水，年收入，按照年收入降序排列 </p>
+<ol start="22">
+<li>查询年收入超过10000的员工的姓名，编号，薪水，年收入，按照年收入降序排列</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename,empno,sal,sal*12 as year_sum from emp where sal*12&gt;10000 order by year_sum desc;<br></code></pre></td></tr></table></figure>
-
-<p>\23. 查询雇员表中，姓名为SMITH的雇员，截止到今天共工作了多少周，则可以使用如下的SQL语句 </p>
+<ol start="23">
+<li>查询雇员表中，姓名为SMITH的雇员，截止到今天共工作了多少周，则可以使用如下的SQL语句</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename,hiredate,  round(datediff(curdate(),hiredate)/7)  AS  time<br>  FROM emp  WHERE  ename=&#x27;smith&#x27;;<br>·curdate() 取得是当前日期，精确到天数<br>·datediff():取得两个日期的差值<br>·round():可以对小数进行四舍五入运算<br></code></pre></td></tr></table></figure>
-
-<p>\24. 查询各部门的最高薪水、最低薪水、平均薪水…. </p>
+<ol start="24">
+<li>查询各部门的最高薪水、最低薪水、平均薪水….</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  deptno, MAX(sal),MIN(sal),AVG(sal)<br>      FROM  emp<br>          GROUP BY deptno;  【根据部门分组】<br>·MAX()、MIN()、AVG() 是sql中的统计函数，统计函数是为分组后的数据服务的。<br>·要实现分组需要使用一个新的字句就是 GROUP  BY  分组字段<br></code></pre></td></tr></table></figure>
-
-<p>\25. 查询‘SMITH’的领导信息</p>
+<ol start="25">
+<li>查询‘SMITH’的领导信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql"> SELECT  *    <br>FROM  emp <br> WHERE  empno =(SELECT  mgr  FROM emp  WHERE  ename=&#x27;smith&#x27;);<br> ·上面的where字句中的查询就是子查询<br></code></pre></td></tr></table></figure>
-
-<p>\26. 查询部门名称是‘SALES’的员工信息 </p>
+<ol start="26">
+<li>查询部门名称是‘SALES’的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">分析：本质就是要查询销售部门的所有雇员的信息，这些信息要从emp和dept里面查出来<br>         ·第一步：先查询出sales部门的编号<br>         ·第二步：查询第一步中得到的结果对应的信息<br>             SELECT  *  FROM emp  WHERE  deptno=(<br>SELECT  deptno  FROM  dept   WHERE dname=&#x27;sales&#x27;);<br></code></pre></td></tr></table></figure>
-
-<p>\27. 查询公司中薪水最高的员工信息 </p>
+<ol start="27">
+<li>查询公司中薪水最高的员工信息</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  * FROM emp  WHERE  sal=(SELECT  MAX(sal)  FROM emp);<br></code></pre></td></tr></table></figure>
-
-<p>\28. 查询公司所有员工的个数 </p>
+<ol start="28">
+<li>查询公司所有员工的个数</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  COUNT(empno)  FROM emp;<br></code></pre></td></tr></table></figure>
-
-<p>\29. 查询公司中平均佣金是多少 </p>
+<ol start="29">
+<li>查询公司中平均佣金是多少</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  AVG(comm)  FROM emp;<br></code></pre></td></tr></table></figure>
-
-<p>\30. 查询公司中最晚入职的时间 </p>
+<ol start="30">
+<li>查询公司中最晚入职的时间</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  MAX(hiredate)  FROM emp;<br></code></pre></td></tr></table></figure>
-
 <p>31.查询公司中有奖金的人数  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql"> SELECT  COUNT(*)  FROM emp WHERE  comm  IS  NOT  NULL;<br> SELECT  COUNT(comm)  FROM emp;<br>  ·COUNT(*)  : 统计所有满足条件的数据的数据量<br>·COUNT(comm) : 自带过滤功能，自带了comm 不为null的数据<br></code></pre></td></tr></table></figure>
-
-<p>\32. 查询20部门的最高薪水是多少 </p>
+<ol start="32">
+<li>查询20部门的最高薪水是多少</li>
+</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  MAX(sal)  FROM emp  WHERE  deptno=20;<br></code></pre></td></tr></table></figure>
-
 <p>33、 查询雇员的基本信息（包括部门编号）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  *  FROM emp,dept   WHERE  emp.deptno=dept.deptno;<br></code></pre></td></tr></table></figure>
-
-<p> 35.查询各部门的平均薪水及部门编号，部门名称。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nysql">SELECT  e.deptno,dname,AVG(sal)  <br>FROM emp AS  e,dept    AS d<br>   WHERE  e.deptno=d.deptno<br>GROUP  BY  deptno;<br></code></pre></td></tr></table></figure>
-
+<p>35.查询各部门的平均薪水及部门编号，部门名称。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  e.deptno,dname,AVG(sal)  <br>FROM emp AS  e,dept    AS d<br>   WHERE  e.deptno=d.deptno<br>GROUP  BY  deptno;<br></code></pre></td></tr></table></figure>
 <ol start="36">
 <li><p>查询各部门中最高薪水的员工编号，姓名… </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  *  <br>  FROM emp<br>   WHERE  sal  IN(<br>SELECT  MAX(sal)<br>       FROM  emp<br>        GROUP  BY  deptno);<br></code></pre></td></tr></table></figure>
-
-
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  *  <br>  FROM emp<br>   WHERE  sal  IN(<br>SELECT  MAX(sal)<br>       FROM  emp<br>        GROUP  BY  deptno);<br></code></pre></td></tr></table></figure></li>
 <li><p>查询所有员工姓名中包含‘A’的最高薪水的雇员信息</p>
 </li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>  FROM   emp<br>   WHERE  sal=(<br>SELECT  MAX(sal)  <br>FROM  emp<br>      WHERE  ename  LIKE &#x27;%A%&#x27;)   AND  ename  LIKE  &#x27;%A%&#x27;;<br><br></code></pre></td></tr></table></figure>
-
 <ol start="38">
 <li>查询各岗位的最高薪水，最低薪水。要求只统计薪水&gt;1000的</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select MAX(sal),MIN(sal) from emp where sal&gt;1000 group by job;<br></code></pre></td></tr></table></figure>
-
 <p>39.查询各部门的平均薪水及部门编号，要求只列出平均薪水&gt;2000 </p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(SAL),DEPTNO <span class="hljs-keyword">FROM</span> EMP <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> DEPTNO <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">AVG</span>(SAL) &gt; <span class="hljs-number">2000</span>;<br></code></pre></td></tr></table></figure>
-
 <p>40.查询各部门的平均薪水及部门编号，要求只有员工姓名中包含 </p>
 <p>‘A’才参与统计，只列出平均薪水&gt;1500的，按照平均薪水降序排列 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT  deptno,AVG(sal) as  avgsal<br>  FROM  emp<br>   WHERE  ename  LIKE  &#x27;%A%&#x27;<br>     GROUP  BY  deptno<br>       HAVING  AVG(sal)&gt;1500<br>          ORDER BY  avgsal DESC;<br><br></code></pre></td></tr></table></figure>
-
 <ol start="41">
 <li>查询各部门最高薪水的员工信息（有坑）（薪水和部门编号都需要匹配）</li>
 </ol>
@@ -1440,6 +1444,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/29/day037mysql/" title="day037mysql">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day037mysql</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
