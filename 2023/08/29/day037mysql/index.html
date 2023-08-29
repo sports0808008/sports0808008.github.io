@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308282343771.webp">
 <meta property="article:published_time" content="2023-08-29T00:49:28.000Z">
-<meta property="article:modified_time" content="2023-08-29T08:12:39.477Z">
+<meta property="article:modified_time" content="2023-08-29T17:02:56.182Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="mysql子查询">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          23k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          148 分钟
+          189 分钟
         
       </span>
     
@@ -322,10 +322,10 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>SELECT *  FROM emp   WHERE sal&lt;(  SELECT AVG(sal)  FROM emp );</td>
+<td>SELECT *  FROM emp   WHERE sal&lt;(  SELECT AVG(sal)  FROM emp );<img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300056467.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 <tr>
-<td><img src="/media/824d680675f427dae04ab954a003009b.png" srcset="/img/loading.gif" lazyload></td>
+<td></td>
 </tr>
 </tbody></table>
 <p><strong>· SELECT AVG(sal) FROM emp; [返回的结果集是单行单列类型]</strong></p>
@@ -337,7 +337,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/dea36a83fc7e43291ef374a2897b36bd.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300057836.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="查询出与scott从事同一工作，并且工资相同的雇员的信息"><a href="#查询出与scott从事同一工作，并且工资相同的雇员的信息" class="headerlink" title="查询出与scott从事同一工作，并且工资相同的雇员的信息"></a>查询出与scott从事同一工作，并且工资相同的雇员的信息</h2><p>第一步：查询出scott的工作职位</p>
@@ -364,7 +364,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/79fc4ffb580300dfba89ebda68348767.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300057648.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>第二种方式：</p>
@@ -375,7 +375,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/27f823740eff797d2ea915826a32d2ae.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300057121.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p><strong>·主查询中的条件判断字段的顺序要子查询中需要查询的字段的顺序保持一致</strong></p>
@@ -405,7 +405,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/7b3c9717e88267d54c712f31b5cded15.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300057711.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>方式二<strong>：</strong>使用any实现</p>
@@ -416,7 +416,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/ef4c6bee6e84b960a311e674112dae1c.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300058227.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>**sal&gt;any:**其实表示的是sal大于子查中的最小的一个值即可</p>
@@ -427,13 +427,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/3cb3eee1767faa697f67cd558b309a41.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300058512.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 <tr>
 <td>SELECT *  FROM emp   WHERE sal&lt;ANY( SELECT sal FROM emp WHERE job&#x3D; ‘manager’ );</td>
 </tr>
 <tr>
-<td><img src="/media/aa072bce3d0b430b379a0cfd910c6eaa.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300059984.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>**sal&lt;any:**其实表示的是sal小于子查中最大的一个值即可</p>
@@ -447,7 +447,7 @@
 <td>SELECT * FROM emp  WHERE sal&lt; ALL(SELECT sal FROM emp WHERE job&#x3D; ‘manager’);</td>
 </tr>
 <tr>
-<td><img src="/media/3c6664ae40681e6f7518d1971800454e.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300059990.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p><strong>sal&lt;all: 表示薪资小于子查询中的所有即可。</strong></p>
@@ -461,7 +461,7 @@
 <td>SELECT * FROM emp  WHERE sal&gt;ALL( SELECT sal FROM emp WHERE job&#x3D;’manager’ );</td>
 </tr>
 <tr>
-<td><img src="/media/04824c7dacba5385e6ef500281e75c43.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300059344.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p><strong>sal&gt;all: 表示的薪资大于子查询中的所有结果就行。</strong></p>
@@ -482,7 +482,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/432e51f1d8a6904510a4e8d3d724b3d2.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300100805.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="查询出-平均薪资-最高-的职位-名称和该职位的平均工资。"><a href="#查询出-平均薪资-最高-的职位-名称和该职位的平均工资。" class="headerlink" title="查询出 平均薪资 最高 的职位 名称和该职位的平均工资。"></a>查询出 平均薪资 最高 的职位 名称和该职位的平均工资。</h2><p>第一步：查询出平均薪资最高的职位的平均薪资</p>
@@ -501,7 +501,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/6010c782e45b94de47890157fa0cd8ba.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300100425.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="查询出薪资排名第三的雇员的信息（不考虑并列薪资）"><a href="#查询出薪资排名第三的雇员的信息（不考虑并列薪资）" class="headerlink" title="查询出薪资排名第三的雇员的信息（不考虑并列薪资）"></a>查询出薪资排名第三的雇员的信息（不考虑并列薪资）</h2><p>第一步：查询第一名薪资</p>
@@ -536,7 +536,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/52e18b15b5e28df4694263135b28127a.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300101858.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>这有点像去年一个学长去面试（新东方）：有十万学生的信息，查询出成绩第三名的学生的信息。</p>
@@ -550,7 +550,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/6795d33bcc5ee79ba2f3d8b9faa23a91.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300101632.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>第二种方式：使用FROM子查询实现</p>
@@ -561,7 +561,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/315cfa89ae1fd387799ddab4f93b0bc0.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300101129.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、FROM子查询的结果作为主查询的数据来源，子查询的结果相当于一张临时数据表</p>
@@ -583,7 +583,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/b04a8de113fa8689b26430053c103b90.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300102773.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>2.查询各部门的平均薪水及部门编号以及部门名称，要求只列出平均薪水&gt;2000</p>
@@ -594,13 +594,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/3044b9d93afe2c03543485e9ff8840f4.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300102240.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 <tr>
 <td>SELECT *  FROM dept d,(SELECT deptno,AVG(sal) avgsal  FROM emp  GROUP BY deptno  HAVING AVG(sal)&gt;2000) AS e   WHERE d.deptno&#x3D;e.deptno;</td>
 </tr>
 <tr>
-<td><img src="/media/98e77b443cf55cabdf150c6b643211ce.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308300102152.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>3.查询各部门的平均薪水及部门编号，要求只有员工姓名中包含</p>
@@ -1091,120 +1091,120 @@
 <td></td>
 </tr>
 </tbody></table>
-<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><h2 id="1-查询薪水最低的员工信息"><a href="#1-查询薪水最低的员工信息" class="headerlink" title="1.   查询薪水最低的员工信息"></a>1.   查询薪水最低的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><h2 id="1-查询薪水最低的员工信息"><a href="#1-查询薪水最低的员工信息" class="headerlink" title="1.   查询薪水最低的员工信息"></a>1.   查询薪水最低的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where sal=(select MIN(sal) from emp);<br></code></pre></td></tr></table></figure>
 
-<h2 id="2-查询和SMITH工作相同的员工信息"><a href="#2-查询和SMITH工作相同的员工信息" class="headerlink" title="2.   查询和SMITH工作相同的员工信息"></a>2.   查询和SMITH工作相同的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="2-查询和SMITH工作相同的员工信息"><a href="#2-查询和SMITH工作相同的员工信息" class="headerlink" title="2.   查询和SMITH工作相同的员工信息"></a>2.   查询和SMITH工作相同的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp WHERE ename = &#x27;SMITH&#x27; AND job = &#x27;CLERK&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="3-查询不是领导的员工信息"><a href="#3-查询不是领导的员工信息" class="headerlink" title="3.   查询不是领导的员工信息"></a>3.   查询不是领导的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="3-查询不是领导的员工信息"><a href="#3-查询不是领导的员工信息" class="headerlink" title="3.   查询不是领导的员工信息"></a>3.   查询不是领导的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp WHERE job &lt;&gt; &#x27;PRESIDENT&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="4-查询平均工资比10部门低的部门编号和名称"><a href="#4-查询平均工资比10部门低的部门编号和名称" class="headerlink" title="4.   查询平均工资比10部门低的部门编号和名称"></a>4.   查询平均工资比10部门低的部门编号和名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="4-查询平均工资比10部门低的部门编号和名称"><a href="#4-查询平均工资比10部门低的部门编号和名称" class="headerlink" title="4.   查询平均工资比10部门低的部门编号和名称"></a>4.   查询平均工资比10部门低的部门编号和名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT d.deptno, d.dname<br>FROM dept d<br>JOIN emp e ON d.deptno = e.deptno<br>WHERE d.deptno &lt;&gt; 10<br>GROUP BY d.deptno, d.dname<br>HAVING AVG(e.sal) &lt; (SELECT AVG(sal) FROM emp WHERE deptno = 10);<br></code></pre></td></tr></table></figure>
 
-<h2 id="5-查询在纽约工作的所有员工"><a href="#5-查询在纽约工作的所有员工" class="headerlink" title="5.   查询在纽约工作的所有员工"></a>5.   查询在纽约工作的所有员工</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="5-查询在纽约工作的所有员工"><a href="#5-查询在纽约工作的所有员工" class="headerlink" title="5.   查询在纽约工作的所有员工"></a>5.   查询在纽约工作的所有员工</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM emp<br>WHERE deptno IN (SELECT deptno FROM dept WHERE loc = &#x27;NEW YORK&#x27;);<br></code></pre></td></tr></table></figure>
 
-<h2 id="6-查询‘SALES’部门平均薪水的等级"><a href="#6-查询‘SALES’部门平均薪水的等级" class="headerlink" title="6.   查询‘SALES’部门平均薪水的等级"></a>6.   查询‘SALES’部门平均薪水的等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="6-查询‘SALES’部门平均薪水的等级"><a href="#6-查询‘SALES’部门平均薪水的等级" class="headerlink" title="6.   查询‘SALES’部门平均薪水的等级"></a>6.   查询‘SALES’部门平均薪水的等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT d.dname, AVG(e.sal) AS average_salary, s.grade<br>FROM dept d<br>JOIN emp e ON d.deptno = e.deptno<br>JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal<br>WHERE d.dname = &#x27;SALES&#x27;<br>GROUP BY d.dname, s.grade;<br></code></pre></td></tr></table></figure>
 
-<h2 id="7-查询10号部门的员工在整个公司中所占的比例"><a href="#7-查询10号部门的员工在整个公司中所占的比例" class="headerlink" title="7.   查询10号部门的员工在整个公司中所占的比例"></a>7.   查询10号部门的员工在整个公司中所占的比例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="7-查询10号部门的员工在整个公司中所占的比例"><a href="#7-查询10号部门的员工在整个公司中所占的比例" class="headerlink" title="7.   查询10号部门的员工在整个公司中所占的比例"></a>7.   查询10号部门的员工在整个公司中所占的比例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT COUNT(*) AS dept_count, <br>       (SELECT COUNT(*) FROM emp) AS total_count,<br>       COUNT(*) * 100.0 / (SELECT COUNT(*) FROM emp) AS percentage<br>FROM emp<br>WHERE deptno = 10;<br></code></pre></td></tr></table></figure>
 
-<h2 id="8-查询各部门，工资大于该部门平均工资的员工信息"><a href="#8-查询各部门，工资大于该部门平均工资的员工信息" class="headerlink" title="8.   查询各部门，工资大于该部门平均工资的员工信息"></a>8.   查询各部门，工资大于该部门平均工资的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="8-查询各部门，工资大于该部门平均工资的员工信息"><a href="#8-查询各部门，工资大于该部门平均工资的员工信息" class="headerlink" title="8.   查询各部门，工资大于该部门平均工资的员工信息"></a>8.   查询各部门，工资大于该部门平均工资的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT e.* <br>FROM EMP e<br>WHERE e.SAL &gt; (<br>  SELECT AVG(SAL)<br>  FROM EMP<br>  WHERE DEPTNO = e.DEPTNO<br>)<br></code></pre></td></tr></table></figure>
 
-<h2 id="9-查询所有领导的信息：要求使用exists关键字"><a href="#9-查询所有领导的信息：要求使用exists关键字" class="headerlink" title="9.   查询所有领导的信息：要求使用exists关键字"></a>9.   查询所有领导的信息：要求使用exists关键字</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="9-查询所有领导的信息：要求使用exists关键字"><a href="#9-查询所有领导的信息：要求使用exists关键字" class="headerlink" title="9.   查询所有领导的信息：要求使用exists关键字"></a>9.   查询所有领导的信息：要求使用exists关键字</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM EMP e<br>WHERE EXISTS (<br>  SELECT *<br>  FROM EMP<br>  WHERE EMPNO = e.MGR<br>)<br></code></pre></td></tr></table></figure>
 
-<h2 id="10-查询所有员工的姓名，薪水，部门名称"><a href="#10-查询所有员工的姓名，薪水，部门名称" class="headerlink" title="10. 查询所有员工的姓名，薪水，部门名称"></a>10. 查询所有员工的姓名，薪水，部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="10-查询所有员工的姓名，薪水，部门名称"><a href="#10-查询所有员工的姓名，薪水，部门名称" class="headerlink" title="10. 查询所有员工的姓名，薪水，部门名称"></a>10. 查询所有员工的姓名，薪水，部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select ename,sal,dname from  emp e join dept d on e.deptno=d.deptno;<br></code></pre></td></tr></table></figure>
 
-<h2 id="11-查询所有员工的姓名，薪水，部门名称-薪水等级"><a href="#11-查询所有员工的姓名，薪水，部门名称-薪水等级" class="headerlink" title="11. 查询所有员工的姓名，薪水，部门名称,薪水等级"></a>11. 查询所有员工的姓名，薪水，部门名称,薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="11-查询所有员工的姓名，薪水，部门名称-薪水等级"><a href="#11-查询所有员工的姓名，薪水，部门名称-薪水等级" class="headerlink" title="11. 查询所有员工的姓名，薪水，部门名称,薪水等级"></a>11. 查询所有员工的姓名，薪水，部门名称,薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT e.ENAME, e.SAL, d.DNAME, s.GRADE<br>FROM EMP e<br>JOIN DEPT d ON e.DEPTNO = d.DEPTNO<br>JOIN SALGRADE s ON e.SAL BETWEEN s.LOSAL AND s.HISAL;<br></code></pre></td></tr></table></figure>
 
-<h2 id="12-查询员工姓名及其领导者的姓名"><a href="#12-查询员工姓名及其领导者的姓名" class="headerlink" title="12. 查询员工姓名及其领导者的姓名"></a>12. 查询员工姓名及其领导者的姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="12-查询员工姓名及其领导者的姓名"><a href="#12-查询员工姓名及其领导者的姓名" class="headerlink" title="12. 查询员工姓名及其领导者的姓名"></a>12. 查询员工姓名及其领导者的姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT e.ENAME AS 员工姓名, m.ENAME AS 领导姓名<br>FROM EMP e<br>JOIN EMP m ON e.MGR = m.EMPNO;<br></code></pre></td></tr></table></figure>
 
-<h2 id="13-查询所有员工的姓名，部门名称"><a href="#13-查询所有员工的姓名，部门名称" class="headerlink" title="13. 查询所有员工的姓名，部门名称"></a>13. 查询所有员工的姓名，部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="13-查询所有员工的姓名，部门名称"><a href="#13-查询所有员工的姓名，部门名称" class="headerlink" title="13. 查询所有员工的姓名，部门名称"></a>13. 查询所有员工的姓名，部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT EMP.ENAME, DEPT.DNAME<br>FROM EMP<br>JOIN DEPT ON EMP.DEPTNO = DEPT.DEPTNO;<br></code></pre></td></tr></table></figure>
 
-<h2 id="14-选择员工表中工资不在4000到5000内的员工的姓名和工资"><a href="#14-选择员工表中工资不在4000到5000内的员工的姓名和工资" class="headerlink" title="14. 选择员工表中工资不在4000到5000内的员工的姓名和工资"></a>14. 选择员工表中工资不在4000到5000内的员工的姓名和工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="14-选择员工表中工资不在4000到5000内的员工的姓名和工资"><a href="#14-选择员工表中工资不在4000到5000内的员工的姓名和工资" class="headerlink" title="14. 选择员工表中工资不在4000到5000内的员工的姓名和工资"></a>14. 选择员工表中工资不在4000到5000内的员工的姓名和工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME, SAL<br>FROM EMP<br>WHERE SAL &lt; 4000 OR SAL &gt; 5000;<br></code></pre></td></tr></table></figure>
 
-<h2 id="15-选择员工表中在20和30部门工作的员工的姓名和部门号"><a href="#15-选择员工表中在20和30部门工作的员工的姓名和部门号" class="headerlink" title="15. 选择员工表中在20和30部门工作的员工的姓名和部门号"></a>15. 选择员工表中在20和30部门工作的员工的姓名和部门号</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="15-选择员工表中在20和30部门工作的员工的姓名和部门号"><a href="#15-选择员工表中在20和30部门工作的员工的姓名和部门号" class="headerlink" title="15. 选择员工表中在20和30部门工作的员工的姓名和部门号"></a>15. 选择员工表中在20和30部门工作的员工的姓名和部门号</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME, DEPTNO<br>FROM EMP<br>WHERE DEPTNO = 20 OR DEPTNO = 30;<br></code></pre></td></tr></table></figure>
 
-<h2 id="16-选择员工表中没有管理者的员工姓名及职位，按职位排序"><a href="#16-选择员工表中没有管理者的员工姓名及职位，按职位排序" class="headerlink" title="16. 选择员工表中没有管理者的员工姓名及职位，按职位排序"></a>16. 选择员工表中没有管理者的员工姓名及职位，按职位排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="16-选择员工表中没有管理者的员工姓名及职位，按职位排序"><a href="#16-选择员工表中没有管理者的员工姓名及职位，按职位排序" class="headerlink" title="16. 选择员工表中没有管理者的员工姓名及职位，按职位排序"></a>16. 选择员工表中没有管理者的员工姓名及职位，按职位排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME, JOB<br>FROM EMP<br>WHERE MGR IS NULL<br>ORDER BY JOB;<br></code></pre></td></tr></table></figure>
 
-<h2 id="17-选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列"><a href="#17-选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列" class="headerlink" title="17. 选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列"></a>17. 选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="17-选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列"><a href="#17-选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列" class="headerlink" title="17. 选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列"></a>17. 选择员工表中有奖金的员工姓名，工资和奖金，按工资倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME, SAL, COMM<br>FROM EMP<br>WHERE COMM IS NOT NULL<br>ORDER BY SAL DESC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="18-选择员工表中员工姓名的第三个字母是A的员工姓名"><a href="#18-选择员工表中员工姓名的第三个字母是A的员工姓名" class="headerlink" title="18. 选择员工表中员工姓名的第三个字母是A的员工姓名"></a>18. 选择员工表中员工姓名的第三个字母是A的员工姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="18-选择员工表中员工姓名的第三个字母是A的员工姓名"><a href="#18-选择员工表中员工姓名的第三个字母是A的员工姓名" class="headerlink" title="18. 选择员工表中员工姓名的第三个字母是A的员工姓名"></a>18. 选择员工表中员工姓名的第三个字母是A的员工姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME<br>FROM EMP<br>WHERE SUBSTRING(ENAME, 3, 1) = &#x27;A&#x27;;<br>-- 方法二<br>select ename from emp where ename like &#x27;__A%&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="19-列出部门表中的部门名称和所在城市"><a href="#19-列出部门表中的部门名称和所在城市" class="headerlink" title="19. 列出部门表中的部门名称和所在城市"></a>19. 列出部门表中的部门名称和所在城市</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="19-列出部门表中的部门名称和所在城市"><a href="#19-列出部门表中的部门名称和所在城市" class="headerlink" title="19. 列出部门表中的部门名称和所在城市"></a>19. 列出部门表中的部门名称和所在城市</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT DNAME, LOC<br>FROM DEPT;<br></code></pre></td></tr></table></figure>
 
-<h2 id="20-显示员工表中的不重复的岗位job"><a href="#20-显示员工表中的不重复的岗位job" class="headerlink" title="20. 显示员工表中的不重复的岗位job"></a>20. 显示员工表中的不重复的岗位job</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="20-显示员工表中的不重复的岗位job"><a href="#20-显示员工表中的不重复的岗位job" class="headerlink" title="20. 显示员工表中的不重复的岗位job"></a>20. 显示员工表中的不重复的岗位job</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT DISTINCT JOB<br>FROM EMP;<br></code></pre></td></tr></table></figure>
 
-<h2 id="21-查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果"><a href="#21-查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果" class="headerlink" title="21. 查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果"></a>21. 查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="21-查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果"><a href="#21-查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果" class="headerlink" title="21. 查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果"></a>21. 查询员工表中员工号，姓名，工资，以及工资提高百分之20之后的结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT EMPNO, ENAME, SAL, SAL * 1.2 AS INCREASED_SALARY<br>FROM EMP;<br></code></pre></td></tr></table></figure>
 
-<h2 id="22-查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面"><a href="#22-查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面" class="headerlink" title="22. 查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面"></a>22. 查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="22-查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面"><a href="#22-查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面" class="headerlink" title="22. 查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面"></a>22. 查询员工的姓名和工资，条件限定为工资必须大于1200，并且查询结果按入职时间进行排序。早入职的员工排在前面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ENAME, SAL,hiredate<br>FROM EMP<br>WHERE SAL &gt; 1200<br>ORDER BY HIREDATE ASC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="23-出除了ACCOUNTING部门之外还有什么部门"><a href="#23-出除了ACCOUNTING部门之外还有什么部门" class="headerlink" title="23. 出除了ACCOUNTING部门之外还有什么部门"></a>23. 出除了ACCOUNTING部门之外还有什么部门</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="23-出除了ACCOUNTING部门之外还有什么部门"><a href="#23-出除了ACCOUNTING部门之外还有什么部门" class="headerlink" title="23. 出除了ACCOUNTING部门之外还有什么部门"></a>23. 出除了ACCOUNTING部门之外还有什么部门</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT DISTINCT DEPTNO FROM EMP WHERE DEPTNO &lt;&gt; &#x27;ACCOUNTING&#x27;;<br><br>DEPTNO NOT IN (SELECT DEPTNO FROM EMP WHERE DEPTNO = &#x27;ACCOUNTING&#x27;);<br></code></pre></td></tr></table></figure>
 
-<h2 id="24-把雇员按部门分组，求最高薪水，部门号-要求过滤掉名字中第二个字母是’A’的员工，-并且部门的平均薪水-gt-3000-按照部门编号倒序排列"><a href="#24-把雇员按部门分组，求最高薪水，部门号-要求过滤掉名字中第二个字母是’A’的员工，-并且部门的平均薪水-gt-3000-按照部门编号倒序排列" class="headerlink" title="24. 把雇员按部门分组，求最高薪水，部门号 要求过滤掉名字中第二个字母是’A’的员工， 并且部门的平均薪水 &gt; 3000,按照部门编号倒序排列"></a>24. 把雇员按部门分组，求最高薪水，部门号 要求过滤掉名字中第二个字母是’A’的员工， 并且部门的平均薪水 &gt; 3000,按照部门编号倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="24-把雇员按部门分组，求最高薪水，部门号-要求过滤掉名字中第二个字母是’A’的员工，-并且部门的平均薪水-gt-3000-按照部门编号倒序排列"><a href="#24-把雇员按部门分组，求最高薪水，部门号-要求过滤掉名字中第二个字母是’A’的员工，-并且部门的平均薪水-gt-3000-按照部门编号倒序排列" class="headerlink" title="24. 把雇员按部门分组，求最高薪水，部门号 要求过滤掉名字中第二个字母是’A’的员工， 并且部门的平均薪水 &gt; 3000,按照部门编号倒序排列"></a>24. 把雇员按部门分组，求最高薪水，部门号 要求过滤掉名字中第二个字母是’A’的员工， 并且部门的平均薪水 &gt; 3000,按照部门编号倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT MAX(sal), deptno<br>FROM emp<br>WHERE ename NOT LIKE &#x27;_A%&#x27;<br>GROUP BY deptno<br>HAVING AVG(sal) &gt; 3000<br>ORDER BY deptno DESC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="25-查询最高领导者的薪水等级"><a href="#25-查询最高领导者的薪水等级" class="headerlink" title="25. 查询最高领导者的薪水等级"></a>25. 查询最高领导者的薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="25-查询最高领导者的薪水等级"><a href="#25-查询最高领导者的薪水等级" class="headerlink" title="25. 查询最高领导者的薪水等级"></a>25. 查询最高领导者的薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT grade FROM salgrade WHERE 5000 BETWEEN losal AND hisal;<br></code></pre></td></tr></table></figure>
 
-<h2 id="26-求工作职位是’manager’的员工姓名，部门名称和薪水等级"><a href="#26-求工作职位是’manager’的员工姓名，部门名称和薪水等级" class="headerlink" title="26. 求工作职位是’manager’的员工姓名，部门名称和薪水等级"></a>26. 求工作职位是’manager’的员工姓名，部门名称和薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="26-求工作职位是’manager’的员工姓名，部门名称和薪水等级"><a href="#26-求工作职位是’manager’的员工姓名，部门名称和薪水等级" class="headerlink" title="26. 求工作职位是’manager’的员工姓名，部门名称和薪水等级"></a>26. 求工作职位是’manager’的员工姓名，部门名称和薪水等级</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT e.ename, d.dname, s.grade <br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno<br>JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal<br>WHERE e.job = &#x27;manager&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="27-按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列"><a href="#27-按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列" class="headerlink" title="27. 按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列"></a>27. 按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="27-按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列"><a href="#27-按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列" class="headerlink" title="27. 按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列"></a>27. 按照部门分组统计，求最高薪水，平均薪水，最低薪水，只有薪水是1200以上的员工才参与统计，并且分组结果中只包含平均薪水在1500以上的部门，并且按照平均薪水倒序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT d.dname, MAX(e.sal) AS max_salary, AVG(e.sal) AS avg_salary, MIN(e.sal) AS min_salary<br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno<br>WHERE e.sal &gt;= 1200<br>GROUP BY d.dname<br>HAVING avg_salary &gt;= 1500<br>ORDER BY avg_salary DESC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="28-求薪水最高的员工姓名"><a href="#28-求薪水最高的员工姓名" class="headerlink" title="28. 求薪水最高的员工姓名"></a>28. 求薪水最高的员工姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="28-求薪水最高的员工姓名"><a href="#28-求薪水最高的员工姓名" class="headerlink" title="28. 求薪水最高的员工姓名"></a>28. 求薪水最高的员工姓名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename<br>FROM emp<br>WHERE sal = (SELECT MAX(sal) FROM emp);<br></code></pre></td></tr></table></figure>
 
-<h2 id="29-查询各部门平均薪水等级，并且按平均薪水等级降序排列"><a href="#29-查询各部门平均薪水等级，并且按平均薪水等级降序排列" class="headerlink" title="29. 查询各部门平均薪水等级，并且按平均薪水等级降序排列"></a>29. 查询各部门平均薪水等级，并且按平均薪水等级降序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="29-查询各部门平均薪水等级，并且按平均薪水等级降序排列"><a href="#29-查询各部门平均薪水等级，并且按平均薪水等级降序排列" class="headerlink" title="29. 查询各部门平均薪水等级，并且按平均薪水等级降序排列"></a>29. 查询各部门平均薪水等级，并且按平均薪水等级降序排列</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT d.dname, AVG(s.grade) AS avg_salary_grade<br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno<br>JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal<br>GROUP BY d.dname<br>ORDER BY avg_salary_grade DESC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="30-查询所有员工姓名以S或s开头的所有员工信息"><a href="#30-查询所有员工姓名以S或s开头的所有员工信息" class="headerlink" title="30. 查询所有员工姓名以S或s开头的所有员工信息"></a>30. 查询所有员工姓名以S或s开头的所有员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="30-查询所有员工姓名以S或s开头的所有员工信息"><a href="#30-查询所有员工姓名以S或s开头的所有员工信息" class="headerlink" title="30. 查询所有员工姓名以S或s开头的所有员工信息"></a>30. 查询所有员工姓名以S或s开头的所有员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM emp<br>WHERE ename LIKE &#x27;S%&#x27; OR ename LIKE &#x27;s%&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="31-查询20部门的所有员工的员工姓名，实际收入"><a href="#31-查询20部门的所有员工的员工姓名，实际收入" class="headerlink" title="31. 查询20部门的所有员工的员工姓名，实际收入"></a>31. 查询20部门的所有员工的员工姓名，实际收入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="31-查询20部门的所有员工的员工姓名，实际收入"><a href="#31-查询20部门的所有员工的员工姓名，实际收入" class="headerlink" title="31. 查询20部门的所有员工的员工姓名，实际收入"></a>31. 查询20部门的所有员工的员工姓名，实际收入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT e.ename, e.sal<br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno<br>WHERE d.deptno = 20;<br></code></pre></td></tr></table></figure>
 
-<h2 id="32-查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序"><a href="#32-查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序" class="headerlink" title="32. 查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序"></a>32. 查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="32-查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序"><a href="#32-查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序" class="headerlink" title="32. 查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序"></a>32. 查询10部门工资大于3000的员工信息，要求按员工的入职时间由前到后排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM emp<br>WHERE deptno = 10 AND sal &gt; 3000<br>ORDER BY hiredate ASC;<br></code></pre></td></tr></table></figure>
 
-<h2 id="33-统计平均薪水最高的部门名称"><a href="#33-统计平均薪水最高的部门名称" class="headerlink" title="33. 统计平均薪水最高的部门名称"></a>33. 统计平均薪水最高的部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="33-统计平均薪水最高的部门名称"><a href="#33-统计平均薪水最高的部门名称" class="headerlink" title="33. 统计平均薪水最高的部门名称"></a>33. 统计平均薪水最高的部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select d.dname from dept d join emp e  on d.deptno=e.deptno group by  d.dname order by avg(e.sal) desc;<br></code></pre></td></tr></table></figure>
 
-<h2 id="34-查询平均薪水等级最低的部门名称"><a href="#34-查询平均薪水等级最低的部门名称" class="headerlink" title="34.查询平均薪水等级最低的部门名称"></a>34.查询平均薪水等级最低的部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="34-查询平均薪水等级最低的部门名称"><a href="#34-查询平均薪水等级最低的部门名称" class="headerlink" title="34.查询平均薪水等级最低的部门名称"></a>34.查询平均薪水等级最低的部门名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT d.dname<br>FROM dept d<br>JOIN emp e ON d.deptno = e.deptno<br>GROUP BY d.dname<br>ORDER BY AVG(e.sal) ASC<br>LIMIT 1;<br></code></pre></td></tr></table></figure>
 
-<h2 id="35-显示平均工资为-gt-2000的职位"><a href="#35-显示平均工资为-gt-2000的职位" class="headerlink" title="35. 显示平均工资为&gt;2000的职位"></a>35. 显示平均工资为&gt;2000的职位</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="35-显示平均工资为-gt-2000的职位"><a href="#35-显示平均工资为-gt-2000的职位" class="headerlink" title="35. 显示平均工资为&gt;2000的职位"></a>35. 显示平均工资为&gt;2000的职位</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT DISTINCT job<br>FROM emp<br>WHERE job IN (<br>  SELECT job<br>  FROM emp<br>  GROUP BY job<br>  HAVING AVG(sal) &gt; 2000<br>);<br></code></pre></td></tr></table></figure>
 
-<h2 id="36-计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资"><a href="#36-计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资" class="headerlink" title="36. 计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资"></a>36. 计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="36-计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资"><a href="#36-计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资" class="headerlink" title="36. 计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资"></a>36. 计算工资在2000以上，各种职位的平均工资大于3000的职位及平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT job, AVG(sal) AS avg_salary<br>FROM emp<br>WHERE sal &gt; 2000<br>GROUP BY job<br>HAVING AVG(sal) &gt; 3000;<br></code></pre></td></tr></table></figure>
 
-<h2 id="37-找每个部门的最高和最低的工资"><a href="#37-找每个部门的最高和最低的工资" class="headerlink" title="37. 找每个部门的最高和最低的工资"></a>37. 找每个部门的最高和最低的工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="37-找每个部门的最高和最低的工资"><a href="#37-找每个部门的最高和最低的工资" class="headerlink" title="37. 找每个部门的最高和最低的工资"></a>37. 找每个部门的最高和最低的工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno, MAX(sal) AS max_salary, MIN(sal) AS min_salary<br>FROM emp<br>GROUP BY deptno;<br></code></pre></td></tr></table></figure>
 
-<h2 id="38-找每个部门中每种职位的最高和最低的工资"><a href="#38-找每个部门中每种职位的最高和最低的工资" class="headerlink" title="38. 找每个部门中每种职位的最高和最低的工资"></a>38. 找每个部门中每种职位的最高和最低的工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="38-找每个部门中每种职位的最高和最低的工资"><a href="#38-找每个部门中每种职位的最高和最低的工资" class="headerlink" title="38. 找每个部门中每种职位的最高和最低的工资"></a>38. 找每个部门中每种职位的最高和最低的工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno, job, MAX(sal) AS max_salary, MIN(sal) AS min_salary<br>FROM emp<br>GROUP BY deptno, job;<br></code></pre></td></tr></table></figure>
 
-<h2 id="39-显示出工作名称-job-中包含”办事”的员工平均工资，最高工资，最低工资及工资的和"><a href="#39-显示出工作名称-job-中包含”办事”的员工平均工资，最高工资，最低工资及工资的和" class="headerlink" title="39. 显示出工作名称(job)中包含”办事”的员工平均工资，最高工资，最低工资及工资的和"></a>39. 显示出工作名称(job)中包含”办事”的员工平均工资，最高工资，最低工资及工资的和</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="39-显示出工作名称-job-中包含”办事”的员工平均工资，最高工资，最低工资及工资的和"><a href="#39-显示出工作名称-job-中包含”办事”的员工平均工资，最高工资，最低工资及工资的和" class="headerlink" title="39. 显示出工作名称(job)中包含”办事”的员工平均工资，最高工资，最低工资及工资的和"></a>39. 显示出工作名称(job)中包含”办事”的员工平均工资，最高工资，最低工资及工资的和</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT AVG(sal) AS avg_salary, MAX(sal) AS max_salary, MIN(sal) AS min_salary, SUM(sal) AS total_salary<br>FROM emp<br>WHERE job LIKE &#x27;%办事%&#x27;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="40-显示出平均工资大于2000的部门名称及平均工资"><a href="#40-显示出平均工资大于2000的部门名称及平均工资" class="headerlink" title="40. 显示出平均工资大于2000的部门名称及平均工资"></a>40. 显示出平均工资大于2000的部门名称及平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="40-显示出平均工资大于2000的部门名称及平均工资"><a href="#40-显示出平均工资大于2000的部门名称及平均工资" class="headerlink" title="40. 显示出平均工资大于2000的部门名称及平均工资"></a>40. 显示出平均工资大于2000的部门名称及平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno, AVG(sal) AS avg_salary<br>FROM emp<br>GROUP BY deptno<br>HAVING AVG(sal) &gt; 2000;<br></code></pre></td></tr></table></figure>
 
-<h2 id="41-显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资"><a href="#41-显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资" class="headerlink" title="41. 显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资"></a>41. 显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="41-显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资"><a href="#41-显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资" class="headerlink" title="41. 显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资"></a>41. 显示每个部门每种工作平均工资大于2500的部门名称及工作，平均工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno, job, AVG(sal) AS avg_salary<br>FROM emp<br>GROUP BY deptno, job<br>HAVING AVG(sal) &gt; 2500;<br></code></pre></td></tr></table></figure>
 
-<h2 id="42-列出最低工资大于1500的各种工作"><a href="#42-列出最低工资大于1500的各种工作" class="headerlink" title="42. 列出最低工资大于1500的各种工作"></a>42. 列出最低工资大于1500的各种工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="42-列出最低工资大于1500的各种工作"><a href="#42-列出最低工资大于1500的各种工作" class="headerlink" title="42. 列出最低工资大于1500的各种工作"></a>42. 列出最低工资大于1500的各种工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT job, MIN(sal) AS min_salary<br>FROM emp<br>GROUP BY job<br>HAVING MIN(sal) &gt; 1500;<br></code></pre></td></tr></table></figure>
 
-<h2 id="43-列出各部门的员工数量及平均工作年限"><a href="#43-列出各部门的员工数量及平均工作年限" class="headerlink" title="43. 列出各部门的员工数量及平均工作年限"></a>43. 列出各部门的员工数量及平均工作年限</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="43-列出各部门的员工数量及平均工作年限"><a href="#43-列出各部门的员工数量及平均工作年限" class="headerlink" title="43. 列出各部门的员工数量及平均工作年限"></a>43. 列出各部门的员工数量及平均工作年限</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT deptno, COUNT(*) AS employee_count, AVG(YEAR(CURRENT_DATE) - YEAR(hiredate)) AS avg_work_experience<br>FROM emp<br>GROUP BY deptno;<br></code></pre></td></tr></table></figure>
 
-<h2 id="44-列出至少有一个雇员的所有部门信息"><a href="#44-列出至少有一个雇员的所有部门信息" class="headerlink" title="44. 列出至少有一个雇员的所有部门信息"></a>44. 列出至少有一个雇员的所有部门信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="44-列出至少有一个雇员的所有部门信息"><a href="#44-列出至少有一个雇员的所有部门信息" class="headerlink" title="44. 列出至少有一个雇员的所有部门信息"></a>44. 列出至少有一个雇员的所有部门信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM dept<br>WHERE deptno IN (<br>    SELECT DISTINCT deptno<br>    FROM emp<br>);<br></code></pre></td></tr></table></figure>
 
-<h2 id="45-列出薪金比”SMITH”多的所有雇员"><a href="#45-列出薪金比”SMITH”多的所有雇员" class="headerlink" title="45. 列出薪金比”SMITH”多的所有雇员"></a>45. 列出薪金比”SMITH”多的所有雇员</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="45-列出薪金比”SMITH”多的所有雇员"><a href="#45-列出薪金比”SMITH”多的所有雇员" class="headerlink" title="45. 列出薪金比”SMITH”多的所有雇员"></a>45. 列出薪金比”SMITH”多的所有雇员</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT *<br>FROM emp<br>WHERE sal &gt; (<br>    SELECT sal<br>    FROM emp<br>    WHERE ename = &#x27;SMITH&#x27;<br>);<br></code></pre></td></tr></table></figure>
 
-<h2 id="46-列出所有雇员的姓名及其工作地点"><a href="#46-列出所有雇员的姓名及其工作地点" class="headerlink" title="46. 列出所有雇员的姓名及其工作地点"></a>46. 列出所有雇员的姓名及其工作地点</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<h2 id="46-列出所有雇员的姓名及其工作地点"><a href="#46-列出所有雇员的姓名及其工作地点" class="headerlink" title="46. 列出所有雇员的姓名及其工作地点"></a>46. 列出所有雇员的姓名及其工作地点</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename, loc<br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno;<br></code></pre></td></tr></table></figure>
 
-<h2 id="47-建表之后完成如下练习题"><a href="#47-建表之后完成如下练习题" class="headerlink" title="47. 建表之后完成如下练习题"></a>47. 建表之后完成如下练习题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table student(<br>   sno  varchar2(10)  primary  key,<br>   sname varchar2(20),<br>   sage number(2),<br>   ssex varchar2(5)<br>);<br>create table teacher(<br>  tno varchar2(10) primary key,<br>  tname varchar2(20)<br>);<br>create table course(<br>  cno varchar2(10),<br>  cname varchar2(20),<br>  tno varchar2(20),<br>  constraint pk_course primary key (cno,tno)<br>);<br>create table sc(<br>   sno varchar2(10),<br>   cno varchar2(10),<br>   score number(4,2),<br>   constraint pk_sc primary key (sno,cno)<br>);<br>/*******初始化学生表的数据******/<br>insert into student values (&#x27;s001&#x27;,&#x27;张三&#x27;,23,&#x27;男&#x27;);        <br>insert into student values (&#x27;s002&#x27;,&#x27;李四&#x27;,23,&#x27;男&#x27;);    <br>insert into student values (&#x27;s003&#x27;,&#x27;吴鹏&#x27;,25,&#x27;男&#x27;);      <br>insert into student values (&#x27;s004&#x27;,&#x27;琴沁&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s005&#x27;,&#x27;王丽&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s006&#x27;,&#x27;李波&#x27;,21,&#x27;男&#x27;);      <br>insert into student values (&#x27;s007&#x27;,&#x27;刘玉&#x27;,21,&#x27;男&#x27;);          <br>insert into student values (&#x27;s008&#x27;,&#x27;萧蓉&#x27;,21,&#x27;女&#x27;);<br>insert into student values (&#x27;s009&#x27;,&#x27;陈萧晓&#x27;,23,&#x27;女&#x27;);<br>insert into student values (&#x27;s010&#x27;,&#x27;陈美&#x27;,22,&#x27;女&#x27;);<br>commit;<br>/****************** 初始化教师表 ***********************/<br>insert into teacher values (&#x27;t001&#x27;, &#x27;刘阳&#x27;);      <br>insert into teacher values (&#x27;t002&#x27;, &#x27;谌燕&#x27;);        <br>insert into teacher values (&#x27;t003&#x27;, &#x27;胡明星&#x27;);       <br>commit;);<br>/***************初始化课程表****************************/<br>insert into course values (&#x27;c001&#x27;,&#x27;J2SE&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c002&#x27;,&#x27;Java Web&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c003&#x27;,&#x27;SSH&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c004&#x27;,&#x27;Oracle&#x27;,&#x27;t001&#x27;);     <br>insert into course values (&#x27;c005&#x27;,&#x27;SQL SERVER 2005&#x27;,&#x27;t003&#x27;);    <br>insert into course values (&#x27;c006&#x27;,&#x27;C#&#x27;,&#x27;t003&#x27;);       <br>insert into course values (&#x27;c007&#x27;,&#x27;JavaScript&#x27;,&#x27;t002&#x27;);     <br>insert into course values (&#x27;c008&#x27;,&#x27;DIV+CSS&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c009&#x27;,&#x27;PHP&#x27;,&#x27;t003&#x27;);<br>insert into course values (&#x27;c010&#x27;,&#x27;EJB3.0&#x27;,&#x27;t002&#x27;);<br>commit;<br>/***************初始化成绩表***********************/<br>insert into sc values (&#x27;s001&#x27;,&#x27;c001&#x27;,78.9);<br>insert into sc values (&#x27;s002&#x27;,&#x27;c001&#x27;,80.9);     <br>insert into sc values (&#x27;s003&#x27;,&#x27;c001&#x27;,81.9);       <br>insert into sc values (&#x27;s004&#x27;,&#x27;c001&#x27;,60.9);       <br>insert into sc values (&#x27;s001&#x27;,&#x27;c002&#x27;,82.9);       <br>insert into sc values (&#x27;s002&#x27;,&#x27;c002&#x27;,72.9);       <br>insert into sc values (&#x27;s003&#x27;,&#x27;c002&#x27;,81.9);     <br>insert into sc values (&#x27;s001&#x27;,&#x27;c003&#x27;,&#x27;59&#x27;); <br>insert into sc values (&#x27;s005&#x27;,&#x27;c004&#x27;,&#x27;91&#x27;); <br>insert into sc values (&#x27;s007&#x27;,&#x27;c008&#x27;,&#x27;55.7&#x27;); <br>commit;<br><br></code></pre></td></tr></table></figure>
+<h2 id="47-建表之后完成如下练习题"><a href="#47-建表之后完成如下练习题" class="headerlink" title="47. 建表之后完成如下练习题"></a>47. 建表之后完成如下练习题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table student(<br>   sno  varchar2(10)  primary  key,<br>   sname varchar2(20),<br>   sage INT(2),<br>   ssex varchar(5)<br>);<br>create table teacher(<br>  tno varchar(10) primary key,<br>  tname varchar(20)<br>);<br>create table course(<br>  cno varchar(10),<br>  cname varchar(20),<br>  tno varchar(20),<br>  constraint pk_course primary key (cno,tno)<br>);<br>create table sc(<br>   sno varchar(10),<br>   cno varchar(10),<br>   score DECIMAL(4,2),<br>   constraint pk_sc primary key (sno,cno)<br>);<br>/*******初始化学生表的数据******/<br>insert into student values (&#x27;s001&#x27;,&#x27;张三&#x27;,23,&#x27;男&#x27;);        <br>insert into student values (&#x27;s002&#x27;,&#x27;李四&#x27;,23,&#x27;男&#x27;);    <br>insert into student values (&#x27;s003&#x27;,&#x27;吴鹏&#x27;,25,&#x27;男&#x27;);      <br>insert into student values (&#x27;s004&#x27;,&#x27;琴沁&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s005&#x27;,&#x27;王丽&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s006&#x27;,&#x27;李波&#x27;,21,&#x27;男&#x27;);      <br>insert into student values (&#x27;s007&#x27;,&#x27;刘玉&#x27;,21,&#x27;男&#x27;);          <br>insert into student values (&#x27;s008&#x27;,&#x27;萧蓉&#x27;,21,&#x27;女&#x27;);<br>insert into student values (&#x27;s009&#x27;,&#x27;陈萧晓&#x27;,23,&#x27;女&#x27;);<br>insert into student values (&#x27;s010&#x27;,&#x27;陈美&#x27;,22,&#x27;女&#x27;);<br>commit;<br>/****************** 初始化教师表 ***********************/<br>insert into teacher values (&#x27;t001&#x27;, &#x27;刘阳&#x27;);      <br>insert into teacher values (&#x27;t002&#x27;, &#x27;谌燕&#x27;);        <br>insert into teacher values (&#x27;t003&#x27;, &#x27;胡明星&#x27;);       <br>commit;<br>/***************初始化课程表****************************/<br>insert into course values (&#x27;c001&#x27;,&#x27;J2SE&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c002&#x27;,&#x27;Java Web&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c003&#x27;,&#x27;SSH&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c004&#x27;,&#x27;Oracle&#x27;,&#x27;t001&#x27;);     <br>insert into course values (&#x27;c005&#x27;,&#x27;SQL SERVER 2005&#x27;,&#x27;t003&#x27;);    <br>insert into course values (&#x27;c006&#x27;,&#x27;C#&#x27;,&#x27;t003&#x27;);       <br>insert into course values (&#x27;c007&#x27;,&#x27;JavaScript&#x27;,&#x27;t002&#x27;);     <br>insert into course values (&#x27;c008&#x27;,&#x27;DIV+CSS&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c009&#x27;,&#x27;PHP&#x27;,&#x27;t003&#x27;);<br>insert into course values (&#x27;c010&#x27;,&#x27;EJB3.0&#x27;,&#x27;t002&#x27;);<br>commit;<br>/***************初始化成绩表***********************/<br>insert into sc values (&#x27;s001&#x27;,&#x27;c001&#x27;,78.9);<br>insert into sc values (&#x27;s002&#x27;,&#x27;c001&#x27;,80.9);     <br>insert into sc values (&#x27;s003&#x27;,&#x27;c001&#x27;,81.9);       <br>insert into sc values (&#x27;s004&#x27;,&#x27;c001&#x27;,60.9);       <br>insert into sc values (&#x27;s001&#x27;,&#x27;c002&#x27;,82.9);       <br>insert into sc values (&#x27;s002&#x27;,&#x27;c002&#x27;,72.9);       <br>insert into sc values (&#x27;s003&#x27;,&#x27;c002&#x27;,81.9);     <br>insert into sc values (&#x27;s001&#x27;,&#x27;c003&#x27;,&#x27;59&#x27;); <br>insert into sc values (&#x27;s005&#x27;,&#x27;c004&#x27;,&#x27;91&#x27;); <br>insert into sc values (&#x27;s007&#x27;,&#x27;c008&#x27;,&#x27;55.7&#x27;); <br>commit;<br><br></code></pre></td></tr></table></figure>
 
 <p>(1)、查询课程编号“c002”的成绩比课程编号“c001”课程低的所有同学的学号、姓名。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM sc sc1<br>JOIN sc sc2 ON sc1.sno = sc2.sno<br>JOIN student s ON sc1.sno = s.sno<br>WHERE sc1.cno = &#x27;c002&#x27; AND sc2.cno = &#x27;c001&#x27; AND sc1.score &lt; sc2.score;<br></code></pre></td></tr></table></figure>
 
 <p>(2)、查询平均成绩大于60 分的同学的学号和平均成绩。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT sno, AVG(score) as average_score<br>FROM sc<br>GROUP BY sno<br>HAVING AVG(score) &gt; 60;<br></code></pre></td></tr></table></figure>
 
 <p>(3)、查询所有同学的学号、姓名、选课数、总成绩。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname, COUNT(sc.cno) AS course_count, SUM(sc.score) AS total_score<br>FROM student s<br>LEFT JOIN sc ON s.sno = sc.sno<br>GROUP BY s.sno, s.sname;<br></code></pre></td></tr></table></figure>
 
 <p>(4)、查询姓“刘”的老师的个数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT COUNT(*) AS teacher_count<br>FROM teacher<br>WHERE tname LIKE &#x27;刘%&#x27;;<br></code></pre></td></tr></table></figure>
 
 <p>(5) 、查询学过“谌燕”老师课的同学的学号、姓名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM student s<br>JOIN sc ON s.sno = sc.sno<br>JOIN course c ON sc.cno = c.cno<br>JOIN teacher t ON c.tno = t.tno<br>WHERE t.tname = &#x27;谌燕&#x27;;<br></code></pre></td></tr></table></figure>
 
 <p>(6)、查询学过“c001”并且也学过编号“c002”课程的同学的学号、姓名。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM student s<br>JOIN sc sc1 ON s.sno = sc1.sno<br>JOIN sc sc2 ON s.sno = sc2.sno<br>JOIN course c1 ON sc1.cno = c1.cno<br>JOIN course c2 ON sc2.cno = c2.cno<br>WHERE c1.cno = &#x27;c001&#x27; AND c2.cno = &#x27;c002&#x27;;<br></code></pre></td></tr></table></figure>
 
 <p>(7)、查询至少有一门课与学号为“s001”的同学所学的课相同的同学的学号和姓名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s2.sno, s2.sname<br>FROM student s1<br>JOIN sc sc1 ON s1.sno = sc1.sno <br>JOIN sc sc2 ON sc1.cno = sc2.cno<br>JOIN student s2 ON sc2.sno = s2.sno<br>WHERE s1.sno = &#x27;s001&#x27; AND s2.sno &lt;&gt; &#x27;s001&#x27;;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
