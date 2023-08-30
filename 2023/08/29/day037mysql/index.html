@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308282343771.webp">
 <meta property="article:published_time" content="2023-08-29T00:49:28.000Z">
-<meta property="article:modified_time" content="2023-08-29T17:02:56.182Z">
+<meta property="article:modified_time" content="2023-08-30T12:20:53.611Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="mysql子查询">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          19k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          189 分钟
+          157 分钟
         
       </span>
     
@@ -612,7 +612,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/c513a44d185f7ec529ab7aea53e4c922.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301622459.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>4.查询最高薪水的员工信息</p>
@@ -623,7 +623,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/8936511b00324eb45ada96c7a548b230.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301623738.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>5.查询薪水大于所在部门的平均薪水的员工信息</p>
@@ -637,7 +637,7 @@
 <td>第二步：把第一步的查询结果当成一张数据表（其实就是子查询）  SELECT *  FROM emp e,( SELECT deptno,AVG(sal) avgsal  FROM emp  GROUP BY deptno) t  WHERE t.deptno&#x3D;e.deptno AND sal&gt;t.avgsal;</td>
 </tr>
 <tr>
-<td><img src="/media/424f6a6535245c00604d20e456d4b262.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301624591.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>6查询各部门最高薪水的员工信息</p>
@@ -651,7 +651,7 @@
 <td>第二步： 把第一步当成子查询使用 SELECT *  FROM emp e,(SELECT deptno,MAX(sal) maxsal  FROM emp  GROUP BY deptno) t  WHERE e.deptno&#x3D;t.deptno AND sal&#x3D;t.maxsal;</td>
 </tr>
 <tr>
-<td><img src="/media/a9a54bad63c1b938f9cb6066745bcd2c.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301624795.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>7.查询出薪资高于佣金的雇员的信息</p>
@@ -662,7 +662,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/06b4cbde94adc69bcdaa7feea4f12ca1.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301624867.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h1 id="EXISTS子查询（了解）"><a href="#EXISTS子查询（了解）" class="headerlink" title="EXISTS子查询（了解）"></a>EXISTS子查询（了解）</h1><p>EXISTS子查询的特征：将主查询中的数据带到子查询中进行验证，如果验证成功则被验证的数据就显示， 反之不显示。</p>
@@ -679,7 +679,7 @@
 <td>【使用EXISTS子查询实现】  SELECT *  FROM emp e  WHERE EXISTS(  SELECT * FROM dept d WHERE e.deptno&#x3D;d.deptno );</td>
 </tr>
 <tr>
-<td><img src="/media/fe16f243f972a1a752b7c9446ca64608.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301624406.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="查询出还没有部门的-雇员的-雇员的信息"><a href="#查询出还没有部门的-雇员的-雇员的信息" class="headerlink" title="查询出还没有部门的 雇员的 雇员的信息"></a><strong>查询出还没有部门的 雇员的 雇员的信息</strong></h2><table>
@@ -689,7 +689,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/82e2be04fa470fc834482064de35ef6b.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301624232.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>使用NOT EXISTS的时候也是将主查询中的数据带入子查询进行验证，如果<strong>验证成功则不显示验证的数据</strong>，<strong>反之则显示数据</strong>。</p>
@@ -717,7 +717,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/422da6d30902fbe3083fb3ef7a63930a.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301625170.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>·查询第1页数据，每页显示4条数据</p>
@@ -728,7 +728,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/e0a54e239fddbd5a1db882848b396b06.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301625453.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>·查询第2页数据，每页显示5条数据（m&#x3D;(2-1)*5&#x3D;&#x3D;5）</p>
@@ -739,7 +739,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/37ecce199a56c13f119be467211bed80.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301625117.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>·查询第3页数据，每页显示6（ls&#x3D;&#x3D;6）条</p>
@@ -750,7 +750,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/c1ddf706e9e1bbc9c274fd3f3fc05d44.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301626921.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>通过以上的demo可以总结公式：</p>
@@ -775,7 +775,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/496bd08aa800b3dd02b15e09d2d831d6.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301626353.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="向myemp表中增加数据"><a href="#向myemp表中增加数据" class="headerlink" title="向myemp表中增加数据"></a>向myemp表中增加数据</h2><table>
@@ -785,21 +785,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/f18763664aa55de8438441c233375db8.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301626760.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>插入数据的时候要保证插入值类型和对应字段的类型要一致 。</p>
 <h2 id="每个字段都需要插入数据"><a href="#每个字段都需要插入数据" class="headerlink" title="每个字段都需要插入数据"></a>每个字段都需要插入数据</h2><p>如果说每个字段都需要插入数据，那么可以简写</p>
-<table>
-<thead>
-<tr>
-<th>INSERT INTO myemp VALUES(‘1006’,’李四’,’CLERCK’,7788,NOW(),’3000.00’,null,40);</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/110716f3a44cb8deb86fbcd821afd589.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">INSERT INTO myemp VALUES(&#x27;1006&#x27;,&#x27;李四&#x27;,&#x27;CLERCK&#x27;,7788,NOW(),&#x27;3000.00&#x27;,null,40);<br></code></pre></td></tr></table></figure>
+
 <p>每个字段都要给定对应的值。</p>
 <h2 id="观察代码"><a href="#观察代码" class="headerlink" title="观察代码"></a>观察代码</h2><table>
 <thead>
@@ -808,7 +800,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/ec85e01da75bba19f9d888f4c63cd0a3.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301628237.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>如果在插入数据的时候要省略字段，则必须为表中所有的字段给定值。</p>
@@ -820,36 +812,14 @@
 </tr>
 </thead>
 </table>
-<h2 id="将史密斯的基本工资修改为8000，佣金修改为1000"><a href="#将史密斯的基本工资修改为8000，佣金修改为1000" class="headerlink" title="将史密斯的基本工资修改为8000，佣金修改为1000"></a>将史密斯的基本工资修改为8000，佣金修改为1000</h2><table>
-<thead>
-<tr>
-<th>UPDATE myemp SET sal&#x3D;8000 , comm&#x3D;1000 WHERE ename &#x3D;’smith’;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/ecf3ff19afb4388efcfa92b87f926a19.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
-<h2 id="将ALLEN的工资修改为SMITH的工资"><a href="#将ALLEN的工资修改为SMITH的工资" class="headerlink" title="将ALLEN的工资修改为SMITH的工资"></a>将ALLEN的工资修改为SMITH的工资</h2><table>
-<thead>
-<tr>
-<th>UPDATE myemp SET sal&#x3D;( SELECT sal FROM (SELECT sal FROM myemp WHERE ename&#x3D;’smith’) AS e)  WHERE ename&#x3D;’allen’;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/e706827352e77e786a76272d8b7f4322.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
-<h2 id="将低于平均工资的雇员的工资上涨20"><a href="#将低于平均工资的雇员的工资上涨20" class="headerlink" title="将低于平均工资的雇员的工资上涨20%"></a>将低于平均工资的雇员的工资上涨20%</h2><table>
-<thead>
-<tr>
-<th>UPDATE myemp SET sal&#x3D;sal*1.2 WHERE sal&lt;(  SELECT avgsal FROM (SELECT AVG(sal) avgsal FROM myemp) AS t );</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/53b1e6a88294f6070ad81a9cd61653c8.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<h2 id="将史密斯的基本工资修改为8000，佣金修改为1000"><a href="#将史密斯的基本工资修改为8000，佣金修改为1000" class="headerlink" title="将史密斯的基本工资修改为8000，佣金修改为1000"></a>将史密斯的基本工资修改为8000，佣金修改为1000</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">UPDATE myemp SET sal=8000 , comm=1000 WHERE ename =&#x27;smith&#x27;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="将ALLEN的工资修改为SMITH的工资"><a href="#将ALLEN的工资修改为SMITH的工资" class="headerlink" title="将ALLEN的工资修改为SMITH的工资"></a>将ALLEN的工资修改为SMITH的工资</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">UPDATE myemp SET sal=( SELECT sal FROM (SELECT sal FROM myemp WHERE ename=&#x27;smith&#x27;) AS e)  WHERE ename=&#x27;allen&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="将低于平均工资的雇员的工资上涨20"><a href="#将低于平均工资的雇员的工资上涨20" class="headerlink" title="将低于平均工资的雇员的工资上涨20%"></a>将低于平均工资的雇员的工资上涨20%</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">UPDATE myemp SET sal=sal\*1.2 WHERE sal\&lt;(  SELECT avgsal FROM (SELECT AVG(sal) avgsal FROM myemp) AS t );<br></code></pre></td></tr></table></figure>
+
 <h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><p>基本语法：</p>
 <table>
 <thead>
@@ -858,16 +828,8 @@
 </tr>
 </thead>
 </table>
-<h2 id="删除雇员编号是7788的雇员信息"><a href="#删除雇员编号是7788的雇员信息" class="headerlink" title="删除雇员编号是7788的雇员信息"></a>删除雇员编号是7788的雇员信息</h2><table>
-<thead>
-<tr>
-<th>DELETE FROM myemp WHERE empno&#x3D;7788;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/bc345e1871f558aa5e5d6e218fb14990.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<h2 id="删除雇员编号是7788的雇员信息"><a href="#删除雇员编号是7788的雇员信息" class="headerlink" title="删除雇员编号是7788的雇员信息"></a>删除雇员编号是7788的雇员信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">More ActionsDELETE FROM myemp WHERE empno=7788;<br></code></pre></td></tr></table></figure>
+
 <p>删除的是表中的数据，表结构还在，如果要删除表结构需要使用DROP关键字。</p>
 <h2 id="删除雇员编号是7934、7900、1234的雇员的数据"><a href="#删除雇员编号是7934、7900、1234的雇员的数据" class="headerlink" title="删除雇员编号是7934、7900、1234的雇员的数据"></a>删除雇员编号是7934、7900、1234的雇员的数据</h2><table>
 <thead>
@@ -879,7 +841,7 @@
 <td>DELETE FROM myemp WHERE empno IN(7934,7900,1234);</td>
 </tr>
 <tr>
-<td><img src="/media/d7a7af8a3116ec308cf29d6860d89243.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301630605.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h2 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h2><ol>
@@ -895,49 +857,19 @@
 </tr>
 </thead>
 </table>
-<h2 id="创建一张保存老师信息的表"><a href="#创建一张保存老师信息的表" class="headerlink" title="创建一张保存老师信息的表"></a>创建一张保存老师信息的表</h2><table>
-<thead>
-<tr>
-<th>– 删除数据表 DROP TABLE IF EXISTS teacher; – 创建数据表 CREATE TABLE teacher( tno INT(4), – 老师编号 tname VARCHAR(10), – 老师姓名 age INT(3), – 年龄 hiredate DATE – 入职日期 最后的一个字段不需要加逗号 ); – 插入数据 INSERT INTO teacher VALUES(1001,’王老师’,18,now()); INSERT INTO teacher VALUES(1002,’李老师’,18,now()); INSERT INTO teacher VALUES(1003,’凤雏老师’,18,now());</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/bfd31d475264e1059e4d9bc9080bea0c.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-<tr>
-<td><img src="/media/53156fa801ef51adc59dd54f4bbe93a6.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
-<h2 id="观察代码-1"><a href="#观察代码-1" class="headerlink" title="观察代码"></a>观察代码</h2><table>
-<thead>
-<tr>
-<th>– 删除数据表 DROP TABLE IF EXISTS teacher; – 创建数据表 CREATE TABLE teacher( tno INT(4), – 老师编号 tname VARCHAR(10), – 老师姓名 age INT(3), – 年龄 hiredate DATE – 入职日期 最后的一个字段不需要加逗号 ); – 插入数据 INSERT INTO teacher VALUES(1001,’王老师’,18,now()); INSERT INTO teacher VALUES(1002,’李老师’,18,now()); INSERT INTO teacher VALUES(1003,’凤雏老师’,18,now()); INSERT INTO teacher(tname,age,hiredate) VALUES(‘张老师’,23,now())</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/8c98d766014aa9a0d13dd5b75a3f8aab.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<h2 id="创建一张保存老师信息的表"><a href="#创建一张保存老师信息的表" class="headerlink" title="创建一张保存老师信息的表"></a>创建一张保存老师信息的表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 删除数据表 DROP TABLE IF EXISTS teacher; <br>-- 创建数据表 CREATE TABLE teacher( tno INT(4), <br>-- 老师编号 tname VARCHAR(10), <br>-- 老师姓名 age INT(3), <br>-- 年龄 hiredate DATE <br>-- 入职日期 最后的一个字段不需要加逗号 ); <br>-- 插入数据 <br>INSERT INTO teacher VALUES(1001,&#x27;王老师&#x27;,18,now()); <br>INSERT INTO teacher VALUES(1002,&#x27;李老师&#x27;,18,now());<br>INSERT INTO teacher VALUES(1003,&#x27;凤雏老师&#x27;,18,now());<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301632661.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="观察代码-1"><a href="#观察代码-1" class="headerlink" title="观察代码"></a>观察代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 删除数据表 DROP TABLE IF EXISTS teacher; <br>-- 创建数据表 CREATE TABLE teacher( tno INT(4), <br>-- 老师编号 tname VARCHAR(10), <br>-- 老师姓名 age INT(3),<br>-- 年龄 hiredate DATE <br>-- 入职日期 最后的一个字段不需要加逗号 );<br>-- 插入数据 <br>INSERT INTO teacher VALUES(1001,&#x27;王老师&#x27;,18,now()); <br>INSERT INTO teacher VALUES(1002,&#x27;李老师&#x27;,18,now());<br>INSERT INTO teacher VALUES(1003,&#x27;凤雏老师&#x27;,18,now()); <br>INSERT INTO teacher(tname,age,hiredate) VALUES(&#x27;张老师&#x27;,23,now())<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301633914.webp" srcset="/img/loading.gif" lazyload></p>
 <p>发现了最后一条数据的编号为null，我们说过数据表必须有一个字段作为数据的唯一标识，这个字段规定为主键字段，这种字段中的数据不应该为null，此时在创建数据表的时候可以指定该字段不能为null（<strong>给该字段做一个约束</strong>），如果为null就出不让数据插入成功。</p>
 <h2 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h2><p>◆每张数据表都应该有一个字段作为数据的唯一标识，这个字段不能为null并且不能重复</p>
-<table>
-<thead>
-<tr>
-<th><img src="/ipic%5Cd53c4d17d6229d2834a42377f5ec53e8.png" srcset="/img/loading.gif" lazyload></th>
-</tr>
-</thead>
-</table>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301636774.webp" srcset="/img/loading.gif" lazyload></p>
 <h1 id="约束的概念"><a href="#约束的概念" class="headerlink" title="约束的概念"></a>约束的概念</h1><p>上节课发现了最后一条数据的编号为null，我们说过数据表必须有一个字段表示主键作为数据的唯一标识，这种字段中的数据不应该为null，此时在创建数据表的时候可以指定该字段不能为null（给该字段做一个约束）</p>
-<h2 id="指定字段不能为空"><a href="#指定字段不能为空" class="headerlink" title="指定字段不能为空"></a>指定字段不能为空</h2><table>
-<thead>
-<tr>
-<th>– 删除数据表 DROP TABLE IF EXISTS teacher; – 创建数据表 CREATE TABLE teacher( tno INT(4) NOT NULL, – 老师编号,约束该字段必须有值 tname VARCHAR(10), – 老师姓名 age INT(3), – 年龄 hiredate DATE – 入职日期 最后的一个字段不需要加逗号 ); – 插入数据 INSERT INTO teacher VALUES(1001,’王老师’,18,now()); INSERT INTO teacher VALUES(1002,’李老师’,18,now()); INSERT INTO teacher VALUES(1003,’李老师’,18,now()); INSERT INTO teacher(tname,age,hiredate) VALUES(‘张老师’,23,now())</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/ef121bdf628db8a303de8b2338704ffd.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<h2 id="指定字段不能为空"><a href="#指定字段不能为空" class="headerlink" title="指定字段不能为空"></a>指定字段不能为空</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql"> -- 删除数据表<br>DROP  TABLE   IF  EXISTS  teacher;<br>-- 创建数据表<br>CREATE  TABLE  teacher(<br>tno  INT(4)   NOT  NULL,     -- 老师编号,约束该字段必须有值<br>tname  VARCHAR(10),  -- 老师姓名<br>age   INT(3), -- 年龄<br>hiredate   DATE  -- 入职日期 最后的一个字段不需要加逗号<br>);<br>-- 插入数据<br>INSERT  INTO  teacher  VALUES(1001,&#x27;王老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1002,&#x27;李老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1003,&#x27;李老师&#x27;,18,now());<br>INSERT  INTO  teacher(tname,age,hiredate)   VALUES(&#x27;张老师&#x27;,23,now())<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301638790.webp" srcset="/img/loading.gif" lazyload></p>
 <p>使用以上的方式就控制了插入数据表中的数据的tno一定不能为null，对tno字段的数据进行了约束，这种约束操作叫做<strong>非空约束。</strong></p>
 <h2 id="继续观察代码"><a href="#继续观察代码" class="headerlink" title="继续观察代码"></a>继续观察代码</h2><table>
 <thead>
@@ -946,20 +878,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/24ad64e9607c26a5b0ff9a05e425646f.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301638745.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>发现了有两条数据的编号是1003，重复了，我们说过主键字段是数据的唯一标识，是不能重复的，可以使用另外一种约束实现避免编号重复的现象。</p>
-<h2 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h2><table>
-<thead>
-<tr>
-<th>– 删除数据表 DROP TABLE IF EXISTS teacher; – 创建数据表 CREATE TABLE teacher( tno INT(4) NOT NULL UNIQUE, – 老师编号,约束该字段必须有值 tname VARCHAR(10), – 老师姓名 age INT(3), – 年龄 hiredate DATE – 入职日期 最后的一个字段不需要加逗号 ); – 插入数据 INSERT INTO teacher VALUES(1001,’王老师’,18,now()); INSERT INTO teacher VALUES(1002,’李老师’,18,now()); INSERT INTO teacher VALUES(1003,’凤雏老师’,18,now()); INSERT INTO teacher VALUES(1003,’张老师’,18,now());</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="/media/35f406fa1edbd43093fda29a63fe5fdf.png" srcset="/img/loading.gif" lazyload></td>
-</tr>
-</tbody></table>
+<h2 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">  -- 删除数据表<br>DROP  TABLE   IF  EXISTS  teacher;<br>-- 创建数据表<br>CREATE  TABLE  teacher(<br>tno  INT(4)   NOT  NULL  UNIQUE,     -- 老师编号,约束该字段必须有值<br>tname  VARCHAR(10),  -- 老师姓名<br>age   INT(3), -- 年龄<br>hiredate   DATE  -- 入职日期 最后的一个字段不需要加逗号<br>);<br>-- 插入数据<br>INSERT  INTO  teacher  VALUES(1001,&#x27;王老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1002,&#x27;李老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1003,&#x27;凤雏老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1003,&#x27;张老师&#x27;,18,now());<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301639387.webp" srcset="/img/loading.gif" lazyload></p>
 <p>此时保证插入表中的数据的编号是不可能出现重复的，这种叫做唯一约束，其实还有一种约束可以替代以上两种约束，叫做主键约束。也就是一种约束可以有以上两种约束（唯一约束和非空约束）的效果</p>
 <h2 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">   -- 删除数据表<br>DROP  TABLE   IF  EXISTS  teacher;<br>-- 创建数据表<br>CREATE  TABLE  teacher(<br>tno  INT(4)    PRIMARY  KEY ,     -- 老师编号,主键约束<br>tname  VARCHAR(10),  -- 老师姓名<br>age   INT(3), -- 年龄<br>hiredate   DATE  -- 入职日期 最后的一个字段不需要加逗号<br>);<br>-- 插入数据<br>INSERT  INTO  teacher  VALUES(1001,&#x27;王老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1002,&#x27;李老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1003,&#x27;凤雏老师&#x27;,18,now());<br>INSERT  INTO  teacher  VALUES(1003,&#x27;张老师&#x27;,18,now());<br><br></code></pre></td></tr></table></figure>
 
@@ -968,44 +893,38 @@
 <table>
 <thead>
 <tr>
-<th><img src="/media/9f78a0bedb6e99610a6ff670f0f94a75.png" srcset="/img/loading.gif" lazyload></th>
+<th><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301639525.webp" srcset="/img/loading.gif" lazyload></th>
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/a031b33148450f8bf8fbc2b7062dc53f.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301639568.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <p>课程记录中没有编号为40的课程，但是在老师信息中出现了，这不合理 ，此时我们需要使用外键约束来保证数据的完整性。</p>
-<h2 id="创建外键约束"><a href="#创建外键约束" class="headerlink" title="创建外键约束"></a>创建外键约束</h2><table>
-<thead>
-<tr>
-<th><img src="/ipic%5C8e342dea941ae5e7dce3335e2060e4e5.png" srcset="/img/loading.gif" lazyload></th>
-</tr>
-</thead>
-</table>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h2><p>◆非空约束，使用 NOT NULL实现，保证了指定字段插入的值不能为null</p>
+<h2 id="创建外键约束"><a href="#创建外键约束" class="headerlink" title="创建外键约束"></a>创建外键约束</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301640944.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h2><p>◆非空约束，使用 NOT NULL实现，保证了指定字段插入的值不能为null</p>
 <p>◆唯一约束，使用 UNIQUE实现，保证指定字段的数据不能重复</p>
 <p>◆主键约束，使用PRIMARY KEY实现，保证了指定字段不能为null也不会重复， 是非空和唯一约束的叠加。</p>
 <p>◆其实上还有一些其他约束，比如说检查约束、但是这些约束在现代的开发中不常用了（因为影响性能）</p>
 <h1 id="主键自增长"><a href="#主键自增长" class="headerlink" title="主键自增长"></a>主键自增长</h1><p>在很多时候我们要求主键值可以自动增长，而不需要我们去给定值（也就是在插入数据的时候不需要去给定值），这时候我们就可以将主键设置为自动增长来实现需求。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs mysql">DROP  TABLE   IF  EXISTS  teacher;<br>-- 创建数据表<br>CREATE  TABLE  teacher(<br>tno  INT(4)    PRIMARY  KEY   AUTO_INCREMENT,     -- 老师编号,主键约束<br>tname  VARCHAR(10),  -- 老师姓名<br>age   INT(3), -- 年龄<br>hiredate   DATE  -- 入职日期 最后的一个字段不需要加逗号<br>);<br>-- 插入数据<br>INSERT  INTO  teacher(tname,age,hiredate)  VALUES(&#x27;x老师&#x27;,18,now());<br>INSERT  INTO  teacher(tname,age,hiredate)  VALUES(&#x27;y老师&#x27;,18,now());<br>INSERT  INTO  teacher(tname,age,hiredate)  VALUES(&#x27;z老师&#x27;,18,now());<br>INSERT  INTO  teacher(tname,age,hiredate)  VALUES(&#x27;h老师&#x27;,18,now());<br>INSERT  INTO  teacher(tname,age,hiredate)  VALUES(&#x27;j王老师&#x27;,18,now());<br><br></code></pre></td></tr></table></figure>
 
-<p><img src="/ipic%5C7e1f3c27eb6de9fda9c224f6a5545569-1693296612460.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301641140.webp" srcset="/img/loading.gif" lazyload></p>
 <p>可以指定步长，也就是可以指定每次增长的值。</p>
 <h2 id="指定自增长的步长（了解即可）"><a href="#指定自增长的步长（了解即可）" class="headerlink" title="指定自增长的步长（了解即可）"></a>指定自增长的步长（了解即可）</h2><table>
 <thead>
 <tr>
-<th><img src="/media/b378ae137a767ce309e372a1127c57cb.png" srcset="/img/loading.gif" lazyload></th>
+<th><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301641311.webp" srcset="/img/loading.gif" lazyload></th>
 </tr>
 </thead>
 <tbody><tr>
 <td>SET @@auto_increment_increment &#x3D;2 SET @@auto_increment_offset &#x3D;2 【设置持初始值为2】</td>
 </tr>
 <tr>
-<td><img src="/media/d5823eed9a4f40c9a2501454d12810ac.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301642487.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 <tr>
-<td><img src="/media/ff026ee41051e218f375b60fa9a41d33.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301642531.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <h1 id="索引的概念（了解）"><a href="#索引的概念（了解）" class="headerlink" title="索引的概念（了解）"></a>索引的概念（了解）</h1><h2 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h2><p>数据库索引指的是数据库管理系统中一个<strong>排序</strong>的<strong>数据结构</strong>，以协助<strong>快速查询</strong>、更新数据库表中的数据。简单理解就是类似书籍的目录，独立于书籍内容之外，能够快速根据目录查到到需要的文章的页码。如果没有目录，我们就要一页一页地翻页来查找文章，同理，如果没有索引的话，数据库系统只能一行一行地查找数据，注意，如果没有达到限制查找的行数，这样的遍历就要一直进行下去，直到全部遍历完。</p>
@@ -1013,10 +932,10 @@
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>学习MySQL索引的第一步，是先了解下MySQL索引的数据结构，也就是索引是用什么结构来存储的，了解了索引的数据结构才能帮助我们更好地理解，为什么索引有那么高效的检索性能，以及怎么样高效使用索引，MySQL索引常见的数据存储结构有B+树结构</p>
 <h2 id="B-树结构"><a href="#B-树结构" class="headerlink" title="B+树结构"></a>B+树结构</h2><p>下面再来介绍下B+树结构的索引，在介绍前，我们先来了解下可以用来其他快速查找数据的树结构，以便理解为什么要用B+树。</p>
 <h3 id="平衡二叉排序树"><a href="#平衡二叉排序树" class="headerlink" title="平衡二叉排序树"></a>平衡二叉排序树</h3><p>平衡二叉排序树是基于二分法的策略提高数据的查找速度的二叉树的数据结构，其树高平衡，不会出现单链的情况。其结构如下所示：</p>
-<p><img src="/ipic%5C9c44d816bb44f2dbf195d026f3f9eecd.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301642177.webp" srcset="/img/loading.gif" lazyload></p>
 <p>平衡二叉排序树查找数据的速度近于二分法查找O(logn)，然而二叉树搜索需要很高的I&#x2F;O次数，导致性能并不如人意。这是因为每个节点存储的数据比较少，每次节点进行比较的时候都需要进行一次I&#x2F;O获取节点的数据，而在操作系统中，I&#x2F;O的成本是很高的。为了解决I&#x2F;O次数高的问题，我们就有了B树。</p>
 <h3 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h3><p>B树又名<strong>平衡多路查找树</strong>，顾名词义，它的查找路径不止两个，也就是不止两个子节点。其结构如下：</p>
-<p><img src="/ipic%5C84ea509fa091a10add4e7614e6cb37db.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301643010.webp" srcset="/img/loading.gif" lazyload></p>
 <p>在MySQL中，B树（B-Tree）和B+树（B+Tree）是两种常见的索引结构，用于优化数据库的数据存储和查询性能。下面详细分析MySQL中的B树和B+树的区别：</p>
 <p><strong>节点结构：</strong></p>
 <p>B树：MySQL中的B树每个节点既包含<strong>索引键</strong>，也包含对应的数据。叶子节点和内部节点的结构是一致的，都包含了键和数据。</p>
@@ -1035,7 +954,7 @@
 <p>2.B树遍历整个树的过程和二叉树本质上是一样的，B树相对二叉树虽然提高了磁盘IO性能，但并没有解决遍历元素效率低下的问题。</p>
 <p>为了解决这些问题，也就有了我们今天的主角：B+树</p>
 <h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>B+树是B树的升级版，更充分地利用了节点的空间。其结构如下：</p>
-<p><img src="/ipic%5C259d196856a231aff5e3cf1505848af4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301643144.webp" srcset="/img/loading.gif" lazyload></p>
 <p>和B树的主要区别如下：</p>
 <p>◆内部节点不保存数据，只是用来索引，这样非叶子节点的所占的内存空间就变小了，每次读到内存中的索引信息就会更多一些，相当于减少了磁盘IO次数。</p>
 <p>◆数据都是存在叶子节点，这样保证了相近的数据都能存在同一块数据块里。另外也使得B+树的查询次数更稳定，每次查询次数都是相同的，需要查询到叶子节点</p>
@@ -1053,44 +972,23 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="/media/87edc68faf3b02b51d859a131a680642.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202308301644605.webp" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
-<table>
-<thead>
-<tr>
-<th>CREATE INDEX 索引名 ON 数据表(字段名)</th>
-</tr>
-</thead>
-</table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE   INDEX  索引名  ON  数据表(字段名)<br></code></pre></td></tr></table></figure>
+
 <p>相当于将数据表的指定字段的值保存到索引树节点中。</p>
-<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><table>
-<thead>
-<tr>
-<th><em>– 在emp表中的sal字段上创建索引</em> CREATE INDEX emp_sal_index ON emp(sal);</th>
-</tr>
-</thead>
-</table>
+<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 在emp表中的sal字段上创建索引<br>CREATE   INDEX  emp_sal_index  ON  emp(sal);<br><br></code></pre></td></tr></table></figure>
+
 <p>现在创建了索引，查询的时候就在索引范围内扫面，就提高了查询的效率。</p>
-<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><table>
-<thead>
-<tr>
-<th><em>– 删除索引</em> <strong>ORACLE:</strong> DROP INDEX emp_sal_index;  <strong>MYSQL:</strong> ALTER TABLE table_name DROP INDEX index_name;</th>
-</tr>
-</thead>
-</table>
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 删除索引<br>ORACLE: DROP  INDEX  emp_sal_index;  <br>MYSQL: ALTER TABLE table_name DROP INDEX index_name;<br><br></code></pre></td></tr></table></figure>
+
 <p>以上是一个索引作用于一个字段，还可以一个索引作用于多个字段，这样的索引叫做复合索引。</p>
 <h2 id="复合索引创建"><a href="#复合索引创建" class="headerlink" title="复合索引创建"></a>复合索引创建</h2><p>复合索引就是一个索引在多个字段上创建，就是一个索引作用于多个字段。</p>
-<table>
-<thead>
-<tr>
-<th><em>– 创建复合索引</em> CREATE INDEX emp_job_sal_index ON emp(job,sal);</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-</tr>
-</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql"> -- 创建复合索引<br>CREATE  INDEX  emp_job_sal_index  ON   emp(job,sal);<br><br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><h2 id="1-查询薪水最低的员工信息"><a href="#1-查询薪水最低的员工信息" class="headerlink" title="1.   查询薪水最低的员工信息"></a>1.   查询薪水最低的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select * from emp where sal=(select MIN(sal) from emp);<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-查询和SMITH工作相同的员工信息"><a href="#2-查询和SMITH工作相同的员工信息" class="headerlink" title="2.   查询和SMITH工作相同的员工信息"></a>2.   查询和SMITH工作相同的员工信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT * FROM emp WHERE ename = &#x27;SMITH&#x27; AND job = &#x27;CLERK&#x27;;<br></code></pre></td></tr></table></figure>
@@ -1183,28 +1081,6 @@
 
 <h2 id="46-列出所有雇员的姓名及其工作地点"><a href="#46-列出所有雇员的姓名及其工作地点" class="headerlink" title="46. 列出所有雇员的姓名及其工作地点"></a>46. 列出所有雇员的姓名及其工作地点</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ename, loc<br>FROM emp e<br>JOIN dept d ON e.deptno = d.deptno;<br></code></pre></td></tr></table></figure>
 
-<h2 id="47-建表之后完成如下练习题"><a href="#47-建表之后完成如下练习题" class="headerlink" title="47. 建表之后完成如下练习题"></a>47. 建表之后完成如下练习题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create table student(<br>   sno  varchar2(10)  primary  key,<br>   sname varchar2(20),<br>   sage INT(2),<br>   ssex varchar(5)<br>);<br>create table teacher(<br>  tno varchar(10) primary key,<br>  tname varchar(20)<br>);<br>create table course(<br>  cno varchar(10),<br>  cname varchar(20),<br>  tno varchar(20),<br>  constraint pk_course primary key (cno,tno)<br>);<br>create table sc(<br>   sno varchar(10),<br>   cno varchar(10),<br>   score DECIMAL(4,2),<br>   constraint pk_sc primary key (sno,cno)<br>);<br>/*******初始化学生表的数据******/<br>insert into student values (&#x27;s001&#x27;,&#x27;张三&#x27;,23,&#x27;男&#x27;);        <br>insert into student values (&#x27;s002&#x27;,&#x27;李四&#x27;,23,&#x27;男&#x27;);    <br>insert into student values (&#x27;s003&#x27;,&#x27;吴鹏&#x27;,25,&#x27;男&#x27;);      <br>insert into student values (&#x27;s004&#x27;,&#x27;琴沁&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s005&#x27;,&#x27;王丽&#x27;,20,&#x27;女&#x27;);      <br>insert into student values (&#x27;s006&#x27;,&#x27;李波&#x27;,21,&#x27;男&#x27;);      <br>insert into student values (&#x27;s007&#x27;,&#x27;刘玉&#x27;,21,&#x27;男&#x27;);          <br>insert into student values (&#x27;s008&#x27;,&#x27;萧蓉&#x27;,21,&#x27;女&#x27;);<br>insert into student values (&#x27;s009&#x27;,&#x27;陈萧晓&#x27;,23,&#x27;女&#x27;);<br>insert into student values (&#x27;s010&#x27;,&#x27;陈美&#x27;,22,&#x27;女&#x27;);<br>commit;<br>/****************** 初始化教师表 ***********************/<br>insert into teacher values (&#x27;t001&#x27;, &#x27;刘阳&#x27;);      <br>insert into teacher values (&#x27;t002&#x27;, &#x27;谌燕&#x27;);        <br>insert into teacher values (&#x27;t003&#x27;, &#x27;胡明星&#x27;);       <br>commit;<br>/***************初始化课程表****************************/<br>insert into course values (&#x27;c001&#x27;,&#x27;J2SE&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c002&#x27;,&#x27;Java Web&#x27;,&#x27;t002&#x27;);<br>insert into course values (&#x27;c003&#x27;,&#x27;SSH&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c004&#x27;,&#x27;Oracle&#x27;,&#x27;t001&#x27;);     <br>insert into course values (&#x27;c005&#x27;,&#x27;SQL SERVER 2005&#x27;,&#x27;t003&#x27;);    <br>insert into course values (&#x27;c006&#x27;,&#x27;C#&#x27;,&#x27;t003&#x27;);       <br>insert into course values (&#x27;c007&#x27;,&#x27;JavaScript&#x27;,&#x27;t002&#x27;);     <br>insert into course values (&#x27;c008&#x27;,&#x27;DIV+CSS&#x27;,&#x27;t001&#x27;);    <br>insert into course values (&#x27;c009&#x27;,&#x27;PHP&#x27;,&#x27;t003&#x27;);<br>insert into course values (&#x27;c010&#x27;,&#x27;EJB3.0&#x27;,&#x27;t002&#x27;);<br>commit;<br>/***************初始化成绩表***********************/<br>insert into sc values (&#x27;s001&#x27;,&#x27;c001&#x27;,78.9);<br>insert into sc values (&#x27;s002&#x27;,&#x27;c001&#x27;,80.9);     <br>insert into sc values (&#x27;s003&#x27;,&#x27;c001&#x27;,81.9);       <br>insert into sc values (&#x27;s004&#x27;,&#x27;c001&#x27;,60.9);       <br>insert into sc values (&#x27;s001&#x27;,&#x27;c002&#x27;,82.9);       <br>insert into sc values (&#x27;s002&#x27;,&#x27;c002&#x27;,72.9);       <br>insert into sc values (&#x27;s003&#x27;,&#x27;c002&#x27;,81.9);     <br>insert into sc values (&#x27;s001&#x27;,&#x27;c003&#x27;,&#x27;59&#x27;); <br>insert into sc values (&#x27;s005&#x27;,&#x27;c004&#x27;,&#x27;91&#x27;); <br>insert into sc values (&#x27;s007&#x27;,&#x27;c008&#x27;,&#x27;55.7&#x27;); <br>commit;<br><br></code></pre></td></tr></table></figure>
-
-<p>(1)、查询课程编号“c002”的成绩比课程编号“c001”课程低的所有同学的学号、姓名。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM sc sc1<br>JOIN sc sc2 ON sc1.sno = sc2.sno<br>JOIN student s ON sc1.sno = s.sno<br>WHERE sc1.cno = &#x27;c002&#x27; AND sc2.cno = &#x27;c001&#x27; AND sc1.score &lt; sc2.score;<br></code></pre></td></tr></table></figure>
-
-<p>(2)、查询平均成绩大于60 分的同学的学号和平均成绩。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT sno, AVG(score) as average_score<br>FROM sc<br>GROUP BY sno<br>HAVING AVG(score) &gt; 60;<br></code></pre></td></tr></table></figure>
-
-<p>(3)、查询所有同学的学号、姓名、选课数、总成绩。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname, COUNT(sc.cno) AS course_count, SUM(sc.score) AS total_score<br>FROM student s<br>LEFT JOIN sc ON s.sno = sc.sno<br>GROUP BY s.sno, s.sname;<br></code></pre></td></tr></table></figure>
-
-<p>(4)、查询姓“刘”的老师的个数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT COUNT(*) AS teacher_count<br>FROM teacher<br>WHERE tname LIKE &#x27;刘%&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>(5) 、查询学过“谌燕”老师课的同学的学号、姓名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM student s<br>JOIN sc ON s.sno = sc.sno<br>JOIN course c ON sc.cno = c.cno<br>JOIN teacher t ON c.tno = t.tno<br>WHERE t.tname = &#x27;谌燕&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>(6)、查询学过“c001”并且也学过编号“c002”课程的同学的学号、姓名。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s.sno, s.sname<br>FROM student s<br>JOIN sc sc1 ON s.sno = sc1.sno<br>JOIN sc sc2 ON s.sno = sc2.sno<br>JOIN course c1 ON sc1.cno = c1.cno<br>JOIN course c2 ON sc2.cno = c2.cno<br>WHERE c1.cno = &#x27;c001&#x27; AND c2.cno = &#x27;c002&#x27;;<br></code></pre></td></tr></table></figure>
-
-<p>(7)、查询至少有一门课与学号为“s001”的同学所学的课相同的同学的学号和姓名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT s2.sno, s2.sname<br>FROM student s1<br>JOIN sc sc1 ON s1.sno = sc1.sno <br>JOIN sc sc2 ON sc1.cno = sc2.cno<br>JOIN student s2 ON sc2.sno = s2.sno<br>WHERE s1.sno = &#x27;s001&#x27; AND s2.sno &lt;&gt; &#x27;s001&#x27;;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -1293,6 +1169,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/30/day038mysql/" title="day038mysql">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day038mysql</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
