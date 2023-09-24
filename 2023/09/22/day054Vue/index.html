@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. Axios基本使用​		在Vue里面提供有标准的数据异步访问处理机制（之前学习js的时候，使用js来发送异步请求），这种操作主要是通过axios组件来完成的，这个组件是进行异步数据操作使用的（比如要从后端获取数据），就是一个发送异步请求的工具，如果没有异步处理的操作支持，那么Vue存在就没有任何的价值。 https:&#x2F;&#x2F;www.axios-http.cn&#x2F; 1.1 【下载Axios的开发包】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day054Vue">
+<meta property="og:url" content="http://example.com/2023/09/22/day054Vue/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="1. Axios基本使用​		在Vue里面提供有标准的数据异步访问处理机制（之前学习js的时候，使用js来发送异步请求），这种操作主要是通过axios组件来完成的，这个组件是进行异步数据操作使用的（比如要从后端获取数据），就是一个发送异步请求的工具，如果没有异步处理的操作支持，那么Vue存在就没有任何的价值。 https:&#x2F;&#x2F;www.axios-http.cn&#x2F; 1.1 【下载Axios的开发包】">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309182043030.webp">
+<meta property="article:published_time" content="2023-09-22T04:55:53.000Z">
+<meta property="article:modified_time" content="2023-09-24T08:46:43.428Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="Axios+element-ui">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309182043030.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>day054Vue - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="day054Vue"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-22 12:55" pubdate>
+          2023年9月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day054Vue</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Axios基本使用"><a href="#1-Axios基本使用" class="headerlink" title="1. Axios基本使用"></a>1. Axios基本使用</h1><p>​		在Vue里面提供有标准的数据异步访问处理机制（之前学习js的时候，使用js来发送异步请求），这种操作主要是通过axios组件来完成的，这个组件是进行异步数据操作使用的（比如要从后端获取数据），就是一个发送异步请求的工具，如果没有异步处理的操作支持，那么Vue存在就没有任何的价值。</p>
+<p><a target="_blank" rel="noopener" href="https://www.axios-http.cn/">https://www.axios-http.cn/</a></p>
+<h2 id="1-1-【下载Axios的开发包】"><a href="#1-1-【下载Axios的开发包】" class="headerlink" title="1.1 【下载Axios的开发包】"></a>1.1 【下载Axios的开发包】</h2><p>在项目中去安装。</p>
+<p>​	  先使用cmd进入项目的目录</p>
+<p>​         npm install axios -s  </p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241632013.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-1-1-npm-install-XXX-s"><a href="#1-1-1-npm-install-XXX-s" class="headerlink" title="1.1.1 npm install XXX -s"></a>1.1.1 npm install XXX -s</h3><p>​	   npm install XXX -s 相当于 npm install -S 相当于 npm install –save</p>
+<p>​	   这样安装是局部安装的（只是在当前项目中能使用），会写进package.json文件中的dependencies里。</p>
+<p>​    dependencies： 表示生产环境下的依赖管理；</p>
+<pre><code class="hljs">   说白了你安装一个库如果是用来构建你的项目的，比如echarts、element-ui，是实际在项目中起作用，就可以使用 -s 来安装。
+</code></pre>
+<h3 id="1-1-2-npm-install-XXX-d"><a href="#1-1-2-npm-install-XXX-d" class="headerlink" title="1.1.2 npm install XXX -d"></a>1.1.2 npm install XXX -d</h3><p>  npm install XXX -d 相当于 npm install -D 相当于 npm install –save-dev</p>
+<p>  这样安装是局部安装的，会写进package.json文件中的devDependencies 里。</p>
+<p>  devDependencies ：表示开发环境下的依赖管理；</p>
+<p>  如果你安装的库是用来打包的、解析代码的，就可以用 -d 来安装，项目上线了，这些库就没用了，不然留这些库给用户自己来打包和解析代码吗？        </p>
+<h3 id="1-1-3-npm-install-XXX-g"><a href="#1-1-3-npm-install-XXX-g" class="headerlink" title="1.1.3 npm install XXX -g"></a>1.1.3 npm install XXX -g</h3><p>   npm install XXX -g 表示全局安装，安装一次过后，你就可以在其他任何地方直接用啦。</p>
+<h3 id="1-1-4-npm-install-XXX"><a href="#1-1-4-npm-install-XXX" class="headerlink" title="1.1.4 npm install XXX"></a>1.1.4 npm install XXX</h3><p>  npm install XXX  什么都不加的时候</p>
+<p>​    通过npm install 什么都不加 和 npm install –save一样，都是局部安装并会把模块自动写入package.json中的dependencies里。</p>
+<h2 id="1-2-【配置使用-axios】"><a href="#1-2-【配置使用-axios】" class="headerlink" title="1.2 【配置使用 axios】"></a>1.2 【配置使用 axios】</h2><p>当开发环境里面已经安装了“axios”之后如果要想使用，则必须在main.js文件里面进行相应的配置:</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241633183.webp" srcset="/img/loading.gif" lazyload> </p>
+<h2 id="1-3-后端统一返回值"><a href="#1-3-后端统一返回值" class="headerlink" title="1.3 后端统一返回值"></a>1.3 后端统一返回值</h2><pre><code class="hljs">   使用axios发送异步请求获取部门信息和雇员信息显示到页面，基于前后端分离的架构实现。
+
+  vue的最大的优势之一就是实现前后端分离，之前传统的开发是前端代码和后端代码都是写在一起的，现在我们要将前端代码写在前端的项目中，后端的代码专门负责业务处理，**提供接口给前端项目调用即可**。
+</code></pre>
+<p>​	在整个的Vue项目里面最为重要的特点就是方便的支持<strong>跨域访问</strong>的操作处理，它可以通过一个WebPack简单配置实现数据的跨域访问操作。</p>
+<p>​		 特别注意：一个项目中有很多的controller，controller中有很多方法，这些方法要有返回值，一个项目中的controller的返回值有很多，此时和前端开发人员去对接的时候就非常困难，此时就应该一个项目中的所有返回值都统一为一种（规范化、标准化），<strong>就要定义一种专门封装返回给前端的数据的类型****R</strong>。</p>
+<h2 id="1-4-统一返回值R"><a href="#1-4-统一返回值R" class="headerlink" title="1.4  统一返回值R"></a>1.4  统一返回值R</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.mbz.carsale.common;<br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> lombok.experimental.Accessors;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Accessors(chain = true)</span><span class="hljs-comment">//开启链式变成</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">R</span> &#123;<br>    <span class="hljs-keyword">private</span>  Boolean  success;<br>    <span class="hljs-keyword">private</span>  Boolean  error;<br>    <span class="hljs-keyword">private</span>  Integer  code;<br>    <span class="hljs-keyword">private</span>  String message; <span class="hljs-comment">//提示信息</span><br>    <span class="hljs-keyword">private</span> Map&lt;String,Object&gt;  data=<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 在控制器中调用（比如删除数据成功调用 ok方法）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>   R  <span class="hljs-title function_">ok</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">R</span>().setSuccess(<span class="hljs-literal">true</span>).setCode(StatusCode.SUCCESS_CODE).setMessage(<span class="hljs-string">&quot;操作成功！&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 在控制器中调用（比如删除数据失败调用 error方法）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">static</span>   R  <span class="hljs-title function_">error</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">R</span>().setSuccess(<span class="hljs-literal">false</span>).setCode(StatusCode.ERROR_CODE).setMessage(<span class="hljs-string">&quot;操作失败！&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 保存数据的方法</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> key  emps</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span>   R  <span class="hljs-title function_">data</span><span class="hljs-params">(String key,Object value)</span>&#123;<br>        <span class="hljs-built_in">this</span>.data.put(key,value);<br>        <span class="hljs-keyword">return</span>  <span class="hljs-built_in">this</span>;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 方法的重载</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> map</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span>   R  <span class="hljs-title function_">data</span><span class="hljs-params">(Map&lt;String,Object&gt;  map)</span>&#123;<br>        <span class="hljs-built_in">this</span>.setData(map);<br>        <span class="hljs-keyword">return</span>  <span class="hljs-built_in">this</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="1-5-在vue项目中进行代码配置"><a href="#1-5-在vue项目中进行代码配置" class="headerlink" title="1.5  在vue项目中进行代码配置"></a>1.5  在vue项目中进行代码配置</h2><p>修改config&#x2F;index.js文件，追加代理控制,主要的目的是解决跨域的问题，如果访问的接口在后端没有开启跨域支持，此时前端就要自己实现跨域的配置。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241634830.webp" srcset="/img/loading.gif" lazyload></p>
+<p> <img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241635569.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​		在请求的路径之前加上了’api’，后面又要替换掉,为什么要这样做呢？</p>
+<p>​		加上api的目的是为了区分哪些请求是要开启跨域的，只要请求的路径中出现api 就知道要开启跨域的，并且访问的目标地址就是我们target配置的路径。</p>
+<p>​		上面的文件是配置文件，修改之后要重启项目才生效。</p>
+<h2 id="1-6-访问课程信息"><a href="#1-6-访问课程信息" class="headerlink" title="1.6  访问课程信息"></a>1.6  访问课程信息</h2><p>定义出课程的组件</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241635799.webp" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241636698.webp" srcset="/img/loading.gif" lazyload></p>
+<h1 id="2-Axios工具类的封装"><a href="#2-Axios工具类的封装" class="headerlink" title="2. Axios工具类的封装"></a>2. Axios工具类的封装</h1><p>​		项目中用到了axios，但是不得不说在项目直接使用 axios 实在是繁琐（你现在感觉不繁琐是因为业务简单），每次都要写一堆的配置，而且将配置写在业务代码中十分不雅，一般在项目中使用的时候都会将其再次封装，以便更好的使用，比如统一数据处理和错误信息等操作。 </p>
+<h2 id="2-1-定义request-js文件"><a href="#2-1-定义request-js文件" class="headerlink" title="2.1 定义request.js文件"></a>2.1 定义request.js文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//这是一个异步访问的工具文件</span><br><span class="hljs-keyword">import</span>   axios  from  <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-comment">//创建一个axios实例</span><br>const  service=axios.create(&#123;<br>    <span class="hljs-comment">//指定访问的基础路径(就是项目要访问的后端路径)</span><br>    baseURL:<span class="hljs-string">&#x27;/api&#x27;</span>,<br>    timeout:<span class="hljs-number">3000</span> <span class="hljs-comment">//请求的超时时间</span><br>&#125;)<br><span class="hljs-comment">//请求的拦截器（属于前端拦截器，会将浏览器发送的request请求在发送到后端之前 拦截下来）</span><br>service.interceptors.request.use(<br>    config=&gt;&#123; <span class="hljs-comment">// 这里的config 是浏览器发送的请求的所有信息都封装到里面了</span><br>        <span class="hljs-comment">//添加请求头信息</span><br>        config.headers[<span class="hljs-string">&#x27;token&#x27;</span>]=<span class="hljs-string">&#x27;1234&#x27;</span>;  <br>        <span class="hljs-keyword">return</span> config<br>    &#125;,<br>err=&gt;&#123;<br><span class="hljs-comment">// Promise 是se6中新增加的一个对象（暂时先不管）参考链接：https://www.runoob.com/js/js-promise.html</span><br><span class="hljs-keyword">return</span>  Promise.reject(err) <br>    &#125;<br>)<br><span class="hljs-comment">//响应拦截器 （后端响应数据 但是 在渲染到前端之前 就在此被拦截处理）</span><br>service.interceptors.response.use(<br>     response=&gt;&#123;  <span class="hljs-comment">//后端响应的信息都封装到该对象中</span><br>        <span class="hljs-keyword">if</span>(response.data.data.code==<span class="hljs-number">20081</span>)&#123;<span class="hljs-comment">//表示没有权限</span><br>            window.location.href=<span class="hljs-string">&quot;/login&quot;</span><br>            <span class="hljs-keyword">return</span> ;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(response.data.data.code==<span class="hljs-number">20002</span>)&#123;<span class="hljs-comment">//账号被锁定</span><br>            alert(<span class="hljs-string">&quot;你的账号频繁切换设备登陆，疑似被盗，请联系管理员老师！&quot;</span>)<br>            <span class="hljs-keyword">return</span>  ;<br>        &#125; <br>        <span class="hljs-keyword">return</span>  response;<span class="hljs-comment">//放行</span><br>     &#125;,<br>     error=&gt;&#123;<br>        <span class="hljs-keyword">return</span> Promise.reject(error.response) <br>     &#125;<br>);<br>export  <span class="hljs-keyword">default</span>  service;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241638426.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-2-注意后端接口要求"><a href="#2-2-注意后端接口要求" class="headerlink" title="2.2 注意后端接口要求"></a>2.2 注意后端接口要求</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241639962.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​		参数不能为null，必须有值，传递的参数必须是json对象</p>
+<p>还需要指定传递的参数是json格式，content-type&#x3D;application&#x2F;json</p>
+<h2 id="2-3-单独定义js发送请求"><a href="#2-3-单独定义js发送请求" class="headerlink" title="2.3 单独定义js发送请求"></a>2.3 单独定义js发送请求</h2><p>这个js定义在src&#x2F;api文件夹中</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241639643.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-4-发送请求"><a href="#2-4-发送请求" class="headerlink" title="2.4 发送请求"></a>2.4 发送请求</h2><p>在课程列表[CourseList.vue]的页面发送请求</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241640916.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-5-测试"><a href="#2-5-测试" class="headerlink" title="2.5 测试"></a>2.5 测试</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241640503.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-6-后端响应数据存到resp中，但是会在数据的外面再自动加一层data，如何去掉呢？"><a href="#2-6-后端响应数据存到resp中，但是会在数据的外面再自动加一层data，如何去掉呢？" class="headerlink" title="2.6 后端响应数据存到resp中，但是会在数据的外面再自动加一层data，如何去掉呢？"></a>2.6 后端响应数据存到resp中，但是会在数据的外面再自动加一层data，如何去掉呢？</h2><p>  找到响应的拦截器就可以去掉了,后端响应数据 但是在数据没有渲染到页面之前就拦截下来处理。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241641671.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241641323.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241642836.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-7-注意"><a href="#2-7-注意" class="headerlink" title="2.7 注意"></a>2.7 注意</h2><p>​	   发送请求—&gt;经过request.js的拦截器—&gt;取得baseURL: ‘&#x2F;api’—&gt;将api加到请求的前面—-&gt;检查是否配置了代理—-&gt;如果配置了代理（prixyTable，目的是开启跨域访问）—-&gt;代理将api去掉之后加上域名再发送。</p>
+<h1 id="3-UI框架-element-ui"><a href="#3-UI框架-element-ui" class="headerlink" title="3. UI框架 element-ui"></a>3. UI框架 element-ui</h1><h2 id="3-1-市面常见ui框架说明"><a href="#3-1-市面常见ui框架说明" class="headerlink" title="3.1 市面常见ui框架说明"></a>3.1 市面常见ui框架说明</h2><p>Bootstrap Layui easyui（界面很丑） element-ui（兼容了vue）</p>
+<h2 id="3-2-ui框架-PC端"><a href="#3-2-ui框架-PC端" class="headerlink" title="3.2 ui框架 PC端"></a>3.2 ui框架 PC端</h2><p>Ø <strong>bootstrap</strong>：比较强大的一款前端ui框架，存在的时间也比较久，但是依赖于jQuery，不符合vue的开发思想，不建议用</p>
+<p>Ø <strong>layui</strong>：经典的模块化前端框架，虽然使用时不需要引入jQuery，但是底层是依赖于jQuery的，并且非常依赖于dom操作，不建议使用</p>
+<p>Ø iview：一套基于 Vue.js 的高质量 UI 组件库。对vue兼容性极强，功能强大，组件丰富，推荐。</p>
+<p>Ø ant-design-vue：这是蚂蚁金服的开源ui框架。大名鼎鼎的jeecg（低代码平台）就是使用的这个，完美兼容vue</p>
+<p>Ø <strong>elementui</strong>：<strong>目前<strong><strong>vue</strong></strong>开发者使用最多的ui****框架，饿了么团队开发（阿里），完美兼容vue</strong></p>
+<h2 id="3-3-ui框架-移动端"><a href="#3-3-ui框架-移动端" class="headerlink" title="3.3 ui框架 移动端"></a>3.3 ui框架 移动端</h2><p>Ø mui：DCloud出品的ui框架，可以实现半原生开发。</p>
+<p>Ø mintui：饿了么团队出品的移动端ui框架，兼容vue，但是不太关注，功能较少</p>
+<p>Ø antui：蚂蚁金服移动端ui框架，完美兼容vue，封装不太好</p>
+<p>Ø vant：有赞出品的前端ui框架，完美兼容vue</p>
+<h1 id="4-Elementui的使用"><a href="#4-Elementui的使用" class="headerlink" title="4. Elementui的使用"></a>4. Elementui的使用</h1><h2 id="4-1-接上一个用vue-cli创建好的项目"><a href="#4-1-接上一个用vue-cli创建好的项目" class="headerlink" title="4.1 接上一个用vue-cli创建好的项目"></a>4.1 接上一个用vue-cli创建好的项目</h2><h3 id="4-1-1-项目结构"><a href="#4-1-1-项目结构" class="headerlink" title="4.1.1 项目结构"></a>4.1.1 项目结构</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241642378.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-1-2-启动项目"><a href="#4-1-2-启动项目" class="headerlink" title="4.1.2 启动项目"></a>4.1.2 启动项目</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241643100.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-1-3-访问项目"><a href="#4-1-3-访问项目" class="headerlink" title="4.1.3 访问项目"></a>4.1.3 访问项目</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241643239.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-2-打开element-ui官网"><a href="#4-2-打开element-ui官网" class="headerlink" title="4.2 打开element-ui官网"></a>4.2 打开element-ui官网</h2><p><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">https://element.eleme.cn/#/zh-CN/component/installation</a></p>
+<h3 id="4-2-1-安装element-ui"><a href="#4-2-1-安装element-ui" class="headerlink" title="4.2.1 安装element-ui"></a>4.2.1 安装element-ui</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241643749.webp" srcset="/img/loading.gif" lazyload></p>
+<p><strong>npm i element-ui -S</strong></p>
+<p>pm install pagckagename –save 或 -S</p>
+<p>　 下载某个包，并把该包的信息记录到生产环境依赖中（dependencies）。需要注意的是-S是大写的，等价于小写开头的–save（这里可是2个-）。</p>
+<h3 id="4-2-2-引入element-ui-在main-js里面"><a href="#4-2-2-引入element-ui-在main-js里面" class="headerlink" title="4.2.2 引入element-ui(在main.js里面)"></a>4.2.2 引入element-ui(在main.js里面)</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241644046.webp" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">// The Vue build version to load with the `import` command</span><br><span class="hljs-comment">// (runtime-only or standalone) has been set in webpack.base.conf with an alias.</span><br><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>  <span class="hljs-comment">//导入Vue工具 类似于之前的  script  src=“vue的js文件的地址”</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span> <span class="hljs-comment">//导入App.vue组件</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router&#x27;</span>  <span class="hljs-comment">//导入路由，这里只要给到路由文件index.js 所在的文件夹名称即可</span><br><span class="hljs-keyword">import</span> ElementUI <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span><br><span class="hljs-keyword">import</span> locale <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui/lib/locale/lang/en&#x27;</span> <span class="hljs-comment">// lang i18n</span><br><span class="hljs-keyword">import</span>  axios  <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span> <span class="hljs-comment">// 导入刚下载的异步处理的组件</span><br>Vue.prototype.$axios=axios <span class="hljs-comment">// 将异步处理的组件定义为全局组件（整个项目都能使用）</span><br>Vue.config.productionTip = <span class="hljs-keyword">false</span><br><span class="hljs-comment">// set ElementUI lang to EN</span><br>Vue.use(ElementUI, &#123; locale &#125;)<br><span class="hljs-comment">/* eslint-disable no-new */</span><br><span class="hljs-keyword">new</span> Vue(&#123;<br>  el: <span class="hljs-string">&#x27;#app&#x27;</span>,  <span class="hljs-comment">//使用的是导入的App.vue中的 id=&quot;app&quot;的元素</span><br>  router,    <span class="hljs-comment">//使用路由</span><br>  components: &#123; App &#125;,   <span class="hljs-comment">//使用导入的App组件</span><br>  template: <span class="hljs-string">&#x27;&lt;App/&gt;&#x27;</span>    <span class="hljs-comment">//使用导入的App组件中的template</span><br>&#125;)<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-启动项目"><a href="#4-2-3-启动项目" class="headerlink" title="4.2.3 启动项目"></a>4.2.3 启动项目</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309241644539.webp" srcset="/img/loading.gif" lazyload></p>
+<p>npm run dev</p>
+<p> 到现在为止 项目已经支持element-ui开发了。</p>
+<h1 id="5-树形结构组件"><a href="#5-树形结构组件" class="headerlink" title="5. 树形结构组件"></a>5. 树形结构组件</h1><p>   之前我们在物业项目中使用过ztree.js,它就是一种树形结构的开发。接下来使用ElementUI来实现树形结构界面，能快速把效果先搞定。</p>
+<h3 id="5-1-1-创建views-x2F-Tree-vue"><a href="#5-1-1-创建views-x2F-Tree-vue" class="headerlink" title="5.1.1 创建views&#x2F;Tree.vue"></a>5.1.1 创建views&#x2F;Tree.vue</h3><h3 id="5-1-2-修改router-x2F-index-js"><a href="#5-1-2-修改router-x2F-index-js" class="headerlink" title="5.1.2 修改router&#x2F;index.js"></a>5.1.2 修改router&#x2F;index.js</h3><h3 id="5-1-3-修改App-vue"><a href="#5-1-3-修改App-vue" class="headerlink" title="5.1.3 修改App.vue"></a>5.1.3 修改App.vue</h3><h3 id="5-1-4-效果"><a href="#5-1-4-效果" class="headerlink" title="5.1.4 效果"></a>5.1.4 效果</h3><table>
+<thead>
+<tr>
+<th><img src="/ipic%5Cclip_image041-1695544095040.jpg" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/ipic%5Cclip_image042.png" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<h2 id="5-2-消息弹框"><a href="#5-2-消息弹框" class="headerlink" title="5.2 消息弹框"></a>5.2 消息弹框</h2><p> 当用户在页面点击按钮操作数据的时候，如果成功需要给个提示，失败也需要给提示，element-ui中有很友好的提示方式。</p>
+<h3 id="5-2-1-创建views-x2F-Notice-vue"><a href="#5-2-1-创建views-x2F-Notice-vue" class="headerlink" title="5.2.1 创建views&#x2F;Notice.vue"></a>5.2.1 创建views&#x2F;Notice.vue</h3><h2 id="5-3-修改router-x2F-index-js"><a href="#5-3-修改router-x2F-index-js" class="headerlink" title="5.3 修改router&#x2F;index.js"></a>5.3 修改router&#x2F;index.js</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">`<span class="hljs-keyword">import</span> <span class="hljs-keyword">Notice</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../views/Notice&#x27;</span>``&#123;``  <span class="hljs-type">path</span>:&quot;/notice&quot;,``  <span class="hljs-type">name</span>: &quot;Notice&quot;,``  component: <span class="hljs-keyword">Notice</span>``&#125;`<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-4-修改App-vue"><a href="#5-4-修改App-vue" class="headerlink" title="5.4 修改App.vue"></a>5.4 修改App.vue</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`Notice`</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-5-效果"><a href="#5-5-效果" class="headerlink" title="5.5 效果"></a>5.5 效果</h2><p><img src="/ipic%5Cclip_image044.png" srcset="/img/loading.gif" lazyload alt="IMG_267"></p>
+<h2 id="5-6-表单【重点】"><a href="#5-6-表单【重点】" class="headerlink" title="5.6 表单【重点】"></a>5.6 表单【重点】</h2><p>表单是在开发中必不可少的组件，element-ui中对表单也很好的支持，很轻松就能实现。</p>
+<h3 id="5-6-1-创建view-x2F-Form-vue"><a href="#5-6-1-创建view-x2F-Form-vue" class="headerlink" title="5.6.1 创建view&#x2F;Form.vue"></a>5.6.1 创建view&#x2F;Form.vue</h3><h3 id="5-6-2-修改router-x2F-index-js"><a href="#5-6-2-修改router-x2F-index-js" class="headerlink" title="5.6.2 修改router&#x2F;index.js"></a>5.6.2 修改router&#x2F;index.js</h3><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">`import Form from &#x27;../views/Form&#x27;``&#123;``  path:<span class="hljs-string">&quot;/form&quot;</span>,``  name: <span class="hljs-string">&quot;Form&quot;</span>,``  component: Form``&#125;`<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-6-3-修改App-vue"><a href="#5-6-3-修改App-vue" class="headerlink" title="5.6.3 修改App.vue"></a>5.6.3 修改App.vue</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`Form`</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-6-4-效果"><a href="#5-6-4-效果" class="headerlink" title="5.6.4 效果"></a>5.6.4 效果</h3><p><img src="/ipic%5Cclip_image046-1695544095040.png" srcset="/img/loading.gif" lazyload alt="IMG_270"></p>
+<h2 id="5-7-弹层Dialog-对话框（作业）"><a href="#5-7-弹层Dialog-对话框（作业）" class="headerlink" title="5.7 弹层Dialog 对话框（作业）"></a>5.7 弹层Dialog 对话框（作业）</h2><p>在保留当前页面状态的情况下，告知用户并承载相关操作。</p>
+<p>  这里的弹层就是之前说的模态窗口（在BootStrap中就称之为模态窗口）</p>
+<h3 id="5-7-1-创建view-x2F-Dialog-vue"><a href="#5-7-1-创建view-x2F-Dialog-vue" class="headerlink" title="5.7.1 创建view&#x2F;Dialog.vue"></a>5.7.1 创建view&#x2F;Dialog.vue</h3><h3 id="5-7-2-修改router-x2F-index-js"><a href="#5-7-2-修改router-x2F-index-js" class="headerlink" title="5.7.2 修改router&#x2F;index.js"></a>5.7.2 修改router&#x2F;index.js</h3><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">`&#123;``  path: <span class="hljs-string">&quot;/dialog&quot;</span>,``  name: <span class="hljs-string">&quot;Dialog&quot;</span>,``  component: () =&gt; import(<span class="hljs-string">&quot;../views/Dialog&quot;</span>)``&#125;`<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-7-3-修改App-vue"><a href="#5-7-3-修改App-vue" class="headerlink" title="5.7.3 修改App.vue"></a>5.7.3 修改App.vue</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`Dialog`</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-7-4-效果"><a href="#5-7-4-效果" class="headerlink" title="5.7.4 效果"></a>5.7.4 效果</h3><p><img src="/ipic%5Cclip_image048-1695544095040.png" srcset="/img/loading.gif" lazyload alt="IMG_273"></p>
+<h2 id="5-8-表格（重点）"><a href="#5-8-表格（重点）" class="headerlink" title="5.8 表格（重点）"></a>5.8 表格（重点）</h2><p>   在开发中表格一定会使用到，因为要显示后端的数据，这些数据都是多个json对象出现（以json数组形式出现），数组类型的数据就需要使用到表格显示。</p>
+<h3 id="5-8-1-创建view-x2F-Table-vue"><a href="#5-8-1-创建view-x2F-Table-vue" class="headerlink" title="5.8.1 创建view&#x2F;Table.vue"></a>5.8.1 创建view&#x2F;Table.vue</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"> 第一个箭头：表示要遍历的数组，数组保存的是多个json对象<br> 第二个箭头：表示该列固定不动<br> 第三个箭头：prop= xxx，表示数组中的json对象必须要有xxx，这一列就是显示的xxx属性的值<br> 第四个箭头：列头中的列名字<br>![img](file:<span class="hljs-regexp">//</span><span class="hljs-regexp">/C:/</span>Users<span class="hljs-regexp">/ASUS/</span>AppData<span class="hljs-regexp">/Local/</span>Temp<span class="hljs-regexp">/msohtmlclip1/</span><span class="hljs-number">01</span>/clip_image052.jpg)<br> <br></code></pre></td></tr></table></figure>
+
+<h3 id="5-8-2-修改router-x2F-index-js"><a href="#5-8-2-修改router-x2F-index-js" class="headerlink" title="5.8.2 修改router&#x2F;index.js"></a>5.8.2 修改router&#x2F;index.js</h3><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">`&#123;``  path: <span class="hljs-string">&quot;/table&quot;</span>,``  name: <span class="hljs-string">&quot;Table&quot;</span>,``  component: () =&gt; import(<span class="hljs-string">&quot;../views/Table&quot;</span>)``&#125;`<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-8-3-修改App-vue"><a href="#5-8-3-修改App-vue" class="headerlink" title="5.8.3 修改App.vue"></a>5.8.3 修改App.vue</h3><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`Table`</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-8-4-效果"><a href="#5-8-4-效果" class="headerlink" title="5.8.4 效果"></a>5.8.4 效果</h3><p><img src="/ipic%5Cclip_image054.png" srcset="/img/loading.gif" lazyload alt="IMG_276"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"> <br></code></pre></td></tr></table></figure>
+
+<h3 id="5-8-5-文字悬浮"><a href="#5-8-5-文字悬浮" class="headerlink" title="5.8.5 文字悬浮"></a>5.8.5 文字悬浮</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs"><br> <br></code></pre></td></tr></table></figure>
+
+<p>控制文字悬浮框的样式的css代码</p>
+<table>
+<thead>
+<tr>
+<th><img src="/ipic%5Cclip_image058.jpg" srcset="/img/loading.gif" lazyload alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.el-tooltip__popper {     max-width: 35% !important;   }   .el-tooltip__popper,   .el-tooltip__popper.is-dark {     max-width: 15% !important;     line-height: 24px;     color: #fff !important;     background-color: rgb(48, 65, 86) !important;   }</td>
+</tr>
+<tr>
+<td><img src="/ipic%5Cclip_image060-1695544095040.jpg" srcset="/img/loading.gif" lazyload alt="img"></td>
+</tr>
+</tbody></table>
+<p>作业：使用elementui实现数据的增加很查询（基于emp数据表），操作到数据库中的数据。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Axios-element-ui/">#Axios+element-ui</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>day054Vue</div>
+      <div>http://example.com/2023/09/22/day054Vue/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/24/day055Vue/" title="day055Vue">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day055Vue</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/20/day053Vue/" title="day053Vue">
+                        <span class="hidden-mobile">day053Vue</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

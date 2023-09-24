@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.Vue的基本概念1.1 MVP模式的概念​		MVP有点像我们之前学习后端时候讲解的MVC，MVP也是根据代码功能的特性来进行划分的，Model模型层（前端的模型层**[数据模型]），View层(前端的显示层)，Presenter**层（模型层和显示层的桥梁） ​		发送异步请求到后端取得数据 之后使用javascript 将数据渲染到页面。 ​		发送异步请求到后端取得数据 之后使用java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day052Vue">
+<meta property="og:url" content="http://example.com/2023/09/19/day052Vue/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="1.Vue的基本概念1.1 MVP模式的概念​		MVP有点像我们之前学习后端时候讲解的MVC，MVP也是根据代码功能的特性来进行划分的，Model模型层（前端的模型层**[数据模型]），View层(前端的显示层)，Presenter**层（模型层和显示层的桥梁） ​		发送异步请求到后端取得数据 之后使用javascript 将数据渲染到页面。 ​		发送异步请求到后端取得数据 之后使用java">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309182043030.webp">
+<meta property="article:published_time" content="2023-09-19T03:25:51.000Z">
+<meta property="article:modified_time" content="2023-09-24T08:49:40.595Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309182043030.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>day052Vue - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="day052Vue"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-19 11:25" pubdate>
+          2023年9月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day052Vue</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Vue的基本概念"><a href="#1-Vue的基本概念" class="headerlink" title="1.Vue的基本概念"></a>1.Vue的基本概念</h1><h2 id="1-1-MVP模式的概念"><a href="#1-1-MVP模式的概念" class="headerlink" title="1.1 MVP模式的概念"></a>1.1 MVP模式的概念</h2><p>​		<strong>MVP</strong>有点像我们之前学习后端时候讲解的<strong>MVC</strong>，<strong>MVP</strong>也是根据代码功能的特性来进行划分的，<strong>Model</strong>模型层（前端的模型层**[<strong>数据模型</strong>]<strong>），</strong>View<strong>层</strong>(<strong>前端的显示层</strong>)<strong>，</strong>Presenter**层（模型层和显示层的桥梁）</p>
+<p>​		发送异步请求到后端取得数据 之后使用javascript 将数据渲染到页面。</p>
+<p>​		发送异步请求到后端取得数据 之后使用javascript 将数据渲染到页面。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309191141426.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-2-mvp架构的特征："><a href="#1-2-mvp架构的特征：" class="headerlink" title="1.2 mvp架构的特征："></a>1.2 mvp架构的特征：</h2><p>​		·各部分之间的通信，现在是单向的。</p>
+<p>​		·View 与 Model 不发生联系，都通过 Presenter 传递。</p>
+<p>​	    ·View 非常薄，不部署任何业务逻辑，称为”被动视图”（Passive View），即没有任何主动性，而 Presenter非常厚，所有逻辑都部署在那里。   </p>
+<h2 id="1-3-M-V-VM模型"><a href="#1-3-M-V-VM模型" class="headerlink" title="1.3 M-V-VM模型"></a>1.3 M-V-VM模型</h2><p>M：（model）就是数模型，这个model层的数据又来源于后端的controller</p>
+<p>V：（view）前端展示页面</p>
+<p>VM：（ViewModel）实现数据的双向绑定，对于我们的课程来说，就是vue的实例（对象）</p>
+<p>MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一致。唯一的区别是，<strong>它采用双向绑定（<strong><strong>data-binding</strong></strong>）</strong>：<strong>View****的变动，自动反映在</strong> <strong>Model</strong>，反之亦然。这种模式下，页面改变数据会同步到模型层。 </p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309191143532.webp" srcset="/img/loading.gif" lazyload></p>
+<pre><code class="hljs">      首先你要知道，每一门技术的出现都是为了解决对应的问题，那么我们来看看Vue是为了解决什么问题呢？  
+</code></pre>
+<p>​		在之前我们使用js操作数据的时候如果要取得页面中的数据 ，则需要使用选择器取得该数据所在的宿主元素（标签），之后再使用jq相关的方法取得数据（比如说要取得表单中填写的数据，发送给后端），如果要将后端传递的数据渲染到页面中，则需要先取得要显示数据的宿主元素对象，之后调用该对象的相关方法（如append方法）来实现数据的渲染，这种操作无疑是比较麻烦的，于是后面出现了很多解决类似问题的前端框架，比如说Angular.js，这是一款老牌的前端框架（老古董了，你在很多老项目中还能看到），但是该框架还是不够简洁，使用起来还是不够方便，于是后面了vue.js，这是一个国内的开源框架，<strong>Vue<strong><strong>能轻松的实现数据的双向绑定和渲染等操作，以及后期的前后端分离架构支持，同时解决了之前的一些前端</strong></strong>js<strong><strong>框架对</strong></strong>dom****操作的复杂工作</strong>。</p>
+<p>​		你要知道vue也是一个javascript的框架，封装了原生的javascript。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org/</a></p>
+<h2 id="1-4-准备工具"><a href="#1-4-准备工具" class="headerlink" title="1.4 准备工具"></a>1.4 准备工具</h2><pre><code class="hljs">        其实使用之前的hbuilderx就非常方便开发vue代码，还有一个叫做vscode，需要安装。
+</code></pre>
+<h2 id="1-5-总结："><a href="#1-5-总结：" class="headerlink" title="1.5 总结："></a>1.5 总结：</h2><p>Mvp： 数据是单向的，p是桥梁</p>
+<p>m-v-vm ：数据是双向的，vm是桥梁</p>
+<p>Vue：基本概念，实现vm的功能，可以实现数据的双向绑定、很方便的支持前后端分离架构、解决了传统的js框架对dom操作的复杂工作。</p>
+<h2 id="1-6-第一个VUE程序"><a href="#1-6-第一个VUE程序" class="headerlink" title="1.6 第一个VUE程序"></a>1.6 第一个VUE程序</h2><p>​	   需要导入VUE的开发包（就是一个*.js文件），有两种方式可以导入：第一种就是直接下载到本地导入，第二种直接使用该框架对应的地址引入（在线的），这种情况要保证你的网络环境畅通，可以在vue的官网上找到对应的链接（<a target="_blank" rel="noopener" href="https://cn.vuejs.org/%EF%BC%89%E3%80%82">https://cn.vuejs.org/）。</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>	&lt;head&gt;<br>		&lt;meta charset=&quot;utf-8&quot;&gt;<br>		&lt;title&gt;vue学习&lt;/title&gt;<br>		&lt;script src=&quot;./js/vue.js&quot;&gt;&lt;/script&gt;<br>	&lt;/head&gt;<br>	&lt;body&gt;<br>		&lt;div id=&quot;app&quot;&gt;<br>			&lt;h1&gt;<br>				&#123;&#123;title&#125;&#125;,&#123;&#123;msg&#125;&#125;<br>			&lt;/h1&gt;<br>		&lt;/div&gt;<br>		&lt;Script&gt;<br>			//创建一个vue实例<br>			new Vue(&#123;<br>				el: &#x27;#app&#x27;,<br>				data: &#123; //在这里定义数据模型<br>					title: &#x27;好好学习&#x27;,<br>					msg: &#x27;天天向上&#x27;<br>				&#125;<br>			&#125;)<br>		&lt;/Script&gt;<br>	&lt;/body&gt;<br>&lt;/html&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309191145356.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-7-实现页面局部定时刷新"><a href="#1-7-实现页面局部定时刷新" class="headerlink" title="1.7 实现页面局部定时刷新"></a>1.7 实现页面局部定时刷新</h2><p>​    <strong>使用<strong><strong>vue</strong></strong>结合定时函数可以实现页面的局部刷新</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>	&lt;head&gt;<br>		&lt;meta charset=&quot;utf-8&quot; /&gt;<br>		&lt;title&gt;vue学习&lt;/title&gt;<br>		&lt;!-- 开发环境版本，包含了有帮助的命令行警告 <br> 如果网上在线的导入不成功，则可以把对应vue的代码复制到本地的js文件中<br>--&gt;<br>		&lt;!-- &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;&gt;&lt;/script&gt; --&gt;<br>		&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;<br>	&lt;/head&gt;<br>	&lt;body&gt;<br>		&lt;div id=&quot;msgDiv&quot;&gt;     <br>			&lt;h1&gt;&#123;&#123;title&#125;&#125;:&#123;&#123;msg&#125;&#125;&lt;/h1&gt;<br>		&lt;/div&gt;<br>		&lt;script&gt;<br>			//在这里编写vue的代码<br>			//创建一个vue对象，这个vue对象是与上面的div关联的<br>			var app = new Vue(&#123;<br>				el: &quot;#msgDiv&quot;, //找到对应的标签<br>				data: &#123;<br>					//定义数据<br>					title: &quot;好好学习&quot;,<br>					msg: &quot;天天向上&quot;,<br>				&#125;,<br>			&#125;);<br><br>			var i = 0;<br>			//定义一个函数<br>			function setDataFun() &#123;<br>				//修改Vue中的数据<br>				app.$data.msg = &quot;我是刷新的数据：&quot; + i++;<br>			&#125;<br>			//启动周期函数<br>			setInterval(setDataFun, 1000);<br>		&lt;/script&gt;<br>	&lt;/body&gt;<br>&lt;/html&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309191149942.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-8-实现数据的双向绑定"><a href="#1-8-实现数据的双向绑定" class="headerlink" title="1.8 实现数据的双向绑定"></a>1.8 实现数据的双向绑定</h2><p>​    数据的双向绑定就是页面中的数据发生了变化，则vue能进行监听并且可以将改变后的数据实时的同步到Model（数据模型）</p>
+<p>使用v-model就可以向显示层和模型层双向绑定了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>	&lt;head&gt;<br>		&lt;meta charset=&quot;utf-8&quot; /&gt;<br>		&lt;title&gt;vue学习&lt;/title&gt;<br>		&lt;!-- 开发环境版本，包含了有帮助的命令行警告 <br> 如果网上在线的导入不成功，则可以把对应vue的代码复制到本地的js文件中<br>--&gt;<br>		&lt;!-- &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;&gt;&lt;/script&gt; --&gt;<br>		&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;<br>	&lt;/head&gt;<br>	&lt;body&gt;<br>		&lt;div id=&quot;msgDiv&quot;&gt;     <br>			&lt;h1&gt;&#123;&#123;title&#125;&#125;:&#123;&#123;msg&#125;&#125;&lt;/h1&gt;<br>			&lt;h2&gt;请输入数据：&lt;input type=&quot;text&quot; v-model=&quot;msg&quot; /&gt;&lt;/h2&gt;<br>		&lt;/div&gt;<br>		&lt;script&gt;<br>			//在这里编写vue的代码<br>			//创建一个vue对象，这个vue对象是与上面的div关联的<br>			var app = new Vue(&#123;<br>				el: &quot;#msgDiv&quot;, //找到对应的标签<br>				data: &#123;<br>					//定义数据<br>					title: &quot;好好学习&quot;,<br>					msg: &quot;天天向上&quot;,<br>				&#125;,<br>			&#125;);<br><br>			var i = 0;<br>			//定义一个函数<br>			function setDataFun() &#123;<br>				//修改Vue中的数据<br>				app.$data.msg = &quot;我是刷新的数据：&quot; + i++;<br>			&#125;<br>			//启动周期函数<br>			setInterval(setDataFun, 1000);<br>		&lt;/script&gt;<br>	&lt;/body&gt;<br>&lt;/html&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309191147823.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-9-实现一个字符串反转操作"><a href="#1-9-实现一个字符串反转操作" class="headerlink" title="1.9 实现一个字符串反转操作"></a>1.9 实现一个字符串反转操作</h2><p>  <strong>使用<strong><strong>vue</strong></strong>提供的一些函数可以实现对各种数据的操作，其中最典型的就是对字符串的操作。</strong></p>
+<h2 id="1-10-查找子字符串在字符串中的位置"><a href="#1-10-查找子字符串在字符串中的位置" class="headerlink" title="1.10 查找子字符串在字符串中的位置"></a>1.10 查找子字符串在字符串中的位置</h2><h2 id="1-11-数组数据"><a href="#1-11-数组数据" class="headerlink" title="1.11 数组数据"></a>1.11 数组数据</h2><h1 id="2-Vue的渲染指令"><a href="#2-Vue的渲染指令" class="headerlink" title="2. Vue的渲染指令"></a>2. Vue的渲染指令</h1><p>   在之前我们可以在jsp中使用el表达式和jstl进行条件的判断，可以迭代输出数据等，在thymeleaf中也一样可以实现，使用javascript和jq都可以实现，那么在vue中也有自己的渲染指令。</p>
+<h2 id="2-1-v-if判断"><a href="#2-1-v-if判断" class="headerlink" title="2.1 v-if判断"></a>2.1 v-if判断</h2><h2 id="2-2-v-for循环渲染"><a href="#2-2-v-for循环渲染" class="headerlink" title="2.2 v-for循环渲染"></a>2.2 v-for循环渲染</h2><p>  我们从后端获取的数据是一个json的对象数组的时候要将数据渲染到表格中的时候可以使用。</p>
+<h2 id="2-3-从后端获取数据渲染到页面"><a href="#2-3-从后端获取数据渲染到页面" class="headerlink" title="2.3 从后端获取数据渲染到页面"></a>2.3 从后端获取数据渲染到页面</h2><h1 id="3-Vue数据绑定的另外一种方式"><a href="#3-Vue数据绑定的另外一种方式" class="headerlink" title="3.Vue数据绑定的另外一种方式"></a>3.Vue数据绑定的另外一种方式</h1><p>可以将vue中的数据绑定到页面的元素中，在之前是将数据直接在页面输出（之前是通过表单实现演示），之前使用的绑定指令是v-model（页面中的数据变化会同步到model）</p>
+<p>现在我们也可以将vue中的数据绑定到标签的属性中，只需要使用语法v-bind就可以实现。</p>
+<h2 id="3-1-绑定数据（v-bind）"><a href="#3-1-绑定数据（v-bind）" class="headerlink" title="3.1 绑定数据（v-bind）"></a>3.1 绑定数据（v-bind）</h2><p>总结：</p>
+<p>v-bind是为元素的属性去绑定数据的。</p>
+<p> V-model是为表单绑定数据，让表单中的数据与model（data）中的同步</p>
+<h1 id="4-事件绑定（重点）"><a href="#4-事件绑定（重点）" class="headerlink" title="4.事件绑定（重点）"></a>4.事件绑定（重点）</h1><p>  在JavaScript中事件的绑定是不可少的，之前可以使用js实现事件绑定，使用vue需要在元素中写绑定的代码，而是要在html的标签中进行绑定语句的编写。</p>
+<h2 id="4-1-绑定函数（v-on-click-x2F-v-on-change）"><a href="#4-1-绑定函数（v-on-click-x2F-v-on-change）" class="headerlink" title="4.1 绑定函数（v-on:click &#x2F; v-on:change）"></a>4.1 绑定函数（v-on:click &#x2F; v-on:change）</h2><h2 id="4-2-简写绑定函数"><a href="#4-2-简写绑定函数" class="headerlink" title="4.2 简写绑定函数"></a>4.2 简写绑定函数</h2><p>  <strong>如果一个事件在运行中只需要绑定一次，也就是只是第一次执行的时候生效，那么我们可以使用<strong><strong>once</strong></strong>进行处理，可以在注册按钮的时候防止用户重复提交</strong>。 </p>
+<h2 id="4-3-绑定change事件"><a href="#4-3-绑定change事件" class="headerlink" title="4.3 绑定change事件"></a>4.3 绑定change事件</h2><p>Change事件一般用在下拉列表</p>
+<h1 id="5-数组数据的处理"><a href="#5-数组数据的处理" class="headerlink" title="5.数组数据的处理"></a>5.数组数据的处理</h1><p>   我们之前处理的数据都是简单的字符串数据，我们也可以对数组进行处理，严格来说是JSON格式的数组，其实在实际的开发中，从后端取得的数据很多都是集合的形式，集合对应到前端就是数组，所以数组数据的处理很重要。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>day052Vue</div>
+      <div>http://example.com/2023/09/19/day052Vue/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/20/day053Vue/" title="day053Vue">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day053Vue</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/18/day051js/" title="day051js">
+                        <span class="hidden-mobile">day051js</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
