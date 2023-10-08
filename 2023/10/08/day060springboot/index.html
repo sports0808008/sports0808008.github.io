@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="3. 文件上传（第一讲）​    在实际的开发中很多项目都需要涉及到文件的上传，在SpringMVC中经常使用到MultipartFile接口来实现文件的上传（当时说在springboot中来讲解），在SpringBoot中也可以继续使用该接口实现上传。 3.1 定义上传的父类multipartFile 是Spring框架中处理文件上传的接口。它是org.springframework.web.m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SkyXinxuan">
+<meta property="og:url" content="http://example.com/2023/10/08/day060springboot/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="3. 文件上传（第一讲）​    在实际的开发中很多项目都需要涉及到文件的上传，在SpringMVC中经常使用到MultipartFile接口来实现文件的上传（当时说在springboot中来讲解），在SpringBoot中也可以继续使用该接口实现上传。 3.1 定义上传的父类multipartFile 是Spring框架中处理文件上传的接口。它是org.springframework.web.m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309130824990.webp">
+<meta property="article:published_time" content="2023-10-08T03:40:53.000Z">
+<meta property="article:modified_time" content="2023-10-08T12:49:14.859Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="springBoot文件上传">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202309130824990.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-08 11:40" pubdate>
+          2023年10月8日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          31k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          260 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="3-文件上传（第一讲）"><a href="#3-文件上传（第一讲）" class="headerlink" title="3. 文件上传（第一讲）"></a>3. 文件上传（第一讲）</h1><p>​    在实际的开发中很多项目都需要涉及到文件的上传，在SpringMVC中经常使用到MultipartFile接口来实现文件的上传（当时说在springboot中来讲解），在SpringBoot中也可以继续使用该接口实现上传。</p>
+<h2 id="3-1-定义上传的父类"><a href="#3-1-定义上传的父类" class="headerlink" title="3.1 定义上传的父类"></a>3.1 定义上传的父类</h2><p><code>multipartFile</code> 是Spring框架中处理文件上传的接口。它是<code>org.springframework.web.multipart.MultipartFile</code>接口的实现类之一。</p>
+<p>在Spring中，当你使用<code>&lt;form&gt;</code>表单提交的时候，如果表单中包含文件上传字段，可以通过<code>MultipartFile</code>对象来处理这些上传的文件。<code>MultipartFile</code>对象提供了一些方法来获取文件的相关信息，如文件名、大小、内容等。</p>
+<p>一般情况下，你可以通过以下步骤来处理上传的文件：</p>
+<ol>
+<li>在控制层的方法参数中添加<code>MultipartFile</code>类型的参数，用于接收上传的文件字段。</li>
+<li>使用<code>MultipartFile</code>对象的方法来获取文件的信息，如<code>getOriginalFilename()</code>获取文件名，<code>getSize()</code>获取文件大小等。</li>
+<li>可以使用<code>transferTo()</code>方法将文件保存到本地磁盘或其他目标位置。</li>
+</ol>
+<p>以下是一个简单的示例代码来演示如何处理上传的文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/upload&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">handleFileUpload</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;file&quot;)</span> MultipartFile file)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!file.isEmpty()) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">// 获取文件名</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> file.getOriginalFilename();<br>            <br>            <span class="hljs-comment">// 获取文件大小</span><br>            <span class="hljs-type">long</span> <span class="hljs-variable">fileSize</span> <span class="hljs-operator">=</span> file.getSize();<br>            <br>            <span class="hljs-comment">// 保存文件到本地磁盘</span><br>            file.transferTo(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;&lt;目标文件路径&gt;&quot;</span>));<br>            <br>            <span class="hljs-comment">// 处理文件上传成功后的逻辑</span><br>            <span class="hljs-comment">// ...</span><br>            <br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;上传成功&quot;</span>;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-comment">// 处理文件上传失败后的逻辑</span><br>            <span class="hljs-comment">// ...</span><br>            <br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;上传失败&quot;</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;上传文件为空&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意，你需要将<code>&lt;目标文件路径&gt;</code>替换为你想要将文件保存到的具体路径。</p>
+<p>​	  一般文件的上传可能是一个公共的操作，可能多个控制器中都需要调用，这样的方法我们需要把它定义在父类中或者单独定义成一个工具类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.propertyeditors.CustomDateEditor;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.WebDataBinder;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.InitBinder;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.net.http.HttpRequest;<br><span class="hljs-keyword">import</span> java.text.SimpleDateFormat;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 这是一个公共父类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseController</span> &#123;<br>    <span class="hljs-comment">//前端传递字符串类型的日期数据过来  后端的参数如果是Date   就会将这个字符串转换成Date类型即可@param binder</span><br>    <span class="hljs-meta">@InitBinder</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initBinder</span><span class="hljs-params">(WebDataBinder binder)</span> &#123;<br>        <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">simpleDateFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>        binder.registerCustomEditor(Date.class, <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomDateEditor</span>(simpleDateFormat, <span class="hljs-literal">false</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文件的名字保持原名还是生成新名字？ 生成新的文件名</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file 保存的是就是你要上传的文件对象的信息 （你从前端传递过来的）   封装了上传的文件的信息的对象 在这里的目的是为了取得后缀名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">createNewFileName</span><span class="hljs-params">(MultipartFile file)</span> &#123;<br>        <span class="hljs-keyword">if</span> (file != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">//取得原名之后拆分</span><br>            String[] strs = file.getOriginalFilename().split(<span class="hljs-string">&quot;\\.&quot;</span>);<br>            <span class="hljs-comment">//取得后缀名</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">extName</span> <span class="hljs-operator">=</span> strs[strs.length - <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">return</span> UUID.randomUUID().toString().replace(<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;&quot;</span>) + <span class="hljs-string">&quot;.&quot;</span> + extName;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 保存文件的方法  实现文件的保存 就是将上传的文件保存到磁盘中</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileName 调用  createNewFileName 方法生成文件名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> request  取得项目的部署路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file     保存了上传的文件信息的对象关</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">saveFile</span><span class="hljs-params">(String fileName, HttpServletRequest request, MultipartFile file)</span> &#123;<br>        <span class="hljs-comment">//取得文件的保存路径：就是项目部署路径的根目录    getSession().getServletContext():取得一个比session更大的内置对象 名字叫做application</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">rootPath</span> <span class="hljs-operator">=</span> request.getSession().getServletContext().getRealPath(<span class="hljs-string">&quot;/&quot;</span>);<br>        <span class="hljs-comment">//组装文件上传的路径（包括文件新名字）</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">pathName</span> <span class="hljs-operator">=</span> rootPath + <span class="hljs-built_in">this</span>.getDir() + fileName;<br>        System.out.println(<span class="hljs-string">&quot;文件上传的路径：&quot;</span> + pathName);<br>        <span class="hljs-comment">//实现文件的保存</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">realPathFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(pathName);<br>        <span class="hljs-keyword">if</span> (!realPathFile.getParentFile().exists()) &#123;<br>            <span class="hljs-comment">//不存在images 文件夹   就创建</span><br>            realPathFile.getParentFile().mkdirs();<br>        &#125;<br>        <span class="hljs-comment">//文件传输</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            file.transferTo(realPathFile);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>        <span class="hljs-comment">//返回文件夹+文件名</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.getDir() + fileName;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 子类必须复写该方法</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> String <span class="hljs-title function_">getDir</span><span class="hljs-params">()</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-2-定义上传的控制器（子类）"><a href="#3-2-定义上传的控制器（子类）" class="headerlink" title="3.2 定义上传的控制器（子类）"></a>3.2 定义上传的控制器（子类）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PostMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestParam;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;emp&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EmpController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseController</span> &#123;<br><span class="hljs-comment">// MultipartFile  photo没有和前端的name 属性明一样  需要 @RequestParam(&quot;file&quot;)注解</span><br>    <span class="hljs-meta">@PostMapping(&quot;upload&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">upload</span><span class="hljs-params">(HttpServletRequest request, <span class="hljs-meta">@RequestParam(&quot;file&quot;)</span> MultipartFile photo)</span> &#123;<br>        <span class="hljs-comment">//取得文件新名字</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">newFileName</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">super</span>.createNewFileName(photo);<br>        <span class="hljs-comment">//直接调用父类的方法上传</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.saveFile(newFileName, request, photo);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> String <span class="hljs-title function_">getDir</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;images/&quot;</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-3定义上传的表单"><a href="#3-3定义上传的表单" class="headerlink" title="3.3定义上传的表单"></a>3.3定义上传的表单</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"> <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/emp/upload&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>文件上传<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>        姓名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span>   <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>  <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>        照片：<span class="hljs-tag">&lt;<span class="hljs-name">input</span>   <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span>  <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;file&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;重置&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310072014446.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-4上传测试"><a href="#3-4上传测试" class="headerlink" title="3.4上传测试"></a>3.4上传测试</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310072016060.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-5-继续测试（上传一个内存比较大的文件）"><a href="#3-5-继续测试（上传一个内存比较大的文件）" class="headerlink" title="3.5 继续测试（上传一个内存比较大的文件）"></a>3.5 继续测试（上传一个内存比较大的文件）</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.tomcat</span><span class="hljs-selector-class">.util</span><span class="hljs-selector-class">.http</span><span class="hljs-selector-class">.fileupload</span><span class="hljs-selector-class">.impl</span><span class="hljs-selector-class">.SizeLimitExceededException</span>: the request was rejected because its size (<span class="hljs-number">83406200</span>) exceeds the configured maximum (<span class="hljs-number">10485760</span>)] with root cause	at org<span class="hljs-selector-class">.springframework</span><span class="hljs-selector-class">.web</span><span class="hljs-selector-class">.multipart</span><span class="hljs-selector-class">.support</span><span class="hljs-selector-class">.StandardMultipartHttpServletRequest</span><span class="hljs-selector-class">.handleParseFailure</span>(StandardMultipartHttpServletRequest<span class="hljs-selector-class">.java</span>:<span class="hljs-number">122</span>)<br></code></pre></td></tr></table></figure>
+
+<p>​		此时发现了上传的文件的大小超过默认允许的最大值，默认最大值是10兆，如果要上传超过10M的文件则需要配置，之前传统的SpringMVC是在xml配置文件中去进行配置的，现在直接在application.yml中配置，也可以直接通过配置类完成配置。</p>
+<h2 id="3-6-在application-yml文件中进行配置"><a href="#3-6-在application-yml文件中进行配置" class="headerlink" title="3.6 在application.yml文件中进行配置"></a>3.6 在application.yml文件中进行配置</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">80</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">servlet:</span><br>    <span class="hljs-attr">multipart:</span><br>      <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment"># 表示上传时候使用当前配置</span><br>      <span class="hljs-attr">max-file-size:</span> <span class="hljs-string">5MB</span>  <span class="hljs-comment"># 单个文件的最大值是5M</span><br>      <span class="hljs-attr">max-request-size:</span> <span class="hljs-string">50MB</span> <span class="hljs-comment"># 多个文件的总的最大值是 50M</span><br><br></code></pre></td></tr></table></figure>
+
+<p> 除了以上的配置形式之外还有一种很常用的配置，是在类中进行配置。</p>
+<p> 在实际的开发中如果是文件上传最终会生成新的文件名字，并且保存到指定目录，上传成功之后还需要将文件的地址信息保存到数据库，需要保存到数据库的信息最基本的文件名字了。所以在父类中上传的方法需要一个返回值，这个返回值就是文件名字。 </p>
+<p><strong>总结：</strong></p>
+<p>1、实现上传的方法一般都是在父类中去定义的。</p>
+<p>2、我们上面是把文件上传到项目部署路径下的磁盘中，还用一种常用的方式，文件上传到自己公司的  </p>
+<p>文件存储服务器或者是第三方的文件存储服务器（oss）</p>
+<h1 id="4-使用阿里云的oss实现文件上传"><a href="#4-使用阿里云的oss实现文件上传" class="headerlink" title="4.使用阿里云的oss实现文件上传"></a>4.使用阿里云的oss实现文件上传</h1><p>在开发中很多时候图片是上传到图片服务器的，图片服务器有自己搭建的也有第三方的，比如说oss 就是阿里云的对象存储服务器（可以进行文件对象的管理）,腾讯云也有对应的产品。</p>
+<p>fastdfs需要自己安装搭建，是c语言写的。</p>
+<h2 id="4-1-MinIO-与-FastDFS-对比"><a href="#4-1-MinIO-与-FastDFS-对比" class="headerlink" title="4.1 MinIO 与 FastDFS 对比"></a>4.1 MinIO 与 FastDFS 对比</h2><h3 id="4-1-1-安装部署-运维"><a href="#4-1-1-安装部署-运维" class="headerlink" title="4.1.1 安装部署(运维)"></a>4.1.1 安装部署(运维)</h3><ul>
+<li>FastDFS安装部署(运维)复杂。</li>
+<li>MinIO在安装的过程是黑盒的，你不用去深入关注它的架构，也不需要你进行零件组装，基本上可以做到开箱即用。普通的技术人员就能够参与后期运维。</li>
+</ul>
+<h3 id="4-1-2-文档"><a href="#4-1-2-文档" class="headerlink" title="4.1.2 文档"></a>4.1.2 文档</h3><ul>
+<li>FastDFS没有官方文档</li>
+<li>MinIO有官方网站，并且有详细的文档</li>
+</ul>
+<h3 id="4-1-3-开源项目运营组织"><a href="#4-1-3-开源项目运营组织" class="headerlink" title="4.1.3 开源项目运营组织"></a>4.1.3 开源项目运营组织</h3><ul>
+<li>FastDFS是阿里余庆做的一个个人项目，在一些互联网创业公司中有应用，没有官网，不活跃。目前已经很少做更新。</li>
+<li>MinIO目前是由2014年在硅谷创立的公司MinIO.Inc运营的开源项目，社区论坛的活跃度目前也非常的不错。</li>
+</ul>
+<h3 id="4-1-4-UI界面"><a href="#4-1-4-UI界面" class="headerlink" title="4.1.4 UI界面"></a>4.1.4 UI界面</h3><ul>
+<li>FastDFS默认是不带UI界面的。</li>
+<li>MinIO的界面不需要你单独的部署，和服务端一并安装，开箱即用。</li>
+</ul>
+<h3 id="4-1-5-性能"><a href="#4-1-5-性能" class="headerlink" title="4.1.5 性能"></a>4.1.5 性能</h3><ul>
+<li>MinIO号称是世界上速度最快的对象存储服务器。在标准硬件上，对象存储的读&#x2F;写速度最高可以达到183 GB&#x2F;s和171 GB&#x2F;s。</li>
+<li>FastDFS很难达到MinIO“号称的”以G为单位的每秒读写速度。</li>
+</ul>
+<h3 id="4-1-6-容器化支持"><a href="#4-1-6-容器化支持" class="headerlink" title="4.1.6 容器化支持"></a>4.1.6 容器化支持</h3><ul>
+<li>MinIO提供了与k8s、etcd、docker等容器化技术深度集成方案，可以说就是为了云环境而生的。</li>
+<li>FastDFS不具备。</li>
+</ul>
+<h3 id="4-1-7-丰富的SDK支持"><a href="#4-1-7-丰富的SDK支持" class="headerlink" title="4.1.7 丰富的SDK支持"></a>4.1.7 丰富的SDK支持</h3><ul>
+<li>FastDFS目前提供了 C 和 Java SDK，以及 PHP 扩展 SDK。</li>
+<li>MinIO几乎提供了所有主流开发语言的SDK以及文档。</li>
+</ul>
+<h2 id="4-2-开通oss服务"><a href="#4-2-开通oss服务" class="headerlink" title="4.2 开通oss服务"></a>4.2 开通oss服务</h2><p>进入阿里云官网（<a target="_blank" rel="noopener" href="https://www.aliyun.com/%EF%BC%89">https://www.aliyun.com/）</a></p>
+<h2 id="4-3-注册账号"><a href="#4-3-注册账号" class="headerlink" title="4.3 注册账号"></a>4.3 注册账号</h2><p> 推荐使用支付宝扫码注册</p>
+<h3 id="4-3-1-登录阿里云官网，实名认证。"><a href="#4-3-1-登录阿里云官网，实名认证。" class="headerlink" title="4.3.1 登录阿里云官网，实名认证。"></a>4.3.1 登录<a target="_blank" rel="noopener" href="https://www.aliyun.com/">阿里云官网</a>，实名认证。</h3><p> <a target="_blank" rel="noopener" href="https://www.aliyun.com/">https://www.aliyun.com/</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081905135.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  实名认证直接使用支付宝扫码也可以进行认证的，如果你是在校还没毕业的学生也可以进直接扫码进行学生认证（人个实名认证+学生认证）</p>
+<p>认证完成会看到如下的图</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081905451.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-3-2-将鼠标移至产品，单击对象存储-OSS，打开-OSS-产品详情页面。"><a href="#4-3-2-将鼠标移至产品，单击对象存储-OSS，打开-OSS-产品详情页面。" class="headerlink" title="4.3.2 将鼠标移至产品，单击对象存储 OSS，打开 OSS 产品详情页面。"></a>4.3.2 将鼠标移至产品，单击对象存储 OSS，打开 OSS 产品详情页面。</h3><h3 id="4-3-3-在-OSS-产品详情页，单击立即开通。"><a href="#4-3-3-在-OSS-产品详情页，单击立即开通。" class="headerlink" title="4.3.3 在 OSS 产品详情页，单击立即开通。"></a>4.3.3 在 <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/oss">OSS 产品详情页</a>，单击立即开通。</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081907268.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-3-4-开通服务后，在-OSS-产品详情页单击管理控制台直接进入-OSS-管理控制台界面。"><a href="#4-3-4-开通服务后，在-OSS-产品详情页单击管理控制台直接进入-OSS-管理控制台界面。" class="headerlink" title="4.3.4 开通服务后，在 OSS 产品详情页单击管理控制台直接进入 OSS 管理控制台界面。"></a>4.3.4 开通服务后，在 OSS 产品详情页单击管理控制台直接进入 OSS 管理控制台界面。</h3><p>您也可以单击位于官网首页右上方菜单栏的<strong>控制台</strong>，进入阿里云管理控制台首页，然后单击左侧的<strong>对象存储 OSS</strong> 菜单进入 OSS 管理控制台界面。</p>
+<p> 注意：后面的内容可能有很多概念你可能还不清楚，暂时不用管他，先实现文件上传，先使用起来。</p>
+<h3 id="4-3-5-创建Bukect"><a href="#4-3-5-创建Bukect" class="headerlink" title="4.3.5  创建Bukect"></a>4.3.5  创建Bukect</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081911959.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081911910.webp" srcset="/img/loading.gif" lazyload></p>
+<p>1、访问域名和数据中心</p>
+<p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.243d1cd54xAgEI#concept-zt4-cvy-5db">https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.243d1cd54xAgEI#concept-zt4-cvy-5db</a></p>
+<p>2、获取 accessKey ID和AccessKey Secret</p>
+<p>  接下来要使用程序来实现文件的操作，也就是要调用阿里云的api接口，就需要有权限，此时阿里云就会给你颁发一对accessKey ID&#x2F;AccessKey Secret。</p>
+<p> 注意复制key和秘钥</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081913602.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-3-6-密钥（AccessKey-x2F-SecretKey）"><a href="#4-3-6-密钥（AccessKey-x2F-SecretKey）" class="headerlink" title="4.3.6 密钥（AccessKey&#x2F;SecretKey）"></a>4.3.6 密钥（AccessKey&#x2F;SecretKey）</h3><p>密钥用于防止内容在传递过程中被伪造或篡改。密钥通常为成对创建和使用，包含一个AccessKeyId和一个AccessKey Secret</p>
+<p> 阿里云给你颁发了秘钥 表示你有权限访问它指定的api接口，授权api</p>
+<h3 id="4-3-7-添加依赖"><a href="#4-3-7-添加依赖" class="headerlink" title="4.3.7 添加依赖"></a>4.3.7 添加依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.aliyun.oss<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.5.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-8-oss上传的工具类"><a href="#4-3-8-oss上传的工具类" class="headerlink" title="4.3.8 oss上传的工具类"></a>4.3.8 oss上传的工具类</h3><p>  这个工具类是官方提供的，不需要们自己去写，直接使用就行了，里面的代码你能理解就行，暂时以方法为单位去理解即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.utils;<br><br><span class="hljs-keyword">import</span> com.aliyun.oss.OSS;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClient;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClientBuilder;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.CredentialsProviderFactory;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.DefaultCredentials;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.Bucket;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.OSSObject;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.ObjectMetadata;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.PutObjectResult;<br><br><span class="hljs-keyword">import</span> com.aliyuncs.exceptions.ClientException;<br><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> java.io.ByteArrayInputStream;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OSSutil</span> &#123;<br>    <span class="hljs-comment">//阿里云API的内或外网域名(https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.243d1cd54xAgEI#concept-zt4-cvy-5db)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">ENDPOINT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;http://oss-cn-chengdu.aliyuncs.com&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的 Access Key ID 颁发了这个id则表示已经给你授权（你可以上传文件）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">ACCESS_KEY_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;LTAI5tDXM8eXqhPApM39qRCw&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的密钥 Access Key Secret  用来加密的，防篡改</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">ACCESS_KEY_SECRET</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;sI0FOMV8Zxv5SuMsLwbXPSlO6QpMxb&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的bucket名称（空间名称）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">BUCKET_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;tkyu&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的文件夹名称（空间中的文件夹名字）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">FOLDER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;images/&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取阿里云OSS客户端对象</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> ossClient</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> OSSClient <span class="hljs-title function_">getOSSClient</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//创建与阿里云进行数据交互（上传或者下载）的客户端对象</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OSSClient</span>(ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);<br>    &#125;<br><br><br>    <span class="hljs-comment">//获取环境变量的秘钥</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ossAccessKeyId</span> <span class="hljs-operator">=</span> System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ossAccessKeySecret</span> <span class="hljs-operator">=</span> System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID:&quot;</span> + ossAccessKeyId);<br>        System.out.println(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET:&quot;</span> + ossAccessKeySecret);<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建存储空间 我们之前就手工创建了（在oss的控制台创建）</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  OSS连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createBucketName</span><span class="hljs-params">(OSSClient ossClient, String bucketName)</span> &#123;<br>        <span class="hljs-comment">//存储空间</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">bucketNames</span> <span class="hljs-operator">=</span> bucketName;<br>        <span class="hljs-comment">//创建存储空间</span><br>        <span class="hljs-type">Bucket</span> <span class="hljs-variable">bucket</span> <span class="hljs-operator">=</span> ossClient.createBucket(bucketName);<br>        System.out.println(<span class="hljs-string">&quot;创建空间成功！&quot;</span>);<br>        <span class="hljs-keyword">return</span> bucket.getName();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 删除存储空间 bucketName</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss对象</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteBucket</span><span class="hljs-params">(OSSClient ossClient, String bucketName)</span> &#123;<br>        ossClient.deleteBucket(bucketName);<br>        System.out.println(<span class="hljs-string">&quot;删除&quot;</span> + bucketName + <span class="hljs-string">&quot;Bucket成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">OSSClient</span> <span class="hljs-variable">ossClient</span> <span class="hljs-operator">=</span> (OSSClient) getOSSClient();<br>        ossClient.deleteObject(<span class="hljs-string">&quot;tkyu&quot;</span>, <span class="hljs-string">&quot;images/&quot;</span> + <span class="hljs-string">&quot;0b03f416445f4241ba443b434313915f.jpg&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建模拟文件夹</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 文件夹名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createFolder</span><span class="hljs-params">(OSSClient ossClient, String bucketName, String folder)</span> &#123;<br>        <span class="hljs-comment">//文件夹名</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">keySuffixWithSlash</span> <span class="hljs-operator">=</span> folder;<br>        <span class="hljs-comment">//判断文件夹是否存在，不存在则创建</span><br>        <span class="hljs-keyword">if</span> (!ossClient.doesObjectExist(bucketName, keySuffixWithSlash)) &#123;<br>            <span class="hljs-comment">//创建文件夹</span><br>            ossClient.putObject(bucketName, keySuffixWithSlash, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">0</span>]));<br>            System.out.println(<span class="hljs-string">&quot;创建文件夹成功&quot;</span>);<br>            <span class="hljs-comment">//得到文件夹名</span><br>            <span class="hljs-type">OSSObject</span> <span class="hljs-variable">object</span> <span class="hljs-operator">=</span> ossClient.getObject(bucketName, keySuffixWithSlash);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">fileDir</span> <span class="hljs-operator">=</span> object.getKey();<br>            <span class="hljs-keyword">return</span> fileDir;<br>        &#125;<br>        <span class="hljs-keyword">return</span> keySuffixWithSlash;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据key删除OSS服务器上的文件</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名 如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileName   Bucket下文件名 如：&quot;cake.jpg&quot;</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteFile</span><span class="hljs-params">(OSSClient ossClient, String bucketName, String folder, String fileName)</span> &#123;<br>        ossClient.deleteObject(bucketName, folder + fileName);<br>        System.out.println(<span class="hljs-string">&quot;删除&quot;</span> + bucketName + <span class="hljs-string">&quot;下的文件&quot;</span> + folder + fileName + <span class="hljs-string">&quot;成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 上传文件至OSS</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss客户端连接对象</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file       上传文件（文件全路径如：D:\\image\\cake.jpg）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名 如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> String  返回的唯一MD5数字签名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">uploadObject2OSS</span><span class="hljs-params">(OSSClient ossClient, MultipartFile file, String bucketName, String fileName, String folder)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">resultStr</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//以输入流的形式上传文件</span><br>            <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> file.getInputStream();<br>            <span class="hljs-comment">//文件大小</span><br>            <span class="hljs-type">Long</span> <span class="hljs-variable">fileSize</span> <span class="hljs-operator">=</span> file.getSize();<br>            <span class="hljs-keyword">if</span> (fileSize &gt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-comment">//创建上传Object的Metadata</span><br>                <span class="hljs-type">ObjectMetadata</span> <span class="hljs-variable">metadata</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMetadata</span>();<br>                <span class="hljs-comment">//上传的文件的长度</span><br>                metadata.setContentLength(is.available());<br>                <span class="hljs-comment">//指定该Object被下载时的网页的缓存行为</span><br>                metadata.setCacheControl(<span class="hljs-string">&quot;no-cache&quot;</span>);<br>                <span class="hljs-comment">//指定该Object下设置Header</span><br>                metadata.setHeader(<span class="hljs-string">&quot;Pragma&quot;</span>, <span class="hljs-string">&quot;no-cache&quot;</span>);<br>                <span class="hljs-comment">//指定该Object被下载时的内容编码格式</span><br>                metadata.setContentEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>);<br>                <span class="hljs-comment">//文件的MIME，定义文件的类型及网页编码，决定浏览器将以什么形式、什么编码读取文件。如果用户没有指定则根据Key或文件名的扩展名生成，</span><br>                <span class="hljs-comment">//如果没有扩展名则填默认值application/octet-stream</span><br>                metadata.setContentType(getContentType(fileName));<br>                <span class="hljs-comment">//指定该Object被下载时的名称（指示MINME用户代理如何显示附加的文件，打开或下载，及文件名称）</span><br>                metadata.setContentDisposition(<span class="hljs-string">&quot;filename/filesize=&quot;</span> + fileName + <span class="hljs-string">&quot;/&quot;</span> + fileSize + <span class="hljs-string">&quot;Byte.&quot;</span>);<br>                <span class="hljs-comment">//上传文件   (上传文件流的形式)</span><br>                <span class="hljs-type">PutObjectResult</span> <span class="hljs-variable">putResult</span> <span class="hljs-operator">=</span> ossClient.putObject(bucketName, folder + fileName, is, metadata);<br>                <span class="hljs-comment">//解析结果</span><br><span class="hljs-comment">//                resultStr = putResult.getETag();  一MD5数字签名  对我们没有  所以改为  返回URL</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            System.out.println(<span class="hljs-string">&quot;上传阿里云OSS服务器异常.&quot;</span> + e.getMessage());<br>        &#125;<br>        <span class="hljs-comment">// 所以改为  返回URL</span><br>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&quot;https://&quot;</span> + BUCKET_NAME + <span class="hljs-string">&quot;.&quot;</span> + ENDPOINT + <span class="hljs-string">&quot;/&quot;</span> + FOLDER + fileName).replaceAll(<span class="hljs-string">&quot;http://&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通过文件名判断并获取OSS服务文件上传时文件的contentType</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileName 文件名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 文件的contentType</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getContentType</span><span class="hljs-params">(String fileName)</span> &#123;<br>        <span class="hljs-comment">//文件的后缀名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileExtension</span> <span class="hljs-operator">=</span> fileName.substring(fileName.lastIndexOf(<span class="hljs-string">&quot;.&quot;</span>));<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.bmp&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/bmp&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.gif&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/gif&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.jpeg&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;.jpg&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;.png&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpeg&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.html&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/html&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.txt&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/plain&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.vsd&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/vnd.visio&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.ppt&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;pptx&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/vnd.ms-powerpoint&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.doc&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;docx&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/msword&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.xml&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/xml&quot;</span>;<br>        &#125;<br>        <span class="hljs-comment">//默认返回类型</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpeg&quot;</span>;<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-9-实现上传"><a href="#4-3-9-实现上传" class="headerlink" title="4.3.9 实现上传"></a>4.3.9 实现上传</h3><p>父类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.propertyeditors.CustomDateEditor;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.WebDataBinder;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.InitBinder;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.net.http.HttpRequest;<br><span class="hljs-keyword">import</span> java.text.SimpleDateFormat;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 这是一个公共父类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseController</span> &#123;<br>    <span class="hljs-comment">//前端传递字符串类型的日期数据过来  后端的参数如果是Date   就会将这个字符串转换成Date类型即可@param binder</span><br>    <span class="hljs-meta">@InitBinder</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initBinder</span><span class="hljs-params">(WebDataBinder binder)</span> &#123;<br>        <span class="hljs-type">SimpleDateFormat</span> <span class="hljs-variable">simpleDateFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>        binder.registerCustomEditor(Date.class, <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomDateEditor</span>(simpleDateFormat, <span class="hljs-literal">false</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文件的名字保持原名还是生成新名字？ 生成新的文件名</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file 保存的是就是你要上传的文件对象的信息 （你从前端传递过来的）   封装了上传的文件的信息的对象 在这里的目的是为了取得后缀名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">createNewFileName</span><span class="hljs-params">(MultipartFile file)</span> &#123;<br>        <span class="hljs-keyword">if</span> (file != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">//取得原名之后拆分</span><br>            String[] strs = file.getOriginalFilename().split(<span class="hljs-string">&quot;\\.&quot;</span>);<br>            <span class="hljs-comment">//取得后缀名</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">extName</span> <span class="hljs-operator">=</span> strs[strs.length - <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">return</span> UUID.randomUUID().toString().replace(<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;&quot;</span>) + <span class="hljs-string">&quot;.&quot;</span> + extName;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><br><span class="hljs-keyword">import</span> cn.tk.firstboot.utils.OSSutil;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClient;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;emp/*&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EmpController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseController</span> &#123;<br><br>    <span class="hljs-meta">@PostMapping(&quot;upload&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">upload</span><span class="hljs-params">(HttpServletRequest request, MultipartFile uploudFile)</span> &#123;<br>        <span class="hljs-comment">//取得文件新名字</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">newFileName</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">super</span>.createNewFileName(uploudFile);<br>        <span class="hljs-comment">//判断文件是否为空</span><br>        <span class="hljs-keyword">if</span> (uploudFile != <span class="hljs-literal">null</span> &amp;&amp; (uploudFile.getSize() &gt; <span class="hljs-number">0</span>)) &#123;<br>            <span class="hljs-comment">//使用阿里云的上传工具实现文件的上传</span><br>            <span class="hljs-comment">//第一个参数：阿里云的客服端连接对象</span><br><br>            <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> OSSutil.uploadObject2OSS(OSSutil.getOSSClient(), uploudFile, OSSutil.BUCKET_NAME, newFileName, OSSutil.FOLDER);<br>            System.out.println(<span class="hljs-string">&quot;返回值为：&quot;</span> + result);<br>            <span class="hljs-keyword">return</span> result;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;文件不合法&quot;</span>;<br><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-10-上传照片回显"><a href="#4-3-10-上传照片回显" class="headerlink" title="4.3.10 上传照片回显"></a>4.3.10 上传照片回显</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><br><span class="hljs-keyword">import</span> cn.tk.firstboot.utils.OSSutil;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClient;<br><span class="hljs-keyword">import</span> org.springframework.ui.Model;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;emp/*&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EmpController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseController</span> &#123;<br><br>    <span class="hljs-meta">@PostMapping(&quot;upload&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">upload</span><span class="hljs-params">(HttpServletRequest request, MultipartFile uploudFile, Model model)</span> &#123;<br>        <span class="hljs-comment">//取得文件新名字</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">newFileName</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">super</span>.createNewFileName(uploudFile);<br>        <span class="hljs-comment">//判断文件是否为空</span><br>        <span class="hljs-keyword">if</span> (uploudFile != <span class="hljs-literal">null</span> &amp;&amp; (uploudFile.getSize() &gt; <span class="hljs-number">0</span>)) &#123;<br>            <span class="hljs-comment">//使用阿里云的上传工具实现文件的上传</span><br>            <span class="hljs-comment">//第一个参数：阿里云的客服端连接对象</span><br><br>            <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> OSSutil.uploadObject2OSS(OSSutil.getOSSClient(), uploudFile, OSSutil.BUCKET_NAME, newFileName, OSSutil.FOLDER);<br>            System.out.println(<span class="hljs-string">&quot;返回值为：&quot;</span> + result);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;https://&quot;</span> + OSSutil.BUCKET_NAME + <span class="hljs-string">&quot;.oss-cn-chengdu.aliyuncs.com&quot;</span> + <span class="hljs-string">&quot;/&quot;</span> + OSSutil.FOLDER + newFileName;<br>            <span class="hljs-comment">//将上传的文件的url地址保存到</span><br>            model.addAttribute(<span class="hljs-string">&quot;url&quot;</span>, path);<br>            <span class="hljs-comment">//得到的是上传的文件的地址</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;pages/emp&quot;</span>;<br><br>        &#125;<br><br>        <span class="hljs-keyword">return</span>  <span class="hljs-string">&quot;文件不合法:pages/error&quot;</span>;<br><br>    &#125;<br><br>    <span class="hljs-meta">@GetMapping(&quot;test&quot;)</span><br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span> / <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;xxxxxx&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> String <span class="hljs-title function_">getDir</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;images/&quot;</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/emp/upload&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>文件上传<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>        姓名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span>   <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>  <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>        照片：<span class="hljs-tag">&lt;<span class="hljs-name">input</span>   <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span>  <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;uploudFile&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;重置&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span>  <span class="hljs-attr">th:src</span>=<span class="hljs-string">&quot;$&#123;url&#125;&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;300px&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>作业：自己实现图片下载和删除（从阿里云上下载和删除）</p>
+<h3 id="4-3-11-将秘钥保存到环境变量中"><a href="#4-3-11-将秘钥保存到环境变量中" class="headerlink" title="4.3.11 将秘钥保存到环境变量中"></a>4.3.11 将秘钥保存到环境变量中</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">官网强烈建议：<span class="hljs-regexp">//</span> 强烈建议不要把访问凭证保存到工程代码里， 否则可能导致访问凭证泄露，威胁您账号下所有资源的安全。本代码示例以从环境变量中获取访问凭证为例。运行本代码示例之前，请先配置环境变量。<br></code></pre></td></tr></table></figure>
+
+<p> ◆将秘钥加入到环境变量</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310082027212.webp" srcset="/img/loading.gif" lazyload></p>
+<p>◆调整上传工具的部分代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> OSS <span class="hljs-title function_">getOSSClient</span><span class="hljs-params">()</span> &#123;<br>       <span class="hljs-type">OSS</span> <span class="hljs-variable">ossClient</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>       <span class="hljs-comment">//创建与阿里云进行数据交互（上传或者下载）的客服端对象</span><br>       <span class="hljs-comment">// 强烈建议不要把访问凭证保存到工程代码里，否则可能导致访问凭证泄露，</span><br>       <span class="hljs-comment">//威胁您账号下所有资源的安全本代码示例以从环境变量中获取访问凭证为例。</span><br>       <span class="hljs-comment">//运行本代码示例之前，请先配置环境变量</span><br>       <span class="hljs-keyword">try</span> &#123;<br>           <span class="hljs-type">EnvironmentVariableCredentialsProvider</span> <span class="hljs-variable">credentialsProvider</span> <span class="hljs-operator">=</span> CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();<br>           <span class="hljs-type">DefaultCredentials</span> <span class="hljs-variable">defaultCredentials</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DefaultCredentials</span>(System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID&quot;</span>), System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET&quot;</span>));<br>           credentialsProvider.setCredentials(defaultCredentials);<br>           <span class="hljs-comment">//创建OSSClient实例</span><br>           ossClient = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OSSClientBuilder</span>().build(ENDPOINT, credentialsProvider);<br>       &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>           e.printStackTrace();<br>       &#125;<br>       <span class="hljs-keyword">return</span> ossClient;<br><br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<p>◆调整上传工具的完整代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.utils;<br><br><span class="hljs-keyword">import</span> com.aliyun.oss.OSS;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClient;<br><span class="hljs-keyword">import</span> com.aliyun.oss.OSSClientBuilder;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.CredentialsProviderFactory;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.DefaultCredentials;<br><span class="hljs-keyword">import</span> com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.Bucket;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.OSSObject;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.ObjectMetadata;<br><span class="hljs-keyword">import</span> com.aliyun.oss.model.PutObjectResult;<br><br><span class="hljs-keyword">import</span> com.aliyuncs.exceptions.ClientException;<br><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;<br><br><span class="hljs-keyword">import</span> java.io.ByteArrayInputStream;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OSSutil</span> &#123;<br>    <span class="hljs-comment">//阿里云API的内或外网域名(https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.243d1cd54xAgEI#concept-zt4-cvy-5db)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">ENDPOINT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;http://oss-cn-chengdu.aliyuncs.com&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的 Access Key ID 颁发了这个id则表示已经给你授权（你可以上传文件）</span><br>    <span class="hljs-comment">// public static String ACCESS_KEY_ID = &quot;LTAI5tDXM8eXqhPApM39qRCw&quot;;</span><br>    <span class="hljs-comment">//阿里云API的密钥 Access Key Secret  用来加密的，防篡改</span><br>    <span class="hljs-comment">//   public static String ACCESS_KEY_SECRET = &quot;sI0FOMV8Zxv5SuMsLwbXPSlO6QpMxb&quot;;</span><br>    <span class="hljs-comment">//阿里云API的bucket名称（空间名称）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">BUCKET_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;tkyu&quot;</span>;<br>    <span class="hljs-comment">//阿里云API的文件夹名称（空间中的文件夹名字）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">FOLDER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;images/&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取阿里云OSS客户端对象</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> ossClient</span><br><span class="hljs-comment">     */</span><br><span class="hljs-comment">//    public static OSSClient getOSSClient() &#123;</span><br><span class="hljs-comment">//        //创建与阿里云进行数据交互（上传或者下载）的客户端对象</span><br><span class="hljs-comment">//        return new OSSClient(ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);</span><br><span class="hljs-comment">//    &#125;</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> OSS <span class="hljs-title function_">getOSSClient</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">OSS</span> <span class="hljs-variable">ossClient</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-comment">//创建与阿里云进行数据交互（上传或者下载）的客服端对象</span><br>        <span class="hljs-comment">// 强烈建议不要把访问凭证保存到工程代码里，否则可能导致访问凭证泄露，</span><br>        <span class="hljs-comment">//威胁您账号下所有资源的安全本代码示例以从环境变量中获取访问凭证为例。</span><br>        <span class="hljs-comment">//运行本代码示例之前，请先配置环境变量</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">EnvironmentVariableCredentialsProvider</span> <span class="hljs-variable">credentialsProvider</span> <span class="hljs-operator">=</span> CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();<br>            <span class="hljs-type">DefaultCredentials</span> <span class="hljs-variable">defaultCredentials</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DefaultCredentials</span>(System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID&quot;</span>), System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET&quot;</span>));<br>            credentialsProvider.setCredentials(defaultCredentials);<br>            <span class="hljs-comment">//创建OSSClient实例</span><br>            ossClient = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OSSClientBuilder</span>().build(ENDPOINT, credentialsProvider);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> ossClient;<br><br>    &#125;<br><br>    <span class="hljs-comment">//获取环境变量的秘钥</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ossAccessKeyId</span> <span class="hljs-operator">=</span> System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">ossAccessKeySecret</span> <span class="hljs-operator">=</span> System.getenv(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;OSS_ACCESS_KEY_ID:&quot;</span> + ossAccessKeyId);<br>        System.out.println(<span class="hljs-string">&quot;OSS_ACCESS_KEY_SECRET:&quot;</span> + ossAccessKeySecret);<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建存储空间 我们之前就手工创建了（在oss的控制台创建）</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  OSS连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createBucketName</span><span class="hljs-params">(OSSClient ossClient, String bucketName)</span> &#123;<br>        <span class="hljs-comment">//存储空间</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">bucketNames</span> <span class="hljs-operator">=</span> bucketName;<br>        <span class="hljs-comment">//创建存储空间</span><br>        <span class="hljs-type">Bucket</span> <span class="hljs-variable">bucket</span> <span class="hljs-operator">=</span> ossClient.createBucket(bucketName);<br>        System.out.println(<span class="hljs-string">&quot;创建空间成功！&quot;</span>);<br>        <span class="hljs-keyword">return</span> bucket.getName();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 删除存储空间 bucketName</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss对象</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteBucket</span><span class="hljs-params">(OSSClient ossClient, String bucketName)</span> &#123;<br>        ossClient.deleteBucket(bucketName);<br>        System.out.println(<span class="hljs-string">&quot;删除&quot;</span> + bucketName + <span class="hljs-string">&quot;Bucket成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testDelete</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">OSSClient</span> <span class="hljs-variable">ossClient</span> <span class="hljs-operator">=</span> (OSSClient) getOSSClient();<br>        ossClient.deleteObject(<span class="hljs-string">&quot;tkyu&quot;</span>, <span class="hljs-string">&quot;images/&quot;</span> + <span class="hljs-string">&quot;0b03f416445f4241ba443b434313915f.jpg&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建模拟文件夹</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 文件夹名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createFolder</span><span class="hljs-params">(OSSClient ossClient, String bucketName, String folder)</span> &#123;<br>        <span class="hljs-comment">//文件夹名</span><br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">keySuffixWithSlash</span> <span class="hljs-operator">=</span> folder;<br>        <span class="hljs-comment">//判断文件夹是否存在，不存在则创建</span><br>        <span class="hljs-keyword">if</span> (!ossClient.doesObjectExist(bucketName, keySuffixWithSlash)) &#123;<br>            <span class="hljs-comment">//创建文件夹</span><br>            ossClient.putObject(bucketName, keySuffixWithSlash, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">0</span>]));<br>            System.out.println(<span class="hljs-string">&quot;创建文件夹成功&quot;</span>);<br>            <span class="hljs-comment">//得到文件夹名</span><br>            <span class="hljs-type">OSSObject</span> <span class="hljs-variable">object</span> <span class="hljs-operator">=</span> ossClient.getObject(bucketName, keySuffixWithSlash);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">fileDir</span> <span class="hljs-operator">=</span> object.getKey();<br>            <span class="hljs-keyword">return</span> fileDir;<br>        &#125;<br>        <span class="hljs-keyword">return</span> keySuffixWithSlash;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据key删除OSS服务器上的文件</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss连接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名 如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileName   Bucket下文件名 如：&quot;cake.jpg&quot;</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteFile</span><span class="hljs-params">(OSSClient ossClient, String bucketName, String folder, String fileName)</span> &#123;<br>        ossClient.deleteObject(bucketName, folder + fileName);<br>        System.out.println(<span class="hljs-string">&quot;删除&quot;</span> + bucketName + <span class="hljs-string">&quot;下的文件&quot;</span> + folder + fileName + <span class="hljs-string">&quot;成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 上传文件至OSS</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ossClient  oss客户端连接对象</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> file       上传文件（文件全路径如：D:\\image\\cake.jpg）</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> bucketName 存储空间</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> folder     模拟文件夹名 如&quot;qj_nanjing/&quot;</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> String  返回的唯一MD5数字签名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">uploadObject2OSS</span><span class="hljs-params">(OSS ossClient, MultipartFile file, String bucketName, String fileName, String folder)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">resultStr</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//以输入流的形式上传文件</span><br>            <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> file.getInputStream();<br>            <span class="hljs-comment">//文件大小</span><br>            <span class="hljs-type">Long</span> <span class="hljs-variable">fileSize</span> <span class="hljs-operator">=</span> file.getSize();<br>            <span class="hljs-keyword">if</span> (fileSize &gt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-comment">//创建上传Object的Metadata</span><br>                <span class="hljs-type">ObjectMetadata</span> <span class="hljs-variable">metadata</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectMetadata</span>();<br>                <span class="hljs-comment">//上传的文件的长度</span><br>                metadata.setContentLength(is.available());<br>                <span class="hljs-comment">//指定该Object被下载时的网页的缓存行为</span><br>                metadata.setCacheControl(<span class="hljs-string">&quot;no-cache&quot;</span>);<br>                <span class="hljs-comment">//指定该Object下设置Header</span><br>                metadata.setHeader(<span class="hljs-string">&quot;Pragma&quot;</span>, <span class="hljs-string">&quot;no-cache&quot;</span>);<br>                <span class="hljs-comment">//指定该Object被下载时的内容编码格式</span><br>                metadata.setContentEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>);<br>                <span class="hljs-comment">//文件的MIME，定义文件的类型及网页编码，决定浏览器将以什么形式、什么编码读取文件。如果用户没有指定则根据Key或文件名的扩展名生成，</span><br>                <span class="hljs-comment">//如果没有扩展名则填默认值application/octet-stream</span><br>                metadata.setContentType(getContentType(fileName));<br>                <span class="hljs-comment">//指定该Object被下载时的名称（指示MINME用户代理如何显示附加的文件，打开或下载，及文件名称）</span><br>                metadata.setContentDisposition(<span class="hljs-string">&quot;filename/filesize=&quot;</span> + fileName + <span class="hljs-string">&quot;/&quot;</span> + fileSize + <span class="hljs-string">&quot;Byte.&quot;</span>);<br>                <span class="hljs-comment">//上传文件   (上传文件流的形式)</span><br>                <span class="hljs-type">PutObjectResult</span> <span class="hljs-variable">putResult</span> <span class="hljs-operator">=</span> ossClient.putObject(bucketName, folder + fileName, is, metadata);<br>                <span class="hljs-comment">//解析结果</span><br><span class="hljs-comment">//                resultStr = putResult.getETag();  一MD5数字签名  对我们没有  所以改为  返回URL</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            System.out.println(<span class="hljs-string">&quot;上传阿里云OSS服务器异常.&quot;</span> + e.getMessage());<br>        &#125;<br>        <span class="hljs-comment">// 所以改为  返回URL</span><br>        <span class="hljs-keyword">return</span> (<span class="hljs-string">&quot;https://&quot;</span> + BUCKET_NAME + <span class="hljs-string">&quot;.&quot;</span> + ENDPOINT + <span class="hljs-string">&quot;/&quot;</span> + FOLDER + fileName).replaceAll(<span class="hljs-string">&quot;http://&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 通过文件名判断并获取OSS服务文件上传时文件的contentType</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileName 文件名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 文件的contentType</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getContentType</span><span class="hljs-params">(String fileName)</span> &#123;<br>        <span class="hljs-comment">//文件的后缀名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">fileExtension</span> <span class="hljs-operator">=</span> fileName.substring(fileName.lastIndexOf(<span class="hljs-string">&quot;.&quot;</span>));<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.bmp&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/bmp&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.gif&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/gif&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.jpeg&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;.jpg&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;.png&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpeg&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.html&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/html&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.txt&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/plain&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.vsd&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/vnd.visio&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.ppt&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;pptx&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/vnd.ms-powerpoint&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.doc&quot;</span>.equalsIgnoreCase(fileExtension) || <span class="hljs-string">&quot;docx&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/msword&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;.xml&quot;</span>.equalsIgnoreCase(fileExtension)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/xml&quot;</span>;<br>        &#125;<br>        <span class="hljs-comment">//默认返回类型</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpeg&quot;</span>;<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-Http状态码统一处理"><a href="#5-Http状态码统一处理" class="headerlink" title="5.Http状态码统一处理"></a>5.Http状态码统一处理</h1><p>   比如说找不到路径就是404状态码，访问的路径对应的方法只支持post，但是我们用get提交，此时会出现405状态码，服务端出错的时候就是500状态。</p>
+<p>其实SpringBoot上有默认的处理。但是默认的处理很丑体验感不好。</p>
+<p>在之前的项目中错误的处理一般是在web.xml文件中进行配置，本次课使用SpringBoot处理三种状态码为例：404（找不到资源）、405（请求不被允许）、500请求错误的处理（服务器内部的代码出现错误了），目前在SpringBoot中默认的错误页面如下图：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310082036082.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310082036312.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  以上的方式不美观，不友好，所以我们要按照自己的方式来处理这些对应的状态码。</p>
+<h2 id="5-1-创建三个错误处理页面"><a href="#5-1-创建三个错误处理页面" class="headerlink" title="5.1 创建三个错误处理页面"></a>5.1 创建三个错误处理页面</h2><p>以下的三个页面可以放到“src&#x2F;main&#x2F;resources&#x2F;static”下</p>
+<p> “error-404.html”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>404<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>你访问的资源不存在！（404）<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>​      </p>
+<p> “error-405.html”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>405<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>请求不被允许！（405）<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>​       </p>
+<p> “error-500.html”</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>500<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>服务端出错了！（500）<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-2-定义一个控制器"><a href="#5-2-定义一个控制器" class="headerlink" title="5.2 定义一个控制器"></a>5.2 定义一个控制器</h2><p>   该控制器的作用是指定的状态码负责转发到对应的错误页面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;<br><br><span class="hljs-comment">//需要做转发  所以不能用@restController</span><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ErrorPageController</span> &#123;<br>    <span class="hljs-comment">//客户端跳转</span><br>    <span class="hljs-meta">@RequestMapping(&quot;error-404&quot;)</span><br>    <span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title function_">handle404</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModelAndView</span>(<span class="hljs-string">&quot;redirect:http://localhost:9999/error-404.html&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 如果你的返回值 是 String 类型的  则表示要跳转到 return 后的字符串表示的资源</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@RequestMapping(&quot;error-405&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">handle405</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:http://localhost:9999/error-405.html&quot;</span>;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 如果你的返回值 是 String 类型的  则表示要跳转到 return 后的字符串表示的资源</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@RequestMapping(&quot;error-500&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">handle500</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:http://localhost:9999/error-500.html&quot;</span>;<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-3-需要定义一个错误处理的类实现对应的错误处理"><a href="#5-3-需要定义一个错误处理的类实现对应的错误处理" class="headerlink" title="5.3 需要定义一个错误处理的类实现对应的错误处理"></a>5.3 需要定义一个错误处理的类实现对应的错误处理</h2><p>  出现对应错误状态码，要知道转发到控制器（ErorrPageController ）中的指定方法。该类要实现一个ErrorPageRegistrar接口，该接口用来做页面错误的统一处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.tk.firstboot.utils;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.web.server.ErrorPage;<br><span class="hljs-keyword">import</span> org.springframework.boot.web.server.ErrorPageRegistrar;<br><span class="hljs-keyword">import</span> org.springframework.boot.web.server.ErrorPageRegistry;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.http.HttpStatus;<br><br><span class="hljs-comment">//表示属于一个配置类（在之前如果要实现类似的配置需要在spring的配置文件中去实现，本质上就是配置了一个bean）</span><br><span class="hljs-comment">//@Configuration：等价于之前在xml文件中的配置了（也就是等价于之前的配置文件）</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ErrorPageConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ErrorPageRegistrar</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">registerErrorPages</span><span class="hljs-params">(ErrorPageRegistry registry)</span> &#123;<br>        <span class="hljs-comment">//处理404状态码的对象</span><br>        <span class="hljs-type">ErrorPage</span> <span class="hljs-variable">errorPage404</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorPage</span>(HttpStatus.NOT_FOUND, <span class="hljs-string">&quot;/error-404&quot;</span>);<br>        <span class="hljs-comment">//处理405状态码的对象</span><br>        <span class="hljs-type">ErrorPage</span> <span class="hljs-variable">errorPage405</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorPage</span>(HttpStatus.METHOD_NOT_ALLOWED, <span class="hljs-string">&quot;/error-405&quot;</span>);<br>        <span class="hljs-comment">//处理500状态码的对象</span><br>        <span class="hljs-type">ErrorPage</span> <span class="hljs-variable">errorPage500</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorPage</span>(HttpStatus.INTERNAL_SERVER_ERROR, <span class="hljs-string">&quot;/error-500&quot;</span>);<br>        <span class="hljs-comment">//将上面的三个对象添加到registry对象中</span><br>        registry.addErrorPages(errorPage404, errorPage405, errorPage500);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-4-测试（访问一个不存在路径）"><a href="#5-4-测试（访问一个不存在路径）" class="headerlink" title="5.4 测试（访问一个不存在路径）"></a>5.4 测试（访问一个不存在路径）</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081518351.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-5-测试（在服务器端出现异常）"><a href="#5-5-测试（在服务器端出现异常）" class="headerlink" title="5.5 测试（在服务器端出现异常）"></a>5.5 测试（在服务器端出现异常）</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">&quot;test&quot;</span>)<br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;<br>    int i = <span class="hljs-number">10</span> / <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;xxxxxx&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081517317.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-6-测试（405错误）"><a href="#5-6-测试（405错误）" class="headerlink" title="5.6 测试（405错误）"></a>5.6 测试（405错误）</h2><p>post请求用get测试</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">&quot;test&quot;</span>)<br> <span class="hljs-keyword">public</span> <span class="hljs-title class_">String</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;<br>     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;xxxxxx&quot;</span>;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p> 如果提交的请求的方式不被服务端允许则出现405状态码。 </p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310081513701.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-7-总结"><a href="#5-7-总结" class="headerlink" title="5.7 总结"></a>5.7 总结</h2><p>   以上的操作实际上没有针对异常进行捕获，而是根据响应的状态码进行不同的处理的，那么如要针对不同的异常进行捕获呢？这就要用到全局异常捕获了</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SpringBoot/" class="category-chain-item">SpringBoot</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/springBoot%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">#springBoot文件上传</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2023/10/08/day060springboot/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/07/day059springboot/" title="day059springboot">
+                        <span class="hidden-mobile">day059springboot</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
