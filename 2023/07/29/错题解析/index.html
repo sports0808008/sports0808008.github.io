@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202307290854979.webp">
 <meta property="article:published_time" content="2023-07-29T00:47:09.000Z">
-<meta property="article:modified_time" content="2023-08-07T12:25:42.668Z">
+<meta property="article:modified_time" content="2023-10-09T01:08:42.081Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="错题回顾">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          6.1k 字
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          50 分钟
+          51 分钟
         
       </span>
     
@@ -340,6 +340,8 @@
 
 <h2 id="1-10000包含数字有多少2"><a href="#1-10000包含数字有多少2" class="headerlink" title="1-10000包含数字有多少2"></a>1-10000包含数字有多少2</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xy.deno2;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test4</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> jisuan(<span class="hljs-number">10000</span>);<br>        System.out.println(<span class="hljs-string">&quot;1-10000包含数字有多少2:&quot;</span> + count + <span class="hljs-string">&quot;个&quot;</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">jisuan</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> Integer.toString(i);<br>            count = count + has2Count(num);<br><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> count;<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">has2Count</span><span class="hljs-params">(String num)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">char</span>[] charArray = num.toCharArray();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; charArray.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (charArray[i] == <span class="hljs-string">&#x27;2&#x27;</span>) &#123;<br>                count++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> count;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
+<p><strong>Can not find table primary key in Class:</strong> “cn.tk.empboot.entity.Emp”.<br>class cn.tk.empboot.entity.Emp ,Not found @TableId annotation, Cannot use Mybatis-Plus ‘xxById’ Method.</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310090907432.webp" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
