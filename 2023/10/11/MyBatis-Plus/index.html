@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、MyBatis-Plus简介1 、简介MyBatis-Plus （简称 MP）是一个 MyBatis的增强工具 ，在 MyBatis 的基础上 只做增强不做改变 ，为 简化开发、提高效率而生 。 愿景  我们的愿景是成为 MyBatis 最好的搭档，就像魂斗罗中的 1P、2P，基友搭配，效率翻倍。 2 、特性无侵入 ：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑 损耗小 ：启动即">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis-Plus">
+<meta property="og:url" content="http://example.com/2023/10/11/MyBatis-Plus/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="一、MyBatis-Plus简介1 、简介MyBatis-Plus （简称 MP）是一个 MyBatis的增强工具 ，在 MyBatis 的基础上 只做增强不做改变 ，为 简化开发、提高效率而生 。 愿景  我们的愿景是成为 MyBatis 最好的搭档，就像魂斗罗中的 1P、2P，基友搭配，效率翻倍。 2 、特性无侵入 ：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑 损耗小 ：启动即">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310092253115.webp">
+<meta property="article:published_time" content="2023-10-11T14:28:04.000Z">
+<meta property="article:modified_time" content="2023-10-11T14:42:21.968Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="MyBatis-Plus">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310092253115.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>MyBatis-Plus - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MyBatis-Plus"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-11 22:28" pubdate>
+          2023年10月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          35k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          288 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MyBatis-Plus</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、MyBatis-Plus简介"><a href="#一、MyBatis-Plus简介" class="headerlink" title="一、MyBatis-Plus简介"></a>一、MyBatis-Plus简介</h1><h2 id="1-、简介"><a href="#1-、简介" class="headerlink" title="1 、简介"></a>1 、简介</h2><p>MyBatis-Plus （简称 MP）是一个 MyBatis的增强工具 ，在 MyBatis 的基础上 只做增强不做改变 ，为</p>
+<p>简化开发、提高效率而生 。</p>
+<p>愿景</p>
+<p><img src="/ipic%5C202310112235658.webp" srcset="/img/loading.gif" lazyload></p>
+<p>我们的愿景是成为 MyBatis 最好的搭档，就像魂斗罗中的 1P、2P，基友搭配，效率翻倍。</p>
+<h2 id="2-、特性"><a href="#2-、特性" class="headerlink" title="2 、特性"></a>2 、特性</h2><p>无侵入 ：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</p>
+<p>损耗小 ：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</p>
+<p>强大的 CRUD 操作 ：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分</p>
+<p>CRUD 操作，更有强大的条件构造器，满足各类使用需求</p>
+<p>支持 Lambda 形式调用 ：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</p>
+<p>支持主键自动生成 ：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由</p>
+<p>配置，完美解决主键问题</p>
+<p>支持 ActiveRecord 模式 ：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强</p>
+<p>大的 CRUD 操作</p>
+<p>支持自定义全局通用操作 ：支持全局通用方法注入（ Write once, use anywhere ）</p>
+<p>内置代码生成器 ：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、</p>
+<p>Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</p>
+<p>内置分页插件 ：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等</p>
+<p>同于普通 List 查询</p>
+<p>分页插件支持多种数据库 ：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、</p>
+<p>Postgre、SQLServer 等多种数据库</p>
+<p>内置性能分析插件 ：可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出</p>
+<p>慢查询</p>
+<p>内置全局拦截插件 ：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防</p>
+<p>误操作</p>
+<h2 id="3-、支持数据库"><a href="#3-、支持数据库" class="headerlink" title="3 、支持数据库"></a>3 、支持数据库</h2><p>任何能使用MyBatis进行 CRUD, 并且支持标准 SQL 的数据库，具体支持情况如下</p>
+<p>MySQL，Oracle，DB2，H2，HSQL，SQLite，PostgreSQL，SQLServer，Phoenix，Gauss ，</p>
+<p>ClickHouse，Sybase，OceanBase，Firebird，Cubrid，Goldilocks，csiidb</p>
+<p>达梦数据库，虚谷数据库，人大金仓数据库，南大通用(华库)数据库，南大通用数据库，神通数据</p>
+<p>库，瀚高数据库</p>
+<h2 id="4-、框架结构"><a href="#4-、框架结构" class="headerlink" title="4 、框架结构"></a>4 、框架结构</h2><p><img src="/ipic%5C202310112236983.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="5-、代码及文档地址"><a href="#5-、代码及文档地址" class="headerlink" title="5 、代码及文档地址"></a>5 、代码及文档地址</h2><h5 id="官方地址-http-mp-baomidou-com"><a href="#官方地址-http-mp-baomidou-com" class="headerlink" title="官方地址: http://mp.baomidou.com"></a>官方地址: <a target="_blank" rel="noopener" href="http://mp.baomidou.com/">http://mp.baomidou.com</a></h5><p>代码发布地址:</p>
+<p>Github: <a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">https://github.com/baomidou/mybatis-plus</a></p>
+<p>Gitee: <a target="_blank" rel="noopener" href="https://gitee.com/baomidou/mybatis-plus">https://gitee.com/baomidou/mybatis-plus</a></p>
+<p>文档发布地址: <a target="_blank" rel="noopener" href="https://baomidou.com/pages/24112f">https://baomidou.com/pages/24112f</a></p>
+<h1 id="二、入门案例"><a href="#二、入门案例" class="headerlink" title="二、入门案例"></a>二、入门案例</h1><h2 id="1-、开发环境"><a href="#1-、开发环境" class="headerlink" title="1 、开发环境"></a>1 、开发环境</h2><p>IDE：idea 2019.</p>
+<p>JDK：JDK8+</p>
+<p>构建工具：maven 3.5.</p>
+<p>MySQL版本：MySQL 5.</p>
+<p>Spring Boot：2.6.</p>
+<p>MyBatis-Plus：3.5.</p>
+<h2 id="2-、创建数据库及表"><a href="#2-、创建数据库及表" class="headerlink" title="2 、创建数据库及表"></a>2 、创建数据库及表</h2><p>a&gt;创建表</p>
+<p>b&gt;添加数据</p>
+<h2 id="3-、创建Spring-Boot工程"><a href="#3-、创建Spring-Boot工程" class="headerlink" title="3 、创建Spring Boot工程"></a>3 、创建Spring Boot工程</h2><p>a&gt;初始化工程</p>
+<p>使用 Spring Initializr 快速初始化一个 Spring Boot 工程</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> `mybatis_plus` <span class="hljs-comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 */</span>;<br>use `mybatis_plus`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `<span class="hljs-keyword">user</span>` (<br>`id` <span class="hljs-type">bigint</span>( <span class="hljs-number">20</span> ) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;主键ID&#x27;</span>,<br>`<span class="hljs-type">name</span>` <span class="hljs-type">varchar</span>( <span class="hljs-number">30</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;姓名&#x27;</span>,<br>`age` <span class="hljs-type">int</span>( <span class="hljs-number">11</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;年龄&#x27;</span>,<br>`email` <span class="hljs-type">varchar</span>( <span class="hljs-number">50</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;邮箱&#x27;</span>,<br><span class="hljs-keyword">PRIMARY KEY</span> (`id`)<br>) ENGINE=InnoDB <span class="hljs-keyword">DEFAULT</span> CHARSET=utf8;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">INSERT</span> INTO user (id, name, age, email) VALUES<br>( <span class="hljs-number">1</span> , <span class="hljs-string">&#x27;Jone&#x27;</span>, <span class="hljs-number">18</span> , <span class="hljs-string">&#x27;test1<span class="hljs-variable">@baomidou</span>.com&#x27;</span>),<br>( <span class="hljs-number">2</span> , <span class="hljs-string">&#x27;Jack&#x27;</span>, <span class="hljs-number">20</span> , <span class="hljs-string">&#x27;test2<span class="hljs-variable">@baomidou</span>.com&#x27;</span>),<br>( <span class="hljs-number">3</span> , <span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-number">28</span> , <span class="hljs-string">&#x27;test3<span class="hljs-variable">@baomidou</span>.com&#x27;</span>),<br>( <span class="hljs-number">4</span> , <span class="hljs-string">&#x27;Sandy&#x27;</span>, <span class="hljs-number">21</span> , <span class="hljs-string">&#x27;test4<span class="hljs-variable">@baomidou</span>.com&#x27;</span>),<br>( <span class="hljs-number">5</span> , <span class="hljs-string">&#x27;Billie&#x27;</span>, <span class="hljs-number">24</span> , <span class="hljs-string">&#x27;test5<span class="hljs-variable">@baomidou</span>.com&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="b-gt-引入依赖"><a href="#b-gt-引入依赖" class="headerlink" title="b&gt;引入依赖"></a>b&gt;引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>&lt;/dependency<br></code></pre></td></tr></table></figure>
+
+<h3 id="c-gt-idea中安装lombok插件"><a href="#c-gt-idea中安装lombok插件" class="headerlink" title="c&gt;idea中安装lombok插件"></a>c&gt;idea中安装lombok插件</h3><p><img src="/ipic%5C202310112237096.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-、编写代码"><a href="#4-、编写代码" class="headerlink" title="4 、编写代码"></a>4 、编写代码</h2><p>a&gt;配置application.yml</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">spring:</span><br><span class="hljs-meta"># 配置数据源信息</span><br><span class="hljs-symbol">datasource:</span><br><span class="hljs-meta"># 配置数据源类型</span><br><span class="hljs-symbol">type:</span> <span class="hljs-keyword">com</span>.zaxxer.hikari.HikariDataSource<br><span class="hljs-meta"># 配置连接数据库信息</span><br>driver-class-name: <span class="hljs-keyword">com</span>.mysql.cj.jdbc.Driver<br><span class="hljs-symbol">url:</span> jdbc:mysql://localhost:<span class="hljs-number">3306</span>/mybatis_plus?characterEncoding=utf<span class="hljs-number">8</span>&amp;useSSL=false<br><span class="hljs-symbol">username:</span> root<br><span class="hljs-symbol">password:</span> <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>1 、驱动类driver-class-name</p>
+<p>spring boot 2.0（内置jdbc5驱动），驱动类使用：</p>
+<p>driver-class-name: com.mysql.jdbc.Driver</p>
+<p>spring boot 2.1及以上（内置jdbc8驱动），驱动类使用：</p>
+<p>driver-class-name: com.mysql.cj.jdbc.Driver</p>
+<p>否则运行测试用例的时候会有 WARN 信息</p>
+<p>2 、连接地址url</p>
+<p>MySQL5.7版本的url：</p>
+<p>jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis_plus?characterEncoding&#x3D;utf-8&amp;useSSL&#x3D;false</p>
+<p>MySQL8.0版本的url：</p>
+<p>jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis_plus?</p>
+<p>serverTimezone&#x3D;GMT%2B8&amp;characterEncoding&#x3D;utf-8&amp;useSSL&#x3D;false</p>
+<p>否则运行测试用例报告如下错误：</p>
+<p>java.sql.SQLException: The server time zone value ‘ÖÐ¹ú±ê×¼Ê±¼ä’ is unrecognized or</p>
+<p>represents more</p>
+<h3 id="b-gt-启动类"><a href="#b-gt-启动类" class="headerlink" title="b&gt;启动类"></a>b&gt;启动类</h3><p>在Spring Boot启动类中添加@MapperScan注解，扫描mapper包</p>
+<h3 id="c-gt-添加实体"><a href="#c-gt-添加实体" class="headerlink" title="c&gt;添加实体"></a>c&gt;添加实体</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs haxe">@Data <span class="hljs-comment">//lombok注解</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br><span class="hljs-keyword">private</span> Long id;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;<br><span class="hljs-keyword">private</span> Integer age;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> email;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>User类编译之后的结果：</p>
+<h3 id="d-gt-添加mapper"><a href="#d-gt-添加mapper" class="headerlink" title="d&gt;添加mapper"></a>d&gt;添加mapper</h3><p>BaseMapper是MyBatis-Plus提供的模板mapper，其中包含了基本的CRUD方法，泛型为操作的</p>
+<p>实体类型</p>
+<p>e&gt;测试</p>
+<p>结果：</p>
+<p>注意：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">UserMapper</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BaseMapper</span>&lt;<span class="hljs-symbol">User</span>&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable">@SpringBootTest</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MybatisPlusTest</span> &#123;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> UserMapper userMapper;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectList()&#123;<br>//selectList()根据MP内置的条件构造器查询一个list集合，<span class="hljs-keyword">null</span>表示没有条件，即查询所有<br>userMapper.selectList(<span class="hljs-keyword">null</span>).<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>}</p>
+<p>IDEA在 userMapper 处报错，因为找不到注入的对象，因为类是动态创建的，但是程序可以正确</p>
+<p>的执行。</p>
+<p>为了避免报错，可以在mapper接口上添加 @Repository 注解</p>
+<h2 id="f-gt-添加日志"><a href="#f-gt-添加日志" class="headerlink" title="f&gt;添加日志"></a>f&gt;添加日志</h2><h5 id="在application-yml中配置日志输出"><a href="#在application-yml中配置日志输出" class="headerlink" title="在application.yml中配置日志输出"></a>在application.yml中配置日志输出</h5><h1 id="三、基本CRUD"><a href="#三、基本CRUD" class="headerlink" title="三、基本CRUD"></a>三、基本CRUD</h1><h2 id="1-、BaseMapper"><a href="#1-、BaseMapper" class="headerlink" title="1 、BaseMapper"></a>1 、BaseMapper</h2><p>MyBatis-Plus中的基本CRUD在内置的BaseMapper中都已得到了实现，我们可以直接使用，接口如</p>
+<p>下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># 配置MyBatis日志</span><br><span class="hljs-section">mybatis-plus:</span><br><span class="hljs-section">configuration:</span><br><span class="hljs-section">log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">com.baomidou.mybat</span>isplus.core.mapper;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">BaseMapper</span>&lt;<span class="hljs-symbol">T</span>&gt; <span class="hljs-symbol">extends</span> <span class="hljs-symbol">Mapper</span>&lt;<span class="hljs-symbol">T</span>&gt; &#123;<br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F"><a href="#x2F" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><h6 id="插入一条记录"><a href="#插入一条记录" class="headerlink" title="* 插入一条记录"></a>* 插入一条记录</h6><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">* <span class="hljs-meta">@param</span> entity 实体对象<br>*/<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insert</span><span class="hljs-params">(T entity)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-1"><a href="#x2F-1" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><h6 id="根据-ID-删除"><a href="#根据-ID-删除" class="headerlink" title="* 根据 ID 删除"></a>* 根据 ID 删除</h6><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">* <span class="hljs-meta">@param</span> id 主键ID<br>*/<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteById</span><span class="hljs-params">(Serializable id)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-2"><a href="#x2F-2" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><h6 id="根据实体-ID-删除"><a href="#根据实体-ID-删除" class="headerlink" title="* 根据实体(ID)删除"></a>* 根据实体(ID)删除</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less">* <span class="hljs-variable">@param</span> entity 实体对象<br>* <span class="hljs-variable">@since</span> <span class="hljs-number">3.4</span>.<br>*/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-type">int</span> deleteById(T entity);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 columnMap 条件，删除记录</span><br><span class="hljs-comment">* @param columnMap 表字段 map 对象</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-type">int</span> deleteByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, <span class="hljs-keyword">Object</span>&gt; columnMap);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 entity 条件，删除记录</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null,里面的 entity 用于生成 where</span><br><span class="hljs-comment">  语句）</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-type">int</span> <span class="hljs-keyword">delete</span>(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">###### * 删除（根据ID 批量删除）</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param idList 主键ID列表(不能为 null 以及 empty)</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-type">int</span> deleteBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends<br>  <span class="hljs-keyword">Serializable</span>&gt; idList);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">###### * 根据 ID 修改</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param entity 实体对象</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-type">int</span> updateById(@Param(Constants.ENTITY) T entity);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 whereEntity 条件，更新记录</span><br><span class="hljs-comment">* @param entity 实体对象 (set 条件值,可以为 null)</span><br><span class="hljs-comment">* @param updateWrapper 实体对象封装操作类（可以为 null,里面的 entity 用于生成</span><br><span class="hljs-comment">  where 语句）</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-type">int</span> <span class="hljs-keyword">update</span>(@Param(Constants.ENTITY) T entity, @Param(Constants.<span class="hljs-keyword">WRAPPER</span>)<br>  <span class="hljs-keyword">Wrapper</span>&lt;T&gt; updateWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">###### * 根据 ID 查询</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param id 主键ID</span><br><span class="hljs-comment">  */</span><br>  T selectById(<span class="hljs-keyword">Serializable</span> id);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">###### * 查询（根据ID 批量查询）</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param idList 主键ID列表(不能为 null 以及 empty)</span><br><span class="hljs-comment">  */</span><br>  List&lt;T&gt; selectBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends<br>  <span class="hljs-keyword">Serializable</span>&gt; idList);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 查询（根据 columnMap 条件）</span><br><span class="hljs-comment">* @param columnMap 表字段 map 对象</span><br><span class="hljs-comment">  */</span><br>  List&lt;T&gt; selectByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, <span class="hljs-keyword">Object</span>&gt;<br>  columnMap);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 entity 条件，查询一条记录</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* &lt;p&gt;查询一条记录，例如 qw.last(&quot;limit 1&quot;) 限制取一条记录, 注意：多条数据会报异常</span><br><span class="hljs-comment">  &lt;/p&gt;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-keyword">default</span> T selectOne(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper) &#123;<br>  List&lt;T&gt; ts = this.selectList(queryWrapper);<br>  <span class="hljs-keyword">if</span> (CollectionUtils.isNotEmpty(ts)) &#123;<br>  <span class="hljs-keyword">if</span> (ts.size() != <span class="hljs-number">1</span> ) &#123;<br>  throw ExceptionUtils.mpe(&quot;One record is expected, but the query<br>  result is multiple records&quot;);<br>  &#125;<br>  <span class="hljs-keyword">return</span> ts.<span class="hljs-keyword">get</span>( <span class="hljs-number">0</span> );<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>  &#125;<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 Wrapper 条件，查询总记录数</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br>  Long selectCount(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 entity 条件，查询全部记录</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br>  List&lt;T&gt; selectList(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 Wrapper 条件，查询全部记录</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br>  List&lt;Map&lt;String, <span class="hljs-keyword">Object</span>&gt;&gt; selectMaps(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt;<br>  queryWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 Wrapper 条件，查询全部记录</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* &lt;p&gt;注意： 只返回第一个字段的值&lt;/p&gt;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br>  List&lt;<span class="hljs-keyword">Object</span>&gt; selectObjs(@Param(Constants.<span class="hljs-keyword">WRAPPER</span>) <span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper);<br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 entity 条件，查询全部记录（并翻页）</span><br><span class="hljs-comment">* @param page 分页查询条件（可以为 RowBounds.DEFAULT）</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类（可以为 null）</span><br><span class="hljs-comment">  */</span><br><br>&lt;P extends IPage&lt;T&gt;&gt; P selectPage(P page, @Param(Constants.<span class="hljs-keyword">WRAPPER</span>)<br><span class="hljs-keyword">Wrapper</span>&lt;T&gt; queryWrapper);<br><br><br>###### <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">* 根据 Wrapper 条件，查询全部记录（并翻页）</span><br><span class="hljs-comment">* @param page 分页查询条件</span><br><span class="hljs-comment">* @param queryWrapper 实体对象封装操作类</span><br><span class="hljs-comment">  */</span><br></code></pre></td></tr></table></figure>
+
+
+
+<P extends IPage<Map<String, Object>>> P selectMapsPage(P page,
+@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
+
+
+
+<h2 id="2-、插入"><a href="#2-、插入" class="headerlink" title="2 、插入"></a>2 、插入</h2><p>最终执行的结果，所获取的id为 1475754982694199298</p>
+<p>这是因为MyBatis-Plus在实现插入数据时，会默认基于雪花算法的策略生成id</p>
+<h2 id="3-、删除"><a href="#3-、删除" class="headerlink" title="3 、删除"></a>3 、删除</h2><p>a&gt;通过id删除记录</p>
+<p>b&gt;通过id批量删除记录</p>
+<p>c&gt;通过map条件删除记录</p>
+<h6 id=""><a href="#" class="headerlink" title="}"></a>}</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testInsert()&#123;<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-keyword">null</span>, &quot;张三&quot;, <span class="hljs-number">23</span> , &quot;zhangsan@atguigu.com&quot;);<br>//<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">user</span> ( id, <span class="hljs-type">name</span>, age, email ) <span class="hljs-keyword">VALUES</span> ( ?, ?, ?,? )<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">insert</span>(<span class="hljs-keyword">user</span>);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响行数：&quot;+result);<br>//<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;id自动获取：&quot;+<span class="hljs-keyword">user</span>.getId());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testDeleteById()&#123;<br>//通过id删除用户信息<br>//<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> id=?<br><span class="hljs-type">int</span> result = userMapper.deleteById(<span class="hljs-number">1475754982694199298</span>L);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响行数：&quot;+result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">@Test<br>public void test<span class="hljs-constructor">DeleteBatchIds()</span>&#123;<br><span class="hljs-comment">//通过多个id批量删除</span><br><span class="hljs-comment">//DELETE FROM user WHERE id IN (? ,? ,? )</span><br>List&lt;Long&gt; idList = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Arrays</span>.</span></span><span class="hljs-keyword">as</span><span class="hljs-constructor">List(1L, 2L, 3L)</span>;<br><span class="hljs-built_in">int</span> result = userMapper.delete<span class="hljs-constructor">BatchIds(<span class="hljs-params">idList</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;受影响行数：&quot;</span>+result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-、修改"><a href="#4-、修改" class="headerlink" title="4 、修改"></a>4 、修改</h2><h2 id="5-、查询"><a href="#5-、查询" class="headerlink" title="5 、查询"></a>5 、查询</h2><h3 id="a-gt-根据id查询用户信息"><a href="#a-gt-根据id查询用户信息" class="headerlink" title="a&gt;根据id查询用户信息"></a>a&gt;根据id查询用户信息</h3><h3 id="b-gt-根据多个id查询多个用户信息"><a href="#b-gt-根据多个id查询多个用户信息" class="headerlink" title="b&gt;根据多个id查询多个用户信息"></a>b&gt;根据多个id查询多个用户信息</h3><h3 id="c-gt-通过map条件查询用户信息"><a href="#c-gt-通过map条件查询用户信息" class="headerlink" title="c&gt;通过map条件查询用户信息"></a>c&gt;通过map条件查询用户信息</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs arduino">@<span class="hljs-function">Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title">testDeleteByMap</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-comment">//根据map集合中所设置的条件删除记录</span><br><span class="hljs-comment">//DELETE FROM user WHERE name =? AND age =?</span><br>Map&lt;<span class="hljs-type">String</span>, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>map.<span class="hljs-built_in">put</span>(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">23</span> );<br>map.<span class="hljs-built_in">put</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;张三&quot;</span>);<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-built_in">deleteByMap</span>(map);<br>System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;受影响行数：&quot;</span>+result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testUpdateById()&#123;<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>(<span class="hljs-number">4</span>L, &quot;admin&quot;, <span class="hljs-number">22</span> , <span class="hljs-keyword">null</span>);<br>//<span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">SET</span> <span class="hljs-type">name</span>=?, age=? <span class="hljs-keyword">WHERE</span> id=?<br><span class="hljs-type">int</span> result = userMapper.updateById(<span class="hljs-keyword">user</span>);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响行数：&quot;+result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectById()&#123;<br>//根据id查询用户信息<br>//<span class="hljs-keyword">SELECT</span> id,<span class="hljs-type">name</span>,age,email <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> id=?<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = userMapper.selectById(<span class="hljs-number">4</span>L);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">user</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectBatchIds()&#123;<br>//根据多个id查询多个用户信息<br>//<span class="hljs-keyword">SELECT</span> id,<span class="hljs-type">name</span>,age,email <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span> (? ,? )<br>List&lt;Long&gt; idList = Arrays.asList(<span class="hljs-number">4</span>L, <span class="hljs-number">5</span>L);<br>List&lt;<span class="hljs-keyword">User</span>&gt; list = userMapper.selectBatchIds(idList);<br>list.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="d-gt-查询所有数据"><a href="#d-gt-查询所有数据" class="headerlink" title="d&gt;查询所有数据"></a>d&gt;查询所有数据</h3><h5 id="通过观察BaseMapper中的方法，大多方法中都有Wrapper类型的形参，此为条件构造器，可针"><a href="#通过观察BaseMapper中的方法，大多方法中都有Wrapper类型的形参，此为条件构造器，可针" class="headerlink" title="通过观察BaseMapper中的方法，大多方法中都有Wrapper类型的形参，此为条件构造器，可针"></a>通过观察BaseMapper中的方法，大多方法中都有Wrapper类型的形参，此为条件构造器，可针</h5><h5 id="对于SQL语句设置不同的条件，若没有条件，则可以为该形参赋值null，即查询（删除-x2F-修改）所"><a href="#对于SQL语句设置不同的条件，若没有条件，则可以为该形参赋值null，即查询（删除-x2F-修改）所" class="headerlink" title="对于SQL语句设置不同的条件，若没有条件，则可以为该形参赋值null，即查询（删除&#x2F;修改）所"></a>对于SQL语句设置不同的条件，若没有条件，则可以为该形参赋值null，即查询（删除&#x2F;修改）所</h5><h5 id="有数据"><a href="#有数据" class="headerlink" title="有数据"></a>有数据</h5><h2 id="6-、通用Service"><a href="#6-、通用Service" class="headerlink" title="6 、通用Service"></a>6 、通用Service</h2><h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><h5 id="通用-Service-CRUD-封装IService接口，进一步封装-CRUD-采用-get-查询单行-remove-删"><a href="#通用-Service-CRUD-封装IService接口，进一步封装-CRUD-采用-get-查询单行-remove-删" class="headerlink" title="通用 Service CRUD 封装IService接口，进一步封装 CRUD 采用 get 查询单行 remove 删"></a>通用 Service CRUD 封装IService接口，进一步封装 CRUD 采用 get 查询单行 remove 删</h5><h5 id="除-list-查询集合-page-分页-前缀命名方式区分-Mapper-层避免混淆，"><a href="#除-list-查询集合-page-分页-前缀命名方式区分-Mapper-层避免混淆，" class="headerlink" title="除 list 查询集合 page 分页 前缀命名方式区分 Mapper 层避免混淆，"></a>除 list 查询集合 page 分页 前缀命名方式区分 Mapper 层避免混淆，</h5><h5 id="泛型-T-为任意实体对象"><a href="#泛型-T-为任意实体对象" class="headerlink" title="泛型 T 为任意实体对象"></a>泛型 T 为任意实体对象</h5><h5 id="建议如果存在自定义通用-Service-方法的可能，请创建自己的-IBaseService-继承"><a href="#建议如果存在自定义通用-Service-方法的可能，请创建自己的-IBaseService-继承" class="headerlink" title="建议如果存在自定义通用 Service 方法的可能，请创建自己的 IBaseService 继承"></a>建议如果存在自定义通用 Service 方法的可能，请创建自己的 IBaseService 继承</h5><h5 id="Mybatis-Plus-提供的基类"><a href="#Mybatis-Plus-提供的基类" class="headerlink" title="Mybatis-Plus 提供的基类"></a>Mybatis-Plus 提供的基类</h5><h5 id="官网地址：https-baomidou-com-pages-49cc81-service-crud-E6-8E-A5-E5-8F"><a href="#官网地址：https-baomidou-com-pages-49cc81-service-crud-E6-8E-A5-E5-8F" class="headerlink" title="官网地址：https://baomidou.com/pages/49cc81/#service-crud-%E6%8E%A5%E5%8F%"></a>官网地址：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/49cc81/#service-crud-%E6%8E%A5%E5%8F%">https://baomidou.com/pages/49cc81/#service-crud-%E6%8E%A5%E5%8F%</a></h5><h5 id="A"><a href="#A" class="headerlink" title="A"></a>A</h5><h3 id="a-gt-IService"><a href="#a-gt-IService" class="headerlink" title="a&gt;IService"></a>a&gt;IService</h3><h5 id="MyBatis-Plus中有一个接口-IService和其实现类-ServiceImpl，封装了常见的业务层逻辑"><a href="#MyBatis-Plus中有一个接口-IService和其实现类-ServiceImpl，封装了常见的业务层逻辑" class="headerlink" title="MyBatis-Plus中有一个接口 IService和其实现类 ServiceImpl，封装了常见的业务层逻辑"></a>MyBatis-Plus中有一个接口 IService和其实现类 ServiceImpl，封装了常见的业务层逻辑</h5><h5 id="详情查看源码IService和ServiceImpl"><a href="#详情查看源码IService和ServiceImpl" class="headerlink" title="详情查看源码IService和ServiceImpl"></a>详情查看源码IService和ServiceImpl</h5><h3 id="b-gt-创建Service接口和实现类"><a href="#b-gt-创建Service接口和实现类" class="headerlink" title="b&gt;创建Service接口和实现类"></a>b&gt;创建Service接口和实现类</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectByMap()&#123;<br>//通过map条件查询用户信息<br>//<span class="hljs-keyword">SELECT</span> id,<span class="hljs-type">name</span>,age,email <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-type">name</span> =? <span class="hljs-keyword">AND</span> age =?<br>Map&lt;String, <span class="hljs-keyword">Object</span>&gt; map = <span class="hljs-built_in">new</span> HashMap&lt;&gt;();<br>map.put(&quot;age&quot;, <span class="hljs-number">22</span> );<br>map.put(&quot;name&quot;, &quot;admin&quot;);<br>List&lt;<span class="hljs-keyword">User</span>&gt; list = userMapper.selectByMap(map);<br>list.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectList()&#123;<br>//查询所有用户信息<br>//<span class="hljs-keyword">SELECT</span> id,<span class="hljs-type">name</span>,age,email <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span><br>List&lt;<span class="hljs-keyword">User</span>&gt; list = userMapper.selectList(<span class="hljs-keyword">null</span>);<br>list.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-3"><a href="#x2F-3" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">* UserService继承IService模板提供的基础功能<br>*/<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">UserService</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">IService</span>&lt;<span class="hljs-symbol">User</span>&gt; &#123;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="-1"><a href="#-1" class="headerlink" title="}"></a>}</h6><h2 id="c-gt-测试查询记录数"><a href="#c-gt-测试查询记录数" class="headerlink" title="c&gt;测试查询记录数"></a>c&gt;测试查询记录数</h2><h2 id="d-gt-测试批量插入"><a href="#d-gt-测试批量插入" class="headerlink" title="d&gt;测试批量插入"></a>d&gt;测试批量插入</h2><h1 id="四、常用注解"><a href="#四、常用注解" class="headerlink" title="四、常用注解"></a>四、常用注解</h1><h2 id="1-、-TableName"><a href="#1-、-TableName" class="headerlink" title="1 、@TableName"></a>1 、@TableName</h2><h5 id="经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在"><a href="#经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在" class="headerlink" title="经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在"></a>经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在</h5><h5 id="Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表"><a href="#Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表" class="headerlink" title="Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表"></a>Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表</h5><h5 id="由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决"><a href="#由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决" class="headerlink" title="由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决"></a>由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决</h5><h5 id="定，且默认操作的表名和实体类型的类名一致"><a href="#定，且默认操作的表名和实体类型的类名一致" class="headerlink" title="定，且默认操作的表名和实体类型的类名一致"></a>定，且默认操作的表名和实体类型的类名一致</h5><h2 id="a-gt-问题"><a href="#a-gt-问题" class="headerlink" title="a&gt;问题"></a>a&gt;问题</h2><h5 id="若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？"><a href="#若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？" class="headerlink" title="若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？"></a>若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？</h5><h6 id="x2F-4"><a href="#x2F-4" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs scala">* <span class="hljs-type">ServiceImpl</span>实现了<span class="hljs-type">IService</span>，提供了<span class="hljs-type">IService</span>中基础功能的实现<br>* 若<span class="hljs-type">ServiceImpl</span>无法满足业务需求，则可以使用自定的<span class="hljs-type">UserService</span>定义方法，并在实现类中实现<br>*/<br><span class="hljs-meta">@Service</span><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl&lt;UserMapper</span>, <span class="hljs-title">User&gt;</span> <span class="hljs-title">implements</span></span><br><span class="hljs-type">UserService</span> &#123;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="-2"><a href="#-2" class="headerlink" title="}"></a>}</h6><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> UserService userService;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">@Test<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> testGetCount()&#123;<br><span class="hljs-keyword">long</span> <span class="hljs-keyword">count</span> = userService.<span class="hljs-keyword">count</span>();<br>System.out.<span class="hljs-keyword">println</span>(<span class="hljs-string">&quot;总记录数：&quot;</span> + <span class="hljs-keyword">count</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSaveBatch()&#123;<br>// <span class="hljs-keyword">SQL</span>长度有限制，海量数据插入单条<span class="hljs-keyword">SQL</span>无法实行，<br>// 因此MP将批量插入放在了通用Service中实现，而不是通用Mapper<br>ArrayList&lt;<span class="hljs-keyword">User</span>&gt; users = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span> ; i &lt; <span class="hljs-number">5</span> ; i++) &#123;<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><span class="hljs-keyword">user</span>.setName(&quot;ybc&quot; + i);<br><span class="hljs-keyword">user</span>.setAge( <span class="hljs-number">20</span> + i);<br>users.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">user</span>);<br>&#125;<br>//<span class="hljs-keyword">SQL</span>:<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t_user ( username, age ) <span class="hljs-keyword">VALUES</span> ( ?,? )<br>userService.saveBatch(users);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="我们将表user更名为t-user，测试查询功能"><a href="#我们将表user更名为t-user，测试查询功能" class="headerlink" title="我们将表user更名为t_user，测试查询功能"></a>我们将表user更名为t_user，测试查询功能</h5><h5 id="程序抛出异常，Table-‘mybatis-plus-user’-doesn’t-exist，因为现在的表名为t-user，而默认操作"><a href="#程序抛出异常，Table-‘mybatis-plus-user’-doesn’t-exist，因为现在的表名为t-user，而默认操作" class="headerlink" title="程序抛出异常，Table ‘mybatis_plus.user’ doesn’t exist，因为现在的表名为t_user，而默认操作"></a>程序抛出异常，Table ‘mybatis_plus.user’ doesn’t exist，因为现在的表名为t_user，而默认操作</h5><h5 id="的表名和实体类型的类名一致，即user表"><a href="#的表名和实体类型的类名一致，即user表" class="headerlink" title="的表名和实体类型的类名一致，即user表"></a>的表名和实体类型的类名一致，即user表</h5><h3 id="b-gt-通过-TableName解决问题"><a href="#b-gt-通过-TableName解决问题" class="headerlink" title="b&gt;通过@TableName解决问题"></a>b&gt;通过@TableName解决问题</h3><h5 id="在实体类类型上添加-TableName-“t-user”-，标识实体类对应的表，即可成功执行SQL语句"><a href="#在实体类类型上添加-TableName-“t-user”-，标识实体类对应的表，即可成功执行SQL语句" class="headerlink" title="在实体类类型上添加@TableName(“t_user”)，标识实体类对应的表，即可成功执行SQL语句"></a>在实体类类型上添加@TableName(“t_user”)，标识实体类对应的表，即可成功执行SQL语句</h5><h3 id="c-gt-通过全局配置解决问题"><a href="#c-gt-通过全局配置解决问题" class="headerlink" title="c&gt;通过全局配置解决问题"></a>c&gt;通过全局配置解决问题</h3><h5 id="在开发的过程中，我们经常遇到以上的问题，即实体类所对应的表都有固定的前缀，例如t-或tbl"><a href="#在开发的过程中，我们经常遇到以上的问题，即实体类所对应的表都有固定的前缀，例如t-或tbl" class="headerlink" title="在开发的过程中，我们经常遇到以上的问题，即实体类所对应的表都有固定的前缀，例如t_或tbl_"></a>在开发的过程中，我们经常遇到以上的问题，即实体类所对应的表都有固定的前缀，例如t_或tbl_</h5><h5 id="此时，可以使用MyBatis-Plus提供的全局配置，为实体类所对应的表名设置默认的前缀，那么就"><a href="#此时，可以使用MyBatis-Plus提供的全局配置，为实体类所对应的表名设置默认的前缀，那么就" class="headerlink" title="此时，可以使用MyBatis-Plus提供的全局配置，为实体类所对应的表名设置默认的前缀，那么就"></a>此时，可以使用MyBatis-Plus提供的全局配置，为实体类所对应的表名设置默认的前缀，那么就</h5><h5 id="不需要在每个实体类上通过-TableName标识实体类对应的表"><a href="#不需要在每个实体类上通过-TableName标识实体类对应的表" class="headerlink" title="不需要在每个实体类上通过@TableName标识实体类对应的表"></a>不需要在每个实体类上通过@TableName标识实体类对应的表</h5><h2 id="2-、-TableId"><a href="#2-、-TableId" class="headerlink" title="2 、@TableId"></a>2 、@TableId</h2><h5 id="经过以上的测试，MyBatis-Plus在实现CRUD时，会默认将id作为主键列，并在插入数据时，默认"><a href="#经过以上的测试，MyBatis-Plus在实现CRUD时，会默认将id作为主键列，并在插入数据时，默认" class="headerlink" title="经过以上的测试，MyBatis-Plus在实现CRUD时，会默认将id作为主键列，并在插入数据时，默认"></a>经过以上的测试，MyBatis-Plus在实现CRUD时，会默认将id作为主键列，并在插入数据时，默认</h5><h5 id="基于雪花算法的策略生成id"><a href="#基于雪花算法的策略生成id" class="headerlink" title="基于雪花算法的策略生成id"></a>基于雪花算法的策略生成id</h5><h3 id="a-gt-问题-1"><a href="#a-gt-问题-1" class="headerlink" title="a&gt;问题"></a>a&gt;问题</h3><h5 id="若实体类和表中表示主键的不是id，而是其他字段，例如uid，MyBatis-Plus会自动识别uid为主"><a href="#若实体类和表中表示主键的不是id，而是其他字段，例如uid，MyBatis-Plus会自动识别uid为主" class="headerlink" title="若实体类和表中表示主键的不是id，而是其他字段，例如uid，MyBatis-Plus会自动识别uid为主"></a>若实体类和表中表示主键的不是id，而是其他字段，例如uid，MyBatis-Plus会自动识别uid为主</h5><h5 id="键列吗？"><a href="#键列吗？" class="headerlink" title="键列吗？"></a>键列吗？</h5><h5 id="我们实体类中的属性id改为uid，将表中的字段id也改为uid，测试添加功能"><a href="#我们实体类中的属性id改为uid，将表中的字段id也改为uid，测试添加功能" class="headerlink" title="我们实体类中的属性id改为uid，将表中的字段id也改为uid，测试添加功能"></a>我们实体类中的属性id改为uid，将表中的字段id也改为uid，测试添加功能</h5><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">mybatis-plus:</span><br><span class="hljs-section">configuration:</span><br><span class="hljs-comment"># 配置MyBatis日志</span><br><span class="hljs-section">log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-section">global-config:</span><br><span class="hljs-section">db-config:</span><br><span class="hljs-comment"># 配置MyBatis-Plus操作表的默认前缀</span><br><span class="hljs-section">table-prefix: t_</span><br><br></code></pre></td></tr></table></figure>
+
+<h5 id="值-描述"><a href="#值-描述" class="headerlink" title="值 描述"></a>值 描述</h5><h5 id="IdType-ASSIGN-ID（默"><a href="#IdType-ASSIGN-ID（默" class="headerlink" title="IdType.ASSIGN_ID（默"></a>IdType.ASSIGN_ID（默</h5><h5 id="认）"><a href="#认）" class="headerlink" title="认）"></a>认）</h5><h5 id="基于雪花算法的策略生成数据id，与数据库id是否设置自增无关"><a href="#基于雪花算法的策略生成数据id，与数据库id是否设置自增无关" class="headerlink" title="基于雪花算法的策略生成数据id，与数据库id是否设置自增无关"></a>基于雪花算法的策略生成数据id，与数据库id是否设置自增无关</h5><h5 id="IdType-AUTO"><a href="#IdType-AUTO" class="headerlink" title="IdType.AUTO"></a>IdType.AUTO</h5><h5 id="使用数据库的自增策略，注意，该类型请确保数据库设置了id自增，"><a href="#使用数据库的自增策略，注意，该类型请确保数据库设置了id自增，" class="headerlink" title="使用数据库的自增策略，注意，该类型请确保数据库设置了id自增，"></a>使用数据库的自增策略，注意，该类型请确保数据库设置了id自增，</h5><h5 id="否则无效"><a href="#否则无效" class="headerlink" title="否则无效"></a>否则无效</h5><h5 id="程序抛出异常，Field-‘uid’-doesn’t-have-a-default-value，说明MyBatis-Plus没有将uid作为主键"><a href="#程序抛出异常，Field-‘uid’-doesn’t-have-a-default-value，说明MyBatis-Plus没有将uid作为主键" class="headerlink" title="程序抛出异常，Field ‘uid’ doesn’t have a default value，说明MyBatis-Plus没有将uid作为主键"></a>程序抛出异常，Field ‘uid’ doesn’t have a default value，说明MyBatis-Plus没有将uid作为主键</h5><h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><h3 id="b-gt-通过-TableId解决问题"><a href="#b-gt-通过-TableId解决问题" class="headerlink" title="b&gt;通过@TableId解决问题"></a>b&gt;通过@TableId解决问题</h3><h5 id="在实体类中uid属性上通过-TableId将其标识为主键，即可成功执行SQL语句"><a href="#在实体类中uid属性上通过-TableId将其标识为主键，即可成功执行SQL语句" class="headerlink" title="在实体类中uid属性上通过@TableId将其标识为主键，即可成功执行SQL语句"></a>在实体类中uid属性上通过@TableId将其标识为主键，即可成功执行SQL语句</h5><h3 id="c-gt-TableId的value属性"><a href="#c-gt-TableId的value属性" class="headerlink" title="c&gt;@TableId的value属性"></a>c&gt;@TableId的value属性</h3><h5 id="若实体类中主键对应的属性为id，而表中表示主键的字段为uid，此时若只在属性id上添加注解"><a href="#若实体类中主键对应的属性为id，而表中表示主键的字段为uid，此时若只在属性id上添加注解" class="headerlink" title="若实体类中主键对应的属性为id，而表中表示主键的字段为uid，此时若只在属性id上添加注解"></a>若实体类中主键对应的属性为id，而表中表示主键的字段为uid，此时若只在属性id上添加注解</h5><h5 id="TableId，则抛出异常Unknown-column-‘id’-in-‘field-list’，即MyBatis-Plus仍然会将id作为表的"><a href="#TableId，则抛出异常Unknown-column-‘id’-in-‘field-list’，即MyBatis-Plus仍然会将id作为表的" class="headerlink" title="@TableId，则抛出异常Unknown column ‘id’ in ‘field list’，即MyBatis-Plus仍然会将id作为表的"></a>@TableId，则抛出异常Unknown column ‘id’ in ‘field list’，即MyBatis-Plus仍然会将id作为表的</h5><h5 id="主键操作，而表中表示主键的是字段uid"><a href="#主键操作，而表中表示主键的是字段uid" class="headerlink" title="主键操作，而表中表示主键的是字段uid"></a>主键操作，而表中表示主键的是字段uid</h5><h5 id="此时需要通过-TableId注解的value属性，指定表中的主键字段，-TableId-“uid”-或"><a href="#此时需要通过-TableId注解的value属性，指定表中的主键字段，-TableId-“uid”-或" class="headerlink" title="此时需要通过@TableId注解的value属性，指定表中的主键字段，@TableId(“uid”)或"></a>此时需要通过@TableId注解的value属性，指定表中的主键字段，@TableId(“uid”)或</h5><h5 id="TableId-value-x3D-”uid”"><a href="#TableId-value-x3D-”uid”" class="headerlink" title="@TableId(value&#x3D;”uid”)"></a>@TableId(value&#x3D;”uid”)</h5><h3 id="d-gt-TableId的type属性"><a href="#d-gt-TableId的type属性" class="headerlink" title="d&gt;@TableId的type属性"></a>d&gt;@TableId的type属性</h3><h5 id="type属性用来定义主键策略"><a href="#type属性用来定义主键策略" class="headerlink" title="type属性用来定义主键策略"></a>type属性用来定义主键策略</h5><h4 id="常用的主键策略："><a href="#常用的主键策略：" class="headerlink" title="常用的主键策略："></a>常用的主键策略：</h4><h4 id="配置全局主键策略："><a href="#配置全局主键策略：" class="headerlink" title="配置全局主键策略："></a>配置全局主键策略：</h4><h3 id="e-gt-雪花算法"><a href="#e-gt-雪花算法" class="headerlink" title="e&gt;雪花算法"></a>e&gt;雪花算法</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><h5 id="需要选择合适的方案去应对数据规模的增长，以应对逐渐增长的访问压力和数据量。"><a href="#需要选择合适的方案去应对数据规模的增长，以应对逐渐增长的访问压力和数据量。" class="headerlink" title="需要选择合适的方案去应对数据规模的增长，以应对逐渐增长的访问压力和数据量。"></a>需要选择合适的方案去应对数据规模的增长，以应对逐渐增长的访问压力和数据量。</h5><h5 id="数据库的扩展方式主要包括：业务分库、主从复制，数据库分表。"><a href="#数据库的扩展方式主要包括：业务分库、主从复制，数据库分表。" class="headerlink" title="数据库的扩展方式主要包括：业务分库、主从复制，数据库分表。"></a>数据库的扩展方式主要包括：业务分库、主从复制，数据库分表。</h5><h4 id="数据库分表"><a href="#数据库分表" class="headerlink" title="数据库分表"></a>数据库分表</h4><h5 id="将不同业务数据分散存储到不同的数据库服务器，能够支撑百万甚至千万用户规模的业务，但如果业务"><a href="#将不同业务数据分散存储到不同的数据库服务器，能够支撑百万甚至千万用户规模的业务，但如果业务" class="headerlink" title="将不同业务数据分散存储到不同的数据库服务器，能够支撑百万甚至千万用户规模的业务，但如果业务"></a>将不同业务数据分散存储到不同的数据库服务器，能够支撑百万甚至千万用户规模的业务，但如果业务</h5><h5 id="继续发展，同一业务的单表数据也会达到单台数据库服务器的处理瓶颈。例如，淘宝的几亿用户数据，"><a href="#继续发展，同一业务的单表数据也会达到单台数据库服务器的处理瓶颈。例如，淘宝的几亿用户数据，" class="headerlink" title="继续发展，同一业务的单表数据也会达到单台数据库服务器的处理瓶颈。例如，淘宝的几亿用户数据，"></a>继续发展，同一业务的单表数据也会达到单台数据库服务器的处理瓶颈。例如，淘宝的几亿用户数据，</h5><h5 id="如果全部存放在一台数据库服务器的一张表中，肯定是无法满足性能要求的，此时就需要对单表数据进"><a href="#如果全部存放在一台数据库服务器的一张表中，肯定是无法满足性能要求的，此时就需要对单表数据进" class="headerlink" title="如果全部存放在一台数据库服务器的一张表中，肯定是无法满足性能要求的，此时就需要对单表数据进"></a>如果全部存放在一台数据库服务器的一张表中，肯定是无法满足性能要求的，此时就需要对单表数据进</h5><h5 id="行拆分。"><a href="#行拆分。" class="headerlink" title="行拆分。"></a>行拆分。</h5><h5 id="单表数据拆分有两种方式：垂直分表和水平分表。示意图如下："><a href="#单表数据拆分有两种方式：垂直分表和水平分表。示意图如下：" class="headerlink" title="单表数据拆分有两种方式：垂直分表和水平分表。示意图如下："></a>单表数据拆分有两种方式：垂直分表和水平分表。示意图如下：</h5><h4 id="垂直分表"><a href="#垂直分表" class="headerlink" title="垂直分表"></a>垂直分表</h4><h5 id="垂直分表适合将表中某些不常用且占了大量空间的列拆分出去。"><a href="#垂直分表适合将表中某些不常用且占了大量空间的列拆分出去。" class="headerlink" title="垂直分表适合将表中某些不常用且占了大量空间的列拆分出去。"></a>垂直分表适合将表中某些不常用且占了大量空间的列拆分出去。</h5><h5 id="例如，前面示意图中的-nickname-和-description-字段，假设我们是一个婚恋网站，用户在筛选其他用"><a href="#例如，前面示意图中的-nickname-和-description-字段，假设我们是一个婚恋网站，用户在筛选其他用" class="headerlink" title="例如，前面示意图中的 nickname 和 description 字段，假设我们是一个婚恋网站，用户在筛选其他用"></a>例如，前面示意图中的 nickname 和 description 字段，假设我们是一个婚恋网站，用户在筛选其他用</h5><h5 id="户的时候，主要是用-age-和-sex-两个字段进行查询，而-nickname-和-description-两个字段主要用于展"><a href="#户的时候，主要是用-age-和-sex-两个字段进行查询，而-nickname-和-description-两个字段主要用于展" class="headerlink" title="户的时候，主要是用 age 和 sex 两个字段进行查询，而 nickname 和 description 两个字段主要用于展"></a>户的时候，主要是用 age 和 sex 两个字段进行查询，而 nickname 和 description 两个字段主要用于展</h5><h5 id="示，一般不会在业务查询中用到。description-本身又比较长，因此我们可以将这两个字段独立到另外"><a href="#示，一般不会在业务查询中用到。description-本身又比较长，因此我们可以将这两个字段独立到另外" class="headerlink" title="示，一般不会在业务查询中用到。description 本身又比较长，因此我们可以将这两个字段独立到另外"></a>示，一般不会在业务查询中用到。description 本身又比较长，因此我们可以将这两个字段独立到另外</h5><h5 id="一张表中，这样在查询-age-和-sex-时，就能带来一定的性能提升。"><a href="#一张表中，这样在查询-age-和-sex-时，就能带来一定的性能提升。" class="headerlink" title="一张表中，这样在查询 age 和 sex 时，就能带来一定的性能提升。"></a>一张表中，这样在查询 age 和 sex 时，就能带来一定的性能提升。</h5><h4 id="水平分表"><a href="#水平分表" class="headerlink" title="水平分表"></a>水平分表</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">mybatis-plus:</span><br><span class="hljs-section">configuration:</span><br><span class="hljs-comment"># 配置MyBatis日志</span><br><span class="hljs-section">log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-section">global-config:</span><br><span class="hljs-section">db-config:</span><br><span class="hljs-comment"># 配置MyBatis-Plus操作表的默认前缀</span><br><span class="hljs-section">table-prefix: t_</span><br><span class="hljs-comment"># 配置MyBatis-Plus的主键策略</span><br><span class="hljs-section">id-type: auto</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="水平分表适合表行数特别大的表，有的公司要求单表行数超过-5000-万就必须进行分表，这个数字可以"><a href="#水平分表适合表行数特别大的表，有的公司要求单表行数超过-5000-万就必须进行分表，这个数字可以" class="headerlink" title="水平分表适合表行数特别大的表，有的公司要求单表行数超过 5000 万就必须进行分表，这个数字可以"></a>水平分表适合表行数特别大的表，有的公司要求单表行数超过 5000 万就必须进行分表，这个数字可以</h5><h5 id="作为参考，但并不是绝对标准，关键还是要看表的访问性能。对于一些比较复杂的表，可能超过-1000"><a href="#作为参考，但并不是绝对标准，关键还是要看表的访问性能。对于一些比较复杂的表，可能超过-1000" class="headerlink" title="作为参考，但并不是绝对标准，关键还是要看表的访问性能。对于一些比较复杂的表，可能超过 1000"></a>作为参考，但并不是绝对标准，关键还是要看表的访问性能。对于一些比较复杂的表，可能超过 1000</h5><h5 id="万就要分表了；而对于一些简单的表，即使存储数据超过-1-亿行，也可以不分表。"><a href="#万就要分表了；而对于一些简单的表，即使存储数据超过-1-亿行，也可以不分表。" class="headerlink" title="万就要分表了；而对于一些简单的表，即使存储数据超过 1 亿行，也可以不分表。"></a>万就要分表了；而对于一些简单的表，即使存储数据超过 1 亿行，也可以不分表。</h5><h5 id="但不管怎样，当看到表的数据量达到千万级别时，作为架构师就要警觉起来，因为这很可能是架构的性"><a href="#但不管怎样，当看到表的数据量达到千万级别时，作为架构师就要警觉起来，因为这很可能是架构的性" class="headerlink" title="但不管怎样，当看到表的数据量达到千万级别时，作为架构师就要警觉起来，因为这很可能是架构的性"></a>但不管怎样，当看到表的数据量达到千万级别时，作为架构师就要警觉起来，因为这很可能是架构的性</h5><h5 id="能瓶颈或者隐患。"><a href="#能瓶颈或者隐患。" class="headerlink" title="能瓶颈或者隐患。"></a>能瓶颈或者隐患。</h5><h5 id="水平分表相比垂直分表，会引入更多的复杂性，例如要求全局唯一的数据id该如何处理"><a href="#水平分表相比垂直分表，会引入更多的复杂性，例如要求全局唯一的数据id该如何处理" class="headerlink" title="水平分表相比垂直分表，会引入更多的复杂性，例如要求全局唯一的数据id该如何处理"></a>水平分表相比垂直分表，会引入更多的复杂性，例如要求全局唯一的数据id该如何处理</h5><h5 id="主键自增"><a href="#主键自增" class="headerlink" title="主键自增"></a>主键自增</h5><h5 id="①以最常见的用户-ID-为例，可以按照-1000000-的范围大小进行分段，1-999999-放到表-1-中，"><a href="#①以最常见的用户-ID-为例，可以按照-1000000-的范围大小进行分段，1-999999-放到表-1-中，" class="headerlink" title="①以最常见的用户 ID 为例，可以按照 1000000 的范围大小进行分段，1 ~ 999999 放到表 1 中，"></a>①以最常见的用户 ID 为例，可以按照 1000000 的范围大小进行分段，1 ~ 999999 放到表 1 中，</h5><h5 id="1000000-1999999-放到表-2-中，以此类推。"><a href="#1000000-1999999-放到表-2-中，以此类推。" class="headerlink" title="1000000 ~ 1999999 放到表 2 中，以此类推。"></a>1000000 ~ 1999999 放到表 2 中，以此类推。</h5><h5 id="②复杂点：分段大小的选取。分段太小会导致切分后子表数量过多，增加维护复杂度；分段太大可能会"><a href="#②复杂点：分段大小的选取。分段太小会导致切分后子表数量过多，增加维护复杂度；分段太大可能会" class="headerlink" title="②复杂点：分段大小的选取。分段太小会导致切分后子表数量过多，增加维护复杂度；分段太大可能会"></a>②复杂点：分段大小的选取。分段太小会导致切分后子表数量过多，增加维护复杂度；分段太大可能会</h5><h5 id="导致单表依然存在性能问题，一般建议分段大小在-100-万至-2000-万之间，具体需要根据业务选取合适"><a href="#导致单表依然存在性能问题，一般建议分段大小在-100-万至-2000-万之间，具体需要根据业务选取合适" class="headerlink" title="导致单表依然存在性能问题，一般建议分段大小在 100 万至 2000 万之间，具体需要根据业务选取合适"></a>导致单表依然存在性能问题，一般建议分段大小在 100 万至 2000 万之间，具体需要根据业务选取合适</h5><h5 id="的分段大小。"><a href="#的分段大小。" class="headerlink" title="的分段大小。"></a>的分段大小。</h5><h5 id="③优点：可以随着数据的增加平滑地扩充新的表。例如，现在的用户是-100-万，如果增加到-1000-万，"><a href="#③优点：可以随着数据的增加平滑地扩充新的表。例如，现在的用户是-100-万，如果增加到-1000-万，" class="headerlink" title="③优点：可以随着数据的增加平滑地扩充新的表。例如，现在的用户是 100 万，如果增加到 1000 万，"></a>③优点：可以随着数据的增加平滑地扩充新的表。例如，现在的用户是 100 万，如果增加到 1000 万，</h5><h5 id="只需要增加新的表就可以了，原有的数据不需要动。"><a href="#只需要增加新的表就可以了，原有的数据不需要动。" class="headerlink" title="只需要增加新的表就可以了，原有的数据不需要动。"></a>只需要增加新的表就可以了，原有的数据不需要动。</h5><h5 id="④缺点：分布不均匀。假如按照-1000-万来进行分表，有可能某个分段实际存储的数据量只有-1-条，而"><a href="#④缺点：分布不均匀。假如按照-1000-万来进行分表，有可能某个分段实际存储的数据量只有-1-条，而" class="headerlink" title="④缺点：分布不均匀。假如按照 1000 万来进行分表，有可能某个分段实际存储的数据量只有 1 条，而"></a>④缺点：分布不均匀。假如按照 1000 万来进行分表，有可能某个分段实际存储的数据量只有 1 条，而</h5><h5 id="另外一个分段实际存储的数据量有-1000-万条。"><a href="#另外一个分段实际存储的数据量有-1000-万条。" class="headerlink" title="另外一个分段实际存储的数据量有 1000 万条。"></a>另外一个分段实际存储的数据量有 1000 万条。</h5><h5 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h5><h5 id="①同样以用户-ID-为例，假如我们一开始就规划了-10-个数据库表，可以简单地用-user-id-10-的值来"><a href="#①同样以用户-ID-为例，假如我们一开始就规划了-10-个数据库表，可以简单地用-user-id-10-的值来" class="headerlink" title="①同样以用户 ID 为例，假如我们一开始就规划了 10 个数据库表，可以简单地用 user_id % 10 的值来"></a>①同样以用户 ID 为例，假如我们一开始就规划了 10 个数据库表，可以简单地用 user_id % 10 的值来</h5><h5 id="表示数据所属的数据库表编号，ID-为-985-的用户放到编号为-5-的子表中，ID-为-10086-的用户放到编号"><a href="#表示数据所属的数据库表编号，ID-为-985-的用户放到编号为-5-的子表中，ID-为-10086-的用户放到编号" class="headerlink" title="表示数据所属的数据库表编号，ID 为 985 的用户放到编号为 5 的子表中，ID 为 10086 的用户放到编号"></a>表示数据所属的数据库表编号，ID 为 985 的用户放到编号为 5 的子表中，ID 为 10086 的用户放到编号</h5><h5 id="为-6-的子表中。"><a href="#为-6-的子表中。" class="headerlink" title="为 6 的子表中。"></a>为 6 的子表中。</h5><h5 id="②复杂点：初始表数量的确定。表数量太多维护比较麻烦，表数量太少又可能导致单表性能存在问题。"><a href="#②复杂点：初始表数量的确定。表数量太多维护比较麻烦，表数量太少又可能导致单表性能存在问题。" class="headerlink" title="②复杂点：初始表数量的确定。表数量太多维护比较麻烦，表数量太少又可能导致单表性能存在问题。"></a>②复杂点：初始表数量的确定。表数量太多维护比较麻烦，表数量太少又可能导致单表性能存在问题。</h5><h5 id="③优点：表分布比较均匀。"><a href="#③优点：表分布比较均匀。" class="headerlink" title="③优点：表分布比较均匀。"></a>③优点：表分布比较均匀。</h5><h5 id="④缺点：扩充新的表很麻烦，所有数据都要重分布。"><a href="#④缺点：扩充新的表很麻烦，所有数据都要重分布。" class="headerlink" title="④缺点：扩充新的表很麻烦，所有数据都要重分布。"></a>④缺点：扩充新的表很麻烦，所有数据都要重分布。</h5><h5 id="雪花算法"><a href="#雪花算法" class="headerlink" title="雪花算法"></a>雪花算法</h5><h5 id="雪花算法是由Twitter公布的分布式主键生成算法，它能够保证不同表的主键的不重复性，以及相同表的"><a href="#雪花算法是由Twitter公布的分布式主键生成算法，它能够保证不同表的主键的不重复性，以及相同表的" class="headerlink" title="雪花算法是由Twitter公布的分布式主键生成算法，它能够保证不同表的主键的不重复性，以及相同表的"></a>雪花算法是由Twitter公布的分布式主键生成算法，它能够保证不同表的主键的不重复性，以及相同表的</h5><h5 id="主键的有序性。"><a href="#主键的有序性。" class="headerlink" title="主键的有序性。"></a>主键的有序性。</h5><h5 id="①核心思想："><a href="#①核心思想：" class="headerlink" title="①核心思想："></a>①核心思想：</h5><h5 id="长度共64bit（一个long型）。"><a href="#长度共64bit（一个long型）。" class="headerlink" title="长度共64bit（一个long型）。"></a>长度共64bit（一个long型）。</h5><h5 id="首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是-0-，负"><a href="#首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是-0-，负" class="headerlink" title="首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是 0 ，负"></a>首先是一个符号位，1bit标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是 0 ，负</h5><h5 id="数是-1-，所以id一般是正数，最高位是-0-。"><a href="#数是-1-，所以id一般是正数，最高位是-0-。" class="headerlink" title="数是 1 ，所以id一般是正数，最高位是 0 。"></a>数是 1 ，所以id一般是正数，最高位是 0 。</h5><h5 id="41bit时间截-毫秒级-，存储的是时间截的差值（当前时间截-开始时间截-，结果约等于69-73年。"><a href="#41bit时间截-毫秒级-，存储的是时间截的差值（当前时间截-开始时间截-，结果约等于69-73年。" class="headerlink" title="41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。"></a>41bit时间截(毫秒级)，存储的是时间截的差值（当前时间截 - 开始时间截)，结果约等于69.73年。</h5><h5 id="10bit作为机器的ID（-5-个bit是数据中心，-5-个bit的机器ID，可以部署在-1024-个节点）。"><a href="#10bit作为机器的ID（-5-个bit是数据中心，-5-个bit的机器ID，可以部署在-1024-个节点）。" class="headerlink" title="10bit作为机器的ID（ 5 个bit是数据中心， 5 个bit的机器ID，可以部署在 1024 个节点）。"></a>10bit作为机器的ID（ 5 个bit是数据中心， 5 个bit的机器ID，可以部署在 1024 个节点）。</h5><h5 id="12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生-4096-个-ID）。"><a href="#12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生-4096-个-ID）。" class="headerlink" title="12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。"></a>12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID）。</h5><h5 id="②优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。"><a href="#②优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。" class="headerlink" title="②优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。"></a>②优点：整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞，并且效率较高。</h5><h2 id="3-、-TableField"><a href="#3-、-TableField" class="headerlink" title="3 、@TableField"></a>3 、@TableField</h2><h5 id="经过以上的测试，我们可以发现，MyBatis-Plus在执行SQL语句时，要保证实体类中的属性名和"><a href="#经过以上的测试，我们可以发现，MyBatis-Plus在执行SQL语句时，要保证实体类中的属性名和" class="headerlink" title="经过以上的测试，我们可以发现，MyBatis-Plus在执行SQL语句时，要保证实体类中的属性名和"></a>经过以上的测试，我们可以发现，MyBatis-Plus在执行SQL语句时，要保证实体类中的属性名和</h5><h5 id="表中的字段名一致"><a href="#表中的字段名一致" class="headerlink" title="表中的字段名一致"></a>表中的字段名一致</h5><h5 id="如果实体类中的属性名和字段名不一致的情况，会出现什么问题呢？"><a href="#如果实体类中的属性名和字段名不一致的情况，会出现什么问题呢？" class="headerlink" title="如果实体类中的属性名和字段名不一致的情况，会出现什么问题呢？"></a>如果实体类中的属性名和字段名不一致的情况，会出现什么问题呢？</h5><h3 id="a-gt-情况-1"><a href="#a-gt-情况-1" class="headerlink" title="a&gt;情况 1"></a>a&gt;情况 1</h3><h5 id="若实体类中的属性使用的是驼峰命名风格，而表中的字段使用的是下划线命名风格"><a href="#若实体类中的属性使用的是驼峰命名风格，而表中的字段使用的是下划线命名风格" class="headerlink" title="若实体类中的属性使用的是驼峰命名风格，而表中的字段使用的是下划线命名风格"></a>若实体类中的属性使用的是驼峰命名风格，而表中的字段使用的是下划线命名风格</h5><h5 id="例如实体类属性userName，表中字段user-name"><a href="#例如实体类属性userName，表中字段user-name" class="headerlink" title="例如实体类属性userName，表中字段user_name"></a>例如实体类属性userName，表中字段user_name</h5><h5 id="此时MyBatis-Plus会自动将下划线命名风格转化为驼峰命名风格"><a href="#此时MyBatis-Plus会自动将下划线命名风格转化为驼峰命名风格" class="headerlink" title="此时MyBatis-Plus会自动将下划线命名风格转化为驼峰命名风格"></a>此时MyBatis-Plus会自动将下划线命名风格转化为驼峰命名风格</h5><h5 id="相当于在MyBatis中配置"><a href="#相当于在MyBatis中配置" class="headerlink" title="相当于在MyBatis中配置"></a>相当于在MyBatis中配置</h5><h3 id="b-gt-情况-2"><a href="#b-gt-情况-2" class="headerlink" title="b&gt;情况 2"></a>b&gt;情况 2</h3><h5 id="若实体类中的属性和表中的字段不满足情况-1"><a href="#若实体类中的属性和表中的字段不满足情况-1" class="headerlink" title="若实体类中的属性和表中的字段不满足情况 1"></a>若实体类中的属性和表中的字段不满足情况 1</h5><h5 id="例如实体类属性name，表中字段username"><a href="#例如实体类属性name，表中字段username" class="headerlink" title="例如实体类属性name，表中字段username"></a>例如实体类属性name，表中字段username</h5><h5 id="此时需要在实体类属性上使用-TableField-“username”-设置属性所对应的字段名"><a href="#此时需要在实体类属性上使用-TableField-“username”-设置属性所对应的字段名" class="headerlink" title="此时需要在实体类属性上使用@TableField(“username”)设置属性所对应的字段名"></a>此时需要在实体类属性上使用@TableField(“username”)设置属性所对应的字段名</h5><h2 id="4-、-TableLogic"><a href="#4-、-TableLogic" class="headerlink" title="4 、@TableLogic"></a>4 、@TableLogic</h2><h3 id="a-gt-逻辑删除"><a href="#a-gt-逻辑删除" class="headerlink" title="a&gt;逻辑删除"></a>a&gt;逻辑删除</h3><h5 id="物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除的数据"><a href="#物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除的数据" class="headerlink" title="物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除的数据"></a>物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除的数据</h5><h5 id="逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库"><a href="#逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库" class="headerlink" title="逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库"></a>逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库</h5><h5 id="中仍旧能看到此条数据记录"><a href="#中仍旧能看到此条数据记录" class="headerlink" title="中仍旧能看到此条数据记录"></a>中仍旧能看到此条数据记录</h5><h5 id="使用场景：可以进行数据恢复"><a href="#使用场景：可以进行数据恢复" class="headerlink" title="使用场景：可以进行数据恢复"></a>使用场景：可以进行数据恢复</h5><h2 id="b-gt-实现逻辑删除"><a href="#b-gt-实现逻辑删除" class="headerlink" title="b&gt;实现逻辑删除"></a>b&gt;实现逻辑删除</h2><h5 id="step1：-数据库中创建逻辑删除状态列，设置默认值为-0"><a href="#step1：-数据库中创建逻辑删除状态列，设置默认值为-0" class="headerlink" title="step1： 数据库中创建逻辑删除状态列，设置默认值为 0"></a>step1： 数据库中创建逻辑删除状态列，设置默认值为 0</h5><h5 id="step2：-实体类中添加逻辑删除属性"><a href="#step2：-实体类中添加逻辑删除属性" class="headerlink" title="step2： 实体类中添加逻辑删除属性"></a>step2： 实体类中添加逻辑删除属性</h5><h5 id="step3：-测试"><a href="#step3：-测试" class="headerlink" title="step3： 测试"></a>step3： 测试</h5><h5 id="测试删除功能，真正执行的是修改"><a href="#测试删除功能，真正执行的是修改" class="headerlink" title="测试删除功能，真正执行的是修改"></a>测试删除功能，真正执行的是修改</h5><h5 id="UPDATE-t-user-SET-is-deleted-x3D-1-WHERE-id-x3D-AND-is-deleted-x3D-0"><a href="#UPDATE-t-user-SET-is-deleted-x3D-1-WHERE-id-x3D-AND-is-deleted-x3D-0" class="headerlink" title="UPDATE t_user SET is_deleted&#x3D;1 WHERE id&#x3D;? AND is_deleted&#x3D;0"></a>UPDATE t_user SET is_deleted&#x3D;1 WHERE id&#x3D;? AND is_deleted&#x3D;0</h5><h5 id="测试查询功能，被逻辑删除的数据默认不会被查询"><a href="#测试查询功能，被逻辑删除的数据默认不会被查询" class="headerlink" title="测试查询功能，被逻辑删除的数据默认不会被查询"></a>测试查询功能，被逻辑删除的数据默认不会被查询</h5><h5 id="SELECT-id-username-AS-name-age-email-is-deleted-FROM-t-user-WHERE-is-deleted-x3D-0"><a href="#SELECT-id-username-AS-name-age-email-is-deleted-FROM-t-user-WHERE-is-deleted-x3D-0" class="headerlink" title="SELECT id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted&#x3D;0"></a>SELECT id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted&#x3D;0</h5><h1 id="五、条件构造器和常用接口"><a href="#五、条件构造器和常用接口" class="headerlink" title="五、条件构造器和常用接口"></a>五、条件构造器和常用接口</h1><h2 id="1-、wapper介绍"><a href="#1-、wapper介绍" class="headerlink" title="1 、wapper介绍"></a>1 、wapper介绍</h2><h5 id="Wrapper-：-条件构造抽象类，最顶端父类"><a href="#Wrapper-：-条件构造抽象类，最顶端父类" class="headerlink" title="Wrapper ： 条件构造抽象类，最顶端父类"></a>Wrapper ： 条件构造抽象类，最顶端父类</h5><h5 id="AbstractWrapper-：-用于查询条件封装，生成-sql-的-where-条件"><a href="#AbstractWrapper-：-用于查询条件封装，生成-sql-的-where-条件" class="headerlink" title="AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件"></a>AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件</h5><h5 id="QueryWrapper-：-查询条件封装"><a href="#QueryWrapper-：-查询条件封装" class="headerlink" title="QueryWrapper ： 查询条件封装"></a>QueryWrapper ： 查询条件封装</h5><h5 id="UpdateWrapper-：-Update-条件封装"><a href="#UpdateWrapper-：-Update-条件封装" class="headerlink" title="UpdateWrapper ： Update 条件封装"></a>UpdateWrapper ： Update 条件封装</h5><h5 id="AbstractLambdaWrapper-：-使用Lambda-语法"><a href="#AbstractLambdaWrapper-：-使用Lambda-语法" class="headerlink" title="AbstractLambdaWrapper ： 使用Lambda 语法"></a>AbstractLambdaWrapper ： 使用Lambda 语法</h5><h5 id="LambdaQueryWrapper-：用于Lambda语法使用的查询Wrapper"><a href="#LambdaQueryWrapper-：用于Lambda语法使用的查询Wrapper" class="headerlink" title="LambdaQueryWrapper ：用于Lambda语法使用的查询Wrapper"></a>LambdaQueryWrapper ：用于Lambda语法使用的查询Wrapper</h5><h5 id="LambdaUpdateWrapper-：-Lambda-更新封装Wrapper"><a href="#LambdaUpdateWrapper-：-Lambda-更新封装Wrapper" class="headerlink" title="LambdaUpdateWrapper ： Lambda 更新封装Wrapper"></a>LambdaUpdateWrapper ： Lambda 更新封装Wrapper</h5><h2 id="2-、QueryWrapper"><a href="#2-、QueryWrapper" class="headerlink" title="2 、QueryWrapper"></a>2 、QueryWrapper</h2><h3 id="a-gt-例-1-：组装查询条件"><a href="#a-gt-例-1-：组装查询条件" class="headerlink" title="a&gt;例 1 ：组装查询条件"></a>a&gt;例 1 ：组装查询条件</h3><h3 id="b-gt-例-2-：组装排序条件"><a href="#b-gt-例-2-：组装排序条件" class="headerlink" title="b&gt;例 2 ：组装排序条件"></a>b&gt;例 2 ：组装排序条件</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test01()&#123;<br>//查询用户名包含a，年龄在 <span class="hljs-number">20</span> 到 <span class="hljs-number">30</span> 之间，并且邮箱不为<span class="hljs-keyword">null</span>的用户信息<br>//<span class="hljs-keyword">SELECT</span> id,username <span class="hljs-keyword">AS</span> <span class="hljs-type">name</span>,age,email,is_deleted <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span><br>is_deleted=<span class="hljs-number">0</span> <span class="hljs-keyword">AND</span> (username <span class="hljs-keyword">LIKE</span>? <span class="hljs-keyword">AND</span> age <span class="hljs-keyword">BETWEEN</span>? <span class="hljs-keyword">AND</span>? <span class="hljs-keyword">AND</span> email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>)<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>queryWrapper.<span class="hljs-keyword">like</span>(&quot;username&quot;, &quot;a&quot;)<br>.<span class="hljs-keyword">between</span>(&quot;age&quot;, <span class="hljs-number">20</span> , <span class="hljs-number">30</span> )<br>.isNotNull(&quot;email&quot;);<br>List&lt;<span class="hljs-keyword">User</span>&gt; list = userMapper.selectList(queryWrapper);<br>list.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="c-gt-例-3-：组装删除条件"><a href="#c-gt-例-3-：组装删除条件" class="headerlink" title="c&gt;例 3 ：组装删除条件"></a>c&gt;例 3 ：组装删除条件</h3><h3 id="d-gt-例-4-：条件的优先级"><a href="#d-gt-例-4-：条件的优先级" class="headerlink" title="d&gt;例 4 ：条件的优先级"></a>d&gt;例 4 ：条件的优先级</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test02()&#123;<br>//按年龄降序查询用户，如果年龄相同则按id升序排列<br>//<span class="hljs-keyword">SELECT</span> id,username <span class="hljs-keyword">AS</span> <span class="hljs-type">name</span>,age,email,is_deleted <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span><br>is_deleted=<span class="hljs-number">0</span> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span>,id <span class="hljs-keyword">ASC</span><br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>queryWrapper<br>.orderByDesc(&quot;age&quot;)<br>.orderByAsc(&quot;id&quot;);<br>List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(queryWrapper);<br>users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test03()&#123;<br>//删除email为空的用户<br>//<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span> (email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>)<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>queryWrapper.<span class="hljs-keyword">isNull</span>(&quot;email&quot;);<br>//条件构造器也可以构建删除语句的条件<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">delete</span>(queryWrapper);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响的行数：&quot; + result);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test04() &#123;<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>//将（年龄大于 <span class="hljs-number">20</span> 并且用户名中包含有a）或邮箱为<span class="hljs-keyword">null</span>的用户信息修改<br>//<span class="hljs-keyword">UPDATE</span> t_user <span class="hljs-keyword">SET</span> age=?, email=? <span class="hljs-keyword">WHERE</span> (username <span class="hljs-keyword">LIKE</span>? <span class="hljs-keyword">AND</span> age &gt;? <span class="hljs-keyword">OR</span><br>email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>)<br>queryWrapper<br>.<span class="hljs-keyword">like</span>(&quot;username&quot;, &quot;a&quot;)<br>.gt(&quot;age&quot;, <span class="hljs-number">20</span> )<br>.<span class="hljs-keyword">or</span>()<br>.<span class="hljs-keyword">isNull</span>(&quot;email&quot;);<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><span class="hljs-keyword">user</span>.setAge( <span class="hljs-number">18</span> );<br><span class="hljs-keyword">user</span>.setEmail(&quot;user@atguigu.com&quot;);<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">update</span>(<span class="hljs-keyword">user</span>, queryWrapper);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响的行数：&quot; + result);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test04() &#123;<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>//将用户名中包含有a并且（年龄大于 <span class="hljs-number">20</span> 或邮箱为<span class="hljs-keyword">null</span>）的用户信息修改<br>//<span class="hljs-keyword">UPDATE</span> t_user <span class="hljs-keyword">SET</span> age=?, email=? <span class="hljs-keyword">WHERE</span> (username <span class="hljs-keyword">LIKE</span>? <span class="hljs-keyword">AND</span> (age &gt;? <span class="hljs-keyword">OR</span><br>email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>))<br>//lambda表达式内的逻辑优先运算<br>queryWrapper<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="e-gt-例-5-：组装select子句"><a href="#e-gt-例-5-：组装select子句" class="headerlink" title="e&gt;例 5 ：组装select子句"></a>e&gt;例 5 ：组装select子句</h3><h3 id="f-gt-例-6-：实现子查询"><a href="#f-gt-例-6-：实现子查询" class="headerlink" title="f&gt;例 6 ：实现子查询"></a>f&gt;例 6 ：实现子查询</h3><h2 id="3-、UpdateWrapper"><a href="#3-、UpdateWrapper" class="headerlink" title="3 、UpdateWrapper"></a>3 、UpdateWrapper</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">.<span class="hljs-keyword">like</span>(&quot;username&quot;, &quot;a&quot;)<br>.<span class="hljs-keyword">and</span>(i -&gt; i.gt(&quot;age&quot;, <span class="hljs-number">20</span> ).<span class="hljs-keyword">or</span>().<span class="hljs-keyword">isNull</span>(&quot;email&quot;));<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><span class="hljs-keyword">user</span>.setAge( <span class="hljs-number">18</span> );<br><span class="hljs-keyword">user</span>.setEmail(&quot;user@atguigu.com&quot;);<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">update</span>(<span class="hljs-keyword">user</span>, queryWrapper);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响的行数：&quot; + result);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test05() &#123;<br>//查询用户信息的username和age字段<br>//<span class="hljs-keyword">SELECT</span> username,age <span class="hljs-keyword">FROM</span> t_user<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>queryWrapper.<span class="hljs-keyword">select</span>(&quot;username&quot;, &quot;age&quot;);<br>//selectMaps()返回Map集合列表，通常配合<span class="hljs-keyword">select</span>()使用，避免<span class="hljs-keyword">User</span>对象中没有被查询到的列值<br>为<span class="hljs-keyword">null</span><br>List&lt;Map&lt;String, <span class="hljs-keyword">Object</span>&gt;&gt; maps = userMapper.selectMaps(queryWrapper);<br>maps.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test06() &#123;<br>//查询id小于等于 <span class="hljs-number">3</span> 的用户信息<br>//<span class="hljs-keyword">SELECT</span> id,username <span class="hljs-keyword">AS</span> <span class="hljs-type">name</span>,age,email,is_deleted <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span> (id <span class="hljs-keyword">IN</span><br>(<span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> t_user <span class="hljs-keyword">where</span> id &lt;= <span class="hljs-number">3</span>))<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>queryWrapper.inSql(&quot;id&quot;, &quot;select id from t_user where id &lt;= 3&quot;);<br>List&lt;<span class="hljs-keyword">User</span>&gt; list = userMapper.selectList(queryWrapper);<br>list.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test07() &#123;<br>//将（年龄大于 <span class="hljs-number">20</span> 或邮箱为<span class="hljs-keyword">null</span>）并且用户名中包含有a的用户信息修改<br>//组装<span class="hljs-keyword">set</span>子句以及修改条件<br>UpdateWrapper&lt;<span class="hljs-keyword">User</span>&gt; updateWrapper = <span class="hljs-built_in">new</span> UpdateWrapper&lt;&gt;();<br>//lambda表达式内的逻辑优先运算<br>updateWrapper<br>.<span class="hljs-keyword">set</span>(&quot;age&quot;, <span class="hljs-number">18</span> )<br>.<span class="hljs-keyword">set</span>(&quot;email&quot;, &quot;user@atguigu.com&quot;)<br>.<span class="hljs-keyword">like</span>(&quot;username&quot;, &quot;a&quot;)<br>.<span class="hljs-keyword">and</span>(i -&gt; i.gt(&quot;age&quot;, <span class="hljs-number">20</span> ).<span class="hljs-keyword">or</span>().<span class="hljs-keyword">isNull</span>(&quot;email&quot;));<br>//这里必须要创建<span class="hljs-keyword">User</span>对象，否则无法应用自动填充。如果没有自动填充，可以设置为<span class="hljs-keyword">null</span><br>//<span class="hljs-keyword">UPDATE</span> t_user <span class="hljs-keyword">SET</span> username=?, age=?,email=? <span class="hljs-keyword">WHERE</span> (username <span class="hljs-keyword">LIKE</span>? <span class="hljs-keyword">AND</span><br>(age &gt;? <span class="hljs-keyword">OR</span> email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>))<br>//<span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br>//<span class="hljs-keyword">user</span>.setName(&quot;张三&quot;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-、condition"><a href="#4-、condition" class="headerlink" title="4 、condition"></a>4 、condition</h2><h5 id="在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因"><a href="#在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因" class="headerlink" title="在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因"></a>在真正开发的过程中，组装条件是常见的功能，而这些条件数据来源于用户输入，是可选的，因</h5><h5 id="此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若"><a href="#此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若" class="headerlink" title="此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若"></a>此我们在组装这些条件时，必须先判断用户是否选择了这些条件，若选择则需要组装该条件，若</h5><h5 id="没有选择则一定不能组装，以免影响SQL执行的结果"><a href="#没有选择则一定不能组装，以免影响SQL执行的结果" class="headerlink" title="没有选择则一定不能组装，以免影响SQL执行的结果"></a>没有选择则一定不能组装，以免影响SQL执行的结果</h5><h3 id="思路一："><a href="#思路一：" class="headerlink" title="思路一："></a>思路一：</h3><h3 id="思路二："><a href="#思路二：" class="headerlink" title="思路二："></a>思路二：</h3><h5 id="上面的实现方案没有问题，但是代码比较复杂，我们可以使用带condition参数的重载方法构建查"><a href="#上面的实现方案没有问题，但是代码比较复杂，我们可以使用带condition参数的重载方法构建查" class="headerlink" title="上面的实现方案没有问题，但是代码比较复杂，我们可以使用带condition参数的重载方法构建查"></a>上面的实现方案没有问题，但是代码比较复杂，我们可以使用带condition参数的重载方法构建查</h5><h5 id="询条件，简化代码的编写"><a href="#询条件，简化代码的编写" class="headerlink" title="询条件，简化代码的编写"></a>询条件，简化代码的编写</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//<span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">update</span>(<span class="hljs-keyword">user</span>, updateWrapper);<br>//<span class="hljs-keyword">UPDATE</span> t_user <span class="hljs-keyword">SET</span> age=?,email=? <span class="hljs-keyword">WHERE</span> (username <span class="hljs-keyword">LIKE</span>? <span class="hljs-keyword">AND</span> (age &gt;? <span class="hljs-keyword">OR</span><br>email <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>))<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">update</span>(<span class="hljs-keyword">null</span>, updateWrapper);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(result);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test08() &#123;<br>//定义查询条件，有可能为<span class="hljs-keyword">null</span>（用户未输入或未选择）<br>String username = <span class="hljs-keyword">null</span>;<br><span class="hljs-type">Integer</span> ageBegin = <span class="hljs-number">10</span> ;<br><span class="hljs-type">Integer</span> ageEnd = <span class="hljs-number">24</span> ;<br>QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br>//StringUtils.isNotBlank()判断某字符串是否不为空且长度不为 <span class="hljs-number">0</span> 且不由空白符(whitespace)<br>构成<br><span class="hljs-keyword">if</span>(StringUtils.isNotBlank(username))&#123;<br>queryWrapper.<span class="hljs-keyword">like</span>(&quot;username&quot;,&quot;a&quot;);<br>&#125;<br><span class="hljs-keyword">if</span>(ageBegin != <span class="hljs-keyword">null</span>)&#123;<br>queryWrapper.ge(&quot;age&quot;, ageBegin);<br>&#125;<br><span class="hljs-keyword">if</span>(ageEnd != <span class="hljs-keyword">null</span>)&#123;<br>queryWrapper.le(&quot;age&quot;, ageEnd);<br>&#125;<br>//<span class="hljs-keyword">SELECT</span> id,username <span class="hljs-keyword">AS</span> <span class="hljs-type">name</span>,age,email,is_deleted <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span> (age &gt;=<br>? <span class="hljs-keyword">AND</span> age &lt;= ?)<br>List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(queryWrapper);<br>users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test08UseCondition</span><span class="hljs-params">()</span> &#123;<br><span class="hljs-comment">//定义查询条件，有可能为null（用户未输入或未选择）</span><br><span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><span class="hljs-type">Integer</span> <span class="hljs-variable">ageBegin</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span> ;<br><span class="hljs-type">Integer</span> <span class="hljs-variable">ageEnd</span> <span class="hljs-operator">=</span> <span class="hljs-number">24</span> ;<br>QueryWrapper&lt;User&gt; queryWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;&gt;();<br><span class="hljs-comment">//StringUtils.isNotBlank()判断某字符串是否不为空且长度不为 0 且不由空白符(whitespace)</span><br>构成<br>queryWrapper<br>.like(StringUtils.isNotBlank(username), <span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="5-、LambdaQueryWrapper"><a href="#5-、LambdaQueryWrapper" class="headerlink" title="5 、LambdaQueryWrapper"></a>5 、LambdaQueryWrapper</h2><h2 id="6-、LambdaUpdateWrapper"><a href="#6-、LambdaUpdateWrapper" class="headerlink" title="6 、LambdaUpdateWrapper"></a>6 、LambdaUpdateWrapper</h2><h1 id="六、插件"><a href="#六、插件" class="headerlink" title="六、插件"></a>六、插件</h1><h2 id="1-、分页插件"><a href="#1-、分页插件" class="headerlink" title="1 、分页插件"></a>1 、分页插件</h2><h5 id="MyBatis-Plus自带分页插件，只要简单的配置即可实现分页功能"><a href="#MyBatis-Plus自带分页插件，只要简单的配置即可实现分页功能" class="headerlink" title="MyBatis Plus自带分页插件，只要简单的配置即可实现分页功能"></a>MyBatis Plus自带分页插件，只要简单的配置即可实现分页功能</h5><h2 id="a-gt-添加配置类"><a href="#a-gt-添加配置类" class="headerlink" title="a&gt;添加配置类"></a>a&gt;添加配置类</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">.ge(ageBegin != <span class="hljs-keyword">null</span>, &quot;age&quot;, ageBegin)<br>.le(ageEnd != <span class="hljs-keyword">null</span>, &quot;age&quot;, ageEnd);<br>//<span class="hljs-keyword">SELECT</span> id,username <span class="hljs-keyword">AS</span> <span class="hljs-type">name</span>,age,email,is_deleted <span class="hljs-keyword">FROM</span> t_user <span class="hljs-keyword">WHERE</span> (age &gt;=<br>? <span class="hljs-keyword">AND</span> age &lt;= ?)<br>List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(queryWrapper);<br>users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test09() &#123;<br>//定义查询条件，有可能为<span class="hljs-keyword">null</span>（用户未输入）<br>String username = &quot;a&quot;;<br><span class="hljs-type">Integer</span> ageBegin = <span class="hljs-number">10</span> ;<br><span class="hljs-type">Integer</span> ageEnd = <span class="hljs-number">24</span> ;<br>LambdaQueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; queryWrapper = <span class="hljs-built_in">new</span> LambdaQueryWrapper&lt;&gt;();<br>//避免使用字符串表示字段，防止运行时错误<br>queryWrapper<br>.<span class="hljs-keyword">like</span>(StringUtils.isNotBlank(username), <span class="hljs-keyword">User</span>::getName, username)<br>.ge(ageBegin != <span class="hljs-keyword">null</span>, <span class="hljs-keyword">User</span>::getAge, ageBegin)<br>.le(ageEnd != <span class="hljs-keyword">null</span>, <span class="hljs-keyword">User</span>::getAge, ageEnd);<br>List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(queryWrapper);<br>users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> test10() &#123;<br>//组装<span class="hljs-keyword">set</span>子句<br>LambdaUpdateWrapper&lt;<span class="hljs-keyword">User</span>&gt; updateWrapper = <span class="hljs-built_in">new</span> LambdaUpdateWrapper&lt;&gt;();<br>updateWrapper<br>.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">User</span>::getAge, <span class="hljs-number">18</span> )<br>.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">User</span>::getEmail, &quot;user@atguigu.com&quot;)<br>.<span class="hljs-keyword">like</span>(<span class="hljs-keyword">User</span>::getName, &quot;a&quot;)<br>.<span class="hljs-keyword">and</span>(i -&gt; i.lt(<span class="hljs-keyword">User</span>::getAge, <span class="hljs-number">24</span> ).<span class="hljs-keyword">or</span>().<span class="hljs-keyword">isNull</span>(<span class="hljs-keyword">User</span>::getEmail)); //lambda<br>表达式内的逻辑优先运算<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">update</span>(<span class="hljs-keyword">user</span>, updateWrapper);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;受影响的行数：&quot; + result);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="b-gt-测试"><a href="#b-gt-测试" class="headerlink" title="b&gt;测试"></a>b&gt;测试</h3><h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><h5 id="User-id-x3D-1-name-x3D-Jone-age-x3D-18-email-x3D-x74-101-x73-x74-49-x40-x62-x61-x6f-x6d-x69-100-x6f-117-46-x63-x6f-x6d-isDeleted-x3D-0-User-id-x3D-2"><a href="#User-id-x3D-1-name-x3D-Jone-age-x3D-18-email-x3D-x74-101-x73-x74-49-x40-x62-x61-x6f-x6d-x69-100-x6f-117-46-x63-x6f-x6d-isDeleted-x3D-0-User-id-x3D-2" class="headerlink" title="User(id&#x3D;1, name&#x3D;Jone, age&#x3D;18, email&#x3D;&#x74;&#101;&#x73;&#x74;&#49;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#x6f;&#x6d;, isDeleted&#x3D;0) User(id&#x3D;2,"></a>User(id&#x3D;1, name&#x3D;Jone, age&#x3D;18, email&#x3D;<a href="mailto:&#x74;&#101;&#x73;&#x74;&#49;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#x6f;&#x6d;">&#x74;&#101;&#x73;&#x74;&#49;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#x6f;&#x6d;</a>, isDeleted&#x3D;0) User(id&#x3D;2,</h5><h5 id="name-x3D-Jack-age-x3D-20-email-x3D-x74-101-x73-116-x32-64-98-x61-x6f-109-x69-100-x6f-x75-46-99-x6f-109-isDeleted-x3D-0-User-id-x3D-3-name-x3D-Tom"><a href="#name-x3D-Jack-age-x3D-20-email-x3D-x74-101-x73-116-x32-64-98-x61-x6f-109-x69-100-x6f-x75-46-99-x6f-109-isDeleted-x3D-0-User-id-x3D-3-name-x3D-Tom" class="headerlink" title="name&#x3D;Jack, age&#x3D;20, email&#x3D;&#x74;&#101;&#x73;&#116;&#x32;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#99;&#x6f;&#109;, isDeleted&#x3D;0) User(id&#x3D;3, name&#x3D;Tom,"></a>name&#x3D;Jack, age&#x3D;20, email&#x3D;<a href="mailto:&#x74;&#101;&#x73;&#116;&#x32;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#99;&#x6f;&#109;">&#x74;&#101;&#x73;&#116;&#x32;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#99;&#x6f;&#109;</a>, isDeleted&#x3D;0) User(id&#x3D;3, name&#x3D;Tom,</h5><h5 id="age-x3D-28-email-x3D-x74-101-115-x74-51-x40-98-x61-x6f-x6d-x69-x64-111-x75-x2e-x63-x6f-109-isDeleted-x3D-0-User-id-x3D-4-name-x3D-Sandy-age-x3D-21"><a href="#age-x3D-28-email-x3D-x74-101-115-x74-51-x40-98-x61-x6f-x6d-x69-x64-111-x75-x2e-x63-x6f-109-isDeleted-x3D-0-User-id-x3D-4-name-x3D-Sandy-age-x3D-21" class="headerlink" title="age&#x3D;28, email&#x3D;&#x74;&#101;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#109;, isDeleted&#x3D;0) User(id&#x3D;4, name&#x3D;Sandy, age&#x3D;21,"></a>age&#x3D;28, email&#x3D;<a href="mailto:&#x74;&#101;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#101;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted&#x3D;0) User(id&#x3D;4, name&#x3D;Sandy, age&#x3D;21,</h5><h5 id="email-x3D-x74-101-115-x74-52-x40-x62-x61-111-x6d-105-x64-x6f-117-46-99-111-x6d-isDeleted-x3D-0-User-id-x3D-5-name-x3D-Billie-age-x3D-24-email-x3D-test5-ba"><a href="#email-x3D-x74-101-115-x74-52-x40-x62-x61-111-x6d-105-x64-x6f-117-46-99-111-x6d-isDeleted-x3D-0-User-id-x3D-5-name-x3D-Billie-age-x3D-24-email-x3D-test5-ba" class="headerlink" title="email&#x3D;&#x74;&#101;&#115;&#x74;&#52;&#x40;&#x62;&#x61;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;, isDeleted&#x3D;0) User(id&#x3D;5, name&#x3D;Billie, age&#x3D;24, email&#x3D;test5@ba"></a>email&#x3D;<a href="mailto:&#x74;&#101;&#115;&#x74;&#52;&#x40;&#x62;&#x61;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;">&#x74;&#101;&#115;&#x74;&#52;&#x40;&#x62;&#x61;&#111;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;</a>, isDeleted&#x3D;0) User(id&#x3D;5, name&#x3D;Billie, age&#x3D;24, email&#x3D;test5@ba</h5><h5 id="omidou-com-isDeleted-x3D-0-当前页：-1-每页显示的条数：-5-总记录数：-17-总页数：-4-是否有上一"><a href="#omidou-com-isDeleted-x3D-0-当前页：-1-每页显示的条数：-5-总记录数：-17-总页数：-4-是否有上一" class="headerlink" title="omidou.com, isDeleted&#x3D;0) 当前页： 1 每页显示的条数： 5 总记录数： 17 总页数： 4 是否有上一"></a>omidou.com, isDeleted&#x3D;0) 当前页： 1 每页显示的条数： 5 总记录数： 17 总页数： 4 是否有上一</h5><h5 id="页：false-是否有下一页：true"><a href="#页：false-是否有下一页：true" class="headerlink" title="页：false 是否有下一页：true"></a>页：false 是否有下一页：true</h5><h2 id="2-、xml自定义分页"><a href="#2-、xml自定义分页" class="headerlink" title="2 、xml自定义分页"></a>2 、xml自定义分页</h2><h3 id="a-gt-UserMapper中定义接口方法"><a href="#a-gt-UserMapper中定义接口方法" class="headerlink" title="a&gt;UserMapper中定义接口方法"></a>a&gt;UserMapper中定义接口方法</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Configuration</span><br><span class="hljs-variable">@MapperScan</span>(<span class="hljs-string">&quot;com.atguigu.mybatisplus.mapper&quot;</span>)  <span class="hljs-comment">//可以将主类中的注解移到此处</span><br>public class MybatisPlusConfig &#123;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> MybatisPlusInterceptor <span class="hljs-title function_">mybatisPlusInterceptor</span><span class="hljs-params">()</span> &#123;<br><span class="hljs-type">MybatisPlusInterceptor</span> <span class="hljs-variable">interceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MybatisPlusInterceptor</span>();<br>interceptor.addInnerInterceptor(<span class="hljs-keyword">new</span><br><span class="hljs-title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));<br><span class="hljs-keyword">return</span> interceptor;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="-3"><a href="#-3" class="headerlink" title="}"></a>}</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">@Test<br>public void test<span class="hljs-constructor">Page()</span>&#123;<br><span class="hljs-comment">//设置分页参数</span><br>Page&lt;User&gt; page = <span class="hljs-keyword">new</span> Page&lt;&gt;( <span class="hljs-number">1</span> , <span class="hljs-number">5</span> );<br>userMapper.select<span class="hljs-constructor">Page(<span class="hljs-params">page</span>, <span class="hljs-params">null</span>)</span>;<br><span class="hljs-comment">//获取分页数据</span><br>List&lt;User&gt; <span class="hljs-built_in">list</span> = page.get<span class="hljs-constructor">Records()</span>;<br><span class="hljs-built_in">list</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(System.<span class="hljs-params">out</span>::<span class="hljs-params">println</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;当前页：&quot;</span>+page.get<span class="hljs-constructor">Current()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;每页显示的条数：&quot;</span>+page.get<span class="hljs-constructor">Size()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;总记录数：&quot;</span>+page.get<span class="hljs-constructor">Total()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;总页数：&quot;</span>+page.get<span class="hljs-constructor">Pages()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;是否有上一页：&quot;</span>+page.has<span class="hljs-constructor">Previous()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;是否有下一页：&quot;</span>+page.has<span class="hljs-constructor">Next()</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-5"><a href="#x2F-5" class="headerlink" title="&#x2F;**"></a>&#x2F;**</h6><h6 id="根据年龄查询用户列表，分页显示"><a href="#根据年龄查询用户列表，分页显示" class="headerlink" title="* 根据年龄查询用户列表，分页显示"></a>* 根据年龄查询用户列表，分页显示</h6><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less">* <span class="hljs-variable">@param</span> page 分页对象,xml中可以从里面进行取值,传递参数 Page 即自动分页,必须放在第一位<br>* <span class="hljs-variable">@param</span> age 年龄<br>* <span class="hljs-variable">@return</span><br>*/<br>I<br>Page&lt;User&gt; <span class="hljs-built_in">selectPageVo</span>(<span class="hljs-variable">@Param</span>(<span class="hljs-string">&quot;page&quot;</span>) Page&lt;User&gt; page, <span class="hljs-variable">@Param</span>(<span class="hljs-string">&quot;age&quot;</span>)<br>Integer age);<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="b-gt-UserMapper-xml中编写SQL"><a href="#b-gt-UserMapper-xml中编写SQL" class="headerlink" title="b&gt;UserMapper.xml中编写SQL"></a>b&gt;UserMapper.xml中编写SQL</h3><h3 id="c-gt-测试"><a href="#c-gt-测试" class="headerlink" title="c&gt;测试"></a>c&gt;测试</h3><h5 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h5><h5 id="User-id-x3D-3-name-x3D-Tom-age-x3D-28-email-x3D-116-101-x73-116-x33-64-98-x61-x6f-109-105-100-x6f-x75-46-99-111-x6d-isDeleted-x3D-null-User-id-x3D-4"><a href="#User-id-x3D-3-name-x3D-Tom-age-x3D-28-email-x3D-116-101-x73-116-x33-64-98-x61-x6f-109-105-100-x6f-x75-46-99-111-x6d-isDeleted-x3D-null-User-id-x3D-4" class="headerlink" title="User(id&#x3D;3, name&#x3D;Tom, age&#x3D;28, email&#x3D;&#116;&#101;&#x73;&#116;&#x33;&#64;&#98;&#x61;&#x6f;&#109;&#105;&#100;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;, isDeleted&#x3D;null) User(id&#x3D;4,"></a>User(id&#x3D;3, name&#x3D;Tom, age&#x3D;28, email&#x3D;<a href="mailto:&#116;&#101;&#x73;&#116;&#x33;&#64;&#98;&#x61;&#x6f;&#109;&#105;&#100;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;">&#116;&#101;&#x73;&#116;&#x33;&#64;&#98;&#x61;&#x6f;&#109;&#105;&#100;&#x6f;&#x75;&#46;&#99;&#111;&#x6d;</a>, isDeleted&#x3D;null) User(id&#x3D;4,</h5><h5 id="name-x3D-Sandy-age-x3D-21-email-x3D-x74-101-x73-x74-52-x40-98-x61-111-x6d-105-100-111-117-46-x63-111-109-isDeleted-x3D-null-User-id-x3D-5-name-x3D-Billie"><a href="#name-x3D-Sandy-age-x3D-21-email-x3D-x74-101-x73-x74-52-x40-98-x61-111-x6d-105-100-111-117-46-x63-111-109-isDeleted-x3D-null-User-id-x3D-5-name-x3D-Billie" class="headerlink" title="name&#x3D;Sandy, age&#x3D;21, email&#x3D;&#x74;&#101;&#x73;&#x74;&#52;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#100;&#111;&#117;&#46;&#x63;&#111;&#109;, isDeleted&#x3D;null) User(id&#x3D;5, name&#x3D;Billie,"></a>name&#x3D;Sandy, age&#x3D;21, email&#x3D;<a href="mailto:&#x74;&#101;&#x73;&#x74;&#52;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#100;&#111;&#117;&#46;&#x63;&#111;&#109;">&#x74;&#101;&#x73;&#x74;&#52;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#100;&#111;&#117;&#46;&#x63;&#111;&#109;</a>, isDeleted&#x3D;null) User(id&#x3D;5, name&#x3D;Billie,</h5><h5 id="age-x3D-24-email-x3D-116-x65-115-116-53-x40-98-x61-111-109-105-100-x6f-117-x2e-x63-x6f-109-isDeleted-x3D-null-User-id-x3D-8-name-x3D-ybc1-age-x3D-21"><a href="#age-x3D-24-email-x3D-116-x65-115-116-53-x40-98-x61-111-109-105-100-x6f-117-x2e-x63-x6f-109-isDeleted-x3D-null-User-id-x3D-8-name-x3D-ybc1-age-x3D-21" class="headerlink" title="age&#x3D;24, email&#x3D;&#116;&#x65;&#115;&#116;&#53;&#x40;&#98;&#x61;&#111;&#109;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;, isDeleted&#x3D;null) User(id&#x3D;8, name&#x3D;ybc1, age&#x3D;21,"></a>age&#x3D;24, email&#x3D;<a href="mailto:&#116;&#x65;&#115;&#116;&#53;&#x40;&#98;&#x61;&#111;&#109;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;">&#116;&#x65;&#115;&#116;&#53;&#x40;&#98;&#x61;&#111;&#109;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted&#x3D;null) User(id&#x3D;8, name&#x3D;ybc1, age&#x3D;21,</h5><h5 id="email-x3D-null-isDeleted-x3D-null-User-id-x3D-9-name-x3D-ybc2-age-x3D-22-email-x3D-null-isDeleted-x3D-null-当前"><a href="#email-x3D-null-isDeleted-x3D-null-User-id-x3D-9-name-x3D-ybc2-age-x3D-22-email-x3D-null-isDeleted-x3D-null-当前" class="headerlink" title="email&#x3D;null, isDeleted&#x3D;null) User(id&#x3D;9, name&#x3D;ybc2, age&#x3D;22, email&#x3D;null, isDeleted&#x3D;null) 当前"></a>email&#x3D;null, isDeleted&#x3D;null) User(id&#x3D;9, name&#x3D;ybc2, age&#x3D;22, email&#x3D;null, isDeleted&#x3D;null) 当前</h5><h5 id="页：-1-每页显示的条数：-5-总记录数：-12-总页数：-3-是否有上一页：false-是否有下一页：true"><a href="#页：-1-每页显示的条数：-5-总记录数：-12-总页数：-3-是否有上一页：false-是否有下一页：true" class="headerlink" title="页： 1 每页显示的条数： 5 总记录数： 12 总页数： 3 是否有上一页：false 是否有下一页：true"></a>页： 1 每页显示的条数： 5 总记录数： 12 总页数： 3 是否有上一页：false 是否有下一页：true</h5><h2 id="3-、乐观锁"><a href="#3-、乐观锁" class="headerlink" title="3 、乐观锁"></a>3 、乐观锁</h2><h3 id="a-gt-场景"><a href="#a-gt-场景" class="headerlink" title="a&gt;场景"></a>a&gt;场景</h3><h5 id="一件商品，成本价是-80-元，售价是-100-元。老板先是通知小李，说你去把商品价格增加-50-元。小"><a href="#一件商品，成本价是-80-元，售价是-100-元。老板先是通知小李，说你去把商品价格增加-50-元。小" class="headerlink" title="一件商品，成本价是 80 元，售价是 100 元。老板先是通知小李，说你去把商品价格增加 50 元。小"></a>一件商品，成本价是 80 元，售价是 100 元。老板先是通知小李，说你去把商品价格增加 50 元。小</h5><h5 id="李正在玩游戏，耽搁了一个小时。正好一个小时后，老板觉得商品价格增加到-150-元，价格太"><a href="#李正在玩游戏，耽搁了一个小时。正好一个小时后，老板觉得商品价格增加到-150-元，价格太" class="headerlink" title="李正在玩游戏，耽搁了一个小时。正好一个小时后，老板觉得商品价格增加到 150 元，价格太"></a>李正在玩游戏，耽搁了一个小时。正好一个小时后，老板觉得商品价格增加到 150 元，价格太</h5><h5 id="高，可能会影响销量。又通知小王，你把商品价格降低-30-元。"><a href="#高，可能会影响销量。又通知小王，你把商品价格降低-30-元。" class="headerlink" title="高，可能会影响销量。又通知小王，你把商品价格降低 30 元。"></a>高，可能会影响销量。又通知小王，你把商品价格降低 30 元。</h5><h5 id="此时，小李和小王同时操作商品后台系统。小李操作的时候，系统先取出商品价格-100-元；小王"><a href="#此时，小李和小王同时操作商品后台系统。小李操作的时候，系统先取出商品价格-100-元；小王" class="headerlink" title="此时，小李和小王同时操作商品后台系统。小李操作的时候，系统先取出商品价格 100 元；小王"></a>此时，小李和小王同时操作商品后台系统。小李操作的时候，系统先取出商品价格 100 元；小王</h5><h5 id="也在操作，取出的商品价格也是-100-元。小李将价格加了-50-元，并将100-50-x3D-150元存入了数据"><a href="#也在操作，取出的商品价格也是-100-元。小李将价格加了-50-元，并将100-50-x3D-150元存入了数据" class="headerlink" title="也在操作，取出的商品价格也是 100 元。小李将价格加了 50 元，并将100+50&#x3D;150元存入了数据"></a>也在操作，取出的商品价格也是 100 元。小李将价格加了 50 元，并将100+50&#x3D;150元存入了数据</h5><h5 id="库；小王将商品减了-30-元，并将100-30-x3D-70元存入了数据库。是的，如果没有锁，小李的操作就"><a href="#库；小王将商品减了-30-元，并将100-30-x3D-70元存入了数据库。是的，如果没有锁，小李的操作就" class="headerlink" title="库；小王将商品减了 30 元，并将100-30&#x3D;70元存入了数据库。是的，如果没有锁，小李的操作就"></a>库；小王将商品减了 30 元，并将100-30&#x3D;70元存入了数据库。是的，如果没有锁，小李的操作就</h5><h5 id="完全被小王的覆盖了。"><a href="#完全被小王的覆盖了。" class="headerlink" title="完全被小王的覆盖了。"></a>完全被小王的覆盖了。</h5><h5 id="现在商品价格是-70-元，比成本价低-10-元。几分钟后，这个商品很快出售了-1-千多件商品，老板亏-1"><a href="#现在商品价格是-70-元，比成本价低-10-元。几分钟后，这个商品很快出售了-1-千多件商品，老板亏-1" class="headerlink" title="现在商品价格是 70 元，比成本价低 10 元。几分钟后，这个商品很快出售了 1 千多件商品，老板亏 1"></a>现在商品价格是 70 元，比成本价低 10 元。几分钟后，这个商品很快出售了 1 千多件商品，老板亏 1</h5><h5 id="万多。"><a href="#万多。" class="headerlink" title="万多。"></a>万多。</h5><h3 id="b-gt-乐观锁与悲观锁"><a href="#b-gt-乐观锁与悲观锁" class="headerlink" title="b&gt;乐观锁与悲观锁"></a>b&gt;乐观锁与悲观锁</h3><h6 id="-4"><a href="#-4" class="headerlink" title=""></a><!--SQL片段，记录基础字段--></h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&lt;sql <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;BaseColumns&quot;</span>&gt;<span class="hljs-built_in">id</span>,username,age,email&lt;/sql&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-comment">&lt;!--IPage&lt;User&gt; selectPageVo(Page&lt;User&gt; page, Integer age);--&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;selectPageVo&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;User&quot;</span>&gt;</span></span><br><span class="language-xml">SELECT <span class="hljs-tag">&lt;<span class="hljs-name">include</span> <span class="hljs-attr">refid</span>=<span class="hljs-string">&quot;BaseColumns&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">include</span>&gt;</span> FROM t_user WHERE age &gt; #</span><br><span class="language-xml"></span><span class="hljs-template-variable">&#123;age&#125;</span><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">@Test<br>public void test<span class="hljs-constructor">SelectPageVo()</span>&#123;<br><span class="hljs-comment">//设置分页参数</span><br>Page&lt;User&gt; page = <span class="hljs-keyword">new</span> Page&lt;&gt;( <span class="hljs-number">1</span> , <span class="hljs-number">5</span> );<br>userMapper.select<span class="hljs-constructor">PageVo(<span class="hljs-params">page</span>, 20 )</span>;<br><span class="hljs-comment">//获取分页数据</span><br>List&lt;User&gt; <span class="hljs-built_in">list</span> = page.get<span class="hljs-constructor">Records()</span>;<br><span class="hljs-built_in">list</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(System.<span class="hljs-params">out</span>::<span class="hljs-params">println</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;当前页：&quot;</span>+page.get<span class="hljs-constructor">Current()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;每页显示的条数：&quot;</span>+page.get<span class="hljs-constructor">Size()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;总记录数：&quot;</span>+page.get<span class="hljs-constructor">Total()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;总页数：&quot;</span>+page.get<span class="hljs-constructor">Pages()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;是否有上一页：&quot;</span>+page.has<span class="hljs-constructor">Previous()</span>);<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;是否有下一页：&quot;</span>+page.has<span class="hljs-constructor">Next()</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h5 id="上面的故事，如果是乐观锁，小王保存价格前，会检查下价格是否被人修改过了。如果被修改过"><a href="#上面的故事，如果是乐观锁，小王保存价格前，会检查下价格是否被人修改过了。如果被修改过" class="headerlink" title="上面的故事，如果是乐观锁，小王保存价格前，会检查下价格是否被人修改过了。如果被修改过"></a>上面的故事，如果是乐观锁，小王保存价格前，会检查下价格是否被人修改过了。如果被修改过</h5><h5 id="了，则重新取出的被修改后的价格，-150-元，这样他会将-120-元存入数据库。"><a href="#了，则重新取出的被修改后的价格，-150-元，这样他会将-120-元存入数据库。" class="headerlink" title="了，则重新取出的被修改后的价格， 150 元，这样他会将 120 元存入数据库。"></a>了，则重新取出的被修改后的价格， 150 元，这样他会将 120 元存入数据库。</h5><h5 id="如果是悲观锁，小李取出数据后，小王只能等小李操作完之后，才能对价格进行操作，也会保证"><a href="#如果是悲观锁，小李取出数据后，小王只能等小李操作完之后，才能对价格进行操作，也会保证" class="headerlink" title="如果是悲观锁，小李取出数据后，小王只能等小李操作完之后，才能对价格进行操作，也会保证"></a>如果是悲观锁，小李取出数据后，小王只能等小李操作完之后，才能对价格进行操作，也会保证</h5><h5 id="最终的价格是-120-元。"><a href="#最终的价格是-120-元。" class="headerlink" title="最终的价格是 120 元。"></a>最终的价格是 120 元。</h5><h3 id="c-gt-模拟修改冲突"><a href="#c-gt-模拟修改冲突" class="headerlink" title="c&gt;模拟修改冲突"></a>c&gt;模拟修改冲突</h3><h4 id="数据库中增加商品表"><a href="#数据库中增加商品表" class="headerlink" title="数据库中增加商品表"></a>数据库中增加商品表</h4><h4 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h4><h4 id="添加实体"><a href="#添加实体" class="headerlink" title="添加实体"></a>添加实体</h4><h4 id="添加mapper"><a href="#添加mapper" class="headerlink" title="添加mapper"></a>添加mapper</h4><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_product<br>(<br>id <span class="hljs-type">BIGINT</span>( <span class="hljs-number">20</span> ) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;主键ID&#x27;</span>,<br><span class="hljs-type">NAME</span> <span class="hljs-type">VARCHAR</span>( <span class="hljs-number">30</span> ) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;商品名称&#x27;</span>,<br>price <span class="hljs-type">INT</span>( <span class="hljs-number">11</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;价格&#x27;</span>,<br><span class="hljs-keyword">VERSION</span> <span class="hljs-type">INT</span>( <span class="hljs-number">11</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;乐观锁版本号&#x27;</span>,<br><span class="hljs-keyword">PRIMARY KEY</span> (id)<br>);<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t_product (id, <span class="hljs-type">NAME</span>, price) <span class="hljs-keyword">VALUES</span> ( <span class="hljs-number">1</span> , <span class="hljs-string">&#x27;外星人笔记本&#x27;</span>, <span class="hljs-number">100</span> );<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">com.atguigu.mybat</span>isplus.entity;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs capnproto"><span class="hljs-keyword">import</span> lombok.<span class="hljs-type">Data</span>;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs fortran">@<span class="hljs-keyword">Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-built_in">Product</span> &#123;<br><span class="hljs-keyword">private</span> Long id;<br><span class="hljs-keyword">private</span> String <span class="hljs-keyword">name</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">Integer</span> price;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">Integer</span> version;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">ProductMapper</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BaseMapper</span>&lt;<span class="hljs-symbol">Product</span>&gt; &#123;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">testConcurrentUpdate</span>(<span class="hljs-params"></span>) &#123;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-1、小李"><a href="#x2F-x2F-1、小李" class="headerlink" title="&#x2F;&#x2F;1、小李"></a>&#x2F;&#x2F;1、小李</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">Product p1 = productMapper.select<span class="hljs-constructor">ById(1L)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小李取出的价格：&quot;</span> + p1.get<span class="hljs-constructor">Price()</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-2、小王"><a href="#x2F-x2F-2、小王" class="headerlink" title="&#x2F;&#x2F;2、小王"></a>&#x2F;&#x2F;2、小王</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">Product p2 = productMapper.select<span class="hljs-constructor">ById(1L)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小王取出的价格：&quot;</span> + p2.get<span class="hljs-constructor">Price()</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="d-gt-乐观锁实现流程"><a href="#d-gt-乐观锁实现流程" class="headerlink" title="d&gt;乐观锁实现流程"></a>d&gt;乐观锁实现流程</h3><h5 id="数据库中添加version字段"><a href="#数据库中添加version字段" class="headerlink" title="数据库中添加version字段"></a>数据库中添加version字段</h5><h5 id="取出记录时，获取当前version"><a href="#取出记录时，获取当前version" class="headerlink" title="取出记录时，获取当前version"></a>取出记录时，获取当前version</h5><h5 id="更新时，version-1，如果where语句中的version版本不对，则更新失败"><a href="#更新时，version-1，如果where语句中的version版本不对，则更新失败" class="headerlink" title="更新时，version + 1，如果where语句中的version版本不对，则更新失败"></a>更新时，version + 1，如果where语句中的version版本不对，则更新失败</h5><h3 id="e-gt-Mybatis-Plus实现乐观锁"><a href="#e-gt-Mybatis-Plus实现乐观锁" class="headerlink" title="e&gt;Mybatis-Plus实现乐观锁"></a>e&gt;Mybatis-Plus实现乐观锁</h3><h4 id="修改实体类"><a href="#修改实体类" class="headerlink" title="修改实体类"></a>修改实体类</h4><h4 id="添加乐观锁插件配置"><a href="#添加乐观锁插件配置" class="headerlink" title="添加乐观锁插件配置"></a>添加乐观锁插件配置</h4><h6 id="x2F-x2F-3、小李将价格加了-50-元，存入了数据库"><a href="#x2F-x2F-3、小李将价格加了-50-元，存入了数据库" class="headerlink" title="&#x2F;&#x2F;3、小李将价格加了 50 元，存入了数据库"></a>&#x2F;&#x2F;3、小李将价格加了 50 元，存入了数据库</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">p1.set<span class="hljs-constructor">Price(<span class="hljs-params">p1</span>.<span class="hljs-params">getPrice</span>()</span> + <span class="hljs-number">50</span> );<br><span class="hljs-built_in">int</span> result1 = productMapper.update<span class="hljs-constructor">ById(<span class="hljs-params">p1</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小李修改结果：&quot;</span> + result1);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-4、小王将商品减了-30-元，存入了数据库"><a href="#x2F-x2F-4、小王将商品减了-30-元，存入了数据库" class="headerlink" title="&#x2F;&#x2F;4、小王将商品减了 30 元，存入了数据库"></a>&#x2F;&#x2F;4、小王将商品减了 30 元，存入了数据库</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">p2.set<span class="hljs-constructor">Price(<span class="hljs-params">p2</span>.<span class="hljs-params">getPrice</span>()</span> - <span class="hljs-number">30</span> );<br><span class="hljs-built_in">int</span> result2 = productMapper.update<span class="hljs-constructor">ById(<span class="hljs-params">p2</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小王修改结果：&quot;</span> + result2);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-最后的结果"><a href="#x2F-x2F-最后的结果" class="headerlink" title="&#x2F;&#x2F;最后的结果"></a>&#x2F;&#x2F;最后的结果</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">Product p3 = productMapper.select<span class="hljs-constructor">ById(1L)</span>;<br><span class="hljs-comment">//价格覆盖，最后的结果： 70</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;最后的结果：&quot;</span> + p3.get<span class="hljs-constructor">Price()</span>);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="-5"><a href="#-5" class="headerlink" title="}"></a>}</h6><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> id,<span class="hljs-symbol">`name`</span>,price,<span class="hljs-symbol">`version`</span> <span class="hljs-keyword">FROM</span> product <span class="hljs-keyword">WHERE</span> id= <span class="hljs-number">1</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">UPDATE product SET price=price+ <span class="hljs-number">50</span> , `version`=`version` + <span class="hljs-number">1</span> WHERE id= <span class="hljs-number">1</span> <span class="hljs-literal">AND</span><br>`version`= <span class="hljs-number">1</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">com.atguigu.mybat</span>isplus.entity;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs capnproto"><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.<span class="hljs-keyword">annotation</span>.Version;<br><span class="hljs-keyword">import</span> lombok.<span class="hljs-type">Data</span>;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs fortran">@<span class="hljs-keyword">Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-built_in">Product</span> &#123;<br><span class="hljs-keyword">private</span> Long id;<br><span class="hljs-keyword">private</span> String <span class="hljs-keyword">name</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">Integer</span> price;<br>@Version<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">Integer</span> version;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="测试修改冲突"><a href="#测试修改冲突" class="headerlink" title="测试修改冲突"></a>测试修改冲突</h4><h5 id="小李查询商品信息："><a href="#小李查询商品信息：" class="headerlink" title="小李查询商品信息："></a>小李查询商品信息：</h5><h5 id="SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D"><a href="#SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D" class="headerlink" title="SELECT id,name,price,version FROM t_product WHERE id&#x3D;?"></a>SELECT id,name,price,version FROM t_product WHERE id&#x3D;?</h5><h5 id="小王查询商品信息："><a href="#小王查询商品信息：" class="headerlink" title="小王查询商品信息："></a>小王查询商品信息：</h5><h5 id="SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D-1"><a href="#SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D-1" class="headerlink" title="SELECT id,name,price,version FROM t_product WHERE id&#x3D;?"></a>SELECT id,name,price,version FROM t_product WHERE id&#x3D;?</h5><h5 id="小李修改商品价格，自动将version-1"><a href="#小李修改商品价格，自动将version-1" class="headerlink" title="小李修改商品价格，自动将version+1"></a>小李修改商品价格，自动将version+1</h5><h5 id="UPDATE-t-product-SET-name-x3D-price-x3D-version-x3D-WHERE-id-x3D-AND-version-x3D"><a href="#UPDATE-t-product-SET-name-x3D-price-x3D-version-x3D-WHERE-id-x3D-AND-version-x3D" class="headerlink" title="UPDATE t_product SET name&#x3D;?, price&#x3D;?, version&#x3D;? WHERE id&#x3D;? AND version&#x3D;?"></a>UPDATE t_product SET name&#x3D;?, price&#x3D;?, version&#x3D;? WHERE id&#x3D;? AND version&#x3D;?</h5><h5 id="Parameters-外星人笔记本-String-150-Integer-1-Integer-1-Long-0-Integer"><a href="#Parameters-外星人笔记本-String-150-Integer-1-Integer-1-Long-0-Integer" class="headerlink" title="Parameters: 外星人笔记本(String), 150(Integer), 1(Integer), 1(Long), 0(Integer)"></a>Parameters: 外星人笔记本(String), 150(Integer), 1(Integer), 1(Long), 0(Integer)</h5><h5 id="小王修改商品价格，此时version已更新，条件不成立，修改失败"><a href="#小王修改商品价格，此时version已更新，条件不成立，修改失败" class="headerlink" title="小王修改商品价格，此时version已更新，条件不成立，修改失败"></a>小王修改商品价格，此时version已更新，条件不成立，修改失败</h5><h5 id="UPDATE-t-product-SET-name-x3D-price-x3D-version-x3D-WHERE-id-x3D-AND-version-x3D-1"><a href="#UPDATE-t-product-SET-name-x3D-price-x3D-version-x3D-WHERE-id-x3D-AND-version-x3D-1" class="headerlink" title="UPDATE t_product SET name&#x3D;?, price&#x3D;?, version&#x3D;? WHERE id&#x3D;? AND version&#x3D;?"></a>UPDATE t_product SET name&#x3D;?, price&#x3D;?, version&#x3D;? WHERE id&#x3D;? AND version&#x3D;?</h5><h5 id="Parameters-外星人笔记本-String-70-Integer-1-Integer-1-Long-0-Integer"><a href="#Parameters-外星人笔记本-String-70-Integer-1-Integer-1-Long-0-Integer" class="headerlink" title="Parameters: 外星人笔记本(String), 70(Integer), 1(Integer), 1(Long), 0(Integer)"></a>Parameters: 外星人笔记本(String), 70(Integer), 1(Integer), 1(Long), 0(Integer)</h5><h5 id="最终，小王修改失败，查询价格：-150"><a href="#最终，小王修改失败，查询价格：-150" class="headerlink" title="最终，小王修改失败，查询价格： 150"></a>最终，小王修改失败，查询价格： 150</h5><h5 id="SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D-2"><a href="#SELECT-id-name-price-version-FROM-t-product-WHERE-id-x3D-2" class="headerlink" title="SELECT id,name,price,version FROM t_product WHERE id&#x3D;?"></a>SELECT id,name,price,version FROM t_product WHERE id&#x3D;?</h5><h4 id="优化流程"><a href="#优化流程" class="headerlink" title="优化流程"></a>优化流程</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs haxe">@Bean<br><span class="hljs-keyword">public</span> MybatisPlusInterceptor mybatisPlusInterceptor()&#123;<br>MybatisPlusInterceptor interceptor = <span class="hljs-keyword">new</span> <span class="hljs-type">MybatisPlusInterceptor</span>();<br><span class="hljs-comment">//添加分页插件</span><br>interceptor.addInnerInterceptor(<span class="hljs-keyword">new</span><span class="hljs-type"></span><br>PaginationInnerInterceptor(DbType.MYSQL));<br><span class="hljs-comment">//添加乐观锁插件</span><br>interceptor.addInnerInterceptor(<span class="hljs-keyword">new</span> <span class="hljs-type">OptimisticLockerInnerInterceptor</span>());<br><span class="hljs-keyword">return</span> interceptor;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">testConcurrentVersionUpdate</span>(<span class="hljs-params"></span>) &#123;<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-小李取数据"><a href="#x2F-x2F-小李取数据" class="headerlink" title="&#x2F;&#x2F;小李取数据"></a>&#x2F;&#x2F;小李取数据</h6><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Product p1 <span class="hljs-operator">=</span> productMapper.selectById(<span class="hljs-number">1</span>L)<span class="hljs-comment">;</span><br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-小王取数据"><a href="#x2F-x2F-小王取数据" class="headerlink" title="&#x2F;&#x2F;小王取数据"></a>&#x2F;&#x2F;小王取数据</h6><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Product p2 <span class="hljs-operator">=</span> productMapper.selectById(<span class="hljs-number">1</span>L)<span class="hljs-comment">;</span><br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-小李修改-50"><a href="#x2F-x2F-小李修改-50" class="headerlink" title="&#x2F;&#x2F;小李修改 + 50"></a>&#x2F;&#x2F;小李修改 + 50</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">p1.set<span class="hljs-constructor">Price(<span class="hljs-params">p1</span>.<span class="hljs-params">getPrice</span>()</span> + <span class="hljs-number">50</span> );<br><span class="hljs-built_in">int</span> result1 = productMapper.update<span class="hljs-constructor">ById(<span class="hljs-params">p1</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小李修改的结果：&quot;</span> + result1);<br><br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-小王修改-30"><a href="#x2F-x2F-小王修改-30" class="headerlink" title="&#x2F;&#x2F;小王修改 - 30"></a>&#x2F;&#x2F;小王修改 - 30</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">p2.set<span class="hljs-constructor">Price(<span class="hljs-params">p2</span>.<span class="hljs-params">getPrice</span>()</span> - <span class="hljs-number">30</span> );<br><span class="hljs-built_in">int</span> result2 = productMapper.update<span class="hljs-constructor">ById(<span class="hljs-params">p2</span>)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小王修改的结果：&quot;</span> + result2);<br><span class="hljs-keyword">if</span>(result2<span class="hljs-operator"> == </span><span class="hljs-number">0</span> )&#123;<br><span class="hljs-comment">//失败重试，重新获取version并更新</span><br>p2 = productMapper.select<span class="hljs-constructor">ById(1L)</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="七、通用枚举"><a href="#七、通用枚举" class="headerlink" title="七、通用枚举"></a>七、通用枚举</h1><h5 id="表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举"><a href="#表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举" class="headerlink" title="表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举"></a>表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举</h5><h5 id="来实现"><a href="#来实现" class="headerlink" title="来实现"></a>来实现</h5><h2 id="a-gt-数据库表添加字段sex"><a href="#a-gt-数据库表添加字段sex" class="headerlink" title="a&gt;数据库表添加字段sex"></a>a&gt;数据库表添加字段sex</h2><h2 id="b-gt-创建通用枚举类型"><a href="#b-gt-创建通用枚举类型" class="headerlink" title="b&gt;创建通用枚举类型"></a>b&gt;创建通用枚举类型</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">p2.set<span class="hljs-constructor">Price(<span class="hljs-params">p2</span>.<span class="hljs-params">getPrice</span>()</span> - <span class="hljs-number">30</span> );<br>result2 = productMapper.update<span class="hljs-constructor">ById(<span class="hljs-params">p2</span>)</span>;<br>&#125;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;小王修改重试的结果：&quot;</span> + result2);<br></code></pre></td></tr></table></figure>
+
+<h6 id="x2F-x2F-老板看价格"><a href="#x2F-x2F-老板看价格" class="headerlink" title="&#x2F;&#x2F;老板看价格"></a>&#x2F;&#x2F;老板看价格</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">Product p3 = productMapper.select<span class="hljs-constructor">ById(1L)</span>;<br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;老板看价格：&quot;</span> + p3.get<span class="hljs-constructor">Price()</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">package</span> <span class="hljs-title">com.atguigu.mp.enums;</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs capnproto"><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.<span class="hljs-keyword">annotation</span>.EnumValue;<br><span class="hljs-keyword">import</span> lombok.Getter;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-keyword">@Getter</span><br>public enum SexEnum &#123;<br><span class="hljs-built_in">MALE</span>( <span class="hljs-number">1</span> , &quot;男&quot;),<br><span class="hljs-built_in">FEMALE</span>( <span class="hljs-number">2</span> , &quot;女&quot;);<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lasso">@EnumValue<br><span class="hljs-keyword">private</span> <span class="hljs-built_in">Integer</span> sex;<br><span class="hljs-keyword">private</span> <span class="hljs-built_in">String</span> sexName;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">SexEnum(Integer sex, String sexName) &#123;<br><span class="hljs-keyword">this</span>.sex = sex;<br><span class="hljs-keyword">this</span>.sexName = sexName;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="c-gt-配置扫描通用枚举"><a href="#c-gt-配置扫描通用枚举" class="headerlink" title="c&gt;配置扫描通用枚举"></a>c&gt;配置扫描通用枚举</h2><h2 id="d-gt-测试"><a href="#d-gt-测试" class="headerlink" title="d&gt;测试"></a>d&gt;测试</h2><h1 id="八、代码生成器"><a href="#八、代码生成器" class="headerlink" title="八、代码生成器"></a>八、代码生成器</h1><h2 id="1-、引入依赖"><a href="#1-、引入依赖" class="headerlink" title="1 、引入依赖"></a>1 、引入依赖</h2><h2 id="2-、快速生成"><a href="#2-、快速生成" class="headerlink" title="2 、快速生成"></a>2 、快速生成</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">mybatis-plus:</span><br><span class="hljs-section">configuration:</span><br><span class="hljs-comment"># 配置MyBatis日志</span><br><span class="hljs-section">log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="hljs-section">global-config:</span><br><span class="hljs-section">db-config:</span><br><span class="hljs-comment"># 配置MyBatis-Plus操作表的默认前缀</span><br><span class="hljs-section">table-prefix: t_</span><br><span class="hljs-comment"># 配置MyBatis-Plus的主键策略</span><br><span class="hljs-section">id-type: auto</span><br><span class="hljs-comment"># 配置扫描通用枚举</span><br><span class="hljs-section">type-enums-package: com.atguigu.mybatisplus.enums</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSexEnum()&#123;<br><span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><span class="hljs-keyword">user</span>.setName(&quot;Enum&quot;);<br><span class="hljs-keyword">user</span>.setAge( <span class="hljs-number">20</span> );<br>//设置性别信息为枚举项，会将@EnumValue注解所标识的属性值存储到数据库<br><span class="hljs-keyword">user</span>.setSex(SexEnum.MALE);<br>//<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t_user ( username, age, sex ) <span class="hljs-keyword">VALUES</span> ( ?, ?,? )<br>//Parameters: Enum(String), <span class="hljs-number">20</span>(<span class="hljs-type">Integer</span>), <span class="hljs-number">1</span>(<span class="hljs-type">Integer</span>)<br>userMapper.<span class="hljs-keyword">insert</span>(<span class="hljs-keyword">user</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-generator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.31<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">FastAutoGeneratorTest</span> &#123;<br></code></pre></td></tr></table></figure>
+
+<h1 id="九、多数据源"><a href="#九、多数据源" class="headerlink" title="九、多数据源"></a>九、多数据源</h1><h5 id="适用于多种场景：纯粹多库、-读写分离、-一主多从、-混合模式等"><a href="#适用于多种场景：纯粹多库、-读写分离、-一主多从、-混合模式等" class="headerlink" title="适用于多种场景：纯粹多库、 读写分离、 一主多从、 混合模式等"></a>适用于多种场景：纯粹多库、 读写分离、 一主多从、 混合模式等</h5><h5 id="目前我们就来模拟一个纯粹多库的一个场景，其他场景类似"><a href="#目前我们就来模拟一个纯粹多库的一个场景，其他场景类似" class="headerlink" title="目前我们就来模拟一个纯粹多库的一个场景，其他场景类似"></a>目前我们就来模拟一个纯粹多库的一个场景，其他场景类似</h5><h5 id="场景说明："><a href="#场景说明：" class="headerlink" title="场景说明："></a>场景说明：</h5><h5 id="我们创建两个库，分别为：mybatis-plus（以前的库不动）与mybatis-plus-1（新建），将"><a href="#我们创建两个库，分别为：mybatis-plus（以前的库不动）与mybatis-plus-1（新建），将" class="headerlink" title="我们创建两个库，分别为：mybatis_plus（以前的库不动）与mybatis_plus_1（新建），将"></a>我们创建两个库，分别为：mybatis_plus（以前的库不动）与mybatis_plus_1（新建），将</h5><h5 id="mybatis-plus库的product表移动到mybatis-plus-1库，这样每个库一张表，通过一个测试用例"><a href="#mybatis-plus库的product表移动到mybatis-plus-1库，这样每个库一张表，通过一个测试用例" class="headerlink" title="mybatis_plus库的product表移动到mybatis_plus_1库，这样每个库一张表，通过一个测试用例"></a>mybatis_plus库的product表移动到mybatis_plus_1库，这样每个库一张表，通过一个测试用例</h5><h5 id="分别获取用户数据与商品数据，如果获取到说明多库模拟成功"><a href="#分别获取用户数据与商品数据，如果获取到说明多库模拟成功" class="headerlink" title="分别获取用户数据与商品数据，如果获取到说明多库模拟成功"></a>分别获取用户数据与商品数据，如果获取到说明多库模拟成功</h5><h2 id="1-、创建数据库及表"><a href="#1-、创建数据库及表" class="headerlink" title="1 、创建数据库及表"></a>1 、创建数据库及表</h2><h5 id="创建数据库mybatis-plus-1和表product"><a href="#创建数据库mybatis-plus-1和表product" class="headerlink" title="创建数据库mybatis_plus_1和表product"></a>创建数据库mybatis_plus_1和表product</h5><h5 id="添加测试数据"><a href="#添加测试数据" class="headerlink" title="添加测试数据"></a>添加测试数据</h5><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs rust">public <span class="hljs-keyword">static</span> void <span class="hljs-title function_ invoke__">main</span>(<span class="hljs-type">String</span>[] args) &#123;<br>FastAutoGenerator.<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-string">&quot;jdbc:mysql://127.0.0.1:3306/mybatis_plus?</span><br><span class="hljs-string">characterEncoding=utf-8&amp;userSSL=false&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>)<br>.<span class="hljs-title function_ invoke__">globalConfig</span>(builder <span class="hljs-punctuation">-&gt;</span> &#123;<br>builder.<span class="hljs-title function_ invoke__">author</span>(<span class="hljs-string">&quot;atguigu&quot;</span>) <span class="hljs-comment">// 设置作者</span><br><span class="hljs-comment">//.enableSwagger() // 开启 swagger 模式</span><br>.<span class="hljs-title function_ invoke__">fileOverride</span>() <span class="hljs-comment">// 覆盖已生成文件</span><br>.<span class="hljs-title function_ invoke__">outputDir</span>(<span class="hljs-string">&quot;D://mybatis_plus&quot;</span>); <span class="hljs-comment">// 指定输出目录</span><br>&#125;)<br>.<span class="hljs-title function_ invoke__">packageConfig</span>(builder <span class="hljs-punctuation">-&gt;</span> &#123;<br>builder.<span class="hljs-title function_ invoke__">parent</span>(<span class="hljs-string">&quot;com.atguigu&quot;</span>) <span class="hljs-comment">// 设置父包名</span><br>.<span class="hljs-title function_ invoke__">moduleName</span>(<span class="hljs-string">&quot;mybatisplus&quot;</span>) <span class="hljs-comment">// 设置父包模块名</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk">.pathInfo(Collections.singletonMap(OutputFile.mapperXml, <span class="hljs-string">&quot;D://mybatis_plus&quot;</span>));<br><span class="hljs-regexp">//</span> 设置mapperXml生成路径<br>&#125;)<br>.strategyConfig(builder -&gt; &#123;<br>builder.addInclude(<span class="hljs-string">&quot;t_user&quot;</span>) <span class="hljs-regexp">//</span> 设置需要生成的表名<br>.addTablePrefix(<span class="hljs-string">&quot;t_&quot;</span>, <span class="hljs-string">&quot;c_&quot;</span>); <span class="hljs-regexp">//</span> 设置过滤表前缀<br>&#125;)<br>.templateEngine(new FreemarkerTemplateEngine()) <span class="hljs-regexp">//</span> 使用Freemarker<br>引擎模板，默认的是Velocity引擎模板<br>.execute();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id="-6"><a href="#-6" class="headerlink" title="}"></a>}</h6><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> `mybatis_plus_1` <span class="hljs-comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 */</span>;<br>use `mybatis_plus_1`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> product<br>(<br>id <span class="hljs-type">BIGINT</span>( <span class="hljs-number">20</span> ) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;主键ID&#x27;</span>,<br><span class="hljs-type">name</span> <span class="hljs-type">VARCHAR</span>( <span class="hljs-number">30</span> ) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;商品名称&#x27;</span>,<br>price <span class="hljs-type">INT</span>( <span class="hljs-number">11</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;价格&#x27;</span>,<br><span class="hljs-keyword">version</span> <span class="hljs-type">INT</span>( <span class="hljs-number">11</span> ) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;乐观锁版本号&#x27;</span>,<br><span class="hljs-keyword">PRIMARY KEY</span> (id)<br>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="删除mybatis-plus库product表"><a href="#删除mybatis-plus库product表" class="headerlink" title="删除mybatis_plus库product表"></a>删除mybatis_plus库product表</h5><h2 id="2-、引入依赖"><a href="#2-、引入依赖" class="headerlink" title="2 、引入依赖"></a>2 、引入依赖</h2><h2 id="3-、配置多数据源"><a href="#3-、配置多数据源" class="headerlink" title="3 、配置多数据源"></a>3 、配置多数据源</h2><h5 id="说明：注释掉之前的数据库连接，添加新配置"><a href="#说明：注释掉之前的数据库连接，添加新配置" class="headerlink" title="说明：注释掉之前的数据库连接，添加新配置"></a>说明：注释掉之前的数据库连接，添加新配置</h5><h2 id="4-、创建用户service"><a href="#4-、创建用户service" class="headerlink" title="4 、创建用户service"></a>4 、创建用户service</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> product (id, <span class="hljs-type">NAME</span>, price) <span class="hljs-keyword">VALUES</span> ( <span class="hljs-number">1</span> , <span class="hljs-string">&#x27;外星人笔记本&#x27;</span>, <span class="hljs-number">100</span> );<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">use mybatis_plus;<br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> product;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dynamic-datasource-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">spring:</span><br><span class="hljs-meta"># 配置数据源信息</span><br><span class="hljs-symbol">datasource:</span><br><span class="hljs-symbol">dynamic:</span><br><span class="hljs-meta"># 设置默认的数据源或者数据源组,默认值即为master</span><br><span class="hljs-symbol">primary:</span> master<br><span class="hljs-meta"># 严格匹配数据源,默认false.true未匹配到指定数据源时抛异常,false使用默认数据源</span><br><span class="hljs-symbol">strict:</span> false<br><span class="hljs-symbol">datasource:</span><br><span class="hljs-symbol">master:</span><br><span class="hljs-symbol">url:</span> jdbc:mysql:<span class="hljs-comment">//localhost:3306/mybatis_plus?characterEncoding=utf-</span><br><span class="hljs-number">8</span><span class="hljs-variable">&amp;</span>useSSL=false<br>driver-class-name: com.mysql.cj.jdbc.Driver<br><span class="hljs-symbol">username:</span> root<br><span class="hljs-symbol">password:</span> <span class="hljs-number">123456</span><br><span class="hljs-symbol">slave_1:</span><br><span class="hljs-symbol">url:</span> jdbc:mysql:<span class="hljs-comment">//localhost:3306/mybatis_plus_1?characterEncoding=utf-</span><br><span class="hljs-number">8</span><span class="hljs-variable">&amp;</span>useSSL=false<br>driver-class-name: com.mysql.cj.jdbc.Driver<br><span class="hljs-symbol">username:</span> root<br><span class="hljs-symbol">password:</span> <span class="hljs-number">123456</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">UserService</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">IService</span>&lt;<span class="hljs-symbol">User</span>&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@DS</span>(<span class="hljs-string">&quot;master&quot;</span>) <span class="hljs-comment">//指定所操作的数据源</span><br><span class="hljs-meta">@Service</span><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl&lt;UserMapper</span>, <span class="hljs-title">User&gt;</span> <span class="hljs-title">implements</span></span><br><span class="hljs-type">UserService</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-、创建商品service"><a href="#5-、创建商品service" class="headerlink" title="5 、创建商品service"></a>5 、创建商品service</h2><h2 id="6-、测试"><a href="#6-、测试" class="headerlink" title="6 、测试"></a>6 、测试</h2><h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><h5 id="1-、都能顺利获取对象，则测试成功"><a href="#1-、都能顺利获取对象，则测试成功" class="headerlink" title="1 、都能顺利获取对象，则测试成功"></a>1 、都能顺利获取对象，则测试成功</h5><h5 id="2-、如果我们实现读写分离，将写操作方法加上主库数据源，读操作方法加上从库数据源，自动切"><a href="#2-、如果我们实现读写分离，将写操作方法加上主库数据源，读操作方法加上从库数据源，自动切" class="headerlink" title="2 、如果我们实现读写分离，将写操作方法加上主库数据源，读操作方法加上从库数据源，自动切"></a>2 、如果我们实现读写分离，将写操作方法加上主库数据源，读操作方法加上从库数据源，自动切</h5><h5 id="换，是不是就能实现读写分离？"><a href="#换，是不是就能实现读写分离？" class="headerlink" title="换，是不是就能实现读写分离？"></a>换，是不是就能实现读写分离？</h5><h1 id="十、MyBatisX插件"><a href="#十、MyBatisX插件" class="headerlink" title="十、MyBatisX插件"></a>十、MyBatisX插件</h1><h5 id="MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率"><a href="#MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率" class="headerlink" title="MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率"></a>MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率</h5><h5 id="但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表"><a href="#但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表" class="headerlink" title="但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表"></a>但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表</h5><h5 id="联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可"><a href="#联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可" class="headerlink" title="联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可"></a>联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可</h5><h5 id="以使用MyBatisX插件"><a href="#以使用MyBatisX插件" class="headerlink" title="以使用MyBatisX插件"></a>以使用MyBatisX插件</h5><h5 id="MyBatisX一款基于-IDEA-的快速开发插件，为效率而生。"><a href="#MyBatisX一款基于-IDEA-的快速开发插件，为效率而生。" class="headerlink" title="MyBatisX一款基于 IDEA 的快速开发插件，为效率而生。"></a>MyBatisX一款基于 IDEA 的快速开发插件，为效率而生。</h5><h5 id="MyBatisX插件用法：https-baomidou-com-pages-ba5b24"><a href="#MyBatisX插件用法：https-baomidou-com-pages-ba5b24" class="headerlink" title="MyBatisX插件用法：https://baomidou.com/pages/ba5b24/"></a>MyBatisX插件用法：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/ba5b24/">https://baomidou.com/pages/ba5b24/</a></h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">ProductService</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">IService</span>&lt;<span class="hljs-symbol">Product</span>&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@DS</span>(<span class="hljs-string">&quot;slave_1&quot;</span>)<br><span class="hljs-meta">@Service</span><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductServiceImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceImpl&lt;ProductMapper</span>, <span class="hljs-title">Product&gt;</span></span><br>implements <span class="hljs-type">ProductService</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> UserService userService;<br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> ProductService productService;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp">@Test<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testDynamicDataSource</span>()</span>&#123;<br>System.<span class="hljs-keyword">out</span>.println(userService.getById(<span class="hljs-number">1L</span>));<br>System.<span class="hljs-keyword">out</span>.println(productService.getById(<span class="hljs-number">1L</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MyBatis-Plus/" class="category-chain-item">MyBatis-Plus</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MyBatis-Plus/">#MyBatis-Plus</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MyBatis-Plus</div>
+      <div>http://example.com/2023/10/11/MyBatis-Plus/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/12/day066springsecurity/" title="day066springsecurity">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">day066springsecurity</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/10/day065springsecurity/" title="day065springsecurity">
+                        <span class="hidden-mobile">day065springsecurity</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
