@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310092253115.webp">
 <meta property="article:published_time" content="2023-10-12T01:00:03.000Z">
-<meta property="article:modified_time" content="2023-10-13T12:08:09.894Z">
+<meta property="article:modified_time" content="2023-10-13T12:20:54.506Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="SpringSecurity3">
 <meta name="twitter:card" content="summary_large_image">
@@ -326,7 +326,7 @@
 <p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310121121638.webp" srcset="/img/loading.gif" lazyload></p>
 <p>1.把这个 token 返回给前端 (保存的方式不限，可以保存到 cookie&#x2F;sessionStorage</p>
 <p>2.前端需要把 token 存起来,下次请求的时候都要带上这个 token(一般保存到请求头携带),直接对 token 进行校验，校验成功就表示登录了</p>
-<p><img src="/ipic%5C202310121122943.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310121122943.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="1-3-两种认证方式的优缺点"><a href="#1-3-两种认证方式的优缺点" class="headerlink" title="1.3 两种认证方式的优缺点"></a>1.3 两种认证方式的优缺点</h2><p>Session 的方式没有网络开销（优点）不能做单点登录（sso）、 不能做分布式（高可用 高可靠 高可扩） 适用一些后台系统 用户量较小的系统</p>
 <p>Token 的方式 有网络开销（不足的地方），因为每次发送请求的时候都要带上 token 会产生一定的网络开销（这都不算什么问题）。</p>
 <p>可以做分布式大型的，也可以做单点登录（sso），前后端分离的项目都可以选择这种方式。</p>
