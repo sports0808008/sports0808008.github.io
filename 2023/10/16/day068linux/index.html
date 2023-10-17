@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172124829.webp">
 <meta property="article:published_time" content="2023-10-16T02:01:13.000Z">
-<meta property="article:modified_time" content="2023-10-17T13:26:06.764Z">
+<meta property="article:modified_time" content="2023-10-17T14:52:18.423Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -338,14 +338,12 @@
 <h2 id="1-8-总结"><a href="#1-8-总结" class="headerlink" title="1.8  总结"></a>1.8  总结</h2><p>1、Linux、CentOS、Ubuntu的区别是什么？</p>
 <p><strong>答：</strong>Linux是一个操作系统内核而已，而GNU提供了大量的自由软件来丰富在其之上各种应用程序。因此，严格来讲，Linux这个词本身只表示Linux内核，但在实际上人们已经习惯了用Linux来形容整个基于Linux内核，并且使用GNU 工程各种工具和数据库的操作系统。<br>   一般来讲，一个Linux发行套件包含大量的软件，比如软件开发工具，数据库，Web服务器（例如Apache)，Window，桌面环境（比如GNOME和KDE），办公套件（比如OpenOffice.org），等等。</p>
 <p>CentOS和Ubuntu分别是Linux的不同发行版本，但是他们的内核都是Linux。</p>
-<p><img src="/ipic%5Cclip_image002-1697421861596.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172243470.webp" srcset="/img/loading.gif" lazyload></p>
 <h1 id="2-虚拟机软件与虚拟机"><a href="#2-虚拟机软件与虚拟机" class="headerlink" title="2.  虚拟机软件与虚拟机"></a>2.  虚拟机软件与虚拟机</h1><p>  <strong>虚拟机软件</strong>可以帮助你在当前的电脑上安装其他的系统，其他的系统就是虚拟机，虚拟机就是在你现在的电脑上虚拟出来的其他电脑。</p>
 <h2 id="2-1-确保你的电脑已经开启虚拟化的支持"><a href="#2-1-确保你的电脑已经开启虚拟化的支持" class="headerlink" title="2.1 确保你的电脑已经开启虚拟化的支持"></a>2.1 确保你的电脑已经开启虚拟化的支持</h2><p>先检查是否开启虚拟化了</p>
-<p><img src="/ipic%5Cclip_image004-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p> 如果是未启用的就要走下面步骤</p>
 <p>1、电脑开机或重启，常见的为按“DEL”键进入BIOS界面，但也有按“ESC”、“F2”、“F1”等按键进入的电脑品牌，具体进入方法根据不同品牌电脑而不同，有些电脑在开机时屏幕会显示按什么键进入BIOS。</p>
 <p>2、进入到BIOS管理界面后，我们在管理界面中找到“Advanced”–&gt;“CPU Configuration”菜单，点击进去后，如果是Intel CPU则找到“Intel Virtual Technology”，然后设置为“Enable”状态；如果是AMD CPU则找到“SVM Support”，然后设置为“Enable”状态。注：不同电脑的菜单存在不同的名称，开启时也可以到各自电脑品牌官网查看开启路径。</p>
-<p><img src="/ipic%5Cclip_image005.png" srcset="/img/loading.gif" lazyload alt="IMG_256"></p>
 <p>3、设置好后，我们按“F10”键保存并退出BIOS设置界面，然后电脑自动重启电脑，此时我们等待电脑操作系统正常启动后再进行下一步操作。</p>
 <h2 id="2-2-认识电脑"><a href="#2-2-认识电脑" class="headerlink" title="2.2 认识电脑"></a>2.2 认识电脑</h2><p>1、中央处理器（cpu） 英特尔酷睿 i3 i5 i7 i9 ，主频 最高睿频</p>
 <p>2、运行内存 存储正在运行的程序和数据</p>
@@ -356,107 +354,91 @@
 <p>7、散热器 水冷 风冷 </p>
 <p>8、机箱</p>
 <p>9、系统 win10 Linux （centos 乌班图） </p>
-<p><img src="/ipic%5Cclip_image007.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172242337.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="2-3-虚拟机软件介绍"><a href="#2-3-虚拟机软件介绍" class="headerlink" title="2.3  虚拟机软件介绍"></a>2.3  虚拟机软件介绍</h2><p>​		如果我们要在windows系统中安装Linux系统，需要先在电脑上安装好虚拟机软件（例如：VMware Workstation），然后通过安装的虚拟机软件创建一个或多个虚拟机电脑（即虚拟的电脑设备），最终实现在一台电脑上”同时”运行多个虚拟机设备系统。 另外，还可以将这些虚拟的系统连成局域网，用来部署网站集群架构等更深层次的运维技术。</p>
-<p><img src="/ipic%5Cclip_image009-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172243118.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="2-4-虚拟机软件对硬件的要求"><a href="#2-4-虚拟机软件对硬件的要求" class="headerlink" title="2.4 虚拟机软件对硬件的要求"></a>2.4 虚拟机软件对硬件的要求</h2><p>​		虚拟机软件的原理是利用宿主机物理硬件资源虚拟PC设备，因此对宿主机硬件还是有一定要求，其中最主要的是内存、硬盘和CPU资源。首先，宿主机物理内存要足够大，最好在8GB以上，因为在创建虚拟设备时，要为每个虚拟机分配一定的内存资源（一般最小为128MB，实际学习可以设置在128~1024MB之间）和硬盘空间（默认20GB即可），ssd固态盘最好，同样也要分配CPU资源，CPU最好是I5以上，例如：每个虚拟机分配一核CPU。</p>
 <p>准备：开启宿主机的虚拟化</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/586751199">https://zhuanlan.zhihu.com/p/586751199</a></p>
 <p>①双击安装</p>
-<p><img src="/ipic%5Cclip_image011-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>②安装首页面点击下一步</p>
-<p><img src="/ipic%5Cclip_image013-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>③接收协议下一步</p>
-<p><img src="/ipic%5Cclip_image015-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>④选择安装路径【路径自行选择】下一步</p>
-<p><img src="/ipic%5Cclip_image016-1697421861597.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑤去掉检查 下一步</p>
-<p><img src="/ipic%5Cclip_image018-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑥选择创建桌面图标</p>
-<p><img src="/ipic%5Cclip_image020-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑦安装</p>
-<p><img src="/ipic%5Cclip_image022-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑧安装执行中</p>
-<p><img src="/ipic%5Cclip_image024-1697421861597.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑨安装完成</p>
-<p><img src="/ipic%5Cclip_image026-1697421861598.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>⑩点击许可证输入密钥5A02H-AU243-TZJ49-GTC7K-3C61N</p>
-<p><img src="/ipic%5Cclip_image028-1697421861598.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>安装完成之后，我们可以在桌面看到该软件的图标</p>
-<p><img src="/ipic%5Cclip_image029-1697421861598.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>双击它，就可以进入该软件主界面，则代表该软件安装完成</p>
-<p><img src="/ipic%5Cclip_image031-1697421861598.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h1 id="3-创建虚拟电脑（硬件）"><a href="#3-创建虚拟电脑（硬件）" class="headerlink" title="3.  创建虚拟电脑（硬件）"></a>3.  创建虚拟电脑（硬件）</h1><pre><code class="hljs">  先创建一个没有系统的电脑，可以认为是裸机，只是具备了电脑的硬件功能，比如具备CPU，磁盘等，但是还没有安装系统。
 </code></pre>
 <p>下图为安装VMware Workstation虚拟机软件打开后的虚拟机软件界面。</p>
-<p><img src="/ipic%5Cclip_image033-1697421861598.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>【开始安装】打开VM，点击创建新的虚拟主机。</p>
 <h2 id="3-1-虚拟机创建【不安装系统哦】"><a href="#3-1-虚拟机创建【不安装系统哦】" class="headerlink" title="3.1  虚拟机创建【不安装系统哦】"></a>3.1  虚拟机创建【不安装系统哦】</h2><p>接下来我们创建一个虚拟机，注意每个步骤的说明【重点】</p>
-<h3 id="3-1-1-点击下面的创建虚拟机"><a href="#3-1-1-点击下面的创建虚拟机" class="headerlink" title="3.1.1 点击下面的创建虚拟机"></a>3.1.1 点击下面的创建虚拟机</h3><p><img src="/ipic%5Cclip_image035-1697421861599.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-1-2-虚拟机向导选择典型安装"><a href="#3-1-2-虚拟机向导选择典型安装" class="headerlink" title="3.1.2 虚拟机向导选择典型安装"></a>3.1.2 虚拟机向导选择典型安装</h3><p><img src="/ipic%5Cclip_image037-1697421861599.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-1-3-操作系统选择"><a href="#3-1-3-操作系统选择" class="headerlink" title="3.1.3 操作系统选择"></a>3.1.3 操作系统选择</h3><p><img src="/ipic%5Cclip_image039-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-1-1-点击下面的创建虚拟机"><a href="#3-1-1-点击下面的创建虚拟机" class="headerlink" title="3.1.1 点击下面的创建虚拟机"></a>3.1.1 点击下面的创建虚拟机</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172244783.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-1-2-虚拟机向导选择典型安装"><a href="#3-1-2-虚拟机向导选择典型安装" class="headerlink" title="3.1.2 虚拟机向导选择典型安装"></a>3.1.2 虚拟机向导选择典型安装</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172245818.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-1-3-操作系统选择"><a href="#3-1-3-操作系统选择" class="headerlink" title="3.1.3 操作系统选择"></a>3.1.3 操作系统选择</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172245575.webp" srcset="/img/loading.gif" lazyload></p>
 <p>注意：</p>
 <p>在这里我们选择稍后安装操作系统，这里相当于只是创建一个没有操作系统的虚拟电脑，当然，可以在创建虚拟电脑的同时安装操作系统，如果本机电脑有光驱，选择第一个什么光盘安装【现在很多电脑没有光区了没有光驱可以选择电脑里面某一个下载好的操作系统的安装包，因为我们这里只是讲VM的使用，所以我们不安装操作系统</p>
 <h2 id="3-2-选择虚拟机的操作系统（不需要安装了）"><a href="#3-2-选择虚拟机的操作系统（不需要安装了）" class="headerlink" title="3.2 选择虚拟机的操作系统（不需要安装了）"></a>3.2 选择虚拟机的操作系统（不需要安装了）</h2><p>  直接解压使用</p>
 <p>  因为我们要安装的是CentOS.它属于Linux里面的一个社区版本【不收费的】</p>
-<p><img src="/ipic%5Cclip_image041.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-2-1-给虚拟机命名和选择虚拟机的存盘地址"><a href="#3-2-1-给虚拟机命名和选择虚拟机的存盘地址" class="headerlink" title="3.2.1 给虚拟机命名和选择虚拟机的存盘地址"></a>3.2.1 给虚拟机命名和选择虚拟机的存盘地址</h3><p><img src="/ipic%5Cclip_image042-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-2-2-选择虚拟机磁盘大小"><a href="#3-2-2-选择虚拟机磁盘大小" class="headerlink" title="3.2.2 选择虚拟机磁盘大小"></a>3.2.2 选择虚拟机磁盘大小</h3><p><img src="/ipic%5Cclip_image044-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172245809.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-1-给虚拟机命名和选择虚拟机的存盘地址"><a href="#3-2-1-给虚拟机命名和选择虚拟机的存盘地址" class="headerlink" title="3.2.1 给虚拟机命名和选择虚拟机的存盘地址"></a>3.2.1 给虚拟机命名和选择虚拟机的存盘地址</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172246602.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-2-选择虚拟机磁盘大小"><a href="#3-2-2-选择虚拟机磁盘大小" class="headerlink" title="3.2.2 选择虚拟机磁盘大小"></a>3.2.2 选择虚拟机磁盘大小</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172246738.webp" srcset="/img/loading.gif" lazyload></p>
 <p>注意：</p>
 <p>  这里选择大小可以根据自己的需求来，如虚拟机到时候要安装tomcat和mysql等软件。至少要给这个软件留足空间哦</p>
 <p>  至于是否拆分文件，默认到行了</p>
-<h3 id="3-2-3-下一步"><a href="#3-2-3-下一步" class="headerlink" title="3.2.3 下一步"></a>3.2.3 下一步</h3><p><img src="/ipic%5Cclip_image046-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-2-4-完成"><a href="#3-2-4-完成" class="headerlink" title="3.2.4 完成"></a>3.2.4 完成</h3><p><img src="/ipic%5Cclip_image048-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-2-3-下一步"><a href="#3-2-3-下一步" class="headerlink" title="3.2.3 下一步"></a>3.2.3 下一步</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172246563.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-4-完成"><a href="#3-2-4-完成" class="headerlink" title="3.2.4 完成"></a>3.2.4 完成</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172246955.webp" srcset="/img/loading.gif" lazyload></p>
 <p>左边的是虚拟机选项，右边的是未启动的虚拟机</p>
 <p>【编辑虚拟电脑配置】</p>
-<p> <img src="/ipic%5Cclip_image050.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/ipic%5Cclip_image052.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172247768.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172247776.webp" srcset="/img/loading.gif" lazyload></p>
 <p>从以上我们可以看到，可以设置</p>
 <h3 id="3-2-5-内存"><a href="#3-2-5-内存" class="headerlink" title="3.2.5 内存"></a>3.2.5 内存</h3><p>   至少628M</p>
 <h3 id="3-2-6-处理器"><a href="#3-2-6-处理器" class="headerlink" title="3.2.6 处理器"></a>3.2.6 处理器</h3><p>根据自己电脑的特点来【电脑是双核的可以选择2，学习的时候选择1就可以了】</p>
 <h3 id="3-2-7-硬盘"><a href="#3-2-7-硬盘" class="headerlink" title="3.2.7 硬盘"></a>3.2.7 硬盘</h3><p>​    默认就行了</p>
 <h3 id="3-2-8-CD-x2F-DVD"><a href="#3-2-8-CD-x2F-DVD" class="headerlink" title="3.2.8 CD&#x2F;DVD"></a>3.2.8 CD&#x2F;DVD</h3><p>​    不用设置</p>
-<p> <img src="/ipic%5Cclip_image054-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-2-9-其它的可以不用设置了"><a href="#3-2-9-其它的可以不用设置了" class="headerlink" title="3.2.9 其它的可以不用设置了"></a>3.2.9 其它的可以不用设置了</h3><h2 id="3-3-VM提供的其它好用的功能"><a href="#3-3-VM提供的其它好用的功能" class="headerlink" title="3.3 VM提供的其它好用的功能"></a>3.3 VM提供的其它好用的功能</h2><h3 id="3-3-1-编辑—-gt-虚拟网络编辑器"><a href="#3-3-1-编辑—-gt-虚拟网络编辑器" class="headerlink" title="3.3.1 编辑—&gt;虚拟网络编辑器"></a>3.3.1 编辑—&gt;虚拟网络编辑器</h3><p><img src="/ipic%5Cclip_image055-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172247533.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-9-其它的可以不用设置了"><a href="#3-2-9-其它的可以不用设置了" class="headerlink" title="3.2.9 其它的可以不用设置了"></a>3.2.9 其它的可以不用设置了</h3><h2 id="3-3-VM提供的其它好用的功能"><a href="#3-3-VM提供的其它好用的功能" class="headerlink" title="3.3 VM提供的其它好用的功能"></a>3.3 VM提供的其它好用的功能</h2><h3 id="3-3-1-编辑—-gt-虚拟网络编辑器"><a href="#3-3-1-编辑—-gt-虚拟网络编辑器" class="headerlink" title="3.3.1 编辑—&gt;虚拟网络编辑器"></a>3.3.1 编辑—&gt;虚拟网络编辑器</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172247320.webp" srcset="/img/loading.gif" lazyload></p>
 <p>  vmnet0桥接模式使用</p>
 <p>​    注意点：如果电脑既使用有网线，也使用了无线网络，也会桥接的时候注意选择一下网卡</p>
-<p><img src="/ipic%5Cclip_image057-1697421861599.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/ipic%5Cclip_image059.png" srcset="/img/loading.gif" lazyload alt="img"> </p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172248880.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172248141.webp" srcset="/img/loading.gif" lazyload></p>
 <p> NAT（Network Address Translation），网络地址转换，NAT模式是比较简单的实现虚拟机上网的方式，NAT模式的虚拟机就是通过宿主机（物理电脑）上网和交换数据的。</p>
-<p> <img src="/ipic%5Cclip_image060.png" srcset="/img/loading.gif" lazyload alt="IMG_265"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172248899.webp" srcset="/img/loading.gif" lazyload></p>
 <p><strong>NAT****网络逻辑图</strong></p>
 <p>  NAT网络特别适合于家庭里电脑直接连接网线的情况，办公室的局域网也适合的，优势就是不会和其他物理主机IP冲突，且在没有路由器的环境下也可以使用。推荐使用NAT模式。</p>
 <p><strong>Bridged****（桥接模式）</strong></p>
 <p>桥接模式可以简单理解为通过物理主机网卡架设了一座桥，从而连入到了实际网络中。因此，虚拟机可以被分配与物理主机相同网段的独立IP，所有网络功能和网络中的真实机器几乎完全一样。桥接模式下的虚拟机和网内真实计算机所处的位置是一样的。在Bridged模式下，它会直接连接到实际的网络上，上网与宿主机（电脑设备）没有联系。Bridged网络类型的原理逻辑图下图所示。</p>
-<p><img src="/ipic%5Cclip_image061.png" srcset="/img/loading.gif" lazyload alt="IMG_266"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172249927.webp" srcset="/img/loading.gif" lazyload></p>
 <p><strong>Bridged****网络逻辑图</strong></p>
 <p>  Bridged网络类型适合的场景：特别适合于局域网环境，优势就是虚拟机像一台真正的主机一样，缺点是可能会和其他物理主机IP冲突，并且在和宿主机交换数据时，都会经过实际的路由器。</p>
 <p><strong>Host-only****网络逻辑图</strong></p>
 <p> 此时一台虚拟电脑就配置好了，但是该电脑还没有操作系统，我接下来就为其安装操作系统。 </p>
 <h1 id="4-安装操作系统（不用管）"><a href="#4-安装操作系统（不用管）" class="headerlink" title="4.  安装操作系统（不用管）"></a>4.  安装操作系统（不用管）</h1><p>  上节课我们只是创建了一台虚拟的电脑，但是这台电脑只是具备硬件的设备，还没有为其安装操作系统，安装操作系统需要使用linux的镜像文件。</p>
-<h2 id="4-1-打开VM，打开选择中刚才创建的虚拟主机–-gt-编辑虚拟机"><a href="#4-1-打开VM，打开选择中刚才创建的虚拟主机–-gt-编辑虚拟机" class="headerlink" title="4.1 打开VM，打开选择中刚才创建的虚拟主机–&gt;编辑虚拟机"></a>4.1 打开VM，打开选择中刚才创建的虚拟主机–&gt;编辑虚拟机</h2><p><img src="/ipic%5Cclip_image063-1697421861600.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="4-1-打开VM，打开选择中刚才创建的虚拟主机–-gt-编辑虚拟机"><a href="#4-1-打开VM，打开选择中刚才创建的虚拟主机–-gt-编辑虚拟机" class="headerlink" title="4.1 打开VM，打开选择中刚才创建的虚拟主机–&gt;编辑虚拟机"></a>4.1 打开VM，打开选择中刚才创建的虚拟主机–&gt;编辑虚拟机</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172249111.webp" srcset="/img/loading.gif" lazyload></p>
 <h2 id="4-2-启动虚拟机"><a href="#4-2-启动虚拟机" class="headerlink" title="4.2 启动虚拟机"></a>4.2 启动虚拟机</h2><p>  安装的过程中如果你的鼠标点击进了虚拟电脑，则宿主机上就失去鼠标功能，可以使用快捷键 ctr+alt切换出来。</p>
-<p><img src="/ipic%5Cclip_image065.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/ipic%5Cclip_image067-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172249001.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172249714.webp" srcset="/img/loading.gif" lazyload></p>
 <p>  选择install Centos 7 然后回车。</p>
-<p> <img src="/ipic%5Cclip_image069-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172250403.webp" srcset="/img/loading.gif" lazyload></p>
 <p>网络配置很重要，否则你的虚拟机无法上网</p>
-<p><img src="/ipic%5Cclip_image071-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p> <img src="/ipic%5Cclip_image073-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172250543.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172250889.webp" srcset="/img/loading.gif" lazyload></p>
 <p> 密码配置</p>
-<p><img src="/ipic%5Cclip_image075-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/ipic%5Cclip_image077-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="/ipic%5Cclip_image079-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172250230.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172250631.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172251257.webp" srcset="/img/loading.gif" lazyload></p>
 <p>点击重启</p>
-<p><img src="/ipic%5Cclip_image081-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172251268.webp" srcset="/img/loading.gif" lazyload></p>
 <p> 使用我们的账户密码登陆 root +密码</p>
-<p><img src="/ipic%5Cclip_image083-1697421861600.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p> 此时一个Linux就安装成功了 ，查看ip地址以及检测是否可以上网</p>
 <p>命令是 : ip addr</p>
-<p><img src="/ipic%5Cclip_image085-1697421861601.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p> 检测是否能连接外网： ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
-<p><img src="/ipic%5Cclip_image087-1697421861601.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h1 id="5-安装远程连接工具"><a href="#5-安装远程连接工具" class="headerlink" title="5.  安装远程连接工具"></a>5.  安装远程连接工具</h1><p>在以后的开发中项目部署的Linux是在云端的，比如说腾讯云或者阿里云，是在机房的，你不可能直接操作Linux系统，那么此时应该要使用一个远程连接工具进行远程操作。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172251251.webp" srcset="/img/loading.gif" lazyload></p>
+<h1 id="5-安装远程连接工具"><a href="#5-安装远程连接工具" class="headerlink" title="5. 安装远程连接工具"></a>5. 安装远程连接工具</h1><p>在以后的开发中项目部署的Linux是在云端的，比如说腾讯云或者阿里云，是在机房的，你不可能直接操作Linux系统，那么此时应该要使用一个远程连接工具进行远程操作。</p>
 <p> ·需要知道被连接的主机的ip地址 (192.168.179.129)</p>
 <p>·本机的密码是：登录用户是root&#x2F;1234。</p>
 <p>  ·从Linux的命令界面进入windows界面使用的是Ctrl+Alt </p>
