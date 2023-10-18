@@ -1,0 +1,1211 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/4.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xin Xuan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.Nginx的基本概念分析一下传统的单web服务器存在的问题： ·如果一个项目访问量很高的时候，比如说每秒上万的访问量的时候一个web服务器的负担非常重，此时访问就会变慢（比如果说在实际的应用中的秒杀业务的时候就课程出现高并发访问的情况）甚至导致服务瘫痪宕机。 ·如果一个服务器的情况下，宕机的时候的客户是无法访问的。  此时我们使用代理来解决这一问题，使用某种程序算法来代理多个web服务器，就算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day070Nginx">
+<meta property="og:url" content="http://example.com/2023/10/18/day070Nginx/index.html">
+<meta property="og:site_name" content="SkyXinxuan">
+<meta property="og:description" content="1.Nginx的基本概念分析一下传统的单web服务器存在的问题： ·如果一个项目访问量很高的时候，比如说每秒上万的访问量的时候一个web服务器的负担非常重，此时访问就会变慢（比如果说在实际的应用中的秒杀业务的时候就课程出现高并发访问的情况）甚至导致服务瘫痪宕机。 ·如果一个服务器的情况下，宕机的时候的客户是无法访问的。  此时我们使用代理来解决这一问题，使用某种程序算法来代理多个web服务器，就算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172124829.webp">
+<meta property="article:published_time" content="2023-10-18T00:50:09.000Z">
+<meta property="article:modified_time" content="2023-10-18T13:19:12.519Z">
+<meta property="article:author" content="Xin Xuan">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172124829.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>day070Nginx - SkyXinxuan</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余儿博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="day070Nginx"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-18 08:50" pubdate>
+          2023年10月18日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          166 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">day070Nginx</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Nginx的基本概念"><a href="#1-Nginx的基本概念" class="headerlink" title="1.Nginx的基本概念"></a>1.Nginx的基本概念</h1><p>分析一下传统的单web服务器存在的问题：</p>
+<p>·如果一个项目访问量很高的时候，比如说每秒上万的访问量的时候一个web服务器的负担非常重，此时访问就会变慢（比如果说在实际的应用中的秒杀业务的时候就课程出现高并发访问的情况）甚至导致服务瘫痪宕机。</p>
+<p>·如果一个服务器的情况下，宕机的时候的客户是无法访问的。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181509920.webp" srcset="/img/loading.gif" lazyload></p>
+<p>此时我们使用代理来解决这一问题，使用某种程序算法来代理多个web服务器，就算宕机其中某些服务器，那么用户还可以访问没有宕机的服务器。代理可以将访问分发到多台web服务器，<strong>这就是负载均衡的概念，负载均衡的本质就是使用多个<strong><strong>web</strong></strong>服务器分担压访问压力，负载均衡在很多地方出现了这个概念，比如说数据库的负载均衡、消息中间件的负载均衡等（只要牵涉到集群就会出现负载均衡）</strong>。</p>
+<p>今天使用Nginx实现web服务器的反向代理。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181509788.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 通过对上图分析我们可以通过反向代理服务器实现负载均衡，这样的代理服务器有很多种，其中最著名和常用的就是Nginx，以上的部署实现了解决高并发访问，但是如果Nginx服务宕机则整个系统就瘫痪了，此时应该解决高可用问题，可以配置多个Nginx服务。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181019852.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-1-接下来我们就来实现Nginx的编译与安装。"><a href="#3-1-接下来我们就来实现Nginx的编译与安装。" class="headerlink" title="3.1 接下来我们就来实现Nginx的编译与安装。"></a>3.1 接下来我们就来实现Nginx的编译与安装。</h2><p>nginx的官网：<a target="_blank" rel="noopener" href="http://nginx.org/">http://nginx.org/</a></p>
+<h1 id="2-Nginx的编译与安装"><a href="#2-Nginx的编译与安装" class="headerlink" title="2.Nginx的编译与安装"></a>2.Nginx的编译与安装</h1><h2 id="2-1-准备nginx相关的安装包"><a href="#2-1-准备nginx相关的安装包" class="headerlink" title="2.1 准备nginx相关的安装包"></a>2.1 准备nginx相关的安装包</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181513292.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​		上面的压缩包中的内容还是源码状态，需要先编译，之后再安装。 </p>
+<p>​		 nginx是c语言开发的高新能的代理解决方案  </p>
+<p>​		 之后将这些压缩包上传到Linux</p>
+<h2 id="2-2-下载需要用到的组件"><a href="#2-2-下载需要用到的组件" class="headerlink" title="2.2 下载需要用到的组件"></a>2.2 下载需要用到的组件</h2><p>​	因为我们下载的是nginx的源代码，所有以进行编译， nginx是C语言开发，建议在linux上运行，所以我们选择在linux上安装Nginx</p>
+<h3 id="1-1-1-gcc-安装"><a href="#1-1-1-gcc-安装" class="headerlink" title="1.1.1 *gcc**安装*"></a><strong>1.1.1</strong> <em><strong>*gcc*</strong></em><em><strong>*安装*</strong></em></h3><p>   安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc</p>
+<p> yum install gcc-c++  -y</p>
+<h3 id="1-1-2-PCRE-安装"><a href="#1-1-2-PCRE-安装" class="headerlink" title="1.1.2 *PCRE**安装*"></a><strong>1.1.2</strong> <em><strong>*PCRE*</strong></em><em><strong>*安装*</strong></em></h3><p>   PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。</p>
+<p> yum install -y pcre pcre-devel</p>
+<p>   注：pcre-devel是使用pcre开发的一个二次开发库。nginx也需要此库。</p>
+<h3 id="1-1-3-zlib-安装"><a href="#1-1-3-zlib-安装" class="headerlink" title="1.1.3 *zlib**安装*"></a><strong>1.1.3</strong> <em><strong>*zlib*</strong></em><em><strong>*安装*</strong></em></h3><p>   zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。</p>
+<p> yum install -y zlib zlib-devel</p>
+<h3 id="1-1-4-openssl-安装"><a href="#1-1-4-openssl-安装" class="headerlink" title="1.1.4 openssl****安装"></a>1.1.4 <strong>openssl****安装</strong></h3><p>   <strong>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。</strong> **<br>**   <strong>nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。</strong></p>
+<p> yum install -y openssl openssl-devel</p>
+<h2 id="2-3-先克隆出一台主机，再进行后面的操作-可以不操作-。"><a href="#2-3-先克隆出一台主机，再进行后面的操作-可以不操作-。" class="headerlink" title="2.3 先克隆出一台主机，再进行后面的操作[可以不操作]。"></a>2.3 先克隆出一台主机，再进行后面的操作[可以不操作]。</h2><p>   类似阿里云的服务器提供的快照功能—&gt;防止操作失败之后还能找到最初没有执行当前操作的系统。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181022549.webp" srcset="/img/loading.gif" lazyload></p>
+<p>表示克隆整个系统</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181022294.webp" srcset="/img/loading.gif" lazyload></p>
+<p><strong>方法一：</strong></p>
+<h2 id="2-4-将所有的开发包解压到-x2F-usr-x2F-local-x2F-src下"><a href="#2-4-将所有的开发包解压到-x2F-usr-x2F-local-x2F-src下" class="headerlink" title="2.4 将所有的开发包解压到&#x2F;usr&#x2F;local&#x2F;src下"></a>2.4 将所有的开发包解压到&#x2F;usr&#x2F;local&#x2F;src下</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">方法一需要这<span class="hljs-number">5</span>个 而方法二只需要 nginx-<span class="hljs-number">1.24</span>.<span class="hljs-number">0</span><span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> <br><br>ngx_cache_purge-<span class="hljs-number">2.3</span><span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span><br>keepalived-<span class="hljs-number">1.2</span>.<span class="hljs-number">24</span><span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span><br>nginx-<span class="hljs-number">1.11</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> <br>nginx-upstream-fair-a18b409<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span><br>echo-nginx-module-<span class="hljs-number">0.59</span><span class="hljs-selector-class">.tar</span>.gz<br></code></pre></td></tr></table></figure>
+
+<p>·先切换进入到&#x2F;usr&#x2F;local&#x2F;java&#x2F;nginx目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -xzvf  ngx_cache_purge-2.3.tar.gz  -C /usr/local/src/<br><br>tar -xzvf  keepalived-1.2.24.tar.gz -C /usr/local/src/<br><br>tar -xzvf  nginx-1.11.3.tar.gz  -C /usr/local/src/<br><br>tar -xzvf  nginx-upstream-fair-a18b409.tar.gz -C /usr/local/src/<br><br>tar -zxvf echo-nginx-module-0.59.tar.gz -C /usr/local/src/<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-5-现在的开发包是源码，需要进行编译安装之后才能使用。"><a href="#2-5-现在的开发包是源码，需要进行编译安装之后才能使用。" class="headerlink" title="2.5 现在的开发包是源码，需要进行编译安装之后才能使用。"></a>2.5 现在的开发包是源码，需要进行编译安装之后才能使用。</h2><p>   Nginx默认情况下编译之后的所有文件都会保存到源代码文件中，这样是非常不方便的，所以我们要单独创建一个文件目录保存Nginx有关的所有配置及其文件 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">定义编译输出目录：【-p表示递归创建目录，也就是可以创建子目录】<br>mkdir -p /usr/local/nginx/&#123;logs,conf,fastcgi_temp,sbin,client_body_temp,proxy_temp,uwsgi_temp,scgi_temp&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181032241.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-6-进入到Nginx的源码目录中"><a href="#2-6-进入到Nginx的源码目录中" class="headerlink" title="2.6 进入到Nginx的源码目录中"></a>2.6 进入到Nginx的源码目录中</h2><p> 注意：执行第7步（下一步）的时候要进入该目录，不能进其他目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/src/nginx-1.11.3/<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-7-配置编译项"><a href="#2-7-配置编译项" class="headerlink" title="2.7 配置编译项"></a>2.7 配置编译项</h2><p>   在编译之后会生成一些配置文件、可执行文件、一些相关的库，下面的操作就是为生成的这些文件指定保存路径的，不让其默认保存。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell">./configure --prefix=/usr/local/nginx/ \<br>--sbin-path=/usr/local/nginx/sbin/  \<br>--with-http_ssl_module \<br>--conf-path=/usr/local/nginx/conf/nginx.conf \<br>--pid-path=/usr/local/nginx/logs/nginx.pid \<br>--error-log-path=/usr/local/nginx/logs/error.log \<br>--http-log-path=/usr/local/nginx/logs/access.log \<br>--http-fastcgi-temp-path=/usr/local/nginx/fastcgi_temp \<br>--http-client-body-temp-path=/usr/local/nginx/client_body_temp \<br>--http-proxy-temp-path=/usr/local/nginx/proxy_temp \<br>--http-uwsgi-temp-path=/usr/local/nginx/uwsgi_temp \<br>--http-scgi-temp-path=/usr/local/nginx/scgi_temp \<br>--add-module=/usr/local/src/echo-nginx-module-0.59 \<br>--add-module=/usr/local/src/gnosek-nginx-upstream-fair-a18b409 \<br>--add-module=/usr/local/src/ngx_cache_purge-2.3 <br></code></pre></td></tr></table></figure>
+
+<p>如果配置不成功则可能是缺少如下的包 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install  gcc  libpcre3  libpcrecpp*  libpcre3-dev  libssl-dev<br></code></pre></td></tr></table></figure>
+
+<p>成功之后会看到如下的信息</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181036122.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-8-执行编译命令"><a href="#2-8-执行编译命令" class="headerlink" title="2.8 执行编译命令"></a>2.8 执行编译命令</h2><p><strong>后面就是一样的了</strong></p>
+<p><strong>方法二：只需要 nginx-1.24.0.tar.gz  稳定版</strong></p>
+<h2 id="2-4-将所有的开发包解压到-x2F-usr-x2F-local-x2F-src下-1"><a href="#2-4-将所有的开发包解压到-x2F-usr-x2F-local-x2F-src下-1" class="headerlink" title="2.4 将所有的开发包解压到&#x2F;usr&#x2F;local&#x2F;src下"></a>2.4 将所有的开发包解压到&#x2F;usr&#x2F;local&#x2F;src下</h2><p>·先切换进入到&#x2F;usr&#x2F;local&#x2F;java&#x2F;nginx目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -xzvf  nginx-1.24.0.tar.gz -C /usr/local/src/<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-5-现在的开发包是源码，需要进行编译安装之后才能使用。-1"><a href="#2-5-现在的开发包是源码，需要进行编译安装之后才能使用。-1" class="headerlink" title="2.5 现在的开发包是源码，需要进行编译安装之后才能使用。"></a>2.5 现在的开发包是源码，需要进行编译安装之后才能使用。</h2><p>   Nginx默认情况下编译之后的所有文件都会保存到源代码文件中，这样是非常不方便的，所以我们要单独创建一个文件目录保存Nginx有关的所有配置及其文件 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">定义编译输出目录：【-p表示递归创建目录，也就是可以创建子目录】<br>mkdir -p /usr/local/nginx/&#123;logs,conf,fastcgi_temp,sbin,client_body_temp,proxy_temp,uwsgi_temp,scgi_temp&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181032241.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-6-进入到Nginx的源码目录中-1"><a href="#2-6-进入到Nginx的源码目录中-1" class="headerlink" title="2.6 进入到Nginx的源码目录中"></a>2.6 进入到Nginx的源码目录中</h2><p> 注意：执行第7步（下一步）的时候要进入该目录，不能进其他目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/src/nginx-1.24.0<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-7-配置编译项-1"><a href="#2-7-配置编译项-1" class="headerlink" title="2.7 配置编译项"></a>2.7 配置编译项</h2><p>   在编译之后会生成一些配置文件、可执行文件、一些相关的库，下面的操作就是为生成的这些文件指定保存路径的，不让其默认保存。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">./configure --prefix=/usr/local/nginx/ \<br>--sbin-path=/usr/local/nginx/sbin/  \<br>--with-http_ssl_module \<br>--conf-path=/usr/local/nginx/conf/nginx.conf \<br>--pid-path=/usr/local/nginx/logs/nginx.pid \<br>--error-log-path=/usr/local/nginx/logs/error.log \<br>--http-log-path=/usr/local/nginx/logs/access.log \<br>--http-fastcgi-temp-path=/usr/local/nginx/fastcgi_temp \<br>--http-client-body-temp-path=/usr/local/nginx/client_body_temp \<br>--http-proxy-temp-path=/usr/local/nginx/proxy_temp \<br>--http-uwsgi-temp-path=/usr/local/nginx/uwsgi_temp \<br>--http-scgi-temp-path=/usr/local/nginx/scgi_temp \<br>;<br></code></pre></td></tr></table></figure>
+
+<p>如果配置不成功则可能是缺少如下的包 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install  gcc  libpcre3  libpcrecpp*  libpcre3-dev  libssl-dev<br></code></pre></td></tr></table></figure>
+
+<p>成功之后会看到如下的信息</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181036122.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-8-执行编译命令-1"><a href="#2-8-执行编译命令-1" class="headerlink" title="2.8 执行编译命令"></a>2.8 执行编译命令</h2><p>make </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">make 【如果没有make 命令则需要下载安装（yum  install  make）<br></code></pre></td></tr></table></figure>
+
+<p>命令则需要下载安装（yum  install  make）</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181038091.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 编译成功之后会有如下的信息</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181037071.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-9-进行安装"><a href="#2-9-进行安装" class="headerlink" title="2.9 进行安装"></a>2.9 进行安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">make  install<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-10-进入-x2F-usr-x2F-local-x2F-nginx-x2F-sbin-之后启动命令"><a href="#2-10-进入-x2F-usr-x2F-local-x2F-nginx-x2F-sbin-之后启动命令" class="headerlink" title="2.10 进入&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin# 之后启动命令"></a>2.10 进入&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin# 之后启动命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/nginx/sbin/<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181041855.webp" srcset="/img/loading.gif" lazyload></p>
+<p>启动nginx服务：.&#x2F;nginx </p>
+<p> 查看启动没有：ps -ef |grep nginx</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181042647.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-11-启动之后nginx默认占用的是80端口，我们从浏览器直接访问"><a href="#2-11-启动之后nginx默认占用的是80端口，我们从浏览器直接访问" class="headerlink" title="2.11 启动之后nginx默认占用的是80端口，我们从浏览器直接访问"></a>2.11 启动之后nginx默认占用的是80端口，我们从浏览器直接访问</h2><p><a target="_blank" rel="noopener" href="http://192.168.195.132/">http://192.168.195.132</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181046086.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 如果访问不到就可能是防火墙的原因，关闭虚拟机的防火墙即可以！或者是放行80端口即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --zone=public --add-port=80/tcp --permanent<br></code></pre></td></tr></table></figure>
+
+<p> 重新加载防火墙配置以使更改生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --reload<br></code></pre></td></tr></table></figure>
+
+<p>下面是ubuntu:</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182115581.webp" srcset="/img/loading.gif" lazyload></p>
+<p> service iptables stop ，注意上面这种关闭防火墙的方式是乌班图系统的，不是centos的。</p>
+<p>systemctl status firewalld</p>
+<p>systemctl stop firewalld</p>
+<p>systemctl disable firewalld</p>
+<p>systemctl restart firewalld</p>
+<p>您可以使用以下命令来查看当前防火墙上已经放行的端口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --list-ports<br></code></pre></td></tr></table></figure>
+
+<p>执行此命令后，将显示已经放行的端口列表。</p>
+<p>另外，您还可以使用以下命令来查看详细的防火墙规则列表：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --list-all<br></code></pre></td></tr></table></figure>
+
+<p>此命令将显示包括端口放行规则在内的完整防火墙配置信息。</p>
+<p><strong>总结：</strong></p>
+<p>1、安装好Nginx服务</p>
+<p>2、在安装和编译的过程中需要指定的一些配置项，这些配置不需要自己去写，可以共享给你们。</p>
+<h1 id="3-反向代理的概念与实现"><a href="#3-反向代理的概念与实现" class="headerlink" title="3.反向代理的概念与实现"></a>3.反向代理的概念与实现</h1><p>给银行借钱的例子，你向银行借钱，然后银行借给了你， 但是这个钱大部分是其他用户的存款借给你。 </p>
+<p>这里的银行扮演着一个反向代理的角色，借钱的人不知道这个钱是谁存的。</p>
+<p>反向代理隐藏了真实的服务端，当我们访问<a target="_blank" rel="noopener" href="http://www.baidu.com的时候,背后可能有成千上万台服务器为我们服务,但具体是哪一台,你不知道,也不需要知道,你只需要知道反向代理服务器是谁就好了,www.baidu.com直接访问到的是代理服务器./">www.baidu.com的时候，背后可能有成千上万台服务器为我们服务，但具体是哪一台，你不知道，也不需要知道，你只需要知道反向代理服务器是谁就好了，www.baidu.com直接访问到的是代理服务器。</a>      </p>
+<p>代理服务器会帮我们把请求转发到提供真实服务的服务器那里去。Nginx就是性能非常好的反向代理服务器，它可以用来做负载均衡。</p>
+<p> 接下来就使用Nginx来帮我们实现反向代理（<strong>先让它代理一台服务器</strong>）。</p>
+<p><strong>方法一：</strong></p>
+<h2 id="3-1-启动tomcat，"><a href="#3-1-启动tomcat，" class="headerlink" title="3.1 启动tomcat，"></a>3.1 启动tomcat，</h2><p>之后tomcat中有小米的项目可以直接访问</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/tomcat/bin<br><br><br> ./startup.sh<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181127384.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  访问的路径是：<a target="_blank" rel="noopener" href="http://192.168.195.132:8080/mi/%EF%BC%8C%E5%85%B6%E4%B8%ADip%E5%9C%B0%E5%9D%80%E5%B0%B1%E6%98%AF%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84ip%E3%80%82">http://192.168.195.132:8080/mi/，其中ip地址就是虚拟机的ip。</a></p>
+<p>  接下来我们要先访问nginx—&gt;由nginx将请求转发到tomcat的小米官网项目。</p>
+<h2 id="3-2-修改Nginx的配置文件"><a href="#3-2-修改Nginx的配置文件" class="headerlink" title="3.2 修改Nginx的配置文件"></a>3.2 修改Nginx的配置文件</h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181129214.webp" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /usr/local/nginx/conf/nginx.conf<br><br><br>    location /mi &#123;<br>            root   html;<br>            index  index.html index.htm;<br>            proxy_pass http://localhost:8080/mi;<br>            proxy_redirect off;<br>            proxy_set_header Host $host;<br>            proxy_set_header X-Real-Ip $remote_addr;<br>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181134372.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181136662.webp" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第一个框：表示当前server监听的端口是80</p>
+<p>第二个框：本质上配置的是域名，但是在没有域名就是 localhost</p>
+<p>第三个框：访问nginx服务时候带上的路径</p>
+<p>第四个框：访问第三个框中的路径的时候会转发到这个指定资源路径</p>
+<p>第五个框：做请求转发配置的先不用管，现在先实现效果</p>
+</blockquote>
+<p>为什么转发的地址可以换成localhost，因为nginx服务器和tomcat在同一台虚拟机上。</p>
+<h2 id="3-3、检测配置是否成功："><a href="#3-3、检测配置是否成功：" class="headerlink" title="3.3、检测配置是否成功："></a>3.3、检测配置是否成功：</h2><p>​	进入sbin目录 之后 执行 .&#x2F;nginx -t</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">/usr/local/nginx/sbin<br></code></pre></td></tr></table></figure>
+
+<p> <img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181142281.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​	检测到配置项没有错误，可以正常使用。但是此时还没有加载新的配置项</p>
+<h2 id="3-4、加载新的配置项："><a href="#3-4、加载新的配置项：" class="headerlink" title="3.4、加载新的配置项："></a>3.4、加载新的配置项：</h2><p>[root@192 sbin]# .&#x2F;nginx -s reload</p>
+<p>​	此时可能会出现如下的错误：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181146288.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​	  如果出现了上面的错误，需要使用 nginx -c 的参数指定nginx.conf 文件的位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">代码如下： /usr/local/nginx/sbin/nginx  -c  /usr/local/nginx/conf/nginx.conf<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-5、使用浏览器访问Nginx"><a href="#3-5、使用浏览器访问Nginx" class="headerlink" title="3.5、使用浏览器访问Nginx"></a>3.5、使用浏览器访问Nginx</h2><p> <img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181147060.webp" srcset="/img/loading.gif" lazyload></p>
+<p>补充：下面两个红框中的内容是否必须要一致呢？</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181149664.webp" srcset="/img/loading.gif" lazyload></p>
+<p>测试：修改为不一致</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181152160.webp" srcset="/img/loading.gif" lazyload></p>
+<p>访问：<a target="_blank" rel="noopener" href="http://192.168.195.132/">http://192.168.195.132/</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181151739.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  可以不一样的。</p>
+<p><strong>方法二：</strong></p>
+<h2 id="3-1-直接部署静态项目"><a href="#3-1-直接部署静态项目" class="headerlink" title="3.1 直接部署静态项目"></a>3.1 直接部署静态项目</h2><p>  有一些前端项目是不需要web容器的，而是直接可以访问运行的，比如vue的一些项目打包之后就可以直接使用nginx进行部署了。</p>
+<h3 id="3-1-1-修改配置文件"><a href="#3-1-1-修改配置文件" class="headerlink" title="3.1.1 修改配置文件"></a>3.1.1 修改配置文件</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">server &#123;<br>        listen       <span class="hljs-number">80</span>;<br>        server_name   localhost;<br>        location / &#123;<br>  root   <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/vueSpace/mi</span>;<br>            try_files <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span><span class="hljs-regexp">/   /i</span>ndex.html;<br>            index  index.html index.htm;<br>        &#125;<br>       <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>启动tomcat:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/tomcat/bin<br><br>./startup.sh<br></code></pre></td></tr></table></figure>
+
+<p>启动nginx:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> <span class="hljs-string">/usr/local/nginx/sbin</span> <br><span class="hljs-string">./nginx</span><br><br><br><span class="hljs-string">./nginx</span> -t 测试<br><span class="hljs-string">./nginx</span> -s <span class="hljs-keyword">reload</span> 重新加载（<span class="hljs-keyword">reload</span>）Nginx配置的命令<br></code></pre></td></tr></table></figure>
+
+<h3 id="注意：-不适用负载均衡-代理一个静态项目的时候-location-后只能-跟上-“-x2F-”-不要在斜杠后加内容，直接通过域名就访问到首页是最好的做法"><a href="#注意：-不适用负载均衡-代理一个静态项目的时候-location-后只能-跟上-“-x2F-”-不要在斜杠后加内容，直接通过域名就访问到首页是最好的做法" class="headerlink" title="注意： 不适用负载均衡 代理一个静态项目的时候 location 后只能 跟上 “&#x2F;” 不要在斜杠后加内容，直接通过域名就访问到首页是最好的做法."></a>注意： 不适用负载均衡 代理一个静态项目的时候 location 后只能 跟上 “&#x2F;” 不要在斜杠后加内容，直接通过域名就访问到首页是最好的做法.</h3><h3 id="3-1-2-try-files含义-了解"><a href="#3-1-2-try-files含义-了解" class="headerlink" title="3.1.2 try_files含义(了解)"></a>3.1.2 try_files含义(了解)</h3><p><a target="_blank" rel="noopener" href="http://192.168.195.132/mi">http://192.168.195.132/mi</a></p>
+<ol>
+<li>try_files     $uri $uri&#x2F; &#x2F;index.html</li>
+<li>try_files：-尝试访问对应的静态资源，如果找不到则访问第二个资源，依次向后查找</li>
+<li>$uri ：Nginx地址变量，即为访问的地址</li>
+<li>若访问url为 <a target="_blank" rel="noopener" href="http://www.xxx.com/update">http://www.xxx.com/update</a> 则 $uri 为 &#x2F;update</li>
+<li>$uri&#x2F; ：表示一个目录，请求访问的目录，Nginx try_files可自行判断访问目的的类型 是为文件还是目录</li>
+<li>若访问url为 <a target="_blank" rel="noopener" href="http://www.xxx.com/user/class/">http://www.xxx.com/user/class/</a>     则 $uri&#x2F; 为 &#x2F;user&#x2F;class&#x2F;</li>
+</ol>
+<p>所以以上配置的规则为 当 $uri 和 $uri&#x2F; 均不是对应资源时 则返回 &#x2F;index.html 页面</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181800409.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-2-负载均衡-代理一台-web服务器"><a href="#3-2-负载均衡-代理一台-web服务器" class="headerlink" title="3.2 负载均衡 代理一台 web服务器"></a>3.2 负载均衡 代理一台 web服务器</h2><p>之后tomcat中有小米的项目可以直接访问</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181805042.webp" srcset="/img/loading.gif" lazyload></p>
+<p>   访问的路径是：<a target="_blank" rel="noopener" href="http://192.168.195.132/mi%EF%BC%8C%E5%85%B6%E4%B8%ADip%E5%9C%B0%E5%9D%80%E5%B0%B1%E6%98%AF%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84ip%E3%80%82">http://192.168.195.132/mi，其中ip地址就是虚拟机的ip。</a></p>
+<p>  接下来我们要先访问nginx—&gt;由nginx将请求转发到tomcat的小米官网项目。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181129214.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-1-修改Nginx的配置文件"><a href="#3-2-1-修改Nginx的配置文件" class="headerlink" title="3.2.1 修改Nginx的配置文件"></a>3.2.1 修改Nginx的配置文件</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">upstream</span>  appserver&#123;<br><br>      <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.195.132:8080</span>;<br><br>    &#125;<br><br>   <span class="hljs-section">server</span> &#123;<br>       <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>       <span class="hljs-attribute">server_name</span>  localhost;<br><br>     <br><br>       <span class="hljs-section">location</span> /mi &#123;<br>           <span class="hljs-attribute">root</span>   html;<br>           <span class="hljs-attribute">index</span>  index.html index.htm;<br>           <span class="hljs-attribute">proxy_pass</span> http://appserver;<br>       &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181810138.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-2-检测配置是否成功"><a href="#3-2-2-检测配置是否成功" class="headerlink" title="3.2.2  检测配置是否成功"></a>3.2.2  检测配置是否成功</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/nginx/sbin<br></code></pre></td></tr></table></figure>
+
+<p>进入sbin目录之后 执行 .&#x2F;nginx -t</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181844310.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 检测到配置项没有错误，可以正常使用。但是此时还没有加载新的配置项</p>
+<h3 id="3-2-3-加载新的配置项"><a href="#3-2-3-加载新的配置项" class="headerlink" title="3.2.3 加载新的配置项"></a>3.2.3 加载新的配置项</h3><p>[root@192 sbin]# .&#x2F;nginx -s reload</p>
+<p>此时可能会出现如下的错误：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181844835.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  如果出现了上面的错误，需要使用 nginx -c 的参数指定nginx.conf 文件的位置</p>
+<p>代码如下： &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx  -c  &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
+<h3 id="3-2-4-使用浏览器访问Nginx"><a href="#3-2-4-使用浏览器访问Nginx" class="headerlink" title="3.2.4 使用浏览器访问Nginx"></a>3.2.4 使用浏览器访问Nginx</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181805042.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-3-配置域名"><a href="#3-3-配置域名" class="headerlink" title="3.3 配置域名"></a>3.3 配置域名</h2><p>  目标：现在要实现的是在浏览器中使用域名能访问到虚拟机中nginx代理的项目</p>
+<p>  在虚拟机中配置一个虚拟域名（假域名），需要在宿主机中配置域名，这个域名映射到虚拟机（就是域名的解析）</p>
+<h3 id="3-3-1-找到宿主机的hosts文件"><a href="#3-3-1-找到宿主机的hosts文件" class="headerlink" title="3.3.1 找到宿主机的hosts文件"></a>3.3.1 找到宿主机的hosts文件</h3><p>C:\Windows\System32\drivers\etc（操作系统不一样可能路径也不一样）</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181845241.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181846246.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-2-注意"><a href="#3-3-2-注意" class="headerlink" title="3.3.2 注意"></a>3.3.2 注意</h3><p>域名的解析可能需要一定时间才会生效：一般是10分钟左右</p>
+<h3 id="3-3-3-编辑nginx的配置文件"><a href="#3-3-3-编辑nginx的配置文件" class="headerlink" title="3.3.3 编辑nginx的配置文件"></a>3.3.3 编辑nginx的配置文件</h3><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181847769.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-4-通过访问域名测试"><a href="#3-3-4-通过访问域名测试" class="headerlink" title="3.3.4 通过访问域名测试"></a>3.3.4 通过访问域名测试</h3><p><a target="_blank" rel="noopener" href="http://test.mi.com/mi">http://test.mi.com/mi</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181851638.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-5-配置直接通过域名访问到tomcat中小米项目的首页"><a href="#3-3-5-配置直接通过域名访问到tomcat中小米项目的首页" class="headerlink" title="3.3.5 配置直接通过域名访问到tomcat中小米项目的首页"></a>3.3.5 配置直接通过域名访问到tomcat中小米项目的首页</h3><p>我们上面的配置中 要访问到小米项目的首页 需要在域名后面添加mi 如 <a target="_blank" rel="noopener" href="http://test.mi.com/mi/">http://test.mi.com/mi/</a></p>
+<p> 因为如果直接访问域名的情况：请求先到通过域名到nginx —&gt;nginx转发到tomcat—&gt;此时就会访问到tomcat默认的首页（就是有一只猫那个首页）</p>
+<p> 此时我们可以配置tomcat的默认首页为我们的项目首页即可</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181849812.webp" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="http://test.mi.com/">http://test.mi.com/</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181848376.webp" srcset="/img/loading.gif" lazyload></p>
+<h1 id="4-负载均衡代理多台web服务器"><a href="#4-负载均衡代理多台web服务器" class="headerlink" title="4.负载均衡代理多台web服务器"></a>4.负载均衡代理多台web服务器</h1><p>​	   上节课实现了使用nginx代理一台tomcat服务器，现在我们要实现多台服务器的反向代理。</p>
+<p> 当一个项目需要被高并发访问的时候，比如说常见的秒杀业务实现，那么可能就要使用到负载均衡，就是将用户的请求通过代理分发给不同的服务器，实现压力的分担。</p>
+<p>​	   <strong>所谓的<strong><strong>web</strong></strong>负载均衡就是使用一个或者多个<strong><strong>Nginx</strong></strong>代理多个<strong><strong>WEB</strong></strong>服务器</strong>，也叫作web服务器<strong>集群</strong>，也就是说集群中的每一台主机都可能成为nginx的服务对象。</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181509788.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-1-使用之前已经搭建好的tomcat-01复制出两份，分别是tomcat-02和tomcat-03"><a href="#4-1-使用之前已经搭建好的tomcat-01复制出两份，分别是tomcat-02和tomcat-03" class="headerlink" title="4.1 使用之前已经搭建好的tomcat-01复制出两份，分别是tomcat-02和tomcat-03"></a>4.1 使用之前已经搭建好的tomcat-01复制出两份，分别是tomcat-02和tomcat-03</h2><p>  我之前是直接克隆3台虚拟机，你这样你们的电脑扛不住。  </p>
+<p>  准备：将准备好的test项目上传到webapps目录下，测试访问成功</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181900747.webp" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cp</span>  -r  tomcat  tomcat-<span class="hljs-number">02</span><br><span class="hljs-attribute">cp</span>  -r  tomcat  tomcat-<span class="hljs-number">03</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181901560.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-2-修改新的两个tomcat服务器的端口号"><a href="#4-2-修改新的两个tomcat服务器的端口号" class="headerlink" title="4.2 修改新的两个tomcat服务器的端口号"></a>4.2 修改新的两个tomcat服务器的端口号</h2><p>  需要修改三个地方：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat-02/</span>conf/server.xml<br><br>vim <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat-03/</span>conf/server.xml<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181904574.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181903146.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-3-修改新的两台tomcat中的test中的index-jsp页面"><a href="#4-3-修改新的两台tomcat中的test中的index-jsp页面" class="headerlink" title="4.3 修改新的两台tomcat中的test中的index.jsp页面"></a>4.3 修改新的两台tomcat中的test中的index.jsp页面</h2><p><img src="/ipic%5Cimage-20231018185824492.png" srcset="/img/loading.gif" lazyload alt="image-20231018185824492"></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181906720.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-4-启动另外两台tomcat服务"><a href="#4-4-启动另外两台tomcat服务" class="headerlink" title="4.4 启动另外两台tomcat服务"></a>4.4 启动另外两台tomcat服务</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat-02/</span>bin<span class="hljs-regexp">/./</span>startup.sh<br><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat-03/</span>bin<span class="hljs-regexp">/./</span>startup.sh<br></code></pre></td></tr></table></figure>
+
+<p>然后分别访问三台tomcat测试：</p>
+<p>记得防火墙给端口放行：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><br>[root@localhost sbin]# firewall-cmd --zone=public --add-port=8081/tcp --permanent<br><span class="hljs-keyword">success</span><br><span class="hljs-keyword"></span>[root@localhost sbin]# firewall-cmd --zone=public --add-port=8082/tcp --permanent<br><span class="hljs-keyword">success</span><br><span class="hljs-keyword"></span>[root@localhost sbin]#<br>[root@localhost sbin]#<br>[root@localhost sbin]# firewall-cmd --reload<br>success<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181946722.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-5-修改Nginx的配置文件，增加负载均衡配置"><a href="#4-5-修改Nginx的配置文件，增加负载均衡配置" class="headerlink" title="4.5 修改Nginx的配置文件，增加负载均衡配置"></a>4.5 修改Nginx的配置文件，增加负载均衡配置</h2><p>  ·打开配置文件 vim &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
+<p>  ·在server之上追加参与集群的主机项</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">upstream</span>  appserver&#123;<br>         <span class="hljs-attribute">server</span>  <span class="hljs-number">192.168.179.131:8080</span>;<br>         <span class="hljs-attribute">server</span>  <span class="hljs-number">192.168.179.131:8081</span>;<br>         <span class="hljs-attribute">server</span>  <span class="hljs-number">192.168.179.131:8082</span>;<br>      &#125;<br></code></pre></td></tr></table></figure>
+
+<p>  ·修改代理配置项，让其跳转到“appserver”上</p>
+<p>   proxy_pass  <a target="_blank" rel="noopener" href="http://appserver/">http://appserver</a>;</p>
+<p> 注意：负载均衡的配置是放到server之外的，但是http之内</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181947593.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="4-6-保存退出之后检测配置"><a href="#4-6-保存退出之后检测配置" class="headerlink" title="4.6 保存退出之后检测配置"></a>4.6 保存退出之后检测配置</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">·<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>sbin/nginx -t<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-7-重启Nginx服务"><a href="#4-7-重启Nginx服务" class="headerlink" title="4.7 重启Nginx服务"></a>4.7 重启Nginx服务</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>sbin<span class="hljs-regexp">/./</span>nginx -s reload<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-8-之后访问Nginx代理-http-test-mi-com-test"><a href="#4-8-之后访问Nginx代理-http-test-mi-com-test" class="headerlink" title="4.8 之后访问Nginx代理  http://test.mi.com/test/"></a>4.8 之后访问Nginx代理  <a target="_blank" rel="noopener" href="http://test.mi.com/test/">http://test.mi.com/test/</a></h2><p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181949452.webp" srcset="/img/loading.gif" lazyload></p>
+<p>刷新之后：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181950555.webp" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181949221.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​	上面的负载均衡就是实现了，默认情况下负载均衡的策略是<strong>轮询</strong>。</p>
+<p>​	如果参与集群的主机有的是新主机，有的是旧的主机，此时我们需要新主机访问的频率高于旧的主机，此时可以增大新主机的权重（让更多的访问分发到新主机），这就需要牵涉到负载均衡的策略配置。</p>
+<h1 id="5-负载均衡策略"><a href="#5-负载均衡策略" class="headerlink" title="5.负载均衡策略"></a>5.负载均衡策略</h1><p>负载均衡用于从“upstream”模块定义的后端服务器列表中选取一台服务器接受用户的请求。</p>
+<h2 id="5-1-轮询（默认策略）"><a href="#5-1-轮询（默认策略）" class="headerlink" title="5.1 轮询（默认策略）"></a>5.1 轮询（默认策略）</h2><p>　　最基本的配置方法，上面的例子就是轮询的方式，它是upstream模块默认的负载均衡<strong>默认策略</strong>。每个请求会按时间顺序逐一分配到不同的后端服务器。</p>
+<p>　有如下参数：fail_timeout   与max_fails结合使用。</p>
+<p>max_fails  设置在fail_timeout参数设置的时间内最大失败次数，如果在这个时间内，所有针对该服务器的请求都失败了，那么认为该服务器会被认为是停机了，</p>
+<p>fail_time  服务器会被认为停机的时间长度,默认为10s。</p>
+<p>backup 标记该服务器为备用服务器。当主服务器停止时，请求会被发送到它这里。</p>
+<p>down  标记服务器永久停机了。</p>
+<p>　<strong>注意：</strong></p>
+<p>在轮询中，如果服务器down掉了，会自动剔除该服务器。</p>
+<p>缺省配置就是轮询策略（默认）。</p>
+<p>此策略适合服务器配置相当，无状态且短平快的服务使用。</p>
+<h2 id="5-2-权重（第二种负载均衡策略）"><a href="#5-2-权重（第二种负载均衡策略）" class="headerlink" title="5.2 权重（第二种负载均衡策略）"></a>5.2 权重（第二种负载均衡策略）</h2><p> 比如你的主机的性能各不相同，有的性能很高，应该让性能高的多处理请求（能者多劳）。 </p>
+<p> 修改Nginx的配置文件</p>
+<p> vim &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#负载均衡的配置</span><br>upstream  appserver&#123;<br>  <span class="hljs-built_in"> server </span>192.168.80.128:8080  <span class="hljs-attribute">weight</span>=10;<br>  <span class="hljs-built_in"> server </span>192.168.80.128:8081  <span class="hljs-attribute">weight</span>=5;<br>  <span class="hljs-built_in"> server </span>192.168.80.128:8082  <span class="hljs-attribute">weight</span>=1;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181955246.webp" srcset="/img/loading.gif" lazyload></p>
+<p>​	权重值越高于是有可能先被执行，此时测试发现了分配到新主机的请求次数高于旧主机。</p>
+<p>◆检测之后重新加载</p>
+<p>检测配置： &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx –t</p>
+<p>重新刷新Nginx服务：&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload</p>
+<p>◆如果某台主机不参与集群，则将配置修改配置为</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">server</span> <span class="hljs-number">192.168.80.128:8080</span> down;<br><span class="hljs-attribute">server</span> <span class="hljs-number">192.168.80.128:8081</span>  weight=<span class="hljs-number">5</span>;<br><span class="hljs-attribute">server</span> <span class="hljs-number">192.168.80.128:8082</span>  weight=<span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>此时测试发现第一台主机不参与集群了，如果某台主机只有高负载量的时候才参与集群，则修改配置为： server 192.168.190.130:8080 backup;（表示备用）</p>
+<p> <strong>注意：</strong></p>
+<p>权重越高分配到需要处理的请求越多。</p>
+<p>此策略可以与least_conn和ip_hash结合使用。</p>
+<p>此策略比较适合服务器的硬件配置差别比较大的情况。</p>
+<h2 id="5-3-ip-hash（第三种负载均衡策略）"><a href="#5-3-ip-hash（第三种负载均衡策略）" class="headerlink" title="5.3 ip_hash（第三种负载均衡策略）"></a>5.3 ip_hash（第三种负载均衡策略）</h2><p> 用户登录的时候如果在访问的是第一台服务器，但是第二次访问的时候被代理到第二台服务器，此时登登录信息就无效了，需要重新登陆，因为我们目前的学习的知识用户的登陆信息是保存到session中的。</p>
+<p>如下图：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182002101.webp" srcset="/img/loading.gif" lazyload></p>
+<p>此时其中一种解决方案是让某个用户一直访问第一次访问到的web服务器，可以在配置上加上ip _hash，以上的方式是Nginx本身支持一种操作，还有一种操作是将登录的信息保存到redis中，之后在访问Nginx的时候要每次都要到redis中去获取查询（检测）登陆信息判断是否登录。</p>
+<p>  <strong>还有一种方式是使用令牌解析的方式完成（这种更好），这是我们之前讲解<strong><strong>jwt</strong></strong>的时候分析过。</strong></p>
+<p>◆ip_hash配置</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs routeros">upstream  appserver&#123;<br>  ip_hash;<br>  <span class="hljs-built_in"> server </span>192.168.195.132:8080 ;<br>  <span class="hljs-built_in"> server </span>192.168.195.132:8081 <span class="hljs-attribute">weight</span>=5;<br>  <span class="hljs-built_in"> server </span>192.168.195.132:8082 <span class="hljs-attribute">weight</span>=1;<br> &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310181956626.webp" srcset="/img/loading.gif" lazyload></p>
+<p>  此时测试发现我们第一次访问的是第二台服务器，那么后面的访问都是被绑定了只i能访问第二台。</p>
+<p><strong>注意：</strong></p>
+<p>1、由于ip_hash机制为每个ip绑定了一个固定的web服务器，可能会导致某个服务器接收的请求比较多，某些web服务器接收的请求较少，无法保证web服务器的负载均衡，这是ip_hash的一个缺点，因此不建议使用。</p>
+<p>2、Ip_hash不能和backup一起使用在nginx之前版本。</p>
+<h2 id="5-4-least-conn（最少连接负载均衡）"><a href="#5-4-least-conn（最少连接负载均衡）" class="headerlink" title="5.4  least_conn（最少连接负载均衡）"></a>5.4  least_conn（最少连接负载均衡）</h2><p>　　把请求转发给连接数较少的后端服务器。轮询算法是把请求平均的转发给各个后端，使它们的负载大致相同；但是，有些请求占用的时间很长，会导致其所在的后端负载较高。这种情况下，least_conn这种方式就可以达到更好的负载均衡效果。</p>
+<p> upstream  appserver{</p>
+<p>​    least_conn;  #把请求转发给连接数较少的后端服务器</p>
+<p>​    server localhost:8080  weight&#x3D;2; #tomcat 7.0</p>
+<p>​    server localhost:8081; #tomcat 8.0</p>
+<p>​    server localhost:8082 backup; #tomcat 8.5</p>
+<p>​    server localhost:8083  max_fails&#x3D;3 fail_timeout&#x3D;20s; #tomcat 9.0</p>
+<p> }</p>
+<p>注意：</p>
+<p>此负载均衡策略适合请求处理时间长短不一造成服务器过载的情况。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><br><span class="hljs-section">upstream</span>  appserver&#123;<br>  <span class="hljs-comment">#ip_hash;</span><br>   <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.195.132:8080</span> backup ;<br>   <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.195.132:8081</span> weight=<span class="hljs-number">5</span>;<br>   <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.195.132:8082</span> weight=<span class="hljs-number">1</span>;<br> &#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-5-第三方策略（了解）"><a href="#5-5-第三方策略（了解）" class="headerlink" title="5.5 第三方策略（了解）"></a>5.5 第三方策略（了解）</h2><p>　　 第三方的负载均衡策略的实现需要安装第三方插件。</p>
+<p>①fair </p>
+<p>　　<strong>按照服务器端的响应时间来分配请求，响应时间短的优先分配。响应时间短表示能力强。</strong></p>
+<p>   #动态服务器组</p>
+<p>   upstream  appserver{</p>
+<p>​     server localhost:8080; #tomcat 7.0</p>
+<p>​    server localhost:8081; #tomcat 8.0</p>
+<p>​    server localhost:8082; #tomcat 8.5</p>
+<p>​    server localhost:8083; #tomcat 9.0</p>
+<p>​    fair;  #实现响应时间短的优先分配</p>
+<p>  }</p>
+<p><strong>②****url_hash</strong> <strong>（有点像<strong><strong>ip_hash</strong></strong>，固定到一台服务器上）</strong></p>
+<p>　　按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，要配合缓存命中来使用。同一个资源多次请求，可能会到达不同的服务器上，导致不必要的多次下载，缓存命中率不高，以及一些资源时间的浪费。而使用url_hash，可以使得同一个url（也就是同一个资源请求）会到达同一台服务器，一旦缓存住了资源，再此收到请求，就可以从缓存中读取。　</p>
+<p>   upstream  appserver{</p>
+<p>​    hash $request_uri;  #实现每个url定向到同一个后端服务器</p>
+<p>​    server localhost:8080; #tomcat 7.0</p>
+<p>​    server localhost:8081; #tomcat 8.0</p>
+<p>​    server localhost:8082; #tomcat 8.5</p>
+<p>​    server localhost:8083; #tomcat 9.0</p>
+<p>}</p>
+<h1 id="6-SSl配置（了解）"><a href="#6-SSl配置（了解）" class="headerlink" title="6. SSl配置（了解）"></a>6. SSl配置（了解）</h1><p>   在实际的bs架构（和它对应的是cs架构）的项目项目部署中，我们常见的协议http协议，但是这种协议在数据传输的过程中是明文方式传输，如果是一些重要的数据则可能被黑客窃取或者篡改，为了解决这一问题，提出了https协议，本质上来说还是http，不同的是使用https之后传输的数据是加密的，提高安全性。</p>
+<p>获取ssl证书（有免费的）</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182003099.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="6-1-文档中心"><a href="#6-1-文档中心" class="headerlink" title="6.1  文档中心"></a>6.1  文档中心</h2><p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/98728.html?spm=0.2020520163.help.dexternal.778e3711oCUlBH">https://help.aliyun.com/document_detail/98728.html?spm=0.2020520163.help.dexternal.778e3711oCUlBH</a></p>
+<p>如果要实现https需要购买证书（阿里云），提供了免费一年的。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#  vue-front 域名配置</span><br>    server &#123;<br>       listen       <span class="hljs-number">443</span>  ssl;<br>       server_name   www.mbzvi.cn;<br>       <span class="hljs-comment">#ssl 证书的pme文件路径</span><br>        ssl_certificate   <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>card/www.mvip.cn.pem;   <span class="hljs-comment">#私钥</span><br>        ssl_certificat_key   <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>card/www.mvip.cn.key; <span class="hljs-comment">#证书</span><br>        ssl_protocols TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>; <span class="hljs-comment">#按照这个协议配置</span><br>        ssl_ciphers ECDHE-RSA-AEd128-GCM-SHA256:HIGH:!aMULL:!MD5:!RC4:!DHE;<span class="hljs-comment">#按照这个套件配置</span><br>        ssl_prefer_server_ciphers on;  <br>        location / &#123;<br>           proxy_pass   http:<span class="hljs-regexp">//</span>localhost:<span class="hljs-number">3000</span>;<br>           try_files <span class="hljs-variable">$uri</span>  <span class="hljs-variable">$uri</span><span class="hljs-regexp">/   /i</span>ndex.html;<br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-2-ssl-certificate-【证书路径】"><a href="#6-2-ssl-certificate-【证书路径】" class="headerlink" title="6.2 ssl_certificate  【证书路径】"></a>6.2 ssl_certificate  【证书路径】</h2><p> &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;card&#x2F;<a target="_blank" rel="noopener" href="http://www.mvip.cn.pem/">www.mvip.cn.pem</a>; </p>
+<h2 id="6-3-ssl-certificate-key-【证书的私钥文件】"><a href="#6-3-ssl-certificate-key-【证书的私钥文件】" class="headerlink" title="6.3 ssl_certificate_key  【证书的私钥文件】"></a>6.3 ssl_certificate_key  【证书的私钥文件】</h2><p>&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;card&#x2F;<a target="_blank" rel="noopener" href="http://www.mvip.cn.key/">www.mvip.cn.key</a>;</p>
+<p>这个知识点也是作为了解，让你在以后看到http和https你要知道是怎么回事就行了。</p>
+<h2 id="6-4-总结"><a href="#6-4-总结" class="headerlink" title="6.4  总结"></a>6.4  总结</h2><p>◆关于nginx的知识点我们就分析到这里了（后面还会使用，比如后期的项目部署等）。</p>
+<p>◆接下来的课程 就是 docker或者redis，其实上docker也偏运维的技术，但是我们还是要掌握，至少基本的概念你要掌握，redis非常重要的技术，使用非常广泛，基本上是java工程师必备的技术，所以我们会在redis上多花一些时间。</p>
+<h1 id="7-proxy-set-header配置（选学）"><a href="#7-proxy-set-header配置（选学）" class="headerlink" title="7.proxy_set_header配置（选学）"></a>7.proxy_set_header配置（选学）</h1><p>proxy_set_header其实就是请求头的相关信息的设置，在这里我们了解一下就行了，<strong>nginx****代理请求头常用配置项如下。</strong> </p>
+<p><strong>nginx****代理常用配置项通过以下的案例来理解proxy_set_header设置</strong><br><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182005385.webp" srcset="/img/loading.gif" lazyload></p>
+<p> <strong>proxy_set_header</strong> <strong>Host &amp;host;</strong></p>
+<p>将域名或者ip保存到请求头中,就是nginx做代理时,把原http请求的Header中的Host字段也放到转发的请求里,如果不加这一行的话,nginx转发的请求header里就不会有Host字段。</p>
+<p><strong>proxy_set_header</strong> <strong>X-Real-IP</strong>  <strong>$remote_addr;</strong><br> 只能获取到与服务器本身直连的上层请求ip 写入到http请求头中</p>
+<p><strong>proxy_set_header</strong> <strong>X-Real-IP</strong>  <strong>$proxy_add_x_forwarded_for;</strong><br> <strong>定义客户端IP</strong>,如果多层代理都有配置这个值,离backend最近的会覆盖之前的值 所以一般只在连接客户端的代理上写添加这条值,这样backend就能获取到客户端的真实IP</p>
+<p><strong>proxy_set_header</strong> <strong>X-Forwarded-For</strong>  **$**<strong>http_x_forwarded_for;</strong></p>
+<p>把客户端IP写入到http请求头中,前提是之前有X-Real-IP $remote_addr定义过客户端IP</p>
+<p><strong>proxy_set_header</strong> <strong>X-Forwarded-For</strong>  **$**<strong>proxy_add_x_forwarded_for;</strong><br> 相当于 $http_x_forwarded_for 和 $remote_addr和结合 获取上层IP和把客户端IP写入请求头中,</p>
+<p><strong>总结：</strong></p>
+<p><strong>1、****这些概念你作为了解，有一个映像即可，不需要现在去死记硬背，你用到的时候再慢慢的去查阅。</strong></p>
+<h1 id="8-缓存的配置（选学）"><a href="#8-缓存的配置（选学）" class="headerlink" title="8. 缓存的配置（选学）"></a>8. 缓存的配置（选学）</h1><p>​	使用的Nginx代理多个web容器的时候，如果将信息显示给客户，那么需要从各个web服务器将数据传输到Nginx之后再显示给客户，但是有很多数据（静态资源），比如说css、js、图片等信息是一般不会经常改变，这些不会改变的资源在访问的时候每次web服务器都要重新发送给Nginx，这样就会造成资源的浪费，最好的做法是将静态的资源直接缓存到Nginx服务器，之后用户在访问的就直接从Nginx服务器取得这些静态资源，就不从web服务器获取，从而提高了相应的速度，还可以节省流量。</p>
+<p>但是这些配置我们只需要掌握核心的地方就行了，你能把这个配置复制过去让缓存生效即可，不需要深入研究每个配置的。</p>
+<p>1、建立缓存数据的目录：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir  -p <span class="hljs-regexp">/usr/</span>data<span class="hljs-regexp">/nginx/</span>&#123;temp,cache&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2、修改Nginx的配置文件nginx.conf</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">proxy_temp_path <span class="hljs-regexp">/usr/</span>data<span class="hljs-regexp">/nginx/</span>temp ;  设置代理缓存的临时保存目录<br></code></pre></td></tr></table></figure>
+
+<p>3、基本配置分析</p>
+<table>
+<thead>
+<tr>
+<th>proxy_cache_path  &#x2F;usr&#x2F;data&#x2F;nginx&#x2F;cache levels&#x3D;1:2 keys_zone&#x3D;cache_one:200m inactive&#x3D;1d  max_size&#x3D;30g;</th>
+<th>缓存的基本信息配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>location ~ .<em>.(gif|jpg|png|htm|html|css|js|flv|ico|swf)(.</em>)  {         proxy_pass  <a target="_blank" rel="noopener" href="http://appserver/">http://appserver</a> ;         proxy_redirect  off;  &#x2F;&#x2F;不转发         proxy_set_header  Host $host:$server_port;         proxy_cache  cache_one;         proxy_cache_key  $host$uri$is_args$args;         proxy_cache_valid  200 302 1h;         proxy_cache_valid  301 1d;         proxy_cache_valid  any 1m;         expires 30d; &#x2F;&#x2F;指定的是这些静态资源在客户端浏览器的缓存时间  }</td>
+<td>所有要缓存的数据类型</td>
+</tr>
+<tr>
+<td>location ~ &#x2F;purge(&#x2F;.*) {        allow 127.0.0.1;        allow 192.168.139.0&#x2F;24;【表示139网段的都能访问】         allow all;        proxy_cache_purge cache_one  $host$1$is_args$args;  }</td>
+<td>allow 192.168.139.0&#x2F;24;【表示139网段的都能访问】  allow   all;【表示所有的都能访问】</td>
+</tr>
+</tbody></table>
+<p><strong>上述参数说明如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>父元素</strong></th>
+<th><strong>名称</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>http</td>
+<td>proxy_cache_path</td>
+<td>指定缓存区的根路径</td>
+</tr>
+<tr>
+<td></td>
+<td>levels</td>
+<td>缓存目录级最高三层，每层1-2个字符表示。如1:1:2三层。</td>
+</tr>
+<tr>
+<td></td>
+<td>keys_zone</td>
+<td>缓存块名称及内存块大小。如cache_item:500m表示声明一个名为cache_item大小为500m。超出大小 后最早的数据将被清除。</td>
+</tr>
+<tr>
+<td></td>
+<td>max_size</td>
+<td>缓存区硬盘的最大值。超出闲置数据将被清除</td>
+</tr>
+<tr>
+<td></td>
+<td>inactive</td>
+<td>最长闲置时间 如10d 如果一个数据被闲置10天则将被清除</td>
+</tr>
+<tr>
+<td>location</td>
+<td>proxy_cache</td>
+<td>指定缓存区，对应keys_zone中设定的值</td>
+</tr>
+<tr>
+<td></td>
+<td>proxy_cache_key</td>
+<td>通过参数拼装参数key如：<code>$host$uri$is_args$args</code>则会以缓存数据的全部路径的md5值做为key</td>
+</tr>
+<tr>
+<td></td>
+<td>proxy_cache_valid</td>
+<td>对不同的状态码设置缓存有效期</td>
+</tr>
+</tbody></table>
+<p><strong>DEMO****：</strong>Nginx的配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs shell">events &#123;<br>    worker_connections  1024;<br>&#125;<br>http &#123;<br>    include       mime.types;<br>    default_type  application/octet-stream;<br>    proxy_temp_path  /usr/data/nginx/temp ;<br>    proxy_cache_path /usr/data/nginx/cache levels=1:2 keys_zone=cache_one:200m inactive=1d max_size=30g;<br>    upstream  appserver&#123;<br>       server 192.168.80.128:8080;<br>       server 192.168.80.128:8081;<br>       server 192.168.80.128:8082;<br>    &#125;<br>    server &#123;<br>        listen       80;<br>        server_name  localhost;<br>        location / &#123;<br>           # root   html;<br>           # index  index.html index.htm;<br>             proxy_pass http://appserver ;<br>             proxy_redirect off;<br>             proxy_set_header Host $host:$server_port;<br>        &#125;<br>        location ~ .*\.(gif|jpg|png|htm|html|css|js|flv|ico|swf)(.*) &#123;<br>             proxy_pass http://appserver ;<br>             proxy_redirect off;<br>             proxy_set_header Host $host:$server_port;<br>             proxy_cache cache_one;<br>             proxy_cache_key $host$uri$is_args$args;<br>             proxy_cache_valid 200 302 1h;<br>             proxy_cache_valid 301 1d;<br>             proxy_cache_valid any 1m;<br>             expires 30d;<br>       &#125;<br>       location ~ /purge(/.*) &#123;<br>         allow 127.0.0.1;<br>         allow 192.168.128.0/24;<br>         allow all;<br><span class="hljs-meta prompt_">#</span><span class="language-bash">配置清除指定缓存区和路径(与proxy_cache_key⼀⾄)</span><br>         proxy_cache_purge cache_one $host$1$is_args$args;<br>       &#125;<br> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> 基本的配置项分析之后我们来直接拷贝现成的配置文件即可。</p>
+<p>4、观察缓存目录：&#x2F;usr&#x2F;local&#x2F;data&#x2F;nginx&#x2F;cache</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182008358.webp" srcset="/img/loading.gif" lazyload></p>
+<p>此时里面没有任何东西。接下来我们刷新页面之后观察：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182008340.webp" srcset="/img/loading.gif" lazyload></p>
+<p>发现刷新页面之后就在该文件夹中多出了很多东西。但是这里出现了一个问题，假如Tomcat中的图片更新了，那么客户访问的图片是保存的Nginx中缓存下来的图片，此时就需要清空缓存，可以向Nginx发送指定的请求清空缓存：</p>
+<p>·清空图片：<a target="_blank" rel="noopener" href="http://192.168.80.120/purge/images/ads-pic-01.jpg">http://192.168.80.120/purge/images/ads-pic-01.jpg</a></p>
+<p><a target="_blank" rel="noopener" href="http://192.168.80.128/test/purge/images/ads-pic-01.jpghttp://192.168.80.128/test/images/ads-pic-01.jpg">http://192.168.80.128/test/purge/images/ads-pic-01.jpghttp://192.168.80.128/test/images/ads-pic-01.jpg</a></p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182009971.webp" srcset="/img/loading.gif" lazyload></p>
+<p>能实现上面的机制是因为下面的代码作用</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">location</span> <span class="hljs-regexp">~ /purge(/.*)</span> &#123;<br>	   <span class="hljs-attribute">allow</span> <span class="hljs-number">127.0.0.1</span>;<br>	   <span class="hljs-attribute">allow</span> <span class="hljs-number">192.168.122.0</span>/<span class="hljs-number">24</span>;<br>	   <span class="hljs-attribute">allow</span> all;<br>	   <span class="hljs-attribute">proxy_cache_purge</span> cache_one <span class="hljs-variable">$host</span><span class="hljs-variable">$1</span><span class="hljs-variable">$is_args</span><span class="hljs-variable">$args</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>之后我们再一次刷新页面就出现了404，因为该在缓存中没有改图片了，第一次刷新的时候已经清除了。</p>
+<p><strong>总结：</strong></p>
+<p>  <strong>1<strong><strong>、</strong></strong>Nginx****缓存配置很有用，也很常用，但是这些配置你不需死记硬背的，知道概念之后要使用的时候直接查阅即可。</strong></p>
+<h1 id="9-NFS配置（选学）"><a href="#9-NFS配置（选学）" class="headerlink" title="9. NFS配置（选学）"></a>9. NFS配置（选学）</h1><p>   我们在之前实现了web服务器集群，在集群的环境下，你思考一个问题，假如我们有一百台主机参与集群，此时如果项目更新了，那么就意味着要将这一百台服务器中的项目重新上传，这种重复的操作无疑是不可取的，最理想的状态是只要更新了一台服务器中的项目，那么其他所有参与集群的服务器对应的项目都随之更新，要实现这个操作那么我们就要先实现NFS（Network File System）配置</p>
+<p>1、下载NFS服务： yum install nfs-kernel-server  </p>
+<p>  yum install -y nfs-utils</p>
+<p>2、让&#x2F;usr&#x2F;local&#x2F;data&#x2F;tomcat&#x2F;sunweb&#x2F;作为共享目录</p>
+<p>  ·打开NFS的配置文件：vim  &#x2F;etc&#x2F;exports</p>
+<p>  ·相关的配置：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/data/</span>tomcat/sunweb  *(rw,sync,no_root_squash,no_subtree_check)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182010689.webp" srcset="/img/loading.gif" lazyload></p>
+<p>以上的配置项的具体含义：</p>
+<p>   |-“*”:表示所有的网段都可以访问，当然也可以设置IP地址。</p>
+<p>   |-“rw”:表示此目录下的数据所有客户端都可以进行读写控制</p>
+<p>​        |-“sync”:表示此目录下的数据要进行同步</p>
+<p>​      |-“no_root_squash”:使用root权限，将具备完全的控制能力</p>
+<p>   |-“no_subtree_check”:不受到父目录的权限影响</p>
+<p>此时服务器端配置完成，但是要启动一些服务</p>
+<p>2、启动RPC服务：&#x2F;etc&#x2F;init.d&#x2F;rpcbind restart（主要是在nfs共享时候负责通知客户端，服务器的nfs端口回号的）</p>
+<p>  启动NSF服务：&#x2F;etc&#x2F;init.d&#x2F;nfs-kernel-server restart</p>
+<p>3、需要在客户端进行挂载配置，其他目录都需要和当前的NFS目录中的内容同步</p>
+<p>此时要执行一个挂载的操作处理，在客户端执行如下的命令（在另外一台服务器</p>
+<p>上挂载到配置好NFS的主机）：</p>
+<p>·配置fstab文件（在第二台tomcat服务器中）</p>
+<table>
+<thead>
+<tr>
+<th>vim &#x2F;etc&#x2F;fstab</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.139.135:&#x2F;usr&#x2F;local&#x2F;data&#x2F;tomcat&#x2F;sunweb   &#x2F;usr&#x2F;local&#x2F;data&#x2F;tomcat&#x2F;sunweb   nfs   default,rnetdev 0 0</td>
+</tr>
+</tbody></table>
+<p>整体的配置表示一开机就可以实现挂载到目标服务器，rnetdev表示如过nfs服务所在的主机宕机了，则跳过（否则可能当前主机也无法启动），第一个0表示不需要备份（如过是1表示要备份），第二个0表示不需要检测分区文件系统磁盘是否出错（如过是1表示需要）。</p>
+<p>·执行挂载命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mount  -t  nfs  <span class="hljs-number">192.168</span>.<span class="hljs-number">139.135</span>:<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/data/</span>tomcat<span class="hljs-regexp">/sunweb   /u</span>sr<span class="hljs-regexp">/local/</span>data<span class="hljs-regexp">/tomcat/</span>sunweb <br></code></pre></td></tr></table></figure>
+
+<p>  执行上面的命令，如果出现下面的错误：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182011451.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 则执行命令：apt-get install nfs-common 命令之后在进行挂载，如果在再次挂载出现了下面的问题：</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182011252.webp" srcset="/img/loading.gif" lazyload></p>
+<p>此时可能是nfs服务的端口号大于了1024，还有可能就是nfs的挂载目录没有授权，需要执行下面的命令：</p>
+<p>root@ubuntu:~# chmod 777 -R &#x2F;usr&#x2F;local&#x2F;data&#x2F;tomcat&#x2F;sunweb（在nfs所在的主机上授权）</p>
+<p>之后在重启服务即可。</p>
+<p>  ·取消挂载：umount &#x2F;usr&#x2F;local&#x2F;data&#x2F;tomcat&#x2F;sunweb</p>
+<p> 最后挂载成功之后两个主机的在共享目录下就可以进行同步了。</p>
+<p>4、在随便一台主机的挂载目录下创建一个文件：</p>
+<p>  ·eche —&gt;hello.txt</p>
+<p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310182012216.webp" srcset="/img/loading.gif" lazyload></p>
+<p> 此时到另外一台主机查看之后就可以发现多了一个同样的目录。</p>
+<p><strong>总结：</strong></p>
+<p>1、<strong>这个配置过程简单，但是可能应为要更新系统甚至要替换下载源的操作，所以可能会慢一点，但是你跟着文档一步一步的走是没问题的。</strong>  </p>
+<h1 id="10-项目上线（后面再讲解）"><a href="#10-项目上线（后面再讲解）" class="headerlink" title="10. 项目上线（后面再讲解）"></a>10. 项目上线（后面再讲解）</h1><h2 id="10-1-将后端项目打包成jar文件"><a href="#10-1-将后端项目打包成jar文件" class="headerlink" title="10.1 将后端项目打包成jar文件"></a>10.1 将后端项目打包成jar文件</h2><h2 id="10-2-将这个jar上传到服务器"><a href="#10-2-将这个jar上传到服务器" class="headerlink" title="10.2 将这个jar上传到服务器"></a>10.2 将这个jar上传到服务器</h2><h2 id="10-3-启动jvm程序"><a href="#10-3-启动jvm程序" class="headerlink" title="10.3 启动jvm程序"></a>10.3 启动jvm程序</h2><h2 id="10-4-将前端vue项目打包上传"><a href="#10-4-将前端vue项目打包上传" class="headerlink" title="10.4 将前端vue项目打包上传"></a>10.4 将前端vue项目打包上传</h2><p>调整基础路径</p>
+<h2 id="10-5-上传vue项目到服务器"><a href="#10-5-上传vue项目到服务器" class="headerlink" title="10.5 上传vue项目到服务器"></a>10.5 上传vue项目到服务器</h2><h2 id="10-6-配置nginx访问"><a href="#10-6-配置nginx访问" class="headerlink" title="10.6 配置nginx访问"></a>10.6 配置nginx访问</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nginx/" class="category-chain-item">Nginx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Nginx/">#Nginx</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>day070Nginx</div>
+      <div>http://example.com/2023/10/18/day070Nginx/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin Xuan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/17/day069linux/" title="day069linux">
+                        <span class="hidden-mobile">day069linux</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>昕泫</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>天空</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+  <script type="text/javascript" src="/js/click-love.js"></script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
