@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172124829.webp">
 <meta property="article:published_time" content="2023-10-17T13:24:12.000Z">
-<meta property="article:modified_time" content="2023-10-18T15:20:55.844Z">
+<meta property="article:modified_time" content="2023-10-20T12:48:04.727Z">
 <meta property="article:author" content="Xin Xuan">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary_large_image">
@@ -446,7 +446,10 @@
 
 <h2 id="8-4-进入安装mysql软件目录之后创建保存的数据的目录"><a href="#8-4-进入安装mysql软件目录之后创建保存的数据的目录" class="headerlink" title="8.4 进入安装mysql软件目录之后创建保存的数据的目录"></a>8.4 进入安装mysql软件目录之后创建保存的数据的目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /usr/local/mysql<br><br>mkdir  -p  data/mysql   【数据文件存放的位置】<br></code></pre></td></tr></table></figure>
 
-<h2 id="8-5-新建一个msyql组"><a href="#8-5-新建一个msyql组" class="headerlink" title="8.5 新建一个msyql组"></a>8.5 新建一个msyql组</h2><p>groupadd  mysql  【建立用户群组，可以使用cat &#x2F;etc&#x2F;group查看】</p>
+<h2 id="8-5-新建一个msyql组"><a href="#8-5-新建一个msyql组" class="headerlink" title="8.5 新建一个msyql组"></a>8.5 新建一个msyql组</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">groupadd  mysql  【建立用户群组，可以使用cat <span class="hljs-regexp">/etc/g</span>roup查看】<br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="8-6-创建一个mysql用户"><a href="#8-6-创建一个mysql用户" class="headerlink" title="8.6 创建一个mysql用户"></a>8.6 创建一个mysql用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">useradd  -r -s /sbin/nologin -g mysql mysql -d /usr/local/mysql  <br></code></pre></td></tr></table></figure>
 
 <p> 【useradd命令用来建立用户帐号， cat  &#x2F;etc&#x2F;passwd可以查看账户】</p>
@@ -460,7 +463,7 @@
 <p>配置成功界面</p>
 <p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172221598.webp" srcset="/img/loading.gif" lazyload></p>
 <p>​      此处需要注意记录生成的临时密码，如上文结尾处的： AnZQt9Pqly&#x3D;)  </p>
-<h2 id="8-9-修改系统配置文件"><a href="#8-9-修改系统配置文件" class="headerlink" title="8.9 修改系统配置文件"></a>8.9 修改系统配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-built_in">cd</span>  /usr/local/mysql/support-files</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cp</span> my-default.cnf /etc/my.cnf    这里没有话就跳过  去查看这个地址有没有my.cnf文件。如果就把权限改了  <span class="hljs-built_in">chmod</span> 777 my.cnf</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cp</span> mysql.server  /etc/init.d/mysql</span><br><span class="hljs-meta prompt_"> # </span><span class="language-bash">vim /etc/init.d/mysql</span><br><br></code></pre></td></tr></table></figure>
+<h2 id="8-9-修改系统配置文件"><a href="#8-9-修改系统配置文件" class="headerlink" title="8.9 修改系统配置文件"></a>8.9 修改系统配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-built_in">cd</span>  /usr/local/mysql/support-files</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cp</span> my-default.cnf /etc/my.cnf    这里没有话就跳过  去查看这个地址有没有my.cnf文件。如果就把权限改了  <span class="hljs-built_in">chmod</span> 777 my.cnf</span><br>cp mysql.server  /etc/init.d/mysql<br><br>vim /etc/init.d/mysql<br><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://sports0808008-1312331175.cos.ap-shanghai.myqcloud.com/imgs/202310172222489.webp" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">basedir=/usr/local/mysql<br>datadir=/usr/local/mysql/data/mysql<br></code></pre></td></tr></table></figure>
